@@ -266,5 +266,5 @@ footer {
     height: 80px;
     background: url(http://www.gravatar.com/avatar/e159add00b20e7a140c1b75179c80010.png);
     border-radius: 50%; /*the magic*/
-    border: solid 1px;
+    border: solid 1px #dddddd;
 }
