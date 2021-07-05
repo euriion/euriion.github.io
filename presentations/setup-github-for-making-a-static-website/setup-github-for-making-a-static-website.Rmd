@@ -179,19 +179,23 @@ github에서 페이지설정 2
 확인하기
 ========================================================
 
-- 웹브라우저로 접속해보면 됩니다.
-- [https://use-r.kr]()
+- index.html을 비롯한 내용물을 github 레파지토리에 올림
+- 웹브라우저로 접속해서 확인. 적용되는데 최대 5분까지 걸림
+- 예시 [https://use-r.kr]()
 
 
-기타
+기타 공유
 ========================================================
 
 - Knitr와 Rmarkdown을 이용해서 연동하기에 매우 편리함
+- Blogdown, Bookdown,...down 시리즈의 결과물을 저장하고 공유하기에 매우 적합함
 - 함께 연동할 수 있는 Jeykyl, Hyde, Hugo, Hexo 등 많은 다른 솔루션이 있음
 
 
 마치며
 ========================================================
 
-- 이 슬라이드는 Rmarkdown revealjs 형식으로 만든 것입니다
+- 이 슬라이드는 Rmarkdown revealjs 형식으로 만든 것입니다.
 - 슬라이드 소스는 [여기](https://github.com/aidenhong/aidenhong.github.io/tree/master/presentations/setup-github-for-making-a-static-website)에 있습니다.
+- 자료는 마음대로 사용하셔도 됩니다.
+
