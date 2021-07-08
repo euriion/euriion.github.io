@@ -73,11 +73,16 @@
             font-family: 'Nexon Lv1 Gothic OTF', 'Noto Sans KR', sans-serif;
         }
         
+        th,
+        td,
+        tr,
         ul,
         ui {
             font-family: 'Nexon Lv1 Gothic OTF', 'Noto Sans KR', sans-serif;
         }
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -114,29 +119,153 @@
         <section>
             <h3> 🛠 유용한 도구 모음 Useful tools</h3>
             <div>
-                <div id="table"></div>
+                <div id="table">
+                    <table id="csvtable"></table>
+                </div>
                 <script src="https://d3js.org/d3.v7.min.js"></script>
                 <script type="text/javascript" charset="utf-8">
-                    d3.text("useful_tools_data.csv", function(data) {
-                        var parsedCSV = d3.csv.parseRows(data);
+                    d3.csv("useful_tools_data.csv").then(function(data) {
+                        function tabulate(data, columns) {
+                            var table = d3.select("#csvtable")
+                                .style("padding", "0 0 2% 0")
+                                .style("background-color", "white"),
+                                columnNames = columns,
+                                thead = table.append("thead"),
+                                tbody = table.append("tbody");
+                            // append the header row
+                            thead.append("tr")
+                                .selectAll("th")
+                                .data(columnNames)
+                                .enter()
+                                .append("th")
+                                // .style("vertical-align", "middle")
+                                .text(function(columnNames) {
+                                    return columnNames;
+                                });
 
-                        var container = d3.select("#table")
-                            .append("table")
+                            //thead.selectAll("tr")
+                            //.style("color", "gray")
+                            //.style("font-size", "medium")
+                            //.style("height", "40px")
+                            //.style("background-color","#205492")
+                            //.style("font-weight", "600");
 
-                        .selectAll("tr")
-                            .data(parsedCSV).enter()
-                            .append("tr")
+                            // create a row for each object in the data
+                            var rows = tbody.selectAll("tr")
+                                .data(data)
+                                .enter()
+                                .append("tr");
 
-                        .selectAll("td")
-                            .data(function(d) {
-                                return d;
-                            }).enter()
-                            .append("td")
-                            .text(function(d) {
-                                return d;
-                            });
+                            // create a cell in each row for each column
+                            var cells = rows.selectAll("td")
+                                .data(function(row) {
+                                    return columns.map(function(column) {
+                                        let pair = {
+                                            column: column,
+                                            value: row[column]
+                                        }
+                                        if (column === 'link') {
+                                            pair.value = `<a href="${pair.value}" target="_blank">🔗</a?`;
+                                        }
+                                        return pair;
+                                    });
+                                })
+                                .enter()
+                                .append("td")
+                                //.style("background-color","#ffffff")
+                                //.style("font-size", "1.8vh")
+                                //.style("color", "#09284d")
+                                //.style("font-weight", "bold")
+                                //.style("padding", "15px")
+                                //.style("width","600px")
+                                //.style("text-align","center")
+                                .html(function(d) {
+                                    return d.value;
+                                });
+
+                            return table;
+                        };
+
+                        tabulate(data, ["category", "name", "link"]) //The names of the columns in the CSV file
                     });
                 </script>
+                <!--
+                <script src="https://d3js.org/d3.v4.min.js"></script>
+                <script type="text/javascript" charset="utf-8">
+                    d3.csv("useful_tools_data.csv", function(data) {
+
+                        function tabulate(data, columns) {
+                            var table = d3.select("#csvtable")
+                                //.style("padding","0 0 2% 0")
+                                //.style("background-color","white")
+                                ,
+                                columnNames = columns,
+                                thead = table.append("thead"),
+                                tbody = table.append("tbody");
+
+
+
+                            // append the header row
+                            thead.append("tr")
+                                .selectAll("th")
+                                .data(columnNames)
+                                .enter()
+                                .append("th")
+                                //.style("vertical-align", "middle")
+                                .text(function(columnNames) {
+                                    return columnNames;
+                                });
+
+
+                            //thead.selectAll("tr")
+                            //.style("color", "gray")
+                            //.style("font-size", "medium")
+                            //.style("height", "40px")
+                            //.style("background-color","#205492")
+                            //.style("font-weight", "600");              
+
+                            // create a row for each object in the data
+                            var rows = tbody.selectAll("tr")
+                                .data(data)
+                                .enter()
+                                .append("tr");
+
+                            // create a cell in each row for each column
+                            var cells = rows.selectAll("td")
+                                .data(function(row) {
+                                    return columns.map(function(column) {
+                                        let pair = {
+                                            column: column,
+                                            value: row[column]
+                                        }
+                                        if (column === 'link') {
+                                            pair.value = `<a href="${pair.value}" target=>🔗</a?`;
+                                        }
+                                        return pair;
+                                    });
+                                })
+                                .enter()
+                                .append("td")
+                                //.style("background-color","#ffffff")
+                                //.style("font-size", "1.8vh")
+                                //.style("color", "#09284d")
+                                //.style("font-weight", "bold")
+                                //.style("padding", "15px")
+                                //.style("width","600px")
+                                //.style("text-align","center")
+                                .html(function(d) {
+                                    return d.value;
+                                });
+
+                            return table;
+                        };
+
+                        tabulate(data, ["category", "name", "link"]) //The names of the columns in the CSV file
+
+
+                    });
+                </script>
+            -->
             </div>
         </section>
         <footer>
