@@ -2,7 +2,7 @@
 title: "Github에 도메인 연결해서 고정 웹페이지 서비스하기"
 author: 홍성학
 date: 2021년 7월 2일
-output: 
+output:
   revealjs::revealjs_presentation:
     theme: sky
     highlight: pygments
@@ -11,6 +11,7 @@ output:
       in_header: header.html
       before_body: doc_prefix.html
       after_body: doc_suffix.html
+  
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)

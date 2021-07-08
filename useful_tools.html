@@ -106,59 +106,37 @@
             </p>
         </header>
         <section>
-            <h3> 👓 전문 분야 Speciality</h3>
-            <p>
-                <ul>
-                    <li>애드테크, 마테크, 디지털마케팅, 그로쓰해킹 비즈니스
-                        <br />Business analytics on Ad tech, Martech, Digital marketing, Growth hacking</li>
-                    <li>이상감지, 부정감지, 사기감지, 어뷰징감지
-                        <br />Fraud, Abuse and Anomaly Detection</li>
-                    <li>AI, 기계학습, 데이터마이닝, 통계 분석
-                        <br />Machine learning, Data Mining and Statistical analysis</li>
-                    <li>BI/DW, 빅데이터, 예측 진단 분석
-                        <br />BI/DW, Big data, Prescriptive and predictive Analysis</li>
-                    <li>데이터 시각화
-                        <br />Data visualization</li>
-                    <li>재현가능연구
-                        <br />Reproducible Research</li>
-                </ul>
-            </p>
+            <h3> 👈 네비게이션</h3>
+            <ul>
+                <li><a href="index.html">🏠 첫페이지로 가기</a></li>
+            </ul>
         </section>
         <section>
-            <h3> 👨‍🏫 오픈 슬라이드 Open slides</h3>
-            <p>
-                <p>
-                    <a href="https://aidenhong.com/presentations/setup-github-for-making-a-static-website/setup-github-for-making-a-static-website.html" target="_blank">
-                깃헙(github)에 도메인을 붙여서 웹페이지 무료로 서비스하기</a> 2021-07-02
-                </p>
-            </p>
-        </section>
-        <section>
-            <h3> 🛠 자료 모음</h3>
-            <p><a href="useful_tools.html">🛠 유용한 도구 모음 Useful tools</a></p>
-        </section>
-        <section>
-            <h3> 📚 저서 Book</h3>
-            <p>
-                <a href="http://r-visualization.com" target="_blank">R을 활용한 데이터 시각화 (R visualization book)</a>
-            </p>
-        </section>
-        <!-- <section>
-            <h3>
-                <a name="support-or-contact" class="anchor" href="#interest">🏫</a> 관심사 Interests
-            </h3>
-            <p>
-                Data analysis, Machine learning, Data Mining, Data visualization, Automation, Massive data Processing and Traffic management (Big Data), Distributed data processing, Information retrieval, Artifcial intelligence, Vision computing, AR, VR, XR
-            </p>
-        </section> -->
-        <section>
-            <h3>
-                <a name="support-or-contact" class="anchor" href="#support-or-contact">
-                    <span class="octicon octicon-link">✉</span></a> 연락처 Contact
-            </h3>
-            <p>이메일을 보내주세요 <br /> email:
-                <a href="mainto:euriion@gmail.com">euriion@gmail.com</a>
-            </p>
+            <h3> 🛠 유용한 도구 모음 Useful tools</h3>
+            <div>
+                <script src="https://d3js.org/d3.v7.min.js"></script>
+                <script type="text/javascript" charset="utf-8">
+                    d3.text("useful_tools_data.csv", function(data) {
+                        var parsedCSV = d3.csv.parseRows(data);
+
+                        var container = d3.select("body")
+                            .append("table")
+
+                        .selectAll("tr")
+                            .data(parsedCSV).enter()
+                            .append("tr")
+
+                        .selectAll("td")
+                            .data(function(d) {
+                                return d;
+                            }).enter()
+                            .append("td")
+                            .text(function(d) {
+                                return d;
+                            });
+                    });
+                </script>
+            </div>
         </section>
         <footer>
             <p id="copyright_year"></p>
