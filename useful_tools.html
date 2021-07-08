@@ -114,12 +114,13 @@
         <section>
             <h3> 🛠 유용한 도구 모음 Useful tools</h3>
             <div>
+                <div id="table"></div>
                 <script src="https://d3js.org/d3.v7.min.js"></script>
                 <script type="text/javascript" charset="utf-8">
                     d3.text("useful_tools_data.csv", function(data) {
                         var parsedCSV = d3.csv.parseRows(data);
 
-                        var container = d3.select("body")
+                        var container = d3.select("#table")
                             .append("table")
 
                         .selectAll("tr")
