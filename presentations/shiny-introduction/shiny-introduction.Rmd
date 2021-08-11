@@ -1,0 +1,186 @@
+---
+title: "샤이니 Shiny"
+subtitle: "R로 만드는 대화형 웹시각화"
+author: "홍성학"
+institute: "Korea R User Group"
+date: "2021-08-09 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+    css: ["default", "xaringan-custom.css"]
+---
+
+<!-- background-image: url(https://upload.wikimedia.org/wikipedia/commons/b/be/Sharingan_triple.svg) -->
+background-image: url(https://teachdatascience.com/post/shiny2/shinyhex.jpg)
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+???
+
+Image credit: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Sharingan_triple.svg)
+
+---
+<!-- class: center, middle -->
+
+# 샤이니 소개
+
+### Shiny introduction
+
+---
+class: inverse, left, middle
+
+# 샤이니는?
+
+- R언어로 대화형 웹 애플리케이션을 만드는데 쓰는 패키지
+- Rstudio 사에서 제작한 패키지
+- Shiny server 까지는 무료
+
+![](https://shiny.rstudio.com/tutorial/written-tutorial/lesson1/images/01_hello.png)
+
+
+---
+
+# 샤이니 장점 Shiny Pros
+
+- R언어로 웹 애플리케이션을 제작할 수 있음
+- 짧고 간단한 코드로 대화형 시각화를 구현할 수 있음
+- 분석에 사용하던 코드를 웹 애플리케이션으로 빠르게 바꿀 수 있음
+
+![](https://shiny.rstudio.com/gallery/images/screenshots/movie-explorer.png)
+
+---
+
+# 샤이니 단점 Shiny Cons
+
+- 학습 장벽이 있음
+- 복잡한 웹 애플리케이셔을 작성하기 어려움
+- 애플리케이션의 속도가 느린 편
+
+![](http://cdn.app.compendium.com/uploads/user/e7c690e8-6ff9-102a-ac6d-e4aebca50425/f4a5b21d-66fa-4885-92bf-c4e81c06d916/Image/9d07897be6d8ad8b1019f56ff3b3ad28/shiny_ore_dorothea_corr_pearson_1_2000.png)
+
+---
+
+# Shiny 코드 생성 방법
+
+Rstudio에서 "메뉴 -> File -> New File -> Shiny Web App.." 선택
+
+![](screenshot1.png)
+
+---
+
+# Shiny 코드 예제
+
+```{r eval=FALSE, tidy=FALSE}
+library(shiny)
+# Define UI for application that draws a histogram
+ui <- fluidPage(
+    # Application title
+    titlePanel("Old Faithful Geyser Data"),
+    # Sidebar with a slider input for number of bins 
+    sidebarLayout(
+        sidebarPanel(
+          sliderInput("bins", "Number of bins:", min = 1, max = 50, value = 30)
+        ),
+        # Show a plot of the generated distribution
+        mainPanel(plotOutput("distPlot"))
+    )
+)
+# Define server logic required to draw a histogram
+server <- function(input, output) {
+    output$distPlot <- renderPlot({
+        # generate bins based on input$bins from ui.R
+        x    <- faithful[, 2]
+        bins <- seq(min(x), max(x), length.out = input$bins + 1)
+        # draw the histogram with the specified number of bins
+        hist(x, breaks = bins, col = 'darkgray', border = 'white')
+    })
+}
+# Run the application 
+shinyApp(ui = ui, server = server)
+```
+
+---
+
+# Shiny 코드 및 구조 설명
+
+## UI 파트
+
+- 샤이니 웹앱의 눈에 보이는 부분을 처리
+- 타이틀, 상자, 드롭박스와 같은 표현 요소를 배열
+
+```{r eval=FALSE, tidy=FALSE}
+ui <- fluidPage(
+    # Application title
+    titlePanel("Old Faithful Geyser Data"),
+    # Sidebar with a slider input for number of bins 
+    sidebarLayout(
+        sidebarPanel(
+          sliderInput("bins", "Number of bins:", min = 1, max = 50, value = 30)
+        ),
+        # Show a plot of the generated distribution
+        mainPanel(plotOutput("distPlot"))
+    )
+)
+```
+
+---
+
+
+# Shiny 코드 및 구조 설명
+
+## Server 파트
+
+- UI에서 전달 받은 Input을 사용해서 코드를 실행
+- 코드를 실행하고 결과물을 UI로 전달
+
+```{r eval=FALSE, tidy=FALSE}
+server <- function(input, output) {
+    output$distPlot <- renderPlot({
+        # generate bins based on input$bins from ui.R
+        x    <- faithful[, 2]
+        bins <- seq(min(x), max(x), length.out = input$bins + 1)
+        # draw the histogram with the specified number of bins
+        hist(x, breaks = bins, col = 'darkgray', border = 'white')
+    })
+}
+```
+
+---
+
+# 반응성 (Reactiviy)에 대해서
+
+- 사용자의 입력을 받고 꼭 필요한 부분의 코드만 재실행
+- 그리고 갱신이 필요한 결과물을 다시 만들어서 그 부분만 바꿔치기
+- 이 작업이 자동으로 연쇄적으로 실행
+- Shiny는 R로만 작동하는것처럼 보이지만 사실은 Javascript가 내무에서 깊이 관여
+- [참고자료](https://shiny.rstudio.com/articles/reactivity-overview.html)
+
+---
+
+# 알아두면 좋은 사실
+
+- 데이터와 코드가 메모리에 올라간 채로 시작
+- 데이터를 계속해서 로딩해야하거나 동적으로 바꾸려면 요령이 필요함
+- Shiny의 UI부분은 Javascript로 작동함
+- 복잡한 앱을 작성하려면 Javascript를 알아야 하고 Shiny의 구조도 알아야 함
+- ui.R과 server.R로 파트를 나눠서 코드를 작성할 수도 있음
+
+---
+
+# 참고자료
+
+- [샤이니 공식홈](https://shiny.rstudio.com/)
+- [샤이니 갤러리](https://shiny.rstudio.com/gallery/#demos)
+- [사용자 쇼케이스](https://shiny.rstudio.com/gallery/#user-showcase)
+
+---
+
+# 질문 Question?
+
+홍성학 (euriion@gmail.com)
