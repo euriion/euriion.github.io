@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 ﻿presentations/.vscode
 presentations/shiny-introduction/.vscode
 presentations/shiny-introduction/.Rhistory
 presentations/shiny-introduction/.Rproj.user
 presentations/setup-github-for-making-a-static-website/.vscode
 .vscode
+=======
+﻿.vscode
+presentations/shiny-introduction/.Rproj.user
+presentations/shiny-introduction/.Rhistory
+>>>>>>> master
