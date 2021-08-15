@@ -1,6 +1,5 @@
 category,name,link
 유틸리티,각종 계산기,http://www.na2.co.kr/
-유틸리티,계산기나라,https://www.dailyest.co.kr/
 웹개발,misc tools,http://tool.heyo.me
 시간,시간변환기,https://www.epochconverter.com/
 문자,특수문자표,https://wepplication.github.io/tools/charMap/
@@ -35,3 +34,4 @@ category,name,link
 유틸리티,HTML소스보기,https://wepplication.github.io/tools/htmlViewer/
 유틸리티,암호화도구,https://wepplication.github.io/tools/crypt/
 유틸리티,한글난독화,https://airbnbfy.hanmesoft.com/
+정보,카카오맵 지하철노선표,https://map.kakao.com/?map_type=TYPE_MAP&nowRegionIdx=0&REGION=01&STARTNAME=&ENDNAME=&STARTID=&ENDID=&routingType=TimeBase&dailyType=WEEKDAY&time=15_10&URLLINK=true&target=subway
