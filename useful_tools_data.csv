@@ -1,4 +1,5 @@
 category,name,link
+시간,세계시간 변환,https://www.worldtimebuddy.com/
 유틸리티,계산기나라,https://www.dailyest.co.kr/
 유틸리티,각종 계산기,http://www.na2.co.kr/
 웹개발,misc tools,http://tool.heyo.me
@@ -10,13 +11,13 @@ category,name,link
 웹개발,웹에디터,https://wepplication.github.io/tools/webEditor/
 파일,smi->srt자막변환기,https://wepplication.github.io/tools/smi2Srt/
 문자,글자수세기,https://wepplication.github.io/tools/charCounter/
-유틸리티,한영타변환,https://wepplication.github.io/tools/eng2Kor/
-유틸리티,매직아이생성기,https://wepplication.github.io/tools/magicEyeGen/
-유틸리티,문자음성변환,https://wepplication.github.io/tools/tts/
+유틸리티,한영타 변환,https://wepplication.github.io/tools/eng2Kor/
+유틸리티,매직아이 생성기,https://wepplication.github.io/tools/magicEyeGen/
+유틸리티,문자음성 변환,https://wepplication.github.io/tools/tts/
 유틸리티,EML뷰어,https://wepplication.github.io/tools/emlViewer/
 유틸리티,짧은주소url원래주소변환,https://wepplication.github.io/tools/longUrl/
 유틸리티,아이피조회,https://wepplication.github.io/tools/ipconfig/
-유틸리티,로또번호생성기,https://wepplication.github.io/tools/lottoNumGen/
+유틸리티,로또번호 생성기,https://wepplication.github.io/tools/lottoNumGen/
 유틸리티,손전등,https://wepplication.github.io/tools/flashlight/
 유틸리티,우편번호찾기,https://wepplication.github.io/tools/postcode/
 유틸리티,바코드스캐너,https://wepplication.github.io/tools/barcodeScanner/
@@ -29,10 +30,10 @@ category,name,link
 유틸리티,코드비교,https://wepplication.github.io/tools/compareDoc/
 유틸리티,코드정렬,https://wepplication.github.io/tools/beautifyCode/
 유틸리티,코드압축,https://wepplication.github.io/tools/minifyCode/
-유틸리티,URL인코딩,https://wepplication.github.io/tools/urlDEncoder/
-유틸리티,UUID생성기,https://wepplication.github.io/tools/uuidGen/
-유틸리티,키보드이벤트테스트,https://wepplication.github.io/tools/keyCode/
-유틸리티,HTML소스보기,https://wepplication.github.io/tools/htmlViewer/
-유틸리티,암호화도구,https://wepplication.github.io/tools/crypt/
-유틸리티,한글난독화,https://airbnbfy.hanmesoft.com/
-정보,카카오맵 지하철노선표,https://map.kakao.com/?map_type=TYPE_MAP&nowRegionIdx=0&REGION=01&STARTNAME=&ENDNAME=&STARTID=&ENDID=&routingType=TimeBase&dailyType=WEEKDAY&time=15_10&URLLINK=true&target=subway
+유틸리티,URL 인코딩,https://wepplication.github.io/tools/urlDEncoder/
+유틸리티,UUID 생성기,https://wepplication.github.io/tools/uuidGen/
+유틸리티,키보드 이벤트 테스트,https://wepplication.github.io/tools/keyCode/
+유틸리티,HTML 소스보기,https://wepplication.github.io/tools/htmlViewer/
+유틸리티,암호화 도구,https://wepplication.github.io/tools/crypt/
+유틸리티,한글 난독화,https://airbnbfy.hanmesoft.com/
+정보,카카오맵 지하철 노선표,https://map.kakao.com/?map_type=TYPE_MAP&nowRegionIdx=0&REGION=01&STARTNAME=&ENDNAME=&STARTID=&ENDID=&routingType=TimeBase&dailyType=WEEKDAY&time=15_10&URLLINK=true&target=subway
