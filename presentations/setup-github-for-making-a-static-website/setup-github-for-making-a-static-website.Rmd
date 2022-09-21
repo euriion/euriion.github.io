@@ -2,11 +2,7 @@
 title: "Github에 도메인 연결해서 고정 웹페이지 서비스하기"
 author: 홍성학
 date: 2021년 7월 2일
-<<<<<<< HEAD
-output:
-=======
 output: 
->>>>>>> master
   revealjs::revealjs_presentation:
     theme: sky
     highlight: pygments
@@ -15,10 +11,6 @@ output:
       in_header: header.html
       before_body: doc_prefix.html
       after_body: doc_suffix.html
-<<<<<<< HEAD
-  
-=======
->>>>>>> master
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
@@ -187,7 +179,6 @@ github에서 페이지설정 2
 확인하기
 ========================================================
 
-<<<<<<< HEAD
 - index.html을 비롯한 내용물을 github 레파지토리에 올림
 - 웹브라우저로 접속해서 확인. 적용되는데 최대 5분까지 걸림
 - 예시 [https://use-r.kr]()
@@ -219,5 +210,3 @@ github에서 페이지설정 2
 - Knitr와 Rmarkdown을 이용해서 연동하기에 매우 편리함
 - 함께 연동할 수 있는 Jeykyl, Hyde, Hugo, Hexo 등 많은 다른 솔루션이 있음
 
-
->>>>>>> master
