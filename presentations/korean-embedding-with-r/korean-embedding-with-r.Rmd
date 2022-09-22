@@ -1,0 +1,152 @@
+---
+title: "한국어 임베딩과 R언어"
+author: 홍성학
+date: 2022년 9월 20일
+output: 
+  revealjs::revealjs_presentation:
+    theme: sky
+    highlight: pygments
+    center: true
+    includes:
+      in_header: header.html
+      before_body: doc_prefix.html
+      after_body: doc_suffix.html
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+@font-face {
+    font-family: 'NEXON Lv1 Gothic OTF';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GongGothicMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GongGothicBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GongGothicLight';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicLight.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ONE-Mobile-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/ONE-Mobile-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ONE-Mobile-Title';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/ONE-Mobile-Title.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PyeongChang';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/PyeongChang.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PyeongChang-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/PyeongChang-Bold.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+</style>
+```{css css-settings, echo=FALSE}
+* {
+  font-family: 'PyeongChang', 'Noto Sans KR', sans-serif;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  font-family: 'GongGothicLight', 'Noto Sans KR', sans-serif;
+}
+
+.reveal .slide {
+  font-family: 'ONE-Mobile-Regular', 'Nexon Lv1 Gothic OTF', 'Noto Sans KR', sans-serif;
+}
+
+.reveal .author {
+  font-family: 'Nexon Lv1 Gothic OTF', 'Noto Sans KR', sans-serif;
+}
+.reveal .date {
+  font-family: 'Nexon Lv1 Gothic OTF', 'Noto Sans KR', sans-serif;
+}
+```
+내용 contents
+========================================================
+
+- 한국어 자연어 처리와 텍스트마아닝
+- word2vec을 통한 워드임베딩
+- 한국어 워드임베딩
+- 워드임베딩과 R 패키지
+- 워드임베딩의 응용
+
+한국어 자연어 처리와 텍스트마이닝의 현재 
+========================================================
+
+- 한국어 자연어처리와 텍스트마이닝은 역사는 오래되었지만 발전이 한계에 부딪힌 것도 오래되었음
+- 여전히 쓸만하지 않은 형태소분석기, 구문분석기
+    - 더 이상 큰 진척이 없음
+
+자연어처리의 장벽이 되는 한국어의 문제
+========================================================
+
+- 띄어쓰기 (spacing problem)
+- 복합명사 (compound-noun)
+- 조사 (josa)
+- 파생접미사
+
+자연어처리의 장벽이 되는 한국어의 문제 - 띄어쓰기
+========================================================
+
+띄어쓰기는 됨
+
+아버지가방에들어가신다. -> 아버지가 방에 들어가신다.
+
+붙이기는 안됨
+
+아버지 가방을 고쳐드렸다. -> 아버지가방을 고쳐드렸다. (안됨)
+
+자연어처리의 장벽이 되는 한국어의 문제 - 복합명사 #1
+========================================================
+
+개체명 (Named Entity)
+
+- 카라마조프가의 형제들
+- 추락하는 것은 날개가 있다
+- 오징어게임
+- 이상한 변호사 우영우
+
+자연어처리의 장벽이 되는 한국어의 문제 - 복합명사 #2
+========================================================
+
+개체명 (Named Entity)
+
+- 카라마조프가의 형제들
+- 추락하는 것은 날개가 있다
+- 오징어게임
+- 이상한 변호사 우영우
