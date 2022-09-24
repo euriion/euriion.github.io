@@ -1,16 +1,20 @@
 ---
 title: "한국어 임베딩과 R언어"
 author: 홍성학
-date: 2022년 9월 20일 (서울R밋업 2022.09)
+date: 2022년 9월 24일
 output: 
   revealjs::revealjs_presentation:
     theme: night
     highlight: pygments
     center: true
+    reveal_options:
+      slideNumber: true
+      previewLinks: true
     includes:
       in_header: header.html
       before_body: doc_prefix.html
       after_body: doc_suffix.html
+    
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
@@ -96,12 +100,19 @@ knitr::opts_chunk$set(echo = FALSE)
   font-family: 'Nexon Lv1 Gothic OTF', 'Noto Sans KR', sans-serif;
 }
 ```
+
+# 한국어 임베딩과 R언어
+
+**요약**
+
+<center>과거의 한국어 자연어처리와 텍스트마이닝에 대해서 회고하고   
+현재 워드임베딩을 중심으로 바뀐 패러다임과 함께  
+R에서 사용가능한 관련 패키지 대한 간단한 소개</center>
+
 # 내용 contents
 
 - 한국어 자연어처리와 텍스트마이닝의 어려운점
 - 자연어처리의 새 패러다임 워드임베딩
-
-과거의 한국어 자연어처리와 텍스트마이닝과 현재 워드임베딩을 중심으로 바뀐 패러다임에서 R로 하는 자연어처리 및 텍스트마이닝
 
 # 한국어 자연어처리 - 과거
 
@@ -111,26 +122,31 @@ knitr::opts_chunk$set(echo = FALSE)
 - 한국어 언어구조의 문제
 - 연구를 위한 지원과 자료 부족의 문제
 
+<img src="mojibake.png" width="800" height="450">
+
 # 한국어 자연어처리 - 현재
 
 **지금은**
 
 - 글자의 문제 (인코딩의 문제) ➡️ UTF-8로 해결됨
 - 한국어 언어구조의 문제 ➡️ 포기
-- 연구를 위한 지원과 자료 부족의 문제 ➡️ 나아졌지만 미국에 비하면 턱없이 부족
+- 연구를 위한 지원과 자료 부족의 문제 ➡️ 나아졌지만 영어권에 비해서 부족
 
-# 한국어 자연어처리 - R로 하는 자연어처리?
+# R로 하는 한국어 자연어처리?
+
+**미리 말하는 결론**
 
 - R은 텍스트 데이터를 처리하는데 매우 불리
-- Python은 좀 낫지만 불리한 것은 여전
-- 다른 랭귀지도 그만그만
-- 컴퓨터랭귀지 문제가 아니라 텍스트와 언어의 문제가 큼
+- Python은 좀 낫지만 여전히 불리
+- 다른 컴퓨터랭귀지도 마찬가지
+- 컴퓨터랭귀지 문제가 아니라 비정형 데이터와 자언어의 문제
+- 워드임베딩은 자연어에 비교적 비의존적으로 텍스트마이닝이 가능
 
 # 한국어 자연어처리 - 형태소분석기
 
-한국어에는 쓸만한 형태소분석기, 구문분석기가 많지 않음
+한국어를 위한 아주 좋은 형태소분석기, 구문분석기가 많지 않음
 
-- 은전한닢(MeCab), 노리(Nori), 꼬꼬마(Kkma), 한나눔(Hannanum)
+- 은전한닢(MeCab), 노리(Nori), 꼬꼬마(Kkma), 한나눔(Hannanum), OKT, Soynlp, 구글 센텐스피스 (Google Sentence Piece)
   - 기계학습(HMM, CRF) 기반
   - 21세기세종계획 + 각자의 추가 말뭉치
 - 규칙기반(rule base)의 형태소분석기는 현재는 많이 쓰이지 않음
@@ -138,29 +154,39 @@ knitr::opts_chunk$set(echo = FALSE)
   - 룰을 고치기가 매우 어려움
   - 신조어, 문법파괴, 예외사항에 취약
 
+# 한국어 자연어처리 - 형태소분석기
+
+<img src="morphs_analysis.png" width="800" height="450">
+
+[그림 출처](https://heung-bae-lee.github.io/2020/01/19/NLP_02/)
+
 # 한국어 자연어처리 - 구문분석기
 
-구문분석기 (Language Parser)는 문장을 입력하면 **트리구조**의 결과물이 나옴
+**구문분석기 (Language Parser)**
 
-"아버지가 가방을 고치신다"  
-"아버지가" ➡️ 주어 / "가방을" ➡️ 목적어 / "고치신다" ➡️ 서술어
+- 입력된 문장을 파싱해서 **트리구조**로 분석
+- 주어, 목적어, 서술어 등을 찾을 수 있음
+
+"아버지가 식사를 하신다"  
+"아버지가" ➡️ 주어 / "식사를" ➡️ 목적어 / "하신다" ➡️ 서술어
 
 <img src="google-language-parser.png" width="800" height="450">
 
 # 한국어 자연어처리 - 개체명인식기
 
-**NER(Named Entity Recognition)**
+**개체명인식기 (NER, Named Entity Recognition)**
+
+제품명, 지명, 인명, 기관명, 회사명, 브랜드명, 이메일, URL, 전화번호?
 
 ```text
 기생충은 스토리 만으로도 훌륭하고 일상 코메디 물과 어찌보면 스릴러가 함께 잘 혼합된 영화라고 볼 수 있습니다. 
 그러나 이야기를 관통하고 많은 장면에서 보이는 계단을 통해 사회적인 높낮이와 실질적인 장소로서의 높낮이로 이야기를 풀어가고 있습니다. 
-반지하, 즉 지하보다는 높지만 지상보다는 낮은 곳에 살고 있는 송강호 가족. -> 하층민 이기도 하나, 계급 이동이 가능하기도, 혹은 나락으로 떨어질 수도 있는 위치의 사람들
-하루에 몇번은 빛이 듭니다.
+...
 ```
 
 <img src="ner.png" width="800" height="350">
 
-[출처](https://github.com/songys/entity)
+[그림 출처](https://github.com/songys/entity)
 
 # 한국어 자연어처리 - 띄어쓰기 문제 #1
 
@@ -172,15 +198,17 @@ knitr::opts_chunk$set(echo = FALSE)
 
 `아버지 가방을 고쳐드렸다` ➡️ `아버지가방을 고쳐드렸다`
 
-- 처리하려면 별도의 구현이 필요하지만 매우 복잡하고 어려운 문제
-- 사용자사전으로는 세그먼테이션만 방지만 가능
+- 처리하려면 별도의 구현이 필요하지만 매우 복잡하고 어려움
+- 사용자사전은 세그먼테이션 방지만 가능
 
 # 한국어 자연어처리 - 띄어쓰기 문제 #2
 
-형태소분석기의 세그멘테이션과 띄어쓰기는 다른 것
+형태소분석기의 세그멘테이션과 문법상 띄어쓰기는 사실 다름
 
-- 형태소분석: `무궁화_꽃_이_피었_습니다`.
-- 띄어쓰기: `무궁화꽃이_피었습니다`.
+- 형태소분석: `무궁화_꽃_이_피었_습니다`
+- 띄어쓰기: `무궁화꽃이_피었습니다`
+
+세그멘테이션은 검색을 위한 인덱서로 많이 사용했던 경향이 있음
 
 # 한국어 자연어처리의 장벽 - 복합명사 #1
 
@@ -201,10 +229,13 @@ knitr::opts_chunk$set(echo = FALSE)
 
 - 대한민국은 민주주의 공회국이다.
 - 한국R사용자커뮤니티는 R을 사용하는 사람들의 커뮤니티이다.
+- Apple 아이폰 13 mini 자급제, 128GB, 미드나이트
+- 삼성전자 갤럭시 S22 자급제 SM-S901N, 256GB, 보라퍼플
+- 샤넬 코코 크렘 뿌르르꼬르 바디 크림
 
-# 한국어 자연어처리의 장벽 - 적은 연구 자료
+# 한국어 자연어처리의 장벽 - Corpus(말뭉치)
 
-적은 Corpus(코퍼스)로 기계학습, 전산언어연구를 하기 위한 자료와 지원이 매우 부실했음
+자연어처리를 위한 기계학습, 전산언어연구를 하기 위한 자료와 지원 부족
 
 - 모두의 말뭉치(21세기세종계획)
 - 위키피디아
@@ -220,22 +251,20 @@ knitr::opts_chunk$set(echo = FALSE)
 
 # 자연어처리 결과의 응용 - 워드클라우드
 
-워드클라우드 wordcloud
+**워드클라우드 wordcloud**
 
 - 출현한 단어의 빈도, 상대빈도로 텍스트의 크기를 다르게 시각화한 것
 - 무수히 많은 문서에서 공통으로 나오는 단어는 중요한 단어로 간주
   - 단어의 중요도는 빈도가 아닌 다른 값을 사용할 수도 있음
-- 가장 기본적인 빅데이터의 예제
+- 가장 널리 알려진 빅데이터의 예제
 
-<img src="wordcloud.png" width="800" height="450">
-
+<img src="wordcloud1.png" width="800" height="350">
 
 # 자연어처리 결과의 응용 - 워드클라우드 문제 #1
 
-워드클라우드의 문제
-
 - 형태소분석기에 의존적
   - 한국어는 조사와 접미사를 제거하고 명사만 뽑아내는 작업이 필요
+  - 단어를 어떻게 세그먼테이션 하는가에 따라 다른 인사이트가 나옴
 - 불용어처리가 필요
   - 조사, 접미사, 불용어 등은 문장으로 묶어주지 않으면 의미 해석에 방해
 
@@ -254,17 +283,24 @@ knitr::opts_chunk$set(echo = FALSE)
 **꿈보다는 해몽**
 
 - 해석하는 사람의 역랑에 따라 인사이트가 달라짐
-  - 자신에게 유리한 쪽으로 해석
-  - 보고 싶은 것만 본다
+  - 자신에게 유리한 쪽으로 해석하고 보고 싶은 것만 보고 싶어함
 - 좋은 인사이트를 얻기 위해서는 도메인지식이 필요함
 - 도메인에 따른 주변지식도 필요함
 
-<img src="good-insight.jpg" width="800" height="450">
+<img src="good-insight.jpg" width="800" height="350">
 
 # 자연어처리 결과의 응용 - 워드클라우드 문제 #4
 
-- 생성은 자동화가 가능함
-- 해석은 자동화가 안됨
+- 워크클라우드 생성은 자동화가 가능하고 쉽지만
+- 해석은 자동화가 되지 않음
+
+<img src="bigdata.jpg" width="800" height="350">
+
+# 자연어처리 결과의 응용 - t-SNE
+      
+t-SNE는 고차원의 데이터를 저차원으로 줄여서 표현
+
+<img src="t-sne.png" width="800" height="350">
 
 # 자연어처리 결과의 응용 - 클러스터링
 
@@ -287,36 +323,49 @@ knitr::opts_chunk$set(echo = FALSE)
 - 의미중심의 클러스터링이 아닌 단어매치 기반에 의한 클러스터링
   - TF-IDF와 코사인유사도(Cosine Similarity)만으로는 어려움
 
+# 자연어처리 결과의 응용 - 클러스터링 거리측정
+
+거리측정 (Distance Measure)
+
+- 유클리디안 거리 (Euclidean Distance)
+- 코사인 유사도 (Cosine Similarity)
+  - 워드임베딩의 검색 및 군집화에 주로 사용
+
+<img src="cosine-similarity.png" width="800" height="250">
+
 # 자연어처리 결과의 응용 - 학습데이터의 부족
 
 - 자언어처리 모델을 만드는데 필요한 코퍼스가 부족
 - 각 산업별, 기업별 자료들이 공개되지 않고 폐쇠적으로 활용
 - 수집된 오픈데이터(크롤)도 공개가 되지 않음
   - 저작권 문제?
+
 # 지금까지의 자연어처리의 문제
 
-- 온톨로지의 실패
+- 온톨로지의 실패 ➡ 의미, 추론 기반으로 발전 실패
 - 형태소분석기와 구문분석기의 보편화 실패
-    - 빅테크 회사내에서만 독점적 관리
-# 언어를 인코딩하는 2가지 기본 방법
+  - 빅테크 회사들 내에서만 독점적으로 사용하고 관리
+  - 빈익빈 부익부
 
-- TF-IDF scheme
-- 원핫(One hot encoding)
+# 텍스트(자언어)를 인코딩하는 2가지 기본 방법
 
-# 언어를 인코딩하는 2가지 기본 방법 - TFIDF
+- TF-IDF 벡터라이즈
+- 원핫인코딩(One hot encoding)
 
-Term Frequency Inverse Document Frequency 
+# 텍스트를 인코딩하는 방법 - TFIDF
+
+**Term Frequency Inverse Document Frequency**
 
 - TF: 토큰의 갯수
 - DF: 토큰의 출현한 고유 문서 수
 - 공식: TF x IDF
 - 정보검색에 적합함
 
-# 언어를 인코딩하는 2가지 기본 방법 - TFIDF
+# 텍스트를 인코딩하는 방법 - TFIDF
 
 <img src="tfidf_sketch.png" width="800" height="450">
 
-그림출처: [TFIDF sketch](https://towardsdatascience.com/tf-term-frequency-idf-inverse-document-frequency-from-scratch-in-python-6c2b61b78558)
+[그림 출처](https://towardsdatascience.com/tf-term-frequency-idf-inverse-document-frequency-from-scratch-in-python-6c2b61b78558)
 
 # TFIDF - R패키지 tidytext
 
@@ -366,10 +415,13 @@ head(tf_mat, 3)
 
 [superml](https://cran.r-project.org/web/packages/superml/vignettes/Guide-to-TfidfVectorizer.html)
 
+# 언어를 인코딩하는 2가지 기본 방법 - TFIDF Classification
+
+<img src="tfidf-classification.png" width="800" height="450">
 
 # 언어를 인코딩하는 2가지 기본 방법 - 원핫인코딩
 
-원핫인코딩 (One hot encoding)
+**원핫인코딩 (One hot encoding)**
 
 **"무궁화 꽃이 피었습니다"**
 
@@ -379,7 +431,9 @@ head(tf_mat, 3)
 | 꽃이   |   1    |  0 1 0 |
 | 피었습니다 | 2 |  0 0 1 |
 
-# 워드임베딩
+<img src="onehot-encoding.jpg" width="800" height="250">
+
+# 워드임베딩 word embedding
 
 - 단어를 밀도가 높은 벡터로 표현하는 방법
   - 인코딩한 고차원의 워드벡터를 낮은 차원의 벡터로 축소하는 방법
@@ -396,7 +450,7 @@ head(tf_mat, 3)
 
 # 워드임베딩 word embedding
 
-워드임베잉 Word Embedding이란?
+**워드임베잉 Word Embedding**이란?
 
 - 단어를 밀도높은 수열(숫자)로 만드는 기술
   - 원핫 인코딩을 하고 차원축소로 임베딩을 함
@@ -404,12 +458,16 @@ head(tf_mat, 3)
 - 딥러닝(Deep Learning)을 이용한 자언어처리에서는 현재 주류(대세)
   - 원핫인코딩을 사용하지 않을 수도 있음
 
+# 워드임베딩 word embedding
+
+<img src="wordembedding.png" width="800" height="450">
+
 # 워드임베딩의 장점
 
 - 대량의 학습데이터로 높은 성능의 모델을 쉽게 만들 수 있음
 - 형태적 매치 보다는 의미 매치에 가까운 모델을 만달 수 있음
 - 모델을 빌드하는데 인간의 고민이 덜 필요함
-- 사전학습모델(pre-trained model)을 이용해서 전이학습(transfer learning) 가능
+- 사전학습모델(pre-trained model)을 이용하고 전이학습(transfer learning) 가능
 
 # 워드임베딩의 단점
 
@@ -421,7 +479,9 @@ head(tf_mat, 3)
 
 # 워드임베딩의 전이학습
 
-
+- 빌드한 워드임베딩모델을 분류 모델 같은 것에 활용
+- 학습데이터가 부족할 때 사용
+- pre-trained model -> fine-tuning
 
 # 알려진 워드임베딩 기법
 
@@ -430,12 +490,49 @@ head(tf_mat, 3)
 - ELMo
 - FastText
 - BERT
+- Big Bird
 
 # 워드임베딩 - word2vec
 
 - 2013년 구글 리서팀이 발표
 - 신경망 모델 (Neural Network Model)
 - 딥러닝 (Deep learning) (x)
+
+# 워드임베딩 - word2vec - CBOW와 skip-gram
+
+<img src="word2vec-cbow-skipgram.png" width="800" height="450">
+
+# 워드임베딩 - word2vec R패키지
+
+```r
+brary(wordVectors)
+library(readr)
+model = train_word2vec(train_file = "./word2vec/RecData.txt"
+                       , threads=3
+                       , vectors=100
+                       , force = T
+                       , window = 6
+                       , output_file = "./word2vec/word2vec_model.bin")        
+model = wordVectors::read.binary.vectors("./word2vec/word2vec_model.bin")
+result <- nearest_to(model, model[["마케팅"]], 20)
+result
+```
+
+# 워드임베딩 - word2vec R패키지
+
+```r
+library(tidytext)
+library(dplyr)
+# We want to use original tweets, not retweets:
+elected_no_retweets <- elected_official_tweets %>%
+  filter(is_retweet == F) %>%
+  select(c("text"))
+#create tweet id
+elected_no_retweets$postID<-row.names(elected_no_retweets)
+# ... 생략 ...
+```
+
+[코드 출처](https://cbail.github.io/textasdata/word2vec/rmarkdown/word2vec.html)
 
 # 워드임베딩 - GLoVE
 
@@ -476,22 +573,37 @@ word_vectors <- wv_main + t(wv_context)
 
 # 워드임베딩 - fastText R패키지
 
+```r
+library(fastText)
+list_params = list(command = 'cbow', lr = 0.1, dim = 50, 
+                   input = "example_text.txt",
+                   output = file.path(tempdir(), 'word_vectors'), 
+                   verbose = 2, thread = 1)
+res = fasttext_interface(list_params, 
+                         path_output = file.path(tempdir(), 'cbow_logs.txt'),
+                         MilliSecs = 5, remove_previous_file = TRUE,
+                         print_process_time = TRUE)
+```
+
 [fastText](https://github.com/mlampros/fastText)
+
+# 워드임베딩 - fastText 서브워드
+
+<img src="fasttext-diagram.png" width="800" height="450">
 
 # 워드임베딩 - BERT
 
+- BERT(Bidirectional Encoder Representations from Transformers)
 - 트랜스포머의 단순화 버전
+- BERT는 토큰임베딩, 세그먼트임베딩, 포지션임베딩으로 구성되어 있음
 - 현재까지 의미벡터를 만드는 방법 중 가장 좋은 성능을 보임
   - SOTA (State of the Art)
 
-# Word2vec 구조
-
-그림 필요
-
 # BERT
 
-- BERT(Bidirectional Encoder Representations from Transformers)
-- BERT는 토큰임베딩, 세그먼트임베딩, 포지션임베딩으로 구성되어 있음
+<img src="bert-04.png" width="800" height="450">
+
+[그림 출처](https://wikidocs.net/115055)
 
 # BERT - 토큰임베딩 Token Embeddings
 
@@ -517,7 +629,20 @@ word_vectors <- wv_main + t(wv_context)
 - BERT에서는 이를 변형하여 Position Encodings을 사용
 - 앞서 언급한 각 임베딩들의 토큰 별로 모두 더하여 BERT의 입력 벡터로 사용합니다.
 
-# 워드벡터의 활용
+# BERT R패키지
+
+RStudio의 Keras 패키지를 사용하여 BERT를 사용할 수 있음
+
+```r
+Sys.setenv(TF_KERAS=1) 
+# make sure we use python 3
+reticulate::use_python('C:/Users/turgut.abdullayev/AppData/Local/Continuum/anaconda3/python.exe',
+                       required=T)
+# to see python version
+reticulate::py_config()
+```
+
+# 워드벡터의 활용 - 같은 방법 다른 결과
 
 여전히 과거의 방법과 동일한 방법을 시도
 
@@ -528,24 +653,32 @@ word_vectors <- wv_main + t(wv_context)
 
 ※ 예전에도 하던 것들이지만 더 그럴듯한 쓸만한 결과가 나옴
 
-# 워드벡터의 활용
+# 워드벡터의 활용 - 의미기반 처리가 잘 되지 않음
 
-- 의미기반의 문서 검색
-- 유사한 상품명 찾기, 의미 기반의 문서 분류
-- 감성분류
+- 의미기반의 문서 검색 (Semantic Search)
+  - 유사한 명칭찾기 
+  - 짜장면 가게 =? 짬뽕 가게
+- 의미 기반의 문서 분류 (Semantic Document Classification)
+- 감성분류 (Sentiment analysis)
+
+# 워드벡터의 활용 - 벡터검색
+
+<img src="vector-search-01.png" width="800" height="450">
+
+[그림 출처](https://www.pinecone.io/learn/vector-search-basics/)
 
 # 워드벡터 활용을 위한 유용한 도구
 
 - 고속벡터검색엔진
-  - Milvus, ElasticSearch, Vespa
-  - Faiss
+  - Milvus, ElasticSearch, Vespa, Faiss
 
 [awesome vector search 참조](https://github.com/currentslab/awesome-vector-search)
 
-
 # R언어로 자연어처리를 할 때? - 어떻게 접근할까?
 
-- 워드임베딩을 사용해야 하나? TFIDF벡터라이즈를 사용해야 하나?
+워드임베딩을 사용해야 하나? TFIDF벡터라이즈를 사용해야 하나?
+
+<img src="r-text-analysis.png" width="800" height="450">
 
 # R언어로 워드임베딩을 할 때 고려할 것 #1
 
@@ -561,7 +694,7 @@ word_vectors <- wv_main + t(wv_context)
 
 # R언어로 워드임베딩을 할 때 고려할 것 #2
 
-- 모델을 빌드부터 할 것인가?
+- 모델을 R에서 빌드 할 것인가?
   - R에서 빌드가 가능한 모델 구현체 패키지를 입수하거나 만들어야함
   - 꼭 그럴 필요가 있는지 고민
   - 최근 많은 기계학습 프레임워크는 모델 빌더를 제공함
@@ -569,11 +702,14 @@ word_vectors <- wv_main + t(wv_context)
   - 빌드된 모델을 로딩해서 사용가능한 패키지가 있어야 함
   - 일부는 있고 일부는 없음
 - 응용한 결과로 처리된 데이터로 인사이트를 얻는 것만 할 것인가?
-  - 기존의 데이터분석, 데이터과학과 다를 것은 없음
+  - 기존의 데이터분석, 데이터과학과 다를 것이 없음
 
-# 참고자료
+# R언어로 자연어처리, 텍스트마이닝을 할 때
 
-- https://medium.com/broadhorizon-cmotions/nlp-with-r-part-2-training-word-embedding-models-and-visualize-results-ae444043e234
-- https://rpubs.com/nabiilahardini/word2vec
-- https://cran.r-project.org/web/packages/word2vec/readme/README.html
-- https://cran.r-project.org/web/packages/text2vec/vignettes/glove.html
+- 모델이 제공하는 기본 툴킷을 가능한 많이 이용
+- 모든 것을 R로 하려하는 집착을 버릴 것
+  - 기계학습, 텍스트처리 솔루션은 이제 랭귀지 의존적이라고 보기 어려움
+
+# END
+
+Question? Answer!
