@@ -190,3 +190,8 @@ github에서 페이지설정 2
 - 함께 연동할 수 있는 Jeykyl, Hyde, Hugo, Hexo 등 많은 다른 솔루션이 있음
 
 
+마치며
+========================================================
+
+- 이 슬라이드는 Rmarkdown revealjs 형식으로 만든 것입니다
+- 슬라이드 소스는 [여기](https://github.com/aidenhong/aidenhong.github.io/tree/master/presentations/setup-github-for-making-a-static-website)에 있습니다.
