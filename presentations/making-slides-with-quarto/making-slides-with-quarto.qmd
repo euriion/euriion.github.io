@@ -18,6 +18,11 @@ format:
     footer: "Quarto 슬라이드 만들기 | Aiden Hong"
     logo: "https://quarto.org/quarto.png"
     css: custom.css
+    include-in-header:
+      - text: |
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+mermaid:
+  theme: dark
 editor: visual
 ---
 
@@ -41,10 +46,10 @@ editor: visual
 ::: {.column width="50%"}
 **Quarto**는 과학적 기술 출판을 위한 오픈소스 시스템입니다.
 
-- 📊 **다양한 출력 형식**: HTML, PDF, Word, 슬라이드
-- 🔧 **다중 언어 지원**: R, Python, Julia, Observable
-- 🎨 **풍부한 포맷팅**: 수식, 다이어그램, 인터랙티브 요소
-- 🌐 **웹 친화적**: 반응형 디자인, 인터랙티브 기능
+- <i class="fas fa-chart-bar"></i> **다양한 출력 형식**: HTML, PDF, Word, 슬라이드
+- <i class="fas fa-tools"></i> **다중 언어 지원**: R, Python, Julia, Observable
+- <i class="fas fa-palette"></i> **풍부한 포맷팅**: 수식, 다이어그램, 인터랙티브 요소
+- <i class="fas fa-globe"></i> **웹 친화적**: 반응형 디자인, 인터랙티브 기능
 :::
 
 ::: {.column width="50%"}
@@ -62,12 +67,12 @@ flowchart TD
 ## 왜 Quarto를 사용할까? {.smaller}
 
 ::: {.incremental}
-- ✅ **재현 가능한 연구**: 코드와 결과가 함께
-- ✅ **버전 관리**: Git으로 협업 가능
-- ✅ **자동화**: 데이터 업데이트 시 자동 갱신
-- ✅ **일관성**: 브랜딩과 스타일 통일
-- ✅ **접근성**: 웹 표준 준수
-- ✅ **무료**: 오픈소스 도구
+- <i class="fas fa-check-circle text-green-500"></i> **재현 가능한 연구**: 코드와 결과가 함께
+- <i class="fas fa-check-circle text-green-500"></i> **버전 관리**: Git으로 협업 가능
+- <i class="fas fa-check-circle text-green-500"></i> **자동화**: 데이터 업데이트 시 자동 갱신
+- <i class="fas fa-check-circle text-green-500"></i> **일관성**: 브랜딩과 스타일 통일
+- <i class="fas fa-check-circle text-green-500"></i> **접근성**: 웹 표준 준수
+- <i class="fas fa-check-circle text-green-500"></i> **무료**: 오픈소스 도구
 :::
 
 # 슬라이드 기본 설정
@@ -450,13 +455,13 @@ quarto render presentation.qmd
 ## 팁과 트릭 {.smaller}
 
 ::: {.incremental}
-- 🎯 **간결함**: 슬라이드당 하나의 핵심 메시지
-- 🎨 **일관성**: 폰트, 색상, 레이아웃 통일
-- 📱 **반응형**: 다양한 화면 크기 고려
-- 🔍 **접근성**: 대비, 폰트 크기 고려
-- 🚀 **성능**: 이미지 최적화, 코드 실행 시간 관리
-- 📝 **문서화**: 주석과 설명 추가
-- 🔄 **버전 관리**: Git으로 변경사항 추적
+- <i class="fas fa-bullseye"></i> **간결함**: 슬라이드당 하나의 핵심 메시지
+- <i class="fas fa-paint-brush"></i> **일관성**: 폰트, 색상, 레이아웃 통일
+- <i class="fas fa-mobile-alt"></i> **반응형**: 다양한 화면 크기 고려
+- <i class="fas fa-universal-access"></i> **접근성**: 대비, 폰트 크기 고려
+- <i class="fas fa-rocket"></i> **성능**: 이미지 최적화, 코드 실행 시간 관리
+- <i class="fas fa-file-alt"></i> **문서화**: 주석과 설명 추가
+- <i class="fas fa-sync-alt"></i> **버전 관리**: Git으로 변경사항 추적
 :::
 
 ## 감사합니다! {.center}
@@ -468,9 +473,9 @@ quarto render presentation.qmd
 ::: {.columns}
 ::: {.column width="50%"}
 **연락처:**
-- 📧 Email: euriion@gmail.com
-- 🐙 GitHub: @euriion
-- 🐦 Twitter: @euriion
+- <i class="fas fa-envelope"></i> Email: euriion@gmail.com
+- <i class="fab fa-github"></i> GitHub: @euriion
+- <i class="fab fa-twitter"></i> Twitter: @euriion
 :::
 
 ::: {.column width="50%"}
