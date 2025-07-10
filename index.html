@@ -112,6 +112,7 @@
             .scroll-progress {
                 left: 0;
                 width: 100%;
+                top: 60px;
             }
         }
     </style>
@@ -148,10 +149,23 @@
     <!-- Scroll Progress -->
     <div class="scroll-progress" id="scrollProgress"></div>
 
-    <!-- Mobile Menu Button -->
-    <button id="mobileMenuBtn" class="md:hidden fixed top-4 left-4 z-50 bg-black text-white p-2 rounded">
-        <i class="fas fa-bars"></i>
-    </button>
+    <!-- Mobile Header -->
+    <div class="md:hidden fixed top-0 left-0 right-0 bg-white border-b border-gray-200 z-40 px-4 py-3">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <img src="https://avatars.githubusercontent.com/u/198962?v=4" 
+                     alt="홍성학 프로필 이미지" 
+                     class="w-8 h-8 rounded-full">
+                <div>
+                    <div class="text-sm font-bold">홍성학</div>
+                    <div class="text-xs text-gray-600">Full Stack Data Expert</div>
+                </div>
+            </div>
+            <button id="mobileMenuBtn" class="bg-black text-white p-2 rounded">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </div>
 
     <!-- Sidebar -->
     <aside class="sidebar" id="sidebar">
@@ -216,7 +230,7 @@
     <!-- Main Content -->
     <main class="main-content bg-white">
         <!-- About Section -->
-        <section id="profile" class="py-12">
+        <section id="profile" class="py-12 md:py-12 pt-20">
             <div class="container mx-auto px-6">
                 <div class="fade-in">
                     <h2 class="text-2xl font-bold mb-8 text-center">프로필</h2>
