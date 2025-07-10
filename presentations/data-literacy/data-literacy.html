@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="data-literacy_files/libs/clipboard/clipboard.min.js"></script>
+<script src="data-literacy_files/libs/quarto-html/tabby.min.js"></script>
+<script src="data-literacy_files/libs/quarto-html/popper.min.js"></script>
+<script src="data-literacy_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="data-literacy_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="data-literacy_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="data-literacy_files/libs/quarto-html/quarto-syntax-highlighting-dark-0348920b7671f696dc9078d39bff215e.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.32">
+
+  <meta name="author" content="홍성학">
+  <meta name="dcterms.date" content="2025-07-10">
+  <title>데이터 문해력</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="data-literacy_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="data-literacy_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="data-literacy_files/libs/revealjs/dist/theme/quarto-00033b64c7f4405b1251d0bf85080562.css">
+  <link rel="stylesheet" href="custom.css">
+  <link href="data-literacy_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="data-literacy_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="data-literacy_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="data-literacy_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="data-literacy_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="data-literacy_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="quarto-dark">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">데이터 문해력</h1>
+  <p class="subtitle">데이터 기반 의사결정의 핵심 역량</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+홍성학 
+</div>
+</div>
+</div>
+
+  <p class="date">2025-07-10</p>
+</section>
+<section id="데이터-문해력이란" class="slide level2 smaller">
+<h2>데이터 문해력이란?</h2>
+<ul>
+<li class="fragment"><i class="fas fa-chart-line"></i> 데이터를 <strong>읽고, 이해하고, 분석하고, 시각화</strong>하여 의미 있는 정보를 도출하는 능력</li>
+<li class="fragment"><i class="fas fa-brain"></i> 데이터를 바탕으로 <strong>합리적인 의사결정</strong>을 내릴 수 있는 능력</li>
+<li class="fragment"><i class="fas fa-search"></i> 데이터의 <strong>한계와 편향</strong>을 인식하고 비판적으로 사고하는 능력</li>
+</ul>
+<aside class="notes">
+<p>데이터 문해력은 단순히 숫자를 읽는 것을 넘어서, 데이터 뒤에 숨겨진 의미를 파악하고 실제 의사결정에 활용할 수 있는 종합적인 능력입니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="현대-사회에서-데이터의-중요성" class="slide level2 smaller">
+<h2>현대 사회에서 데이터의 중요성</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="데이터-폭발-시대">데이터 폭발 시대</h3>
+<ul>
+<li><i class="fas fa-database"></i> 매일 2.5퀸틸리언 바이트의 데이터 생성</li>
+<li><i class="fas fa-calendar-alt"></i> 2020년 이후 전 세계 데이터의 90%가 생성됨</li>
+<li><i class="fas fa-network-wired"></i> IoT, 소셜미디어, 모바일 기기 등의 확산</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h3 id="비즈니스-환경의-변화">비즈니스 환경의 변화</h3>
+<ul>
+<li><i class="fas fa-chart-bar"></i> 데이터 기반 의사결정이 표준화</li>
+<li><i class="fas fa-trophy"></i> 경쟁력의 핵심 요소로 부상</li>
+<li><i class="fas fa-users"></i> 모든 직무에서 데이터 활용 능력 요구</li>
+</ul>
+</div></div>
+</section>
+<section id="왜-데이터-문해력이-중요한가" class="slide level2 smaller">
+<h2>왜 데이터 문해력이 중요한가?</h2>
+<h3 id="더-나은-의사결정">1. 더 나은 의사결정</h3>
+<ul>
+<li><i class="fas fa-bullseye"></i> <strong>객관적 근거</strong> 기반의 판단</li>
+<li><i class="fas fa-shield-alt"></i> <strong>리스크 최소화</strong>와 성공 확률 증대</li>
+<li><i class="fas fa-ban"></i> <strong>편향과 직관의 오류</strong> 방지</li>
+</ul>
+<h3 id="업무-효율성-증대">2. 업무 효율성 증대</h3>
+<ul>
+<li><i class="fas fa-robot"></i> <strong>자동화</strong>를 통한 반복 작업 감소</li>
+<li><i class="fas fa-search-plus"></i> <strong>패턴 인식</strong>으로 문제 해결 속도 향상</li>
+<li><i class="fas fa-crystal-ball"></i> <strong>예측 분석</strong>으로 선제적 대응</li>
+</ul>
+<h3 id="새로운-기회-창출">3. 새로운 기회 창출</h3>
+<ul>
+<li><i class="fas fa-lightbulb"></i> <strong>숨겨진 인사이트</strong> 발견</li>
+<li><i class="fas fa-chart-line"></i> <strong>시장 트렌드</strong> 조기 포착</li>
+<li><i class="fas fa-rocket"></i> <strong>혁신적 아이디어</strong> 도출</li>
+</ul>
+</section>
+<section id="데이터-문해력의-핵심-요소" class="slide level2 smaller">
+<h2>데이터 문해력의 핵심 요소</h2>
+<h3 id="비판적-사고">1. 비판적 사고</h3>
+<ul>
+<li class="fragment"><i class="fas fa-search"></i> <strong>데이터의 출처</strong>와 수집 방법 검증</li>
+<li class="fragment"><i class="fas fa-exclamation-triangle"></i> <strong>편향과 오류</strong> 가능성 인식</li>
+<li class="fragment"><i class="fas fa-arrows-alt-h"></i> <strong>상관관계 vs 인과관계</strong> 구분</li>
+<li class="fragment"><i class="fas fa-book-open"></i> <strong>맥락적 해석</strong>의 중요성</li>
+</ul>
+<h3 id="통계적-지식">2. 통계적 지식</h3>
+<ul>
+<li class="fragment"><i class="fas fa-calculator"></i> <strong>기술통계</strong>: 평균, 중앙값, 표준편차</li>
+<li class="fragment"><i class="fas fa-chart-bar"></i> <strong>추론통계</strong>: 가설검정, 신뢰구간</li>
+<li class="fragment"><i class="fas fa-dice"></i> <strong>확률과 분포</strong> 이해</li>
+<li class="fragment"><i class="fas fa-users"></i> <strong>표본과 모집단</strong>의 관계</li>
+</ul>
+</section>
+<section id="데이터-문해력의-핵심-요소-계속" class="slide level2 smaller">
+<h2>데이터 문해력의 핵심 요소 (계속)</h2>
+<h3 id="데이터-시각화">3. 데이터 시각화</h3>
+<ul>
+<li class="fragment"><i class="fas fa-chart-pie"></i> <strong>적절한 차트 선택</strong>: 막대그래프, 선그래프, 산점도 등</li>
+<li class="fragment"><i class="fas fa-palette"></i> <strong>색상과 디자인</strong> 원칙</li>
+<li class="fragment"><i class="fas fa-book"></i> <strong>스토리텔링</strong>과 내러티브 구성</li>
+<li class="fragment"><i class="fas fa-eye-slash"></i> <strong>오해를 불러일으키는 시각화</strong> 피하기</li>
+</ul>
+<h3 id="도구-활용-능력">4. 도구 활용 능력</h3>
+<ul>
+<li class="fragment"><i class="fas fa-table"></i> <strong>Excel/Google Sheets</strong>: 기본 분석 도구</li>
+<li class="fragment"><i class="fas fa-database"></i> <strong>SQL</strong>: 데이터베이스 쿼리</li>
+<li class="fragment"><i class="fas fa-code"></i> <strong>Python/R</strong>: 고급 분석 및 모델링</li>
+<li class="fragment"><i class="fas fa-chart-area"></i> <strong>Tableau/Power BI</strong>: 시각화 도구</li>
+</ul>
+</section>
+<section id="데이터-문해력-발전-단계" class="slide level2 smaller">
+<h2>데이터 문해력 발전 단계</h2>
+<div class="columns">
+<div class="column" style="width:30%;">
+<h3 id="초급-단계">초급 단계</h3>
+<ul>
+<li><i class="fas fa-chart-bar"></i> 기본 통계 이해</li>
+<li><i class="fas fa-chart-pie"></i> 간단한 차트 해석</li>
+<li><i class="fas fa-table"></i> Excel 활용</li>
+<li><i class="fas fa-broom"></i> 데이터 정리</li>
+</ul>
+</div><div class="column" style="width:30%;">
+<h3 id="중급-단계">중급 단계</h3>
+<ul>
+<li><i class="fas fa-calculator"></i> 고급 통계 분석</li>
+<li><i class="fas fa-chart-area"></i> 복합 시각화</li>
+<li><i class="fas fa-database"></i> SQL 활용</li>
+<li><i class="fas fa-search-plus"></i> 패턴 인식</li>
+</ul>
+</div><div class="column" style="width:30%;">
+<h3 id="고급-단계">고급 단계</h3>
+<ul>
+<li><i class="fas fa-crystal-ball"></i> 예측 모델링</li>
+<li><i class="fas fa-brain"></i> 머신러닝 활용</li>
+<li><i class="fas fa-robot"></i> 자동화 구현</li>
+<li><i class="fas fa-lightbulb"></i> 전략적 인사이트</li>
+</ul>
+</div></div>
+</section>
+<section id="실무에서의-데이터-문해력-활용" class="slide level2 smaller">
+<h2>실무에서의 데이터 문해력 활용</h2>
+<h3 id="마케팅-분야">마케팅 분야</h3>
+<ul>
+<li><i class="fas fa-users"></i> <strong>고객 세분화</strong> 및 타겟팅</li>
+<li><i class="fas fa-chart-line"></i> <strong>캠페인 성과 분석</strong></li>
+<li><i class="fas fa-dollar-sign"></i> <strong>ROI 측정</strong> 및 최적화</li>
+<li><i class="fas fa-trending-up"></i> <strong>시장 트렌드 분석</strong></li>
+</ul>
+<h3 id="운영-분야">운영 분야</h3>
+<ul>
+<li><i class="fas fa-cogs"></i> <strong>프로세스 최적화</strong></li>
+<li><i class="fas fa-check-circle"></i> <strong>품질 관리</strong></li>
+<li><i class="fas fa-boxes"></i> <strong>재고 관리</strong></li>
+<li><i class="fas fa-cut"></i> <strong>비용 절감 분석</strong></li>
+</ul>
+<h3 id="인사-분야">인사 분야</h3>
+<ul>
+<li><i class="fas fa-smile"></i> <strong>직원 만족도 조사</strong></li>
+<li><i class="fas fa-star"></i> <strong>성과 평가 분석</strong></li>
+<li><i class="fas fa-door-open"></i> <strong>이직률 예측</strong></li>
+<li><i class="fas fa-handshake"></i> <strong>채용 효율성 분석</strong></li>
+</ul>
+</section>
+<section id="데이터-문해력-향상-방법" class="slide level2 smaller">
+<h2>데이터 문해력 향상 방법</h2>
+<h3 id="기초-역량-강화">1. 기초 역량 강화</h3>
+<ul>
+<li class="fragment"><i class="fas fa-book"></i> <strong>통계학 기초</strong> 학습</li>
+<li class="fragment"><i class="fas fa-tools"></i> <strong>데이터 분석 도구</strong> 익히기</li>
+<li class="fragment"><i class="fas fa-chart-pie"></i> <strong>시각화 원칙</strong> 이해</li>
+<li class="fragment"><i class="fas fa-building"></i> <strong>비즈니스 도메인</strong> 지식 습득</li>
+</ul>
+<h3 id="실습과-프로젝트">2. 실습과 프로젝트</h3>
+<ul>
+<li class="fragment"><i class="fas fa-project-diagram"></i> <strong>개인 프로젝트</strong> 수행</li>
+<li class="fragment"><i class="fas fa-cloud-download-alt"></i> <strong>온라인 데이터셋</strong> 활용</li>
+<li class="fragment"><i class="fas fa-trophy"></i> <strong>캐글 경진대회</strong> 참여</li>
+<li class="fragment"><i class="fas fa-puzzle-piece"></i> <strong>실무 문제</strong> 해결 경험</li>
+</ul>
+<h3 id="지속적-학습">3. 지속적 학습</h3>
+<ul>
+<li class="fragment"><i class="fas fa-rss"></i> <strong>최신 트렌드</strong> 파악</li>
+<li class="fragment"><i class="fas fa-users"></i> <strong>커뮤니티 참여</strong></li>
+<li class="fragment"><i class="fas fa-network-wired"></i> <strong>전문가 네트워킹</strong></li>
+<li class="fragment"><i class="fas fa-comments"></i> <strong>피드백 수집</strong></li>
+</ul>
+</section>
+<section id="데이터-문해력의-함정과-주의사항" class="slide level2 smaller">
+<h2>데이터 문해력의 함정과 주의사항</h2>
+<h3 id="데이터-편향-인식">1. 데이터 편향 인식</h3>
+<ul>
+<li><i class="fas fa-balance-scale"></i> <strong>표본 편향</strong>: 대표성 부족</li>
+<li><i class="fas fa-eye"></i> <strong>확증 편향</strong>: 원하는 결과만 찾기</li>
+<li><i class="fas fa-medal"></i> <strong>생존자 편향</strong>: 성공 사례만 고려</li>
+</ul>
+<h3 id="상관관계-vs-인과관계">2. 상관관계 vs 인과관계</h3>
+<ul>
+<li><i class="fas fa-link"></i> 상관관계가 있다고 인과관계가 있는 것은 아님</li>
+<li><i class="fas fa-question"></i> 제3의 변수가 영향을 미칠 수 있음</li>
+<li><i class="fas fa-clock"></i> 시간적 순서와 논리적 메커니즘 고려</li>
+</ul>
+<h3 id="과도한-일반화-주의">3. 과도한 일반화 주의</h3>
+<ul>
+<li><i class="fas fa-map-marker-alt"></i> 특정 상황에서만 유효한 결과</li>
+<li><i class="fas fa-ruler"></i> 표본 크기와 통계적 유의성 고려</li>
+<li><i class="fas fa-globe"></i> 맥락과 환경의 중요성</li>
+</ul>
+</section>
+<section id="조직에서의-데이터-문해력-문화" class="slide level2 smaller">
+<h2>조직에서의 데이터 문해력 문화</h2>
+<h3 id="데이터-기반-의사결정-문화-조성">데이터 기반 의사결정 문화 조성</h3>
+<ul>
+<li class="fragment"><i class="fas fa-user-tie"></i> <strong>리더십의 솔선수범</strong></li>
+<li class="fragment"><i class="fas fa-key"></i> <strong>데이터 접근성</strong> 향상</li>
+<li class="fragment"><i class="fas fa-graduation-cap"></i> <strong>실패를 통한 학습</strong> 장려</li>
+<li class="fragment"><i class="fas fa-chalkboard-teacher"></i> <strong>교육과 훈련</strong> 지원</li>
+</ul>
+<h3 id="협업과-소통">협업과 소통</h3>
+<ul>
+<li class="fragment"><i class="fas fa-book-open"></i> <strong>데이터 스토리텔링</strong> 역량</li>
+<li class="fragment"><i class="fas fa-comments"></i> <strong>비전문가와의 소통</strong> 능력</li>
+<li class="fragment"><i class="fas fa-chart-line"></i> <strong>시각화를 통한 설득</strong></li>
+<li class="fragment"><i class="fas fa-users"></i> <strong>데이터 기반 토론</strong> 문화</li>
+</ul>
+</section>
+<section id="미래의-데이터-문해력" class="slide level2 smaller">
+<h2>미래의 데이터 문해력</h2>
+<h3 id="새로운-기술과-트렌드">새로운 기술과 트렌드</h3>
+<ul>
+<li><i class="fas fa-robot"></i> <strong>인공지능과 머신러닝</strong>의 대중화</li>
+<li><i class="fas fa-magic"></i> <strong>자동화된 인사이트</strong> 도출</li>
+<li><i class="fas fa-clock"></i> <strong>실시간 데이터 분석</strong></li>
+<li><i class="fas fa-eye"></i> <strong>증강 분석 (Augmented Analytics)</strong></li>
+</ul>
+<h3 id="변화하는-역량-요구사항">변화하는 역량 요구사항</h3>
+<ul>
+<li><i class="fas fa-brain"></i> <strong>AI 도구 활용</strong> 능력</li>
+<li><i class="fas fa-heart"></i> <strong>윤리적 데이터 사용</strong></li>
+<li><i class="fas fa-shield-alt"></i> <strong>개인정보 보호</strong> 인식</li>
+<li><i class="fas fa-balance-scale"></i> <strong>알고리즘 편향</strong> 이해</li>
+</ul>
+</section>
+<section id="실습-예제-매출-데이터-분석" class="slide level2 smaller scrollable">
+<h2>실습 예제: 매출 데이터 분석</h2>
+<h3 id="문제-상황">문제 상황</h3>
+<p><i class="fas fa-shopping-cart"></i> 온라인 쇼핑몰의 월별 매출이 감소하고 있습니다. 원인을 파악하고 해결책을 제시해야 합니다.</p>
+<h3 id="분석-접근법">분석 접근법</h3>
+<ol type="1">
+<li><i class="fas fa-download"></i> <strong>데이터 수집</strong>: 매출, 방문자, 전환율, 평균 주문액</li>
+<li><i class="fas fa-search"></i> <strong>탐색적 분석</strong>: 트렌드, 패턴, 이상치 확인</li>
+<li><i class="fas fa-layer-group"></i> <strong>세분화 분석</strong>: 제품별, 고객별, 채널별 분석</li>
+<li><i class="fas fa-lightbulb"></i> <strong>가설 설정</strong>: 가능한 원인들 나열</li>
+<li><i class="fas fa-check"></i> <strong>검증</strong>: 데이터로 가설 검증</li>
+<li><i class="fas fa-tasks"></i> <strong>액션 플랜</strong>: 개선 방안 도출</li>
+</ol>
+</section>
+<section id="마무리" class="slide level2 smaller scrollable">
+<h2>마무리</h2>
+<h3 id="데이터-문해력은-이제-필수-역량입니다">데이터 문해력은 이제 필수 역량입니다</h3>
+<ul>
+<li class="fragment"><i class="fas fa-briefcase"></i> <strong>모든 직무</strong>에서 데이터 활용 능력 요구</li>
+<li class="fragment"><i class="fas fa-trophy"></i> <strong>경쟁력 확보</strong>의 핵심 요소</li>
+<li class="fragment"><i class="fas fa-graduation-cap"></i> <strong>평생 학습</strong>이 필요한 영역</li>
+<li class="fragment"><i class="fas fa-building"></i> <strong>조직 전체</strong>의 역량 향상 필요</li>
+</ul>
+<h3 id="시작하는-방법">시작하는 방법</h3>
+<ol type="1">
+<li><i class="fas fa-calculator"></i> <strong>기초 통계</strong> 학습부터 시작</li>
+<li><i class="fas fa-chart-bar"></i> <strong>실무 데이터</strong>로 연습</li>
+<li><i class="fas fa-users"></i> <strong>커뮤니티 참여</strong>로 경험 공유</li>
+<li><i class="fas fa-arrow-up"></i> <strong>지속적 학습</strong>으로 역량 발전</li>
+</ol>
+</section>
+<section id="질문과-토론" class="slide level2 smaller">
+<h2>질문과 토론</h2>
+<p><strong>함께 나누고 싶은 질문들:</strong></p>
+<ul>
+<li><i class="fas fa-question-circle"></i> 여러분의 업무에서 데이터를 어떻게 활용하고 계신가요?</li>
+<li><i class="fas fa-exclamation-triangle"></i> 데이터 분석 시 가장 어려운 점은 무엇인가요?</li>
+<li><i class="fas fa-lightbulb"></i> 조직에서 데이터 문해력을 높이기 위한 방안은?</li>
+</ul>
+</section>
+<section id="감사합니다" class="slide level2 center">
+<h2>감사합니다</h2>
+<p><strong>질문이 있으신가요?</strong></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>유용한 리소스:</strong></p>
+<ul>
+<li><a href="https://www.kaggle.com/learn">Kaggle Learn</a></li>
+<li><a href="https://analytics.google.com/analytics/academy">Google Analytics Academy</a></li>
+<li><a href="https://www.coursera.org/browse/data-science">Coursera Data Science</a></li>
+<li><a href="https://datascienceschool.net">데이터 사이언스 스쿨</a></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>연락처:</strong></p>
+<ul>
+<li>이메일: euriion@gmail.com</li>
+<li>LinkedIn: linkedin.com/in/euriion</li>
+<li>블로그: euriion.com</li>
+</ul>
+</div></div>
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p>데이터 문해력 | 홍성학</p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="data-literacy_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="data-literacy_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="data-literacy_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="data-literacy_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="data-literacy_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="data-literacy_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="data-literacy_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="data-literacy_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="data-literacy_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="data-literacy_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="data-literacy_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+            const codeEl = trigger.previousElementSibling.cloneNode(true);
+            for (const childEl of codeEl.children) {
+              if (isCodeAnnotation(childEl)) {
+                childEl.remove();
+              }
+            }
+            return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
