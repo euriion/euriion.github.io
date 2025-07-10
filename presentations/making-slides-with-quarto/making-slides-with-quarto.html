@@ -9,7 +9,7 @@
 <link href="making-slides-with-quarto_files/libs/quarto-html/quarto-syntax-highlighting-dark-0348920b7671f696dc9078d39bff215e.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.7.32">
 
-  <meta name="author" content="Aiden Hong">
+  <meta name="author" content="Seonghak Hong">
   <meta name="dcterms.date" content="2025-07-10">
   <title>Quarto로 슬라이드 만들기</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -96,7 +96,7 @@
     code span.vs { color: #9ecbff; } /* VerbatimString */
     code span.wa { color: #ff5555; } /* Warning */
   </style>
-  <link rel="stylesheet" href="making-slides-with-quarto_files/libs/revealjs/dist/theme/quarto-091ebfb71d12db7fc524ec91495e1509.css">
+  <link rel="stylesheet" href="making-slides-with-quarto_files/libs/revealjs/dist/theme/quarto-00033b64c7f4405b1251d0bf85080562.css">
   <link rel="stylesheet" href="custom.css">
   <link href="making-slides-with-quarto_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="making-slides-with-quarto_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -192,6 +192,10 @@
       margin-right: 0; 
     }
   </style>
+  <meta name="mermaid-theme" content="dark">
+  <script src="making-slides-with-quarto_files/libs/quarto-diagram/mermaid.min.js"></script>
+  <script src="making-slides-with-quarto_files/libs/quarto-diagram/mermaid-init.js"></script>
+  <link href="making-slides-with-quarto_files/libs/quarto-diagram/mermaid.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body class="quarto-dark">
@@ -205,7 +209,7 @@
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Aiden Hong 
+Seonghak Hong 
 </div>
 </div>
 </div>
@@ -233,7 +237,7 @@ Aiden Hong
 <h2>Quarto란?</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p><strong>Quarto</strong>는 과학적 기술 출판을 위한 오픈소스 시스템입니다.</p>
+<p><strong>Quarto</strong>는 과학적 기술 출판을 위한 오픈소스 시스템</p>
 <ul>
 <li><i class="fas fa-chart-bar"></i> <strong>다양한 출력 형식</strong>: HTML, PDF, Word, 슬라이드</li>
 <li><i class="fas fa-tools"></i> <strong>다중 언어 지원</strong>: R, Python, Julia, Observable</li>
@@ -241,12 +245,23 @@ Aiden Hong
 <li><i class="fas fa-globe"></i> <strong>웹 친화적</strong>: 반응형 디자인, 인터랙티브 기능</li>
 </ul>
 </div><div class="column" style="width:50%;">
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href=""></a>flowchart TD</span>
-<span id="cb1-2"><a href=""></a>    A[.qmd 파일] --&gt; B[Quarto 엔진]</span>
-<span id="cb1-3"><a href=""></a>    B --&gt; C[HTML 슬라이드]</span>
-<span id="cb1-4"><a href=""></a>    B --&gt; D[PDF 슬라이드]</span>
-<span id="cb1-5"><a href=""></a>    B --&gt; E[PowerPoint]</span>
-<span id="cb1-6"><a href=""></a>    B --&gt; F[Beamer]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    A[.qmd 파일] --&gt; B[Quarto 엔진]
+    B --&gt; C[HTML 슬라이드]
+    B --&gt; D[PDF 슬라이드]
+    B --&gt; E[PowerPoint]
+    B --&gt; F[Beamer]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
 </div></div>
 </section>
 <section id="왜-quarto를-사용할까" class="slide level2 smaller">
@@ -267,20 +282,20 @@ Aiden Hong
 </section>
 <section id="yaml-헤더-구성" class="slide level2 smaller">
 <h2>YAML 헤더 구성</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href=""></a><span class="pp">---</span></span>
-<span id="cb2-2"><a href=""></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"프레젠테이션 제목"</span></span>
-<span id="cb2-3"><a href=""></a><span class="fu">subtitle</span><span class="kw">:</span><span class="at"> </span><span class="st">"부제목"</span></span>
-<span id="cb2-4"><a href=""></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"작성자"</span></span>
-<span id="cb2-5"><a href=""></a><span class="fu">date</span><span class="kw">:</span><span class="at"> today</span></span>
-<span id="cb2-6"><a href=""></a><span class="fu">format</span><span class="kw">:</span><span class="at"> </span></span>
-<span id="cb2-7"><a href=""></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
-<span id="cb2-8"><a href=""></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> dark</span></span>
-<span id="cb2-9"><a href=""></a><span class="at">    </span><span class="fu">transition</span><span class="kw">:</span><span class="at"> slide</span></span>
-<span id="cb2-10"><a href=""></a><span class="at">    </span><span class="fu">slide-number</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb2-11"><a href=""></a><span class="at">    </span><span class="fu">chalkboard</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb2-12"><a href=""></a><span class="at">    </span><span class="fu">scrollable</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb2-13"><a href=""></a><span class="at">    </span><span class="fu">footer</span><span class="kw">:</span><span class="at"> </span><span class="st">"푸터 내용"</span></span>
-<span id="cb2-14"><a href=""></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href=""></a><span class="pp">---</span></span>
+<span id="cb1-2"><a href=""></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"프레젠테이션 제목"</span></span>
+<span id="cb1-3"><a href=""></a><span class="fu">subtitle</span><span class="kw">:</span><span class="at"> </span><span class="st">"부제목"</span></span>
+<span id="cb1-4"><a href=""></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"작성자"</span></span>
+<span id="cb1-5"><a href=""></a><span class="fu">date</span><span class="kw">:</span><span class="at"> today</span></span>
+<span id="cb1-6"><a href=""></a><span class="fu">format</span><span class="kw">:</span><span class="at"> </span></span>
+<span id="cb1-7"><a href=""></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
+<span id="cb1-8"><a href=""></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> dark</span></span>
+<span id="cb1-9"><a href=""></a><span class="at">    </span><span class="fu">transition</span><span class="kw">:</span><span class="at"> slide</span></span>
+<span id="cb1-10"><a href=""></a><span class="at">    </span><span class="fu">slide-number</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb1-11"><a href=""></a><span class="at">    </span><span class="fu">chalkboard</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb1-12"><a href=""></a><span class="at">    </span><span class="fu">scrollable</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb1-13"><a href=""></a><span class="at">    </span><span class="fu">footer</span><span class="kw">:</span><span class="at"> </span><span class="st">"푸터 내용"</span></span>
+<span id="cb1-14"><a href=""></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -290,7 +305,7 @@ Aiden Hong
 <p><strong>팁</strong></p>
 </div>
 <div class="callout-content">
-<p><code>date: today</code>를 사용하면 렌더링할 때마다 현재 날짜가 자동으로 업데이트됩니다.</p>
+<p><code>date: today</code>를 사용하면 렌더링할 때마다 현재 날짜가 자동으로 업데이트됨</p>
 </div>
 </div>
 </div>
@@ -302,14 +317,14 @@ Aiden Hong
 <p><strong>기본 테마들:</strong> - <code>default</code> - <code>dark</code> - <code>simple</code> - <code>serif</code> - <code>solarized</code> - <code>blood</code> - <code>moon</code> - <code>night</code></p>
 </div><div class="column" style="width:50%;">
 <p><strong>커스텀 CSS:</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href=""></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb2-2"><a href=""></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
+<span id="cb2-3"><a href=""></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">default</span><span class="kw">,</span><span class="at"> custom.css</span><span class="kw">]</span></span>
+<span id="cb2-4"><a href=""></a><span class="at">    </span><span class="fu">css</span><span class="kw">:</span><span class="at"> styles.css</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>온라인 테마:</strong></p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href=""></a><span class="fu">format</span><span class="kw">:</span></span>
 <span id="cb3-2"><a href=""></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
-<span id="cb3-3"><a href=""></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">default</span><span class="kw">,</span><span class="at"> custom.css</span><span class="kw">]</span></span>
-<span id="cb3-4"><a href=""></a><span class="at">    </span><span class="fu">css</span><span class="kw">:</span><span class="at"> styles.css</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>온라인 테마:</strong></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href=""></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb4-2"><a href=""></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
-<span id="cb4-3"><a href=""></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> https://example.com/theme.css</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-3"><a href=""></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> https://example.com/theme.css</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div>
 </section></section>
 <section>
@@ -323,27 +338,27 @@ Aiden Hong
 <ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">레벨 1 헤더</a></li><li><a href="#tabset-1-2">레벨 2 헤더</a></li><li><a href="#tabset-1-3">수평선</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1">
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href=""></a><span class="fu"># 섹션 제목</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>새로운 섹션</strong>을 만들고 제목 슬라이드를 생성합니다.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href=""></a><span class="fu"># 섹션 제목</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>새로운 섹션</strong>을 만들고 제목 슬라이드를 생성</p>
 </div>
 <div id="tabset-1-2">
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href=""></a><span class="fu">## 슬라이드 제목</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>새로운 슬라이드</strong>를 만듭니다.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href=""></a><span class="fu">## 슬라이드 제목</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>새로운 슬라이드</strong>를 만듦</p>
 </div>
 <div id="tabset-1-3">
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href=""></a><span class="co">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>제목 없는 <strong>새로운 슬라이드</strong>를 만듭니다.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href=""></a><span class="co">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>제목 없는 <strong>새로운 슬라이드</strong>를 만듦</p>
 </div>
 </div>
 </div>
 </section>
 <section id="슬라이드-속성" class="slide level2 smaller">
 <h2>슬라이드 속성</h2>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href=""></a><span class="fu">## 슬라이드 제목 {.smaller}</span></span>
-<span id="cb8-2"><a href=""></a><span class="fu">## 슬라이드 제목 {.scrollable}</span></span>
-<span id="cb8-3"><a href=""></a><span class="fu">## 슬라이드 제목 {background-color="blue"}</span></span>
-<span id="cb8-4"><a href=""></a><span class="fu">## 슬라이드 제목 {background-image="image.jpg"}</span></span>
-<span id="cb8-5"><a href=""></a><span class="fu">## 슬라이드 제목 {.center}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href=""></a><span class="fu">## 슬라이드 제목 {.smaller}</span></span>
+<span id="cb7-2"><a href=""></a><span class="fu">## 슬라이드 제목 {.scrollable}</span></span>
+<span id="cb7-3"><a href=""></a><span class="fu">## 슬라이드 제목 {background-color="blue"}</span></span>
+<span id="cb7-4"><a href=""></a><span class="fu">## 슬라이드 제목 {background-image="image.jpg"}</span></span>
+<span id="cb7-5"><a href=""></a><span class="fu">## 슬라이드 제목 {.center}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -373,11 +388,11 @@ Aiden Hong
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><strong>기본 마크다운:</strong></p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href=""></a>**굵은 글씨**</span>
-<span id="cb9-2"><a href=""></a>*기울임*</span>
-<span id="cb9-3"><a href=""></a>~~취소선~~</span>
-<span id="cb9-4"><a href=""></a><span class="in">`코드`</span></span>
-<span id="cb9-5"><a href=""></a><span class="at">&gt; 인용문</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href=""></a>**굵은 글씨**</span>
+<span id="cb8-2"><a href=""></a>*기울임*</span>
+<span id="cb8-3"><a href=""></a>~~취소선~~</span>
+<span id="cb8-4"><a href=""></a><span class="in">`코드`</span></span>
+<span id="cb8-5"><a href=""></a><span class="at">&gt; 인용문</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>결과:</strong> <strong>굵은 글씨</strong><br>
 <em>기울임</em><br>
 <del>취소선</del><br>
@@ -385,12 +400,12 @@ Aiden Hong
 &gt; 인용문</p>
 </div><div class="column" style="width:50%;">
 <p><strong>리스트:</strong></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href=""></a><span class="ss">- </span>항목 1</span>
-<span id="cb10-2"><a href=""></a><span class="ss">- </span>항목 2</span>
-<span id="cb10-3"><a href=""></a><span class="ss">  - </span>하위 항목</span>
-<span id="cb10-4"><a href=""></a>  </span>
-<span id="cb10-5"><a href=""></a><span class="ss">1. </span>번호 리스트</span>
-<span id="cb10-6"><a href=""></a><span class="ss">2. </span>두 번째 항목</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href=""></a><span class="ss">- </span>항목 1</span>
+<span id="cb9-2"><a href=""></a><span class="ss">- </span>항목 2</span>
+<span id="cb9-3"><a href=""></a><span class="ss">  - </span>하위 항목</span>
+<span id="cb9-4"><a href=""></a>  </span>
+<span id="cb9-5"><a href=""></a><span class="ss">1. </span>번호 리스트</span>
+<span id="cb9-6"><a href=""></a><span class="ss">2. </span>두 번째 항목</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>결과:</strong> - 항목 1 - 항목 2 - 하위 항목</p>
 <ol type="1">
 <li>번호 리스트</li>
@@ -401,39 +416,50 @@ Aiden Hong
 <section id="코드-블록" class="slide level2 smaller">
 <h2>코드 블록</h2>
 <p><strong>R 코드:</strong></p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="co">#| echo: true</span></span>
-<span id="cb11-2"><a href=""></a><span class="co">#| eval: true</span></span>
-<span id="cb11-3"><a href=""></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb11-4"><a href=""></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> mpg, <span class="at">y =</span> hp)) <span class="sc">+</span></span>
-<span id="cb11-5"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb11-6"><a href=""></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a><span class="co">#| echo: true</span></span>
+<span id="cb10-2"><a href=""></a><span class="co">#| eval: true</span></span>
+<span id="cb10-3"><a href=""></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb10-4"><a href=""></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> mpg, <span class="at">y =</span> hp)) <span class="sc">+</span></span>
+<span id="cb10-5"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb10-6"><a href=""></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Python 코드:</strong></p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href=""></a><span class="co">#| echo: true</span></span>
-<span id="cb12-2"><a href=""></a><span class="co">#| eval: false</span></span>
-<span id="cb12-3"><a href=""></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb12-4"><a href=""></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb12-5"><a href=""></a></span>
-<span id="cb12-6"><a href=""></a>df <span class="op">=</span> pd.read_csv(<span class="st">'data.csv'</span>)</span>
-<span id="cb12-7"><a href=""></a>plt.plot(df[<span class="st">'x'</span>], df[<span class="st">'y'</span>])</span>
-<span id="cb12-8"><a href=""></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href=""></a><span class="co">#| echo: true</span></span>
+<span id="cb11-2"><a href=""></a><span class="co">#| eval: false</span></span>
+<span id="cb11-3"><a href=""></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb11-4"><a href=""></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb11-5"><a href=""></a></span>
+<span id="cb11-6"><a href=""></a>df <span class="op">=</span> pd.read_csv(<span class="st">'data.csv'</span>)</span>
+<span id="cb11-7"><a href=""></a>plt.plot(df[<span class="st">'x'</span>], df[<span class="st">'y'</span>])</span>
+<span id="cb11-8"><a href=""></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="수식과-다이어그램" class="slide level2 smaller">
 <h2>수식과 다이어그램</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><strong>LaTeX 수식:</strong></p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource latex number-lines code-with-copy"><code class="sourceCode latex"><span id="cb13-1"><a href=""></a><span class="ss">$$E = mc^2$$</span></span>
-<span id="cb13-2"><a href=""></a></span>
-<span id="cb13-3"><a href=""></a><span class="ss">$$</span><span class="sc">\frac</span><span class="ss">{d}{dx}f(x) = </span><span class="sc">\lim</span><span class="ss">_{h </span><span class="sc">\to</span><span class="ss"> 0} </span><span class="sc">\frac</span><span class="ss">{f(x+h) - f(x)}{h}$$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource latex number-lines code-with-copy"><code class="sourceCode latex"><span id="cb12-1"><a href=""></a><span class="ss">$$E = mc^2$$</span></span>
+<span id="cb12-2"><a href=""></a></span>
+<span id="cb12-3"><a href=""></a><span class="ss">$$</span><span class="sc">\frac</span><span class="ss">{d}{dx}f(x) = </span><span class="sc">\lim</span><span class="ss">_{h </span><span class="sc">\to</span><span class="ss"> 0} </span><span class="sc">\frac</span><span class="ss">{f(x+h) - f(x)}{h}$$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>결과:</strong> <span class="math display">\[E = mc^2\]</span></p>
 <p><span class="math display">\[\frac{d}{dx}f(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}\]</span></p>
 </div><div class="column" style="width:50%;">
 <p><strong>Mermaid 다이어그램:</strong></p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb14-1"><a href=""></a>graph TD</span>
-<span id="cb14-2"><a href=""></a>    A[시작] --&gt; B{조건}</span>
-<span id="cb14-3"><a href=""></a>    B --&gt;|Yes| C[실행]</span>
-<span id="cb14-4"><a href=""></a>    B --&gt;|No| D[종료]</span>
-<span id="cb14-5"><a href=""></a>    C --&gt; D</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TD
+    A[시작] --&gt; B{조건}
+    B --&gt;|Yes| C[실행]
+    B --&gt;|No| D[종료]
+    C --&gt; D
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
 </div></div>
 </section></section>
 <section>
@@ -443,15 +469,15 @@ Aiden Hong
 </section>
 <section id="컬럼-레이아웃" class="slide level2 smaller">
 <h2>컬럼 레이아웃</h2>
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href=""></a>::: {.columns}</span>
-<span id="cb15-2"><a href=""></a>::: {.column width="40%"}</span>
-<span id="cb15-3"><a href=""></a>왼쪽 컬럼 내용</span>
-<span id="cb15-4"><a href=""></a>:::</span>
-<span id="cb15-5"><a href=""></a></span>
-<span id="cb15-6"><a href=""></a>::: {.column width="60%"}</span>
-<span id="cb15-7"><a href=""></a>오른쪽 컬럼 내용</span>
-<span id="cb15-8"><a href=""></a>:::</span>
-<span id="cb15-9"><a href=""></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href=""></a>::: {.columns}</span>
+<span id="cb13-2"><a href=""></a>::: {.column width="40%"}</span>
+<span id="cb13-3"><a href=""></a>왼쪽 컬럼 내용</span>
+<span id="cb13-4"><a href=""></a>:::</span>
+<span id="cb13-5"><a href=""></a></span>
+<span id="cb13-6"><a href=""></a>::: {.column width="60%"}</span>
+<span id="cb13-7"><a href=""></a>오른쪽 컬럼 내용</span>
+<span id="cb13-8"><a href=""></a>:::</span>
+<span id="cb13-9"><a href=""></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="columns">
 <div class="column" style="width:40%;">
 <p><strong>왼쪽 컬럼</strong> - 항목 1 - 항목 2</p>
@@ -461,11 +487,11 @@ Aiden Hong
 </section>
 <section id="인크리멘털-표시" class="slide level2 smaller">
 <h2>인크리멘털 표시</h2>
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href=""></a>::: {.incremental}</span>
-<span id="cb16-2"><a href=""></a><span class="ss">- </span>첫 번째 항목</span>
-<span id="cb16-3"><a href=""></a><span class="ss">- </span>두 번째 항목</span>
-<span id="cb16-4"><a href=""></a><span class="ss">- </span>세 번째 항목</span>
-<span id="cb16-5"><a href=""></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href=""></a>::: {.incremental}</span>
+<span id="cb14-2"><a href=""></a><span class="ss">- </span>첫 번째 항목</span>
+<span id="cb14-3"><a href=""></a><span class="ss">- </span>두 번째 항목</span>
+<span id="cb14-4"><a href=""></a><span class="ss">- </span>세 번째 항목</span>
+<span id="cb14-5"><a href=""></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li class="fragment">첫 번째 항목</li>
 <li class="fragment">두 번째 항목<br>
@@ -475,36 +501,36 @@ Aiden Hong
 </section>
 <section id="탭-패널" class="slide level2 smaller">
 <h2>탭 패널</h2>
-<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href=""></a>::: {.panel-tabset}</span>
-<span id="cb17-2"><a href=""></a><span class="fu">### 탭 1</span></span>
-<span id="cb17-3"><a href=""></a>첫 번째 탭의 내용</span>
-<span id="cb17-4"><a href=""></a></span>
-<span id="cb17-5"><a href=""></a><span class="fu">### 탭 2</span></span>
-<span id="cb17-6"><a href=""></a>두 번째 탭의 내용</span>
-<span id="cb17-7"><a href=""></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href=""></a>::: {.panel-tabset}</span>
+<span id="cb15-2"><a href=""></a><span class="fu">### 탭 1</span></span>
+<span id="cb15-3"><a href=""></a>첫 번째 탭의 내용</span>
+<span id="cb15-4"><a href=""></a></span>
+<span id="cb15-5"><a href=""></a><span class="fu">### 탭 2</span></span>
+<span id="cb15-6"><a href=""></a>두 번째 탭의 내용</span>
+<span id="cb15-7"><a href=""></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="panel-tabset">
 <ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">데이터</a></li><li><a href="#tabset-2-2">그래프</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1">
-<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a><span class="fu">head</span>(mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a><span class="fu">head</span>(mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="tabset-2-2">
-<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a><span class="fu">plot</span>(mtcars<span class="sc">$</span>mpg, mtcars<span class="sc">$</span>hp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a><span class="fu">plot</span>(mtcars<span class="sc">$</span>mpg, mtcars<span class="sc">$</span>hp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="콜아웃-박스" class="slide level2 smaller">
 <h2>콜아웃 박스</h2>
-<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href=""></a>::: {.callout-note}</span>
-<span id="cb20-2"><a href=""></a><span class="fu">## 참고</span></span>
-<span id="cb20-3"><a href=""></a>중요한 정보를 강조할 때 사용합니다.</span>
-<span id="cb20-4"><a href=""></a>:::</span>
-<span id="cb20-5"><a href=""></a></span>
-<span id="cb20-6"><a href=""></a>::: {.callout-warning}</span>
-<span id="cb20-7"><a href=""></a><span class="fu">## 주의</span></span>
-<span id="cb20-8"><a href=""></a>경고 메시지를 표시할 때 사용합니다.</span>
-<span id="cb20-9"><a href=""></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href=""></a>::: {.callout-note}</span>
+<span id="cb18-2"><a href=""></a><span class="fu">## 참고</span></span>
+<span id="cb18-3"><a href=""></a>중요한 정보를 강조할 때 사용합니다.</span>
+<span id="cb18-4"><a href=""></a>:::</span>
+<span id="cb18-5"><a href=""></a></span>
+<span id="cb18-6"><a href=""></a>::: {.callout-warning}</span>
+<span id="cb18-7"><a href=""></a><span class="fu">## 주의</span></span>
+<span id="cb18-8"><a href=""></a>경고 메시지를 표시할 때 사용합니다.</span>
+<span id="cb18-9"><a href=""></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -542,19 +568,19 @@ Aiden Hong
 <ol type="1">
 <li><p><strong>새 파일 생성</strong>: <code>presentation.qmd</code></p></li>
 <li><p><strong>YAML 헤더 작성</strong>:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb21-1"><a href=""></a><span class="pp">---</span></span>
-<span id="cb21-2"><a href=""></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"나의 첫 번째 슬라이드"</span></span>
-<span id="cb21-3"><a href=""></a><span class="fu">format</span><span class="kw">:</span><span class="at"> revealjs</span></span>
-<span id="cb21-4"><a href=""></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb19-1"><a href=""></a><span class="pp">---</span></span>
+<span id="cb19-2"><a href=""></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"나의 첫 번째 슬라이드"</span></span>
+<span id="cb19-3"><a href=""></a><span class="fu">format</span><span class="kw">:</span><span class="at"> revealjs</span></span>
+<span id="cb19-4"><a href=""></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p><strong>슬라이드 내용 추가</strong>:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a href=""></a><span class="fu">## 첫 번째 슬라이드</span></span>
-<span id="cb22-2"><a href=""></a></span>
-<span id="cb22-3"><a href=""></a>안녕하세요!</span>
-<span id="cb22-4"><a href=""></a></span>
-<span id="cb22-5"><a href=""></a><span class="fu">## 두 번째 슬라이드</span></span>
-<span id="cb22-6"><a href=""></a></span>
-<span id="cb22-7"><a href=""></a><span class="ss">- </span>항목 1</span>
-<span id="cb22-8"><a href=""></a><span class="ss">- </span>항목 2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href=""></a><span class="fu">## 첫 번째 슬라이드</span></span>
+<span id="cb20-2"><a href=""></a></span>
+<span id="cb20-3"><a href=""></a>안녕하세요!</span>
+<span id="cb20-4"><a href=""></a></span>
+<span id="cb20-5"><a href=""></a><span class="fu">## 두 번째 슬라이드</span></span>
+<span id="cb20-6"><a href=""></a></span>
+<span id="cb20-7"><a href=""></a><span class="ss">- </span>항목 1</span>
+<span id="cb20-8"><a href=""></a><span class="ss">- </span>항목 2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ol>
 </section>
 <section id="렌더링-방법" class="slide level2 smaller scrollable">
@@ -570,7 +596,7 @@ Aiden Hong
 </ol>
 </div>
 <div id="tabset-3-2">
-<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href=""></a><span class="ex">quarto</span> render presentation.qmd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href=""></a><span class="ex">quarto</span> render presentation.qmd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="tabset-3-3">
 <ol type="1">
@@ -591,18 +617,18 @@ Aiden Hong
 <ol type="1">
 <li><p><strong>GitHub 저장소 생성</strong></p></li>
 <li><p>**_quarto.yml 파일 생성**:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb24-1"><a href=""></a><span class="fu">project</span><span class="kw">:</span></span>
-<span id="cb24-2"><a href=""></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> website</span></span>
-<span id="cb24-3"><a href=""></a><span class="at">  </span><span class="fu">output-dir</span><span class="kw">:</span><span class="at"> docs</span></span>
-<span id="cb24-4"><a href=""></a></span>
-<span id="cb24-5"><a href=""></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb24-6"><a href=""></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb24-7"><a href=""></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> cosmo</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb22-1"><a href=""></a><span class="fu">project</span><span class="kw">:</span></span>
+<span id="cb22-2"><a href=""></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> website</span></span>
+<span id="cb22-3"><a href=""></a><span class="at">  </span><span class="fu">output-dir</span><span class="kw">:</span><span class="at"> docs</span></span>
+<span id="cb22-4"><a href=""></a></span>
+<span id="cb22-5"><a href=""></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb22-6"><a href=""></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb22-7"><a href=""></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> cosmo</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p><strong>렌더링 후 푸시</strong>:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href=""></a><span class="ex">quarto</span> render</span>
-<span id="cb25-2"><a href=""></a><span class="fu">git</span> add .</span>
-<span id="cb25-3"><a href=""></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add slides"</span></span>
-<span id="cb25-4"><a href=""></a><span class="fu">git</span> push</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href=""></a><span class="ex">quarto</span> render</span>
+<span id="cb23-2"><a href=""></a><span class="fu">git</span> add .</span>
+<span id="cb23-3"><a href=""></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add slides"</span></span>
+<span id="cb23-4"><a href=""></a><span class="fu">git</span> push</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p><strong>GitHub Pages 설정</strong>: Settings → Pages → Source: <code>/docs</code></p></li>
 </ol>
 </section>
@@ -628,15 +654,18 @@ Aiden Hong
 </ul>
 </section>
 <section id="감사합니다" class="slide level2 center">
-<h2>감사합니다!</h2>
-<div class="r-fit-text">
-<p><strong>질문이 있으시면 언제든지 연락주세요!</strong></p>
-</div>
+<h2>감사합니다</h2>
+<p><strong>질문이 있으신가요?</strong></p>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p><strong>연락처:</strong> - <i class="fas fa-envelope"></i> Email: euriion@gmail.com - <i class="fab fa-github"></i> GitHub: <span class="citation" data-cites="euriion">@euriion</span> - <i class="fab fa-twitter"></i> Twitter: <span class="citation" data-cites="euriion">@euriion</span></p>
-</div><div class="column" style="width:50%;">
-<p><strong>유용한 링크:</strong> - <a href="https://quarto.org">Quarto 공식 문서</a> - <a href="https://revealjs.com">Reveal.js 문서</a> - <a href="https://github.com/yourusername/repo">GitHub 저장소</a></p>
+<p><strong>유용한 링크:</strong></p>
+<ul>
+<li><a href="https://quarto.org">Quarto 공식 문서</a><br>
+</li>
+<li><a href="https://revealjs.com">Reveal.js 문서</a><br>
+</li>
+<li><a href="https://github.com/yourusername/repo">GitHub 저장소</a></li>
+</ul>
 </div></div>
 
 </section></section>
@@ -644,7 +673,7 @@ Aiden Hong
   <div class="quarto-auto-generated-content" style="display: none;">
 <p><img src="https://quarto.org/quarto.png" class="slide-logo"></p>
 <div class="footer footer-default">
-<p>Quarto 슬라이드 만들기 | Aiden Hong</p>
+<p>Quarto 슬라이드 만들기 | 홍성학</p>
 </div>
 </div></div>
 

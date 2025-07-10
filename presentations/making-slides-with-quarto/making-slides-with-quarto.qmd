@@ -1,11 +1,11 @@
 ---
 title: "Quarto로 슬라이드 만들기"
 subtitle: "효율적인 프레젠테이션 제작 가이드"
-author: "Aiden Hong"
+author: "Seonghak Hong"
 date: today
 format: 
   revealjs:
-    theme: dark
+    theme: night
     transition: slide
     background-transition: fade
     highlight-style: github
@@ -15,7 +15,7 @@ format:
     chalkboard: true
     scrollable: true
     incremental: false
-    footer: "Quarto 슬라이드 만들기 | Aiden Hong"
+    footer: "Quarto 슬라이드 만들기 | 홍성학"
     logo: "https://quarto.org/quarto.png"
     css: custom.css
     include-in-header:
@@ -44,7 +44,7 @@ editor: visual
 
 ::: {.columns}
 ::: {.column width="50%"}
-**Quarto**는 과학적 기술 출판을 위한 오픈소스 시스템입니다.
+**Quarto**는 과학적 기술 출판을 위한 오픈소스 시스템
 
 - <i class="fas fa-chart-bar"></i> **다양한 출력 형식**: HTML, PDF, Word, 슬라이드
 - <i class="fas fa-tools"></i> **다중 언어 지원**: R, Python, Julia, Observable
@@ -53,7 +53,7 @@ editor: visual
 :::
 
 ::: {.column width="50%"}
-```mermaid
+```{mermaid}
 flowchart TD
     A[.qmd 파일] --> B[Quarto 엔진]
     B --> C[HTML 슬라이드]
@@ -98,7 +98,7 @@ format:
 
 ::: {.callout-tip}
 ## 팁
-`date: today`를 사용하면 렌더링할 때마다 현재 날짜가 자동으로 업데이트됩니다.
+`date: today`를 사용하면 렌더링할 때마다 현재 날짜가 자동으로 업데이트됨
 :::
 
 ## 테마 옵션 {.smaller}
@@ -143,19 +143,19 @@ format:
 ```markdown
 # 섹션 제목
 ```
-**새로운 섹션**을 만들고 제목 슬라이드를 생성합니다.
+**새로운 섹션**을 만들고 제목 슬라이드를 생성
 
 ### 레벨 2 헤더
 ```markdown
 ## 슬라이드 제목
 ```
-**새로운 슬라이드**를 만듭니다.
+**새로운 슬라이드**를 만듦
 
 ### 수평선
 ```markdown
 ---
 ```
-제목 없는 **새로운 슬라이드**를 만듭니다.
+제목 없는 **새로운 슬라이드**를 만듦
 :::
 
 ## 슬라이드 속성 {.smaller}
@@ -263,7 +263,7 @@ $$\frac{d}{dx}f(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}$$
 
 ::: {.column width="50%"}
 **Mermaid 다이어그램:**
-```mermaid
+```{mermaid}
 graph TD
     A[시작] --> B{조건}
     B -->|Yes| C[실행]
@@ -464,24 +464,16 @@ quarto render presentation.qmd
 - <i class="fas fa-sync-alt"></i> **버전 관리**: Git으로 변경사항 추적
 :::
 
-## 감사합니다! {.center}
+## 감사합니다 {.center}
 
-::: {.r-fit-text}
-**질문이 있으시면 언제든지 연락주세요!**
-:::
+**질문이 있으신가요?**
 
 ::: {.columns}
 ::: {.column width="50%"}
-**연락처:**
-- <i class="fas fa-envelope"></i> Email: euriion@gmail.com
-- <i class="fab fa-github"></i> GitHub: @euriion
-- <i class="fab fa-twitter"></i> Twitter: @euriion
-:::
-
-::: {.column width="50%"}
 **유용한 링크:**
-- [Quarto 공식 문서](https://quarto.org)
-- [Reveal.js 문서](https://revealjs.com)
+
+- [Quarto 공식 문서](https://quarto.org)  
+- [Reveal.js 문서](https://revealjs.com)  
 - [GitHub 저장소](https://github.com/yourusername/repo)
 :::
 :::
