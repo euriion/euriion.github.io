@@ -1,0 +1,482 @@
+---
+title: "Quarto로 슬라이드 만들기"
+subtitle: "효율적인 프레젠테이션 제작 가이드"
+author: "Aiden Hong"
+date: today
+format: 
+  revealjs:
+    theme: dark
+    transition: slide
+    background-transition: fade
+    highlight-style: github
+    code-fold: true
+    code-tools: true
+    slide-number: true
+    chalkboard: true
+    scrollable: true
+    incremental: false
+    footer: "Quarto 슬라이드 만들기 | Aiden Hong"
+    logo: "https://quarto.org/quarto.png"
+    css: custom.css
+editor: visual
+---
+
+## 목차 {.smaller}
+
+::: {.incremental}
+1. **Quarto 소개**
+2. **슬라이드 기본 설정**
+3. **슬라이드 구조 만들기**
+4. **콘텐츠 추가하기**
+5. **고급 기능들**
+6. **실습 예제**
+7. **배포 방법**
+:::
+
+# Quarto 소개
+
+## Quarto란? {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**Quarto**는 과학적 기술 출판을 위한 오픈소스 시스템입니다.
+
+- 📊 **다양한 출력 형식**: HTML, PDF, Word, 슬라이드
+- 🔧 **다중 언어 지원**: R, Python, Julia, Observable
+- 🎨 **풍부한 포맷팅**: 수식, 다이어그램, 인터랙티브 요소
+- 🌐 **웹 친화적**: 반응형 디자인, 인터랙티브 기능
+:::
+
+::: {.column width="50%"}
+```mermaid
+flowchart TD
+    A[.qmd 파일] --> B[Quarto 엔진]
+    B --> C[HTML 슬라이드]
+    B --> D[PDF 슬라이드]
+    B --> E[PowerPoint]
+    B --> F[Beamer]
+```
+:::
+:::
+
+## 왜 Quarto를 사용할까? {.smaller}
+
+::: {.incremental}
+- ✅ **재현 가능한 연구**: 코드와 결과가 함께
+- ✅ **버전 관리**: Git으로 협업 가능
+- ✅ **자동화**: 데이터 업데이트 시 자동 갱신
+- ✅ **일관성**: 브랜딩과 스타일 통일
+- ✅ **접근성**: 웹 표준 준수
+- ✅ **무료**: 오픈소스 도구
+:::
+
+# 슬라이드 기본 설정
+
+## YAML 헤더 구성 {.smaller}
+
+```yaml
+---
+title: "프레젠테이션 제목"
+subtitle: "부제목"
+author: "작성자"
+date: today
+format: 
+  revealjs:
+    theme: dark
+    transition: slide
+    slide-number: true
+    chalkboard: true
+    scrollable: true
+    footer: "푸터 내용"
+---
+```
+
+::: {.callout-tip}
+## 팁
+`date: today`를 사용하면 렌더링할 때마다 현재 날짜가 자동으로 업데이트됩니다.
+:::
+
+## 테마 옵션 {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**기본 테마들:**
+- `default`
+- `dark`
+- `simple`
+- `serif`
+- `solarized`
+- `blood`
+- `moon`
+- `night`
+:::
+
+::: {.column width="50%"}
+**커스텀 CSS:**
+```yaml
+format:
+  revealjs:
+    theme: [default, custom.css]
+    css: styles.css
+```
+
+**온라인 테마:**
+```yaml
+format:
+  revealjs:
+    theme: https://example.com/theme.css
+```
+:::
+:::
+
+# 슬라이드 구조 만들기
+
+## 슬라이드 구분 방법 {.smaller}
+
+::: {.panel-tabset}
+### 레벨 1 헤더
+```markdown
+# 섹션 제목
+```
+**새로운 섹션**을 만들고 제목 슬라이드를 생성합니다.
+
+### 레벨 2 헤더
+```markdown
+## 슬라이드 제목
+```
+**새로운 슬라이드**를 만듭니다.
+
+### 수평선
+```markdown
+---
+```
+제목 없는 **새로운 슬라이드**를 만듭니다.
+:::
+
+## 슬라이드 속성 {.smaller}
+
+```markdown
+## 슬라이드 제목 {.smaller}
+## 슬라이드 제목 {.scrollable}
+## 슬라이드 제목 {background-color="blue"}
+## 슬라이드 제목 {background-image="image.jpg"}
+## 슬라이드 제목 {.center}
+```
+
+::: {.callout-note}
+## 주요 속성들
+- `.smaller`: 작은 글씨
+- `.scrollable`: 스크롤 가능
+- `.center`: 중앙 정렬
+- `background-*`: 배경 설정
+:::
+
+# 콘텐츠 추가하기
+
+## 텍스트 포맷팅 {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**기본 마크다운:**
+```markdown
+**굵은 글씨**
+*기울임*
+~~취소선~~
+`코드`
+> 인용문
+```
+
+**결과:**
+**굵은 글씨**  
+*기울임*  
+~~취소선~~  
+`코드`  
+> 인용문
+:::
+
+::: {.column width="50%"}
+**리스트:**
+```markdown
+- 항목 1
+- 항목 2
+  - 하위 항목
+  
+1. 번호 리스트
+2. 두 번째 항목
+```
+
+**결과:**
+- 항목 1
+- 항목 2
+  - 하위 항목
+  
+1. 번호 리스트
+2. 두 번째 항목
+:::
+:::
+
+## 코드 블록 {.smaller}
+
+**R 코드:**
+```r
+#| echo: true
+#| eval: true
+library(ggplot2)
+ggplot(mtcars, aes(x = mpg, y = hp)) +
+  geom_point() +
+  theme_minimal()
+```
+
+**Python 코드:**
+```python
+#| echo: true
+#| eval: false
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv('data.csv')
+plt.plot(df['x'], df['y'])
+plt.show()
+```
+
+## 수식과 다이어그램 {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**LaTeX 수식:**
+```latex
+$$E = mc^2$$
+
+$$\frac{d}{dx}f(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}$$
+```
+
+**결과:**
+$$E = mc^2$$
+
+$$\frac{d}{dx}f(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}$$
+:::
+
+::: {.column width="50%"}
+**Mermaid 다이어그램:**
+```mermaid
+graph TD
+    A[시작] --> B{조건}
+    B -->|Yes| C[실행]
+    B -->|No| D[종료]
+    C --> D
+```
+:::
+:::
+
+# 고급 기능들
+
+## 컬럼 레이아웃 {.smaller}
+
+```markdown
+::: {.columns}
+::: {.column width="40%"}
+왼쪽 컬럼 내용
+:::
+
+::: {.column width="60%"}
+오른쪽 컬럼 내용
+:::
+:::
+```
+
+::: {.columns}
+::: {.column width="40%"}
+**왼쪽 컬럼**
+- 항목 1
+- 항목 2
+:::
+
+::: {.column width="60%"}
+**오른쪽 컬럼**
+더 넓은 공간에 더 많은 내용을 배치할 수 있습니다.
+:::
+:::
+
+## 인크리멘털 표시 {.smaller}
+
+```markdown
+::: {.incremental}
+- 첫 번째 항목
+- 두 번째 항목
+- 세 번째 항목
+:::
+```
+
+::: {.incremental}
+- 첫 번째 항목
+- 두 번째 항목  
+- 세 번째 항목
+:::
+
+## 탭 패널 {.smaller}
+
+```markdown
+::: {.panel-tabset}
+### 탭 1
+첫 번째 탭의 내용
+
+### 탭 2
+두 번째 탭의 내용
+:::
+```
+
+::: {.panel-tabset}
+### 데이터
+```r
+head(mtcars)
+```
+
+### 그래프
+```r
+plot(mtcars$mpg, mtcars$hp)
+```
+:::
+
+## 콜아웃 박스 {.smaller}
+
+```markdown
+::: {.callout-note}
+## 참고
+중요한 정보를 강조할 때 사용합니다.
+:::
+
+::: {.callout-warning}
+## 주의
+경고 메시지를 표시할 때 사용합니다.
+:::
+```
+
+::: {.callout-note}
+## 참고
+중요한 정보를 강조할 때 사용합니다.
+:::
+
+::: {.callout-warning}
+## 주의
+경고 메시지를 표시할 때 사용합니다.
+:::
+
+# 실습 예제
+
+## 간단한 슬라이드 만들기 {.smaller}
+
+1. **새 파일 생성**: `presentation.qmd`
+2. **YAML 헤더 작성**:
+   ```yaml
+   ---
+   title: "나의 첫 번째 슬라이드"
+   format: revealjs
+   ---
+   ```
+3. **슬라이드 내용 추가**:
+   ```markdown
+   ## 첫 번째 슬라이드
+   
+   안녕하세요!
+   
+   ## 두 번째 슬라이드
+   
+   - 항목 1
+   - 항목 2
+   ```
+
+## 렌더링 방법 {.smaller}
+
+::: {.panel-tabset}
+### RStudio
+1. **Render 버튼** 클릭
+2. 또는 `Ctrl+Shift+K` (Windows/Linux)
+3. 또는 `Cmd+Shift+K` (Mac)
+
+### 터미널
+```bash
+quarto render presentation.qmd
+```
+
+### VS Code
+1. **Quarto 확장** 설치
+2. **Ctrl+Shift+P** → "Quarto: Render"
+:::
+
+# 배포 방법
+
+## GitHub Pages {.smaller}
+
+1. **GitHub 저장소 생성**
+2. **_quarto.yml 파일 생성**:
+   ```yaml
+   project:
+     type: website
+     output-dir: docs
+   
+   format:
+     html:
+       theme: cosmo
+   ```
+3. **렌더링 후 푸시**:
+   ```bash
+   quarto render
+   git add .
+   git commit -m "Add slides"
+   git push
+   ```
+4. **GitHub Pages 설정**: Settings → Pages → Source: `/docs`
+
+## Netlify & Vercel {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**Netlify:**
+1. 저장소 연결
+2. Build command: `quarto render`
+3. Publish directory: `_site`
+4. 자동 배포 완료
+:::
+
+::: {.column width="50%"}
+**Vercel:**
+1. 저장소 연결
+2. Framework: Other
+3. Build command: `quarto render`
+4. Output directory: `_site`
+:::
+:::
+
+## 팁과 트릭 {.smaller}
+
+::: {.incremental}
+- 🎯 **간결함**: 슬라이드당 하나의 핵심 메시지
+- 🎨 **일관성**: 폰트, 색상, 레이아웃 통일
+- 📱 **반응형**: 다양한 화면 크기 고려
+- 🔍 **접근성**: 대비, 폰트 크기 고려
+- 🚀 **성능**: 이미지 최적화, 코드 실행 시간 관리
+- 📝 **문서화**: 주석과 설명 추가
+- 🔄 **버전 관리**: Git으로 변경사항 추적
+:::
+
+## 감사합니다! {.center}
+
+::: {.r-fit-text}
+**질문이 있으시면 언제든지 연락주세요!**
+:::
+
+::: {.columns}
+::: {.column width="50%"}
+**연락처:**
+- 📧 Email: your.email@example.com
+- 🐙 GitHub: @yourusername
+- 🐦 Twitter: @yourusername
+:::
+
+::: {.column width="50%"}
+**유용한 링크:**
+- [Quarto 공식 문서](https://quarto.org)
+- [Reveal.js 문서](https://revealjs.com)
+- [GitHub 저장소](https://github.com/yourusername/repo)
+:::
+:::
