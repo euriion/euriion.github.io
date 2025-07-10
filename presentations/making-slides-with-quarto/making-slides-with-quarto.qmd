@@ -468,9 +468,9 @@ quarto render presentation.qmd
 ::: {.columns}
 ::: {.column width="50%"}
 **연락처:**
-- 📧 Email: your.email@example.com
-- 🐙 GitHub: @yourusername
-- 🐦 Twitter: @yourusername
+- 📧 Email: euriion@gmail.com
+- 🐙 GitHub: @euriion
+- 🐦 Twitter: @euriion
 :::
 
 ::: {.column width="50%"}
