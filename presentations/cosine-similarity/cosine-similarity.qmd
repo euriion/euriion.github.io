@@ -1,0 +1,439 @@
+---
+title: "코사인 유사도 (Cosine Similarity)"
+subtitle: "벡터 간 유사성 측정의 핵심 개념"
+author: "홍성학"
+date: 2015-07-07
+format: 
+  revealjs:
+    theme: night
+    transition: slide
+    background-transition: fade
+    highlight-style: github
+    code-fold: true
+    code-tools: true
+    slide-number: true
+    chalkboard: true
+    scrollable: true
+    incremental: false
+    footer: "코사인 유사도 | 홍성학"
+    css: custom.css
+    include-in-header:
+      - text: |
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+          <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+          <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+mermaid:
+  theme: dark
+editor: visual
+---
+
+## 코사인 유사도란? {.smaller}
+
+::: {.incremental}
+- <i class="fas fa-vector-square"></i> 두 벡터 간의 **각도**를 이용한 유사성 측정 방법
+- <i class="fas fa-compass"></i> 벡터의 **크기와 무관**하게 방향만으로 유사성 판단
+- <i class="fas fa-chart-line"></i> **-1부터 1까지**의 값을 가지며, 1에 가까울수록 유사
+- <i class="fas fa-brain"></i> **텍스트 마이닝**, **추천 시스템**, **이미지 분석** 등에 널리 활용
+:::
+
+::: {.notes}
+코사인 유사도는 벡터 공간에서 두 벡터 간의 각도를 측정하여 유사성을 판단하는 방법입니다. 벡터의 크기보다는 방향에 중점을 두는 것이 특징입니다.
+:::
+
+## 수학적 정의 {.smaller}
+
+### 공식
+$$\cos(\theta) = \frac{\mathbf{A} \cdot \mathbf{B}}{|\mathbf{A}||\mathbf{B}|} = \frac{\sum_{i=1}^{n} A_i B_i}{\sqrt{\sum_{i=1}^{n} A_i^2} \sqrt{\sum_{i=1}^{n} B_i^2}}$$
+
+::: {.columns}
+::: {.column width="50%"}
+### 구성 요소
+- <i class="fas fa-dot-circle"></i> **분자**: 두 벡터의 내적 (dot product)
+- <i class="fas fa-ruler"></i> **분모**: 각 벡터의 크기(norm)의 곱
+- <i class="fas fa-angle-right"></i> **θ**: 두 벡터 간의 각도
+:::
+
+::: {.column width="50%"}
+### 값의 의미
+- <i class="fas fa-equals"></i> **1**: 완전히 동일한 방향
+- <i class="fas fa-circle"></i> **0**: 수직 (직교)
+- <i class="fas fa-minus"></i> **-1**: 완전히 반대 방향
+:::
+:::
+
+## 2차원 예시 {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+### 벡터 A = (3, 4), B = (1, 2)
+
+**1단계: 내적 계산**
+$$\mathbf{A} \cdot \mathbf{B} = 3 \times 1 + 4 \times 2 = 11$$
+
+**2단계: 각 벡터의 크기**
+$$|\mathbf{A}| = \sqrt{3^2 + 4^2} = 5$$
+$$|\mathbf{B}| = \sqrt{1^2 + 2^2} = \sqrt{5}$$
+
+**3단계: 코사인 유사도**
+$$\cos(\theta) = \frac{11}{5 \times \sqrt{5}} = \frac{11}{5\sqrt{5}} \approx 0.982$$
+:::
+
+::: {.column width="50%"}
+### 해석
+- <i class="fas fa-thumbs-up"></i> **0.982**: 매우 높은 유사도
+- <i class="fas fa-angle-right"></i> **각도**: 약 11.3도
+- <i class="fas fa-chart-line"></i> **의미**: 두 벡터가 거의 같은 방향
+:::
+:::
+
+## 다른 유사도 측정 방법과의 비교 {.smaller}
+
+::: {.columns}
+::: {.column width="33%"}
+### 유클리드 거리
+- <i class="fas fa-ruler-combined"></i> **거리 기반** 측정
+- <i class="fas fa-arrows-alt"></i> **크기에 민감**
+- <i class="fas fa-map-marker-alt"></i> 절대적 위치 중요
+
+$$d = \sqrt{\sum_{i=1}^{n} (A_i - B_i)^2}$$
+:::
+
+::: {.column width="33%"}
+### 맨하탄 거리
+- <i class="fas fa-th-large"></i> **격자 기반** 거리
+- <i class="fas fa-plus"></i> **절댓값의 합**
+- <i class="fas fa-city"></i> 도시 블록 거리
+
+$$d = \sum_{i=1}^{n} |A_i - B_i|$$
+:::
+
+::: {.column width="33%"}
+### 코사인 유사도
+- <i class="fas fa-compass"></i> **각도 기반** 측정
+- <i class="fas fa-expand-arrows-alt"></i> **크기에 무관**
+- <i class="fas fa-arrows-alt-h"></i> 상대적 방향 중요
+
+$$\cos(\theta) = \frac{\mathbf{A} \cdot \mathbf{B}}{|\mathbf{A}||\mathbf{B}|}$$
+:::
+:::
+
+## 언제 코사인 유사도를 사용할까? {.smaller}
+
+### 적합한 상황
+::: {.incremental}
+- <i class="fas fa-file-alt"></i> **텍스트 분석**: 문서의 길이와 무관하게 내용 유사성 비교
+- <i class="fas fa-star"></i> **추천 시스템**: 사용자 평점 패턴 분석
+- <i class="fas fa-image"></i> **이미지 처리**: 픽셀 강도 패턴 비교
+- <i class="fas fa-chart-bar"></i> **고차원 데이터**: 차원의 저주 완화
+:::
+
+### 부적합한 상황
+::: {.incremental}
+- <i class="fas fa-ruler"></i> **절대적 크기**가 중요한 경우
+- <i class="fas fa-map-marker-alt"></i> **위치 정보**가 핵심인 경우
+- <i class="fas fa-minus"></i> **음수 값**이 특별한 의미를 가지는 경우
+- <i class="fas fa-balance-scale"></i> **크기 차이**가 의미 있는 경우
+:::
+
+## 텍스트 마이닝에서의 활용 {.smaller}
+
+### TF-IDF 벡터와 코사인 유사도
+
+::: {.columns}
+::: {.column width="50%"}
+**문서 1**: "머신러닝은 인공지능의 한 분야입니다"
+**문서 2**: "딥러닝은 머신러닝의 한 방법입니다"
+
+### 단어 빈도 행렬
+| 단어 | 문서1 | 문서2 |
+|------|-------|-------|
+| 머신러닝 | 1 | 1 |
+| 인공지능 | 1 | 0 |
+| 딥러닝 | 0 | 1 |
+| 분야 | 1 | 0 |
+| 방법 | 0 | 1 |
+:::
+
+::: {.column width="50%"}
+### 코사인 유사도 계산
+- <i class="fas fa-vector-square"></i> **벡터 A**: [1, 1, 0, 1, 0]
+- <i class="fas fa-vector-square"></i> **벡터 B**: [1, 0, 1, 0, 1]
+- <i class="fas fa-calculator"></i> **내적**: 1×1 = 1
+- <i class="fas fa-ruler"></i> **크기**: √3 × √3 = 3
+- <i class="fas fa-equals"></i> **결과**: 1/3 ≈ 0.333
+
+**해석**: 중간 정도의 유사성
+:::
+:::
+
+## 추천 시스템에서의 활용 {.smaller}
+
+### 사용자 기반 협업 필터링
+
+::: {.columns}
+::: {.column width="60%"}
+### 사용자-아이템 평점 행렬
+| 사용자 | 영화A | 영화B | 영화C | 영화D |
+|--------|-------|-------|-------|-------|
+| 사용자1 | 5 | 3 | 0 | 1 |
+| 사용자2 | 4 | 0 | 0 | 1 |
+| 사용자3 | 1 | 1 | 0 | 5 |
+| 사용자4 | 1 | 0 | 0 | 4 |
+
+### 사용자1과 사용자2의 유사도
+$$\cos(\theta) = \frac{5×4 + 3×0 + 0×0 + 1×1}{\sqrt{5^2+3^2+0^2+1^2} × \sqrt{4^2+0^2+0^2+1^2}}$$
+$$= \frac{21}{\sqrt{35} × \sqrt{17}} ≈ 0.86$$
+:::
+
+::: {.column width="40%"}
+### 활용 방법
+- <i class="fas fa-users"></i> **유사 사용자** 발견
+- <i class="fas fa-star"></i> **평점 예측**
+- <i class="fas fa-thumbs-up"></i> **추천 생성**
+- <i class="fas fa-filter"></i> **개인화 필터링**
+
+### 장점
+- <i class="fas fa-chart-line"></i> **평점 스케일** 무관
+- <i class="fas fa-balance-scale"></i> **편향 감소**
+- <i class="fas fa-expand-arrows-alt"></i> **희소성 처리**
+:::
+:::
+
+## 파이썬 구현 예제 {.smaller}
+
+```python
+import numpy as np
+from sklearn.metrics.pairwise import cosine_similarity
+
+def cosine_similarity_manual(A, B):
+    """
+    수동으로 코사인 유사도 계산
+    """
+    dot_product = np.dot(A, B)
+    norm_A = np.linalg.norm(A)
+    norm_B = np.linalg.norm(B)
+    
+    return dot_product / (norm_A * norm_B)
+
+# 예제 벡터
+vector_A = np.array([1, 2, 3, 4])
+vector_B = np.array([2, 4, 6, 8])
+vector_C = np.array([1, 0, -1, 0])
+
+# 수동 계산
+sim_AB = cosine_similarity_manual(vector_A, vector_B)
+sim_AC = cosine_similarity_manual(vector_A, vector_C)
+
+print(f"A와 B의 유사도: {sim_AB:.3f}")  # 1.000 (완전히 동일한 방향)
+print(f"A와 C의 유사도: {sim_AC:.3f}")  # 0.000 (수직)
+
+# scikit-learn 사용
+vectors = np.array([vector_A, vector_B, vector_C])
+similarity_matrix = cosine_similarity(vectors)
+print("유사도 행렬:")
+print(similarity_matrix)
+```
+
+## R 구현 예제 {.smaller}
+
+```r
+# 기본 함수로 구현
+cosine_similarity <- function(A, B) {
+  dot_product <- sum(A * B)
+  norm_A <- sqrt(sum(A^2))
+  norm_B <- sqrt(sum(B^2))
+  
+  return(dot_product / (norm_A * norm_B))
+}
+
+# 예제 벡터
+vector_A <- c(1, 2, 3, 4)
+vector_B <- c(2, 4, 6, 8)
+vector_C <- c(1, 0, -1, 0)
+
+# 유사도 계산
+sim_AB <- cosine_similarity(vector_A, vector_B)
+sim_AC <- cosine_similarity(vector_A, vector_C)
+
+cat("A와 B의 유사도:", round(sim_AB, 3), "\n")
+cat("A와 C의 유사도:", round(sim_AC, 3), "\n")
+
+# 패키지 사용 (lsa 패키지)
+library(lsa)
+cosine(vector_A, vector_B)
+cosine(vector_A, vector_C)
+
+# 행렬 형태로 한 번에 계산
+vectors <- rbind(vector_A, vector_B, vector_C)
+similarity_matrix <- cosine(t(vectors))
+print(similarity_matrix)
+```
+
+## 실제 응용 사례 {.smaller}
+
+### 1. 검색 엔진
+::: {.incremental}
+- <i class="fas fa-search"></i> **쿼리-문서 유사도** 계산
+- <i class="fas fa-sort-amount-down"></i> **검색 결과 순위** 결정
+- <i class="fas fa-language"></i> **의미적 유사성** 파악
+- <i class="fas fa-robot"></i> **자동 태깅** 시스템
+:::
+
+### 2. 소셜 네트워크 분석
+::: {.incremental}
+- <i class="fas fa-users"></i> **사용자 관심사** 유사성
+- <i class="fas fa-share-alt"></i> **콘텐츠 추천**
+- <i class="fas fa-network-wired"></i> **커뮤니티 발견**
+- <i class="fas fa-hashtag"></i> **해시태그 분석**
+:::
+
+### 3. 바이오인포매틱스
+::: {.incremental}
+- <i class="fas fa-dna"></i> **유전자 발현** 패턴 비교
+- <i class="fas fa-pills"></i> **약물 유사성** 분석
+- <i class="fas fa-microscope"></i> **단백질 구조** 비교
+- <i class="fas fa-virus"></i> **질병 진단** 보조
+:::
+
+## 장점과 단점 {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+### 장점
+- <i class="fas fa-expand-arrows-alt"></i> **크기 무관성**: 벡터 크기에 영향받지 않음
+- <i class="fas fa-chart-line"></i> **정규화 효과**: 자동으로 정규화됨
+- <i class="fas fa-calculator"></i> **계산 효율성**: 비교적 간단한 연산
+- <i class="fas fa-layer-group"></i> **고차원 대응**: 차원이 높아도 안정적
+- <i class="fas fa-balance-scale"></i> **대칭성**: A와 B의 순서 무관
+:::
+
+::: {.column width="50%"}
+### 단점
+- <i class="fas fa-ruler"></i> **크기 정보 손실**: 벡터의 크기 무시
+- <i class="fas fa-minus"></i> **음수 처리**: 음수 값의 의미 해석 어려움
+- <i class="fas fa-equals"></i> **0 벡터 문제**: 분모가 0이 되는 경우
+- <i class="fas fa-chart-bar"></i> **분포 가정**: 벡터가 원점에서 시작한다고 가정
+:::
+:::
+
+## 개선된 변형들 {.smaller}
+
+### 1. 조정된 코사인 유사도 (Adjusted Cosine Similarity)
+- <i class="fas fa-balance-scale"></i> **평균 중심화**: 각 차원의 평균을 빼서 편향 제거
+- <i class="fas fa-star"></i> **추천 시스템**에서 사용자 평점 편향 해결
+
+$$\cos(\theta) = \frac{\sum_{i=1}^{n} (A_i - \bar{A})(B_i - \bar{B})}{\sqrt{\sum_{i=1}^{n} (A_i - \bar{A})^2} \sqrt{\sum_{i=1}^{n} (B_i - \bar{B})^2}}$$
+
+### 2. 가중 코사인 유사도 (Weighted Cosine Similarity)
+- <i class="fas fa-weight"></i> **가중치 적용**: 중요한 차원에 더 큰 가중치
+- <i class="fas fa-chart-pie"></i> **도메인 지식** 반영
+
+$$\cos(\theta) = \frac{\sum_{i=1}^{n} w_i A_i B_i}{\sqrt{\sum_{i=1}^{n} w_i A_i^2} \sqrt{\sum_{i=1}^{n} w_i B_i^2}}$$
+
+## 실습: 문서 유사도 분석 {.smaller}
+
+```python
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+
+# 예제 문서들
+documents = [
+    "머신러닝은 인공지능의 한 분야입니다",
+    "딥러닝은 머신러닝의 발전된 형태입니다",
+    "자연어 처리는 컴퓨터가 인간의 언어를 이해하는 기술입니다",
+    "컴퓨터 비전은 이미지를 분석하는 AI 기술입니다"
+]
+
+# TF-IDF 벡터화
+vectorizer = TfidfVectorizer()
+tfidf_matrix = vectorizer.fit_transform(documents)
+
+# 코사인 유사도 계산
+similarity_matrix = cosine_similarity(tfidf_matrix)
+
+# 결과 출력
+feature_names = vectorizer.get_feature_names_out()
+print("특성 단어들:", feature_names)
+print("\n문서 간 유사도 행렬:")
+for i, doc in enumerate(documents):
+    print(f"\n문서 {i+1}: {doc[:20]}...")
+    for j, similarity in enumerate(similarity_matrix[i]):
+        if i != j:
+            print(f"  vs 문서 {j+1}: {similarity:.3f}")
+```
+
+## 성능 최적화 팁 {.smaller}
+
+### 1. 벡터화 최적화
+::: {.incremental}
+- <i class="fas fa-memory"></i> **희소 행렬** 사용 (scipy.sparse)
+- <i class="fas fa-microchip"></i> **NumPy 벡터화** 연산 활용
+- <i class="fas fa-layer-group"></i> **배치 처리**로 여러 벡터 동시 계산
+- <i class="fas fa-database"></i> **메모리 효율적** 데이터 구조 선택
+:::
+
+### 2. 근사 알고리즘
+::: {.incremental}
+- <i class="fas fa-random"></i> **LSH** (Locality Sensitive Hashing)
+- <i class="fas fa-compress"></i> **차원 축소** 기법 활용
+- <i class="fas fa-tree"></i> **트리 기반** 인덱싱
+- <i class="fas fa-cut"></i> **임계값 기반** 필터링
+:::
+
+### 3. 하드웨어 활용
+::: {.incremental}
+- <i class="fas fa-microchip"></i> **GPU 가속** (CUDA, OpenCL)
+- <i class="fas fa-server"></i> **분산 컴퓨팅** (Spark, Dask)
+- <i class="fas fa-bolt"></i> **병렬 처리** 최적화
+- <i class="fas fa-memory"></i> **메모리 맵핑** 활용
+:::
+
+## 결론 {.smaller}
+
+### 코사인 유사도의 핵심 가치
+::: {.incremental}
+- <i class="fas fa-compass"></i> **방향성 중심**: 벡터의 방향으로 유사성 측정
+- <i class="fas fa-expand-arrows-alt"></i> **크기 무관성**: 절대적 크기보다 상대적 패턴 중요
+- <i class="fas fa-cogs"></i> **범용성**: 다양한 도메인에서 활용 가능
+- <i class="fas fa-rocket"></i> **확장성**: 고차원 데이터에서도 효과적
+:::
+
+### 선택 기준
+::: {.incremental}
+- <i class="fas fa-question"></i> **크기가 중요한가?** → 유클리드 거리 고려
+- <i class="fas fa-compass"></i> **방향이 중요한가?** → 코사인 유사도 선택
+- <i class="fas fa-chart-bar"></i> **데이터 특성은?** → 희소성, 차원, 분포 고려
+- <i class="fas fa-target"></i> **목적은 무엇인가?** → 분류, 추천, 검색 등
+:::
+
+### 미래 발전 방향
+::: {.incremental}
+- <i class="fas fa-brain"></i> **딥러닝과의 결합**: 학습된 임베딩에서의 유사도
+- <i class="fas fa-network-wired"></i> **그래프 기반 확장**: 네트워크 구조 고려
+- <i class="fas fa-robot"></i> **자동화**: 최적 유사도 메트릭 자동 선택
+:::
+
+## 참고 자료 {.smaller}
+
+### 추천 도서
+- <i class="fas fa-book"></i> **"Introduction to Information Retrieval"** - Manning, Raghavan, Schütze
+- <i class="fas fa-book"></i> **"Pattern Recognition and Machine Learning"** - Bishop
+- <i class="fas fa-book"></i> **"Recommender Systems Handbook"** - Ricci et al.
+
+### 온라인 리소스
+- <i class="fas fa-globe"></i> **scikit-learn 문서**: 코사인 유사도 구현
+- <i class="fas fa-code"></i> **Kaggle**: 실제 데이터셋으로 실습
+- <i class="fas fa-video"></i> **YouTube**: 시각적 설명 동영상
+
+### 실습 데이터셋
+- <i class="fas fa-file-alt"></i> **20 Newsgroups**: 텍스트 분류
+- <i class="fas fa-film"></i> **MovieLens**: 영화 추천
+- <i class="fas fa-shopping-cart"></i> **Amazon Reviews**: 상품 추천
+
+---
+
+### 감사합니다! {.center}
+
+<i class="fas fa-envelope"></i> **연락처**: euriion@gmail.com  
+<i class="fab fa-github"></i> **GitHub**: github.com/euriion  
+<i class="fas fa-blog"></i> **블로그**: euriion.com 
