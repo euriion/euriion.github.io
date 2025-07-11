@@ -2,7 +2,7 @@
 title: "E-commerce 상품추천 시스템"
 subtitle: "개인화된 쇼핑 경험을 위한 AI 기반 추천 시스템 구축"
 author: "홍성학"
-date: today
+date: 2023-05-02
 format: 
   revealjs:
     theme: night
