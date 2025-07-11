@@ -1,0 +1,705 @@
+---
+title: "IoT-BigData with R"
+subtitle: "R을 활용한 IoT 빅데이터 분석"
+author: "홍성학 (NexR)"
+date: 2014-09-01
+format: 
+  revealjs:
+    theme: night
+    transition: slide
+    background-transition: fade
+    highlight-style: github
+    code-fold: true
+    code-tools: true
+    slide-number: true
+    chalkboard: true
+    scrollable: true
+    incremental: false
+    footer: "IoT-BigData with R | 홍성학"
+    css: custom.css
+    include-in-header:
+      - text: |
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+mermaid:
+  theme: dark
+editor: visual
+---
+
+## 목차 {.smaller}
+
+::: {.incremental}
+1. **IoT와 빅데이터 개요**
+2. **R 언어 소개**
+3. **IoT 데이터 수집과 처리**
+4. **빅데이터 분석 기법**
+5. **시각화와 대시보드**
+6. **실시간 데이터 처리**
+7. **실습 프로젝트**
+8. **향후 전망**
+:::
+
+# IoT와 빅데이터 개요
+
+## IoT (Internet of Things)란? {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**IoT의 정의**
+
+- <i class="fas fa-wifi"></i> **연결성**: 모든 사물이 인터넷에 연결
+- <i class="fas fa-microchip"></i> **센서**: 환경 데이터 수집
+- <i class="fas fa-cloud"></i> **클라우드**: 데이터 저장 및 처리
+- <i class="fas fa-robot"></i> **자동화**: 스마트한 의사결정
+:::
+
+::: {.column width="50%"}
+```{mermaid}
+flowchart TD
+    A[센서] --> B[데이터 수집]
+    B --> C[전송]
+    C --> D[클라우드 저장]
+    D --> E[데이터 분석]
+    E --> F[인사이트 도출]
+    F --> G[액션]
+```
+:::
+:::
+
+## IoT 활용 분야 {.smaller}
+
+::: {.panel-tabset}
+### 스마트 홈
+- <i class="fas fa-home"></i> **홈 자동화**: 조명, 온도, 보안
+- <i class="fas fa-bolt"></i> **에너지 관리**: 전력 사용량 최적화
+- <i class="fas fa-shield-alt"></i> **보안 시스템**: 실시간 모니터링
+
+### 스마트 시티
+- <i class="fas fa-traffic-light"></i> **교통 관리**: 신호등, 주차장
+- <i class="fas fa-leaf"></i> **환경 모니터링**: 대기질, 소음
+- <i class="fas fa-water"></i> **공공 서비스**: 상하수도, 쓰레기 관리
+
+### 산업 IoT
+- <i class="fas fa-industry"></i> **제조업**: 예측 정비, 품질 관리
+- <i class="fas fa-seedling"></i> **농업**: 스마트 팜, 작물 모니터링
+- <i class="fas fa-heartbeat"></i> **헬스케어**: 원격 진료, 건강 관리
+:::
+
+## 빅데이터의 특성 (5V) {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**전통적 3V**
+
+- <i class="fas fa-expand-arrows-alt"></i> **Volume (크기)**: 페타바이트 단위
+- <i class="fas fa-tachometer-alt"></i> **Velocity (속도)**: 실시간 처리
+- <i class="fas fa-shapes"></i> **Variety (다양성)**: 정형/비정형 데이터
+:::
+
+::: {.column width="50%"}
+**확장된 2V**
+
+- <i class="fas fa-check-circle"></i> **Veracity (정확성)**: 데이터 품질
+- <i class="fas fa-gem"></i> **Value (가치)**: 비즈니스 인사이트
+:::
+:::
+
+::: {.callout-tip}
+IoT 환경에서는 **속도(Velocity)**와 **다양성(Variety)**이 특히 중요합니다.
+:::
+
+# R 언어 소개
+
+## R이란? {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**R의 특징**
+
+- <i class="fas fa-chart-bar"></i> **통계 분석**: 강력한 통계 기능
+- <i class="fas fa-paint-brush"></i> **시각화**: 아름다운 그래프
+- <i class="fas fa-puzzle-piece"></i> **패키지**: 풍부한 라이브러리
+- <i class="fas fa-users"></i> **커뮤니티**: 활발한 개발자 생태계
+:::
+
+::: {.column width="50%"}
+**R의 장점**
+
+- <i class="fas fa-dollar-sign"></i> **무료**: 오픈소스
+- <i class="fas fa-laptop-code"></i> **크로스 플랫폼**: Windows, Mac, Linux
+- <i class="fas fa-database"></i> **빅데이터 지원**: 대용량 데이터 처리
+- <i class="fas fa-link"></i> **연동성**: 다양한 DB와 연결
+:::
+:::
+
+## R vs Python {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**R의 강점**
+
+- <i class="fas fa-chart-line"></i> **통계 분석**: 전문적인 통계 기능
+- <i class="fas fa-palette"></i> **시각화**: ggplot2, plotly
+- <i class="fas fa-book"></i> **학술 연구**: 논문 작성 지원
+- <i class="fas fa-brain"></i> **데이터 사이언스**: 전문가 도구
+:::
+
+::: {.column width="50%"}
+**Python의 강점**
+
+- <i class="fas fa-code"></i> **범용성**: 웹, 앱 개발
+- <i class="fas fa-robot"></i> **머신러닝**: scikit-learn, TensorFlow
+- <i class="fas fa-rocket"></i> **성능**: 빠른 실행 속도
+- <i class="fas fa-industry"></i> **산업 활용**: 프로덕션 환경
+:::
+:::
+
+## R 핵심 패키지 {.smaller}
+
+### 데이터 처리
+- <i class="fas fa-table"></i> **dplyr**: 데이터 조작
+- <i class="fas fa-broom"></i> **tidyr**: 데이터 정리
+- <i class="fas fa-file-import"></i> **readr**: 데이터 읽기
+
+### 시각화
+- <i class="fas fa-chart-area"></i> **ggplot2**: 정적 그래프
+- <i class="fas fa-mouse-pointer"></i> **plotly**: 인터랙티브 그래프
+- <i class="fas fa-tachometer-alt"></i> **shiny**: 웹 대시보드
+
+### 빅데이터
+- <i class="fas fa-database"></i> **sparklyr**: Apache Spark 연동
+- <i class="fas fa-cloud"></i> **bigrquery**: Google BigQuery
+- <i class="fas fa-server"></i> **RHive**: Hadoop Hive 연동
+
+# IoT 데이터 수집과 처리
+
+## IoT 데이터의 특성 {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**데이터 특성**
+
+- <i class="fas fa-clock"></i> **시계열 데이터**: 시간 순서 중요
+- <i class="fas fa-stream"></i> **스트리밍**: 연속적 데이터 생성
+- <i class="fas fa-thermometer-half"></i> **센서 데이터**: 온도, 습도, 압력 등
+- <i class="fas fa-map-marker-alt"></i> **위치 데이터**: GPS 좌표
+:::
+
+::: {.column width="50%"}
+**데이터 품질 이슈**
+
+- <i class="fas fa-exclamation-triangle"></i> **노이즈**: 센서 오류
+- <i class="fas fa-ban"></i> **결측값**: 통신 장애
+- <i class="fas fa-sync"></i> **중복 데이터**: 재전송
+- <i class="fas fa-clock"></i> **시간 동기화**: 타임스탬프 오류
+:::
+:::
+
+## 데이터 수집 방법 {.smaller}
+
+### 1. MQTT 프로토콜
+```r
+# MQTT 클라이언트 설정
+library(mqtt)
+
+client <- mqtt_client_new()
+mqtt_connect(client, host = "broker.hivemq.com", port = 1883)
+mqtt_subscribe(client, "sensors/temperature")
+```
+
+### 2. REST API
+```r
+# REST API를 통한 데이터 수집
+library(httr)
+library(jsonlite)
+
+response <- GET("https://api.iot-device.com/sensors/data")
+data <- fromJSON(content(response, "text"))
+```
+
+### 3. 데이터베이스 연동
+```r
+# 데이터베이스 연결
+library(DBI)
+library(RPostgreSQL)
+
+con <- dbConnect(PostgreSQL(), 
+                 host = "localhost", 
+                 dbname = "iot_data")
+```
+
+## 데이터 전처리 {.smaller}
+
+### 1. 결측값 처리
+```r
+library(dplyr)
+
+# 결측값 확인
+summary(iot_data)
+
+# 결측값 처리
+iot_data <- iot_data %>%
+  mutate(
+    temperature = ifelse(is.na(temperature), 
+                        mean(temperature, na.rm = TRUE), 
+                        temperature)
+  )
+```
+
+### 2. 이상값 탐지
+```r
+# 이상값 탐지 (IQR 방법)
+Q1 <- quantile(iot_data$temperature, 0.25)
+Q3 <- quantile(iot_data$temperature, 0.75)
+IQR <- Q3 - Q1
+
+# 이상값 제거
+iot_data <- iot_data %>%
+  filter(temperature >= Q1 - 1.5 * IQR & 
+         temperature <= Q3 + 1.5 * IQR)
+```
+
+### 3. 시간 데이터 처리
+```r
+library(lubridate)
+
+# 시간 데이터 파싱
+iot_data$timestamp <- ymd_hms(iot_data$timestamp)
+
+# 시간대 설정
+iot_data$timestamp <- with_tz(iot_data$timestamp, "Asia/Seoul")
+```
+
+# 빅데이터 분석 기법
+
+## 탐색적 데이터 분석 (EDA) {.smaller}
+
+### 1. 기술통계
+```r
+library(dplyr)
+library(skimr)
+
+# 데이터 요약
+skim(iot_data)
+
+# 그룹별 통계
+iot_data %>%
+  group_by(sensor_type) %>%
+  summarise(
+    mean_value = mean(value),
+    sd_value = sd(value),
+    min_value = min(value),
+    max_value = max(value)
+  )
+```
+
+### 2. 상관관계 분석
+```r
+library(corrplot)
+
+# 상관관계 매트릭스
+cor_matrix <- cor(iot_data[, c("temperature", "humidity", "pressure")])
+corrplot(cor_matrix, method = "color")
+```
+
+## 시계열 분석 {.smaller}
+
+### 1. 시계열 분해
+```r
+library(forecast)
+
+# 시계열 객체 생성
+ts_data <- ts(iot_data$temperature, frequency = 24)
+
+# 시계열 분해
+decomposed <- decompose(ts_data)
+plot(decomposed)
+```
+
+### 2. 예측 모델링
+```r
+# ARIMA 모델
+arima_model <- auto.arima(ts_data)
+forecast_result <- forecast(arima_model, h = 24)
+plot(forecast_result)
+```
+
+### 3. 계절성 분석
+```r
+library(seasonal)
+
+# X-13ARIMA-SEATS 계절성 조정
+seas_adj <- seas(ts_data)
+plot(seas_adj)
+```
+
+## 머신러닝 기법 {.smaller}
+
+### 1. 클러스터링
+```r
+library(cluster)
+
+# K-means 클러스터링
+set.seed(123)
+kmeans_result <- kmeans(iot_data[, c("temperature", "humidity")], 
+                        centers = 3)
+
+# 클러스터 시각화
+plot(iot_data$temperature, iot_data$humidity, 
+     col = kmeans_result$cluster, pch = 19)
+```
+
+### 2. 분류 모델
+```r
+library(randomForest)
+
+# 랜덤 포레스트 모델
+rf_model <- randomForest(status ~ temperature + humidity + pressure, 
+                         data = iot_data)
+
+# 변수 중요도
+importance(rf_model)
+```
+
+# 시각화와 대시보드
+
+## ggplot2를 활용한 시각화 {.smaller}
+
+### 1. 시계열 그래프
+```r
+library(ggplot2)
+
+ggplot(iot_data, aes(x = timestamp, y = temperature)) +
+  geom_line(color = "steelblue") +
+  geom_smooth(method = "loess", color = "red") +
+  labs(title = "IoT 센서 온도 변화",
+       x = "시간", y = "온도 (°C)") +
+  theme_minimal()
+```
+
+### 2. 히트맵
+```r
+library(reshape2)
+
+# 시간별 센서 데이터 히트맵
+heatmap_data <- iot_data %>%
+  mutate(hour = hour(timestamp)) %>%
+  group_by(hour, sensor_id) %>%
+  summarise(avg_temp = mean(temperature))
+
+ggplot(heatmap_data, aes(x = hour, y = sensor_id, fill = avg_temp)) +
+  geom_tile() +
+  scale_fill_gradient(low = "blue", high = "red") +
+  labs(title = "시간별 센서 온도 히트맵")
+```
+
+## 인터랙티브 시각화 {.smaller}
+
+### 1. Plotly
+```r
+library(plotly)
+
+# 인터랙티브 시계열 그래프
+p <- ggplot(iot_data, aes(x = timestamp, y = temperature)) +
+  geom_line() +
+  labs(title = "IoT 센서 데이터")
+
+ggplotly(p)
+```
+
+### 2. DT 테이블
+```r
+library(DT)
+
+# 인터랙티브 데이터 테이블
+datatable(iot_data, 
+          options = list(pageLength = 10, scrollX = TRUE),
+          filter = "top")
+```
+
+## Shiny 대시보드 {.smaller}
+
+### UI 구성
+```r
+library(shiny)
+library(shinydashboard)
+
+ui <- dashboardPage(
+  dashboardHeader(title = "IoT 데이터 대시보드"),
+  dashboardSidebar(
+    sidebarMenu(
+      menuItem("실시간 모니터링", tabName = "realtime"),
+      menuItem("분석 결과", tabName = "analysis")
+    )
+  ),
+  dashboardBody(
+    tabItems(
+      tabItem(tabName = "realtime",
+        fluidRow(
+          valueBoxOutput("current_temp"),
+          valueBoxOutput("current_humidity")
+        )
+      )
+    )
+  )
+)
+```
+
+### Server 로직
+```r
+server <- function(input, output) {
+  output$current_temp <- renderValueBox({
+    valueBox(
+      value = paste0(round(current_temperature, 1), "°C"),
+      subtitle = "현재 온도",
+      icon = icon("thermometer-half"),
+      color = "blue"
+    )
+  })
+}
+
+shinyApp(ui = ui, server = server)
+```
+
+# 실시간 데이터 처리
+
+## 스트리밍 데이터 처리 {.smaller}
+
+### 1. Apache Kafka 연동
+```r
+library(rkafka)
+
+# Kafka 컨슈머 설정
+consumer <- kafka_consumer_new(
+  topics = "iot-sensors",
+  bootstrap_servers = "localhost:9092"
+)
+
+# 실시간 데이터 수신
+while(TRUE) {
+  message <- kafka_consumer_poll(consumer)
+  if (!is.null(message)) {
+    process_iot_data(message)
+  }
+}
+```
+
+### 2. Apache Spark 연동
+```r
+library(sparklyr)
+
+# Spark 연결
+sc <- spark_connect(master = "local")
+
+# 스트리밍 데이터 처리
+stream <- stream_read_kafka(sc, 
+  kafka.bootstrap.servers = "localhost:9092",
+  subscribe = "iot-sensors"
+)
+
+# 실시간 집계
+aggregated <- stream %>%
+  group_by(sensor_id) %>%
+  summarise(avg_temp = mean(temperature))
+```
+
+## 실시간 알림 시스템 {.smaller}
+
+### 1. 임계값 모니터링
+```r
+# 임계값 설정
+temp_threshold <- 35
+humidity_threshold <- 80
+
+# 알림 함수
+send_alert <- function(sensor_id, value, threshold, type) {
+  message <- paste("경고:", sensor_id, "센서의", type, "값이", 
+                   value, "로 임계값", threshold, "를 초과했습니다.")
+  
+  # 이메일 발송
+  send_email(message)
+  
+  # 슬랙 알림
+  send_slack_message(message)
+}
+
+# 실시간 모니터링
+monitor_sensors <- function(data) {
+  if (data$temperature > temp_threshold) {
+    send_alert(data$sensor_id, data$temperature, 
+               temp_threshold, "온도")
+  }
+  
+  if (data$humidity > humidity_threshold) {
+    send_alert(data$sensor_id, data$humidity, 
+               humidity_threshold, "습도")
+  }
+}
+```
+
+### 2. 예측 기반 알림
+```r
+# 예측 모델을 이용한 선제적 알림
+predict_failure <- function(sensor_data) {
+  # 기계학습 모델 적용
+  prediction <- predict(failure_model, sensor_data)
+  
+  if (prediction > 0.8) {
+    send_alert(sensor_data$sensor_id, 
+               prediction, 0.8, "고장 예측")
+  }
+}
+```
+
+# 실습 프로젝트
+
+## 프로젝트 1: 스마트 홈 모니터링 {.smaller}
+
+### 목표
+- <i class="fas fa-home"></i> 가정 내 IoT 센서 데이터 수집
+- <i class="fas fa-chart-line"></i> 실시간 모니터링 대시보드 구축
+- <i class="fas fa-bell"></i> 이상 상황 알림 시스템
+
+### 데이터 구조
+```r
+# 샘플 데이터 생성
+smart_home_data <- data.frame(
+  timestamp = seq(from = as.POSIXct("2024-01-01 00:00:00"), 
+                  to = as.POSIXct("2024-01-31 23:59:59"), 
+                  by = "min"),
+  room = sample(c("living_room", "bedroom", "kitchen"), 
+                44640, replace = TRUE),
+  temperature = rnorm(44640, mean = 22, sd = 3),
+  humidity = rnorm(44640, mean = 45, sd = 10),
+  light = sample(0:1, 44640, replace = TRUE),
+  motion = sample(0:1, 44640, replace = TRUE)
+)
+```
+
+### 분석 과정
+1. **데이터 전처리**: 결측값, 이상값 처리
+2. **패턴 분석**: 시간대별, 방별 사용 패턴
+3. **에너지 효율성**: 온도와 조명 사용 최적화
+4. **보안 분석**: 비정상적인 움직임 탐지
+
+## 프로젝트 2: 산업 IoT 예측 정비 {.smaller}
+
+### 목표
+- <i class="fas fa-industry"></i> 제조 장비 센서 데이터 분석
+- <i class="fas fa-wrench"></i> 고장 예측 모델 개발
+- <i class="fas fa-chart-bar"></i> 정비 스케줄 최적화
+
+### 데이터 특성
+```r
+# 장비 센서 데이터
+equipment_data <- data.frame(
+  timestamp = seq(from = as.POSIXct("2024-01-01 00:00:00"), 
+                  by = "hour", length.out = 8760),
+  equipment_id = paste0("EQ", sprintf("%03d", 1:100)),
+  vibration = rnorm(8760, mean = 0.5, sd = 0.1),
+  temperature = rnorm(8760, mean = 65, sd = 5),
+  pressure = rnorm(8760, mean = 2.5, sd = 0.3),
+  current = rnorm(8760, mean = 15, sd = 2),
+  failure = sample(0:1, 8760, replace = TRUE, prob = c(0.95, 0.05))
+)
+```
+
+### 분석 기법
+1. **시계열 분석**: 센서 데이터의 트렌드 분석
+2. **이상 탐지**: 정상 범위를 벗어난 값 탐지
+3. **분류 모델**: 고장 예측 모델 개발
+4. **최적화**: 정비 비용과 다운타임 최소화
+
+## 프로젝트 3: 스마트 시티 교통 분석 {.smaller}
+
+### 목표
+- <i class="fas fa-traffic-light"></i> 교통 센서 데이터 분석
+- <i class="fas fa-route"></i> 교통 흐름 최적화
+- <i class="fas fa-clock"></i> 실시간 교통 정보 제공
+
+### 시각화 예시
+```r
+# 교통량 히트맵
+traffic_heatmap <- ggplot(traffic_data, 
+                         aes(x = hour, y = intersection_id, 
+                             fill = vehicle_count)) +
+  geom_tile() +
+  scale_fill_gradient(low = "green", high = "red") +
+  labs(title = "시간대별 교차로 교통량",
+       x = "시간", y = "교차로 ID") +
+  theme_minimal()
+
+print(traffic_heatmap)
+```
+
+# 향후 전망
+
+## IoT와 빅데이터 트렌드 {.smaller}
+
+### 기술 발전
+- <i class="fas fa-microchip"></i> **엣지 컴퓨팅**: 현장에서 실시간 처리
+- <i class="fas fa-brain"></i> **AI/ML 통합**: 지능형 IoT 시스템
+- <i class="fas fa-network-wired"></i> **5G 연결**: 초저지연 통신
+- <i class="fas fa-shield-alt"></i> **보안 강화**: 블록체인, 암호화
+
+### 산업 적용
+- <i class="fas fa-industry"></i> **Industry 4.0**: 스마트 팩토리
+- <i class="fas fa-car"></i> **자율주행**: 커넥티드 카
+- <i class="fas fa-heartbeat"></i> **디지털 헬스케어**: 원격 의료
+- <i class="fas fa-leaf"></i> **지속가능성**: 환경 모니터링
+
+## R 생태계 발전 {.smaller}
+
+### 새로운 패키지들
+- <i class="fas fa-rocket"></i> **arrow**: 대용량 데이터 처리
+- <i class="fas fa-database"></i> **duckdb**: 임베디드 분석 DB
+- <i class="fas fa-chart-line"></i> **ggiraph**: 인터랙티브 ggplot
+- <i class="fas fa-cloud"></i> **pins**: 데이터 버전 관리
+
+### 성능 향상
+- <i class="fas fa-tachometer-alt"></i> **병렬 처리**: future, furrr 패키지
+- <i class="fas fa-memory"></i> **메모리 효율성**: data.table, dtplyr
+- <i class="fas fa-code"></i> **컴파일**: Rcpp, 네이티브 코드
+
+## 학습 로드맵 {.smaller}
+
+### 1단계: 기초 (1-2개월)
+- <i class="fas fa-book"></i> **R 기초**: 문법, 데이터 구조
+- <i class="fas fa-chart-bar"></i> **통계 기초**: 기술통계, 가설검정
+- <i class="fas fa-paint-brush"></i> **시각화**: ggplot2 기초
+
+### 2단계: 중급 (3-4개월)
+- <i class="fas fa-table"></i> **데이터 조작**: dplyr, tidyr
+- <i class="fas fa-clock"></i> **시계열 분석**: forecast, prophet
+- <i class="fas fa-database"></i> **데이터베이스**: DBI, dbplyr
+
+### 3단계: 고급 (5-6개월)
+- <i class="fas fa-robot"></i> **머신러닝**: caret, tidymodels
+- <i class="fas fa-cloud"></i> **빅데이터**: sparklyr, bigrquery
+- <i class="fas fa-globe"></i> **웹 앱**: shiny, plumber
+
+## 마무리 {.smaller}
+
+### 핵심 메시지
+::: {.incremental}
+- <i class="fas fa-lightbulb"></i> **IoT와 빅데이터**는 미래 산업의 핵심
+- <i class="fas fa-tools"></i> **R은 강력한 분석 도구**로 계속 발전
+- <i class="fas fa-users"></i> **실무 경험**이 가장 중요
+- <i class="fas fa-book-open"></i> **지속적인 학습**이 필요
+:::
+
+### 추천 자료
+- <i class="fas fa-globe"></i> **R for Data Science**: https://r4ds.had.co.nz/
+- <i class="fas fa-video"></i> **RStudio 교육**: https://education.rstudio.com/
+- <i class="fas fa-users"></i> **R 커뮤니티**: https://community.rstudio.com/
+- <i class="fas fa-book"></i> **IoT 분석**: "IoT Analytics with R" 도서
+
+---
+
+## 감사합니다! {.center}
+
+::: {.center}
+<i class="fas fa-envelope"></i> **이메일**: aiden.hong@nexr.com (aiden.hong@kt.com)
+<i class="fab fa-github"></i> **GitHub**: https://github.com/euriion
+
+**질문과 토론을 환영합니다!**
+::: 

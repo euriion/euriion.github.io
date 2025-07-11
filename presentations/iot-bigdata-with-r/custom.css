@@ -1,0 +1,386 @@
+/*-- scss:rules --*/
+
+/* IoT-BigData with R 슬라이드 커스텀 스타일 */
+
+/* 기본 폰트 설정 */
+.reveal {
+  font-family: 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+}
+
+/* 제목 스타일 */
+.reveal h1, .reveal h2, .reveal h3 {
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* 강조 색상 - IoT 테마 (파란색-녹색 계열) */
+.reveal .progress {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.reveal .progress span {
+  background: #00bcd4;
+  transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
+}
+
+/* 링크 스타일 */
+.reveal a {
+  color: #00bcd4;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.reveal a:hover {
+  color: #4dd0e1;
+  text-shadow: none;
+  border: none;
+}
+
+/* 코드 블록 스타일 */
+.reveal pre {
+  background-color: #263238;
+  border-radius: 8px;
+  padding: 1em;
+  margin: 1em 0;
+  border-left: 4px solid #00bcd4;
+}
+
+.reveal code {
+  background-color: #37474f;
+  color: #e0f2f1;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-family: 'Fira Code', 'Consolas', monospace;
+}
+
+/* 인용문 스타일 */
+.reveal blockquote {
+  background: rgba(0, 188, 212, 0.1);
+  border-left: 4px solid #00bcd4;
+  padding: 1em;
+  margin: 1em 0;
+  border-radius: 4px;
+}
+
+/* 리스트 스타일 */
+.reveal ul, .reveal ol {
+  margin-left: 1em;
+}
+
+.reveal li {
+  margin-bottom: 0.5em;
+}
+
+/* 테이블 스타일 */
+.reveal table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.reveal table th {
+  background-color: #00bcd4;
+  color: white;
+  font-weight: 600;
+}
+
+.reveal table td, .reveal table th {
+  text-align: left;
+  padding: 0.5em 1em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 버튼 스타일 */
+.reveal .button {
+  background-color: #00bcd4;
+  color: white;
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.reveal .button:hover {
+  background-color: #4dd0e1;
+}
+
+/* 콜아웃 박스 스타일 */
+.reveal .callout {
+  border-left: 4px solid #00bcd4;
+  background-color: rgba(0, 188, 212, 0.1);
+  padding: 1em;
+  margin: 1em 0;
+  border-radius: 0 4px 4px 0;
+}
+
+.reveal .callout-tip {
+  border-left-color: #4caf50;
+  background-color: rgba(76, 175, 80, 0.1);
+}
+
+.reveal .callout-warning {
+  border-left-color: #ff9800;
+  background-color: rgba(255, 152, 0, 0.1);
+}
+
+.reveal .callout-note {
+  border-left-color: #2196f3;
+  background-color: rgba(33, 150, 243, 0.1);
+}
+
+.reveal .callout-important {
+  border-left-color: #f44336;
+  background-color: rgba(244, 67, 54, 0.1);
+}
+
+/* 아이콘 스타일 */
+.reveal .fas, .reveal .fab {
+  color: #00bcd4;
+  margin-right: 0.5em;
+}
+
+/* IoT 관련 아이콘 색상 */
+.reveal .fa-microchip, .reveal .fa-wifi, .reveal .fa-cloud {
+  color: #4caf50;
+}
+
+.reveal .fa-database, .reveal .fa-server, .reveal .fa-chart-line {
+  color: #2196f3;
+}
+
+.reveal .fa-industry, .reveal .fa-cogs, .reveal .fa-robot {
+  color: #ff9800;
+}
+
+/* 슬라이드 번호 스타일 */
+.reveal .slide-number {
+  background-color: rgba(0, 188, 212, 0.8);
+  color: white;
+  border-radius: 4px;
+  padding: 0.3em 0.6em;
+  font-size: 0.8em;
+}
+
+/* 네비게이션 컨트롤 스타일 */
+.reveal .controls {
+  color: #00bcd4;
+}
+
+.reveal .controls .navigate-left,
+.reveal .controls .navigate-right,
+.reveal .controls .navigate-up,
+.reveal .controls .navigate-down {
+  border-color: #00bcd4;
+}
+
+.reveal .controls .navigate-left.enabled:hover,
+.reveal .controls .navigate-right.enabled:hover,
+.reveal .controls .navigate-up.enabled:hover,
+.reveal .controls .navigate-down.enabled:hover {
+  border-color: #4dd0e1;
+}
+
+/* 중앙 정렬 클래스 */
+.reveal .center {
+  text-align: center;
+}
+
+/* 작은 글씨 클래스 */
+.reveal .smaller {
+  font-size: 0.8em;
+}
+
+/* 그리드 레이아웃 */
+.reveal .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1em;
+  margin: 1em 0;
+}
+
+/* 카드 스타일 */
+.reveal .card {
+  background-color: rgba(0, 188, 212, 0.1);
+  border-radius: 8px;
+  padding: 1em;
+  border: 1px solid rgba(0, 188, 212, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.reveal .card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 188, 212, 0.2);
+}
+
+/* 강조 텍스트 */
+.reveal .highlight {
+  background-color: rgba(0, 188, 212, 0.3);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  color: #ffffff;
+}
+
+/* 애니메이션 효과 */
+.reveal .slide-in {
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .reveal .columns {
+    flex-direction: column;
+  }
+  
+  .reveal .column {
+    width: 100% !important;
+  }
+  
+  .reveal .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 다크 테마 배경 */
+.reveal .has-dark-background {
+  color: #ffffff;
+}
+
+.reveal .has-dark-background h1,
+.reveal .has-dark-background h2,
+.reveal .has-dark-background h3,
+.reveal .has-dark-background h4,
+.reveal .has-dark-background h5,
+.reveal .has-dark-background h6 {
+  color: #ffffff;
+}
+
+/* 푸터 스타일 */
+.reveal .footer {
+  position: fixed;
+  bottom: 1em;
+  left: 1em;
+  font-size: 0.8em;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* 로고 스타일 */
+.reveal .logo {
+  position: fixed;
+  top: 1em;
+  right: 1em;
+  max-height: 50px;
+  max-width: 100px;
+  opacity: 0.8;
+}
+
+/* Mermaid 다이어그램 스타일 */
+.reveal .mermaid {
+  background-color: transparent;
+  border-radius: 8px;
+  padding: 1em;
+}
+
+/* 탭 스타일 */
+.reveal .panel-tabset {
+  margin: 1em 0;
+}
+
+.reveal .panel-tabset .nav-tabs {
+  border-bottom: 2px solid #00bcd4;
+}
+
+.reveal .panel-tabset .nav-tabs .nav-link {
+  background: none;
+  border: none;
+  color: #ffffff;
+  padding: 0.5em 1em;
+  margin-right: 0.5em;
+  border-radius: 4px 4px 0 0;
+  transition: all 0.3s ease;
+}
+
+.reveal .panel-tabset .nav-tabs .nav-link.active {
+  background-color: #00bcd4;
+  color: #ffffff;
+}
+
+.reveal .panel-tabset .nav-tabs .nav-link:hover {
+  background-color: rgba(0, 188, 212, 0.2);
+}
+
+/* 증분 표시 효과 */
+.reveal .incremental > * {
+  opacity: 0.3;
+}
+
+.reveal .incremental > *.current-fragment {
+  opacity: 1;
+  color: #00bcd4;
+}
+
+/* 섹션 제목 스타일 */
+.reveal .section-title {
+  background: linear-gradient(135deg, #00bcd4, #4caf50);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 2.5em;
+  font-weight: 700;
+  text-align: center;
+  margin: 1em 0;
+}
+
+/* 메트릭 박스 스타일 */
+.reveal .metric {
+  background-color: rgba(0, 188, 212, 0.1);
+  border-radius: 8px;
+  padding: 1em;
+  text-align: center;
+  border: 2px solid #00bcd4;
+  margin: 0.5em;
+}
+
+.reveal .metric-value {
+  font-size: 2em;
+  font-weight: 700;
+  color: #00bcd4;
+}
+
+.reveal .metric-label {
+  font-size: 0.9em;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 0.5em;
+}
+
+/* 플로우차트 컨테이너 */
+.reveal .flowchart-container {
+  background-color: rgba(0, 188, 212, 0.05);
+  border-radius: 8px;
+  padding: 1em;
+  margin: 1em 0;
+  border: 1px solid rgba(0, 188, 212, 0.2);
+}
+
+/* 유틸리티 클래스 */
+.reveal .text-primary { color: #00bcd4; }
+.reveal .text-success { color: #4caf50; }
+.reveal .text-warning { color: #ff9800; }
+.reveal .text-info { color: #2196f3; }
+.reveal .text-danger { color: #f44336; }
+
+.reveal .bg-primary { background-color: rgba(0, 188, 212, 0.1); }
+.reveal .bg-success { background-color: rgba(76, 175, 80, 0.1); }
+.reveal .bg-warning { background-color: rgba(255, 152, 0, 0.1); }
+.reveal .bg-info { background-color: rgba(33, 150, 243, 0.1); }
+.reveal .bg-danger { background-color: rgba(244, 67, 54, 0.1); } 
