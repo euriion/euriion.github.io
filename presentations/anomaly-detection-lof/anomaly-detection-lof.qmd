@@ -43,11 +43,15 @@ editor: visual
 
 ::: {.columns}
 ::: {.column width="50%"}
-**이상 탐지 (Anomaly Detection)**는 정상적인 패턴에서 벗어난 데이터를 식별하는 기술
+**이상 탐지 (Anomaly Detection)**는  
+정상적인 패턴에서 벗어난 데이터를 식별하는 기술
 
-- <i class="fas fa-search"></i> **목적**: 비정상적인 패턴, 오류, 사기 등을 탐지
-- <i class="fas fa-shield-alt"></i> **응용 분야**: 보안, 금융, 의료, 제조업
-- <i class="fas fa-chart-line"></i> **중요성**: 조기 발견을 통한 손실 최소화
+- <i class="fas fa-search"></i> **목적**:  
+  비정상적인 패턴, 오류, 사기 등을 탐지
+- <i class="fas fa-shield-alt"></i> **응용 분야**:  
+  보안, 금융, 의료, 제조업
+- <i class="fas fa-chart-line"></i> **중요성**:  
+  조기 발견을 통한 손실 최소화
 :::
 
 ::: {.column width="50%"}
@@ -87,16 +91,22 @@ graph TD
 ## 이상 탐지의 도전 과제 {.smaller}
 
 ::: {.incremental}
-- <i class="fas fa-balance-scale"></i> **불균형 데이터**: 정상 데이터가 압도적으로 많음
-- <i class="fas fa-question-circle"></i> **라벨링 부족**: 이상 데이터의 정확한 라벨을 얻기 어려움
-- <i class="fas fa-exchange-alt"></i> **동적 환경**: 정상 패턴이 시간에 따라 변화
-- <i class="fas fa-exclamation-triangle"></i> **오탐/미탐**: False Positive와 False Negative의 균형
-- <i class="fas fa-tachometer-alt"></i> **실시간 처리**: 빠른 응답 시간 요구
+- <i class="fas fa-balance-scale"></i> **불균형 데이터**:  
+  정상 데이터가 압도적으로 많음
+- <i class="fas fa-question-circle"></i> **라벨링 부족**:  
+  이상 데이터의 정확한 라벨을 얻기 어려움
+- <i class="fas fa-exchange-alt"></i> **동적 환경**:  
+  정상 패턴이 시간에 따라 변화
+- <i class="fas fa-exclamation-triangle"></i> **오탐/미탐**:  
+  False Positive와 False Negative의 균형
+- <i class="fas fa-tachometer-alt"></i> **실시간 처리**:  
+  빠른 응답 시간 요구
 :::
 
 ::: {.callout-note}
 ## 핵심 과제
-이상 탐지의 가장 큰 어려움은 **"정상"의 정의**가 명확하지 않다는 점입니다.
+이상 탐지의 가장 큰 어려움은 **"정상"의 정의**가  
+명확하지 않다는 점입니다.
 :::
 
 # 이상 탐지 방법론
@@ -106,10 +116,12 @@ graph TD
 ::: {.columns}
 ::: {.column width="50%"}
 **1. 통계적 방법**
+
 - Z-score, IQR 방법
 - 확률 분포 기반 접근
 
 **2. 기계학습 방법**
+
 - One-Class SVM
 - Isolation Forest
 - Autoencoder
@@ -117,11 +129,13 @@ graph TD
 
 ::: {.column width="50%"}
 **3. 거리 기반 방법**
+
 - k-NN 기반 방법
 - **LOF (Local Outlier Factor)**
 - DBSCAN
 
 **4. 앙상블 방법**
+
 - 여러 알고리즘 조합
 - 투표 기반 결정
 :::
@@ -138,7 +152,8 @@ graph TD
 
 ::: {.callout-tip}
 ## LOF의 장점
-LOF는 데이터의 **지역적 밀도**를 고려하여 다양한 밀도를 가진 클러스터에서도 효과적으로 작동합니다.
+LOF는 데이터의 **지역적 밀도**를 고려하여  
+다양한 밀도를 가진 클러스터에서도 효과적으로 작동합니다.
 :::
 
 # LOF (Local Outlier Factor)
@@ -147,7 +162,8 @@ LOF는 데이터의 **지역적 밀도**를 고려하여 다양한 밀도를 가
 
 ::: {.columns}
 ::: {.column width="60%"}
-**LOF (Local Outlier Factor)**는 각 데이터 포인트의 **지역적 밀도**를 이웃 포인트들과 비교하여 이상 정도를 측정
+**LOF (Local Outlier Factor)**는 각 데이터 포인트의 **지역적 밀도**를  
+이웃 포인트들과 비교하여 이상 정도를 측정
 
 **핵심 아이디어:**
 - 정상 포인트: 이웃들과 비슷한 밀도
@@ -305,7 +321,8 @@ graph LR
 
 ::: {.callout-warning}
 ## 주의사항
-k 값은 데이터의 특성과 도메인 지식을 고려하여 선택해야 합니다.
+k 값은 데이터의 특성과 도메인 지식을 고려하여  
+선택해야 합니다.
 :::
 :::
 :::
@@ -511,20 +528,30 @@ graph TD
 ::: {.columns}
 ::: {.column width="50%"}
 **장점:**
-- <i class="fas fa-check-circle text-green-500"></i> **지역적 밀도 고려**: 다양한 밀도 클러스터 처리
-- <i class="fas fa-check-circle text-green-500"></i> **매개변수 단순**: k 값만 조정
-- <i class="fas fa-check-circle text-green-500"></i> **해석 가능**: LOF 값의 직관적 의미
-- <i class="fas fa-check-circle text-green-500"></i> **범용성**: 다양한 도메인 적용 가능
-- <i class="fas fa-check-circle text-green-500"></i> **클러스터 모양 무관**: 임의 형태 클러스터 처리
+- <i class="fas fa-check-circle text-green-500"></i> **지역적 밀도 고려**:  
+  다양한 밀도 클러스터 처리
+- <i class="fas fa-check-circle text-green-500"></i> **매개변수 단순**:  
+  k 값만 조정
+- <i class="fas fa-check-circle text-green-500"></i> **해석 가능**:  
+  LOF 값의 직관적 의미
+- <i class="fas fa-check-circle text-green-500"></i> **범용성**:  
+  다양한 도메인 적용 가능
+- <i class="fas fa-check-circle text-green-500"></i> **클러스터 모양 무관**:  
+  임의 형태 클러스터 처리
 :::
 
 ::: {.column width="50%"}
 **단점:**
-- <i class="fas fa-times-circle text-red-500"></i> **계산 복잡도**: O(n²) 시간 복잡도
-- <i class="fas fa-times-circle text-red-500"></i> **메모리 사용량**: 이웃 정보 저장 필요
-- <i class="fas fa-times-circle text-red-500"></i> **고차원 데이터**: 차원의 저주 문제
-- <i class="fas fa-times-circle text-red-500"></i> **k 값 선택**: 데이터별 최적값 찾기 어려움
-- <i class="fas fa-times-circle text-red-500"></i> **실시간 처리**: 대용량 데이터 처리 한계
+- <i class="fas fa-times-circle text-red-500"></i> **계산 복잡도**:  
+  O(n²) 시간 복잡도
+- <i class="fas fa-times-circle text-red-500"></i> **메모리 사용량**:  
+  이웃 정보 저장 필요
+- <i class="fas fa-times-circle text-red-500"></i> **고차원 데이터**:  
+  차원의 저주 문제
+- <i class="fas fa-times-circle text-red-500"></i> **k 값 선택**:  
+  데이터별 최적값 찾기 어려움
+- <i class="fas fa-times-circle text-red-500"></i> **실시간 처리**:  
+  대용량 데이터 처리 한계
 :::
 :::
 
@@ -627,5 +654,6 @@ graph TD
 <i class="fas fa-globe"></i> https://aidenhong.com  
 <i class="fab fa-github"></i> https://github.com/euriion
 
-*"데이터 속에 숨겨진 이상을 찾는 것은 바늘 찾기가 아니라, 패턴을 이해하는 것입니다."*
+*"데이터 속에 숨겨진 이상을 찾는 것은 바늘 찾기가 아니라,  
+패턴을 이해하는 것입니다."*
 ::: 

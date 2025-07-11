@@ -237,11 +237,15 @@ Seonghak Hong
 <h2>이상 탐지란?</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p><strong>이상 탐지 (Anomaly Detection)</strong>는 정상적인 패턴에서 벗어난 데이터를 식별하는 기술</p>
+<p><strong>이상 탐지 (Anomaly Detection)</strong>는<br>
+정상적인 패턴에서 벗어난 데이터를 식별하는 기술</p>
 <ul>
-<li><i class="fas fa-search"></i> <strong>목적</strong>: 비정상적인 패턴, 오류, 사기 등을 탐지</li>
-<li><i class="fas fa-shield-alt"></i> <strong>응용 분야</strong>: 보안, 금융, 의료, 제조업</li>
-<li><i class="fas fa-chart-line"></i> <strong>중요성</strong>: 조기 발견을 통한 손실 최소화</li>
+<li><i class="fas fa-search"></i> <strong>목적</strong>:<br>
+비정상적인 패턴, 오류, 사기 등을 탐지</li>
+<li><i class="fas fa-shield-alt"></i> <strong>응용 분야</strong>:<br>
+보안, 금융, 의료, 제조업</li>
+<li><i class="fas fa-chart-line"></i> <strong>중요성</strong>:<br>
+조기 발견을 통한 손실 최소화</li>
 </ul>
 </div><div class="column" style="width:50%;">
 <div class="cell" data-reveal="true" data-layout-align="default">
@@ -295,11 +299,16 @@ Seonghak Hong
 <section id="이상-탐지의-도전-과제" class="slide level2 smaller">
 <h2>이상 탐지의 도전 과제</h2>
 <ul>
-<li class="fragment"><i class="fas fa-balance-scale"></i> <strong>불균형 데이터</strong>: 정상 데이터가 압도적으로 많음</li>
-<li class="fragment"><i class="fas fa-question-circle"></i> <strong>라벨링 부족</strong>: 이상 데이터의 정확한 라벨을 얻기 어려움</li>
-<li class="fragment"><i class="fas fa-exchange-alt"></i> <strong>동적 환경</strong>: 정상 패턴이 시간에 따라 변화</li>
-<li class="fragment"><i class="fas fa-exclamation-triangle"></i> <strong>오탐/미탐</strong>: False Positive와 False Negative의 균형</li>
-<li class="fragment"><i class="fas fa-tachometer-alt"></i> <strong>실시간 처리</strong>: 빠른 응답 시간 요구</li>
+<li class="fragment"><i class="fas fa-balance-scale"></i> <strong>불균형 데이터</strong>:<br>
+정상 데이터가 압도적으로 많음</li>
+<li class="fragment"><i class="fas fa-question-circle"></i> <strong>라벨링 부족</strong>:<br>
+이상 데이터의 정확한 라벨을 얻기 어려움</li>
+<li class="fragment"><i class="fas fa-exchange-alt"></i> <strong>동적 환경</strong>:<br>
+정상 패턴이 시간에 따라 변화</li>
+<li class="fragment"><i class="fas fa-exclamation-triangle"></i> <strong>오탐/미탐</strong>:<br>
+False Positive와 False Negative의 균형</li>
+<li class="fragment"><i class="fas fa-tachometer-alt"></i> <strong>실시간 처리</strong>:<br>
+빠른 응답 시간 요구</li>
 </ul>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
@@ -310,7 +319,8 @@ Seonghak Hong
 <p><strong>핵심 과제</strong></p>
 </div>
 <div class="callout-content">
-<p>이상 탐지의 가장 큰 어려움은 <strong>“정상”의 정의</strong>가 명확하지 않다는 점입니다.</p>
+<p>이상 탐지의 가장 큰 어려움은 <strong>“정상”의 정의</strong>가<br>
+명확하지 않다는 점입니다.</p>
 </div>
 </div>
 </div>
@@ -324,11 +334,29 @@ Seonghak Hong
 <h2>주요 접근 방법</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p><strong>1. 통계적 방법</strong> - Z-score, IQR 방법 - 확률 분포 기반 접근</p>
-<p><strong>2. 기계학습 방법</strong> - One-Class SVM - Isolation Forest - Autoencoder</p>
+<p><strong>1. 통계적 방법</strong></p>
+<ul>
+<li>Z-score, IQR 방법</li>
+<li>확률 분포 기반 접근</li>
+</ul>
+<p><strong>2. 기계학습 방법</strong></p>
+<ul>
+<li>One-Class SVM</li>
+<li>Isolation Forest</li>
+<li>Autoencoder</li>
+</ul>
 </div><div class="column" style="width:50%;">
-<p><strong>3. 거리 기반 방법</strong> - k-NN 기반 방법 - <strong>LOF (Local Outlier Factor)</strong> - DBSCAN</p>
-<p><strong>4. 앙상블 방법</strong> - 여러 알고리즘 조합 - 투표 기반 결정</p>
+<p><strong>3. 거리 기반 방법</strong></p>
+<ul>
+<li>k-NN 기반 방법</li>
+<li><strong>LOF (Local Outlier Factor)</strong></li>
+<li>DBSCAN</li>
+</ul>
+<p><strong>4. 앙상블 방법</strong></p>
+<ul>
+<li>여러 알고리즘 조합</li>
+<li>투표 기반 결정</li>
+</ul>
 </div></div>
 </section>
 <section id="방법론별-특징-비교" class="slide level2 smaller">
@@ -384,7 +412,8 @@ Seonghak Hong
 <p><strong>LOF의 장점</strong></p>
 </div>
 <div class="callout-content">
-<p>LOF는 데이터의 <strong>지역적 밀도</strong>를 고려하여 다양한 밀도를 가진 클러스터에서도 효과적으로 작동합니다.</p>
+<p>LOF는 데이터의 <strong>지역적 밀도</strong>를 고려하여<br>
+다양한 밀도를 가진 클러스터에서도 효과적으로 작동합니다.</p>
 </div>
 </div>
 </div>
@@ -398,7 +427,8 @@ Seonghak Hong
 <h2>LOF 개념</h2>
 <div class="columns">
 <div class="column" style="width:60%;">
-<p><strong>LOF (Local Outlier Factor)</strong>는 각 데이터 포인트의 <strong>지역적 밀도</strong>를 이웃 포인트들과 비교하여 이상 정도를 측정</p>
+<p><strong>LOF (Local Outlier Factor)</strong>는 각 데이터 포인트의 <strong>지역적 밀도</strong>를<br>
+이웃 포인트들과 비교하여 이상 정도를 측정</p>
 <p><strong>핵심 아이디어:</strong> - 정상 포인트: 이웃들과 비슷한 밀도 - 이상 포인트: 이웃들보다 훨씬 낮은 밀도</p>
 <p><strong>LOF 값 해석:</strong> - LOF ≈ 1: 정상 (이웃과 비슷한 밀도) - LOF &gt;&gt; 1: 이상 (이웃보다 낮은 밀도)</p>
 </div><div class="column" style="width:40%;">
@@ -548,7 +578,8 @@ Seonghak Hong
 <p><strong>주의사항</strong></p>
 </div>
 <div class="callout-content">
-<p>k 값은 데이터의 특성과 도메인 지식을 고려하여 선택해야 합니다.</p>
+<p>k 값은 데이터의 특성과 도메인 지식을 고려하여<br>
+선택해야 합니다.</p>
 </div>
 </div>
 </div>
@@ -736,9 +767,19 @@ Seonghak Hong
 <h2>LOF의 장단점</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p><strong>장점:</strong> - <i class="fas fa-check-circle text-green-500"></i> <strong>지역적 밀도 고려</strong>: 다양한 밀도 클러스터 처리 - <i class="fas fa-check-circle text-green-500"></i> <strong>매개변수 단순</strong>: k 값만 조정 - <i class="fas fa-check-circle text-green-500"></i> <strong>해석 가능</strong>: LOF 값의 직관적 의미 - <i class="fas fa-check-circle text-green-500"></i> <strong>범용성</strong>: 다양한 도메인 적용 가능 - <i class="fas fa-check-circle text-green-500"></i> <strong>클러스터 모양 무관</strong>: 임의 형태 클러스터 처리</p>
+<p><strong>장점:</strong> - <i class="fas fa-check-circle text-green-500"></i> <strong>지역적 밀도 고려</strong>:<br>
+다양한 밀도 클러스터 처리 - <i class="fas fa-check-circle text-green-500"></i> <strong>매개변수 단순</strong>:<br>
+k 값만 조정 - <i class="fas fa-check-circle text-green-500"></i> <strong>해석 가능</strong>:<br>
+LOF 값의 직관적 의미 - <i class="fas fa-check-circle text-green-500"></i> <strong>범용성</strong>:<br>
+다양한 도메인 적용 가능 - <i class="fas fa-check-circle text-green-500"></i> <strong>클러스터 모양 무관</strong>:<br>
+임의 형태 클러스터 처리</p>
 </div><div class="column" style="width:50%;">
-<p><strong>단점:</strong> - <i class="fas fa-times-circle text-red-500"></i> <strong>계산 복잡도</strong>: O(n²) 시간 복잡도 - <i class="fas fa-times-circle text-red-500"></i> <strong>메모리 사용량</strong>: 이웃 정보 저장 필요 - <i class="fas fa-times-circle text-red-500"></i> <strong>고차원 데이터</strong>: 차원의 저주 문제 - <i class="fas fa-times-circle text-red-500"></i> <strong>k 값 선택</strong>: 데이터별 최적값 찾기 어려움 - <i class="fas fa-times-circle text-red-500"></i> <strong>실시간 처리</strong>: 대용량 데이터 처리 한계</p>
+<p><strong>단점:</strong> - <i class="fas fa-times-circle text-red-500"></i> <strong>계산 복잡도</strong>:<br>
+O(n²) 시간 복잡도 - <i class="fas fa-times-circle text-red-500"></i> <strong>메모리 사용량</strong>:<br>
+이웃 정보 저장 필요 - <i class="fas fa-times-circle text-red-500"></i> <strong>고차원 데이터</strong>:<br>
+차원의 저주 문제 - <i class="fas fa-times-circle text-red-500"></i> <strong>k 값 선택</strong>:<br>
+데이터별 최적값 찾기 어려움 - <i class="fas fa-times-circle text-red-500"></i> <strong>실시간 처리</strong>:<br>
+대용량 데이터 처리 한계</p>
 </div></div>
 </section>
 <section id="개선-방향" class="slide level2 smaller scrollable">
@@ -838,7 +879,8 @@ Seonghak Hong
 <p><i class="fas fa-envelope"></i> seonghak.hong@email.com<br>
 <i class="fas fa-globe"></i> https://aidenhong.com<br>
 <i class="fab fa-github"></i> https://github.com/euriion</p>
-<p><em>“데이터 속에 숨겨진 이상을 찾는 것은 바늘 찾기가 아니라, 패턴을 이해하는 것입니다.”</em></p>
+<p><em>“데이터 속에 숨겨진 이상을 찾는 것은 바늘 찾기가 아니라,<br>
+패턴을 이해하는 것입니다.”</em></p>
 </div>
 
 </section></section>
