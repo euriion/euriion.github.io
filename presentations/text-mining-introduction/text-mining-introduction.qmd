@@ -1,0 +1,441 @@
+---
+title: "텍스트 마이닝 소개"
+subtitle: "비정형 데이터에서 가치 있는 정보 추출하기"
+author: "홍성학"
+date: today
+format: 
+  revealjs:
+    theme: night
+    transition: slide
+    background-transition: fade
+    highlight-style: github
+    code-fold: true
+    code-tools: true
+    slide-number: true
+    chalkboard: true
+    scrollable: true
+    incremental: false
+    footer: "텍스트 마이닝 소개 | 홍성학"
+    css: custom.css
+    include-in-header:
+      - text: |
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+mermaid:
+  theme: dark
+editor: visual
+---
+
+## 텍스트 마이닝이란? {.smaller}
+
+::: {.incremental}
+- <i class="fas fa-file-alt"></i> **비정형 텍스트 데이터**에서 의미 있는 정보와 패턴을 추출하는 과정
+- <i class="fas fa-search"></i> **자연어 처리(NLP)**와 **데이터 마이닝** 기법을 결합
+- <i class="fas fa-brain"></i> 인간의 언어를 컴퓨터가 이해할 수 있는 형태로 변환하여 분석
+- <i class="fas fa-chart-line"></i> **대량의 문서**에서 **숨겨진 인사이트**를 발견
+:::
+
+::: {.notes}
+텍스트 마이닝은 단순히 키워드를 찾는 것을 넘어서, 문서 전체의 맥락과 의미를 이해하여 유용한 정보를 추출하는 고급 분석 기법입니다.
+:::
+
+## 왜 텍스트 마이닝이 중요한가? {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+### 데이터의 80%는 비정형 데이터
+- <i class="fas fa-comments"></i> 소셜 미디어 게시물
+- <i class="fas fa-envelope"></i> 이메일과 메시지
+- <i class="fas fa-file-alt"></i> 문서와 보고서
+- <i class="fas fa-star"></i> 고객 리뷰와 피드백
+- <i class="fas fa-newspaper"></i> 뉴스와 기사
+:::
+
+::: {.column width="50%"}
+### 비즈니스 가치 창출
+- <i class="fas fa-users"></i> **고객 감정 분석**
+- <i class="fas fa-trending-up"></i> **시장 트렌드 파악**
+- <i class="fas fa-shield-alt"></i> **리스크 모니터링**
+- <i class="fas fa-robot"></i> **자동화된 분류**
+- <i class="fas fa="lightbulb"></i> **새로운 기회 발견**
+:::
+:::
+
+## 텍스트 마이닝의 주요 응용 분야 {.smaller}
+
+### 1. 감정 분석 (Sentiment Analysis)
+- <i class="fas fa-smile"></i> **고객 만족도** 측정
+- <i class="fas fa-chart-bar"></i> **브랜드 이미지** 모니터링
+- <i class="fas fa-comments"></i> **소셜 미디어** 반응 분석
+
+### 2. 주제 모델링 (Topic Modeling)
+- <i class="fas fa-tags"></i> **문서 분류** 및 **주제 추출**
+- <i class="fas fa-search"></i> **정보 검색** 시스템
+- <i class="fas fa-newspaper"></i> **뉴스 카테고리** 자동 분류
+
+### 3. 개체명 인식 (Named Entity Recognition)
+- <i class="fas fa-user"></i> **인명**, **지명**, **기관명** 추출
+- <i class="fas fa-building"></i> **회사명**, **제품명** 식별
+- <i class="fas fa-calendar"></i> **날짜**, **시간** 정보 추출
+
+## 텍스트 마이닝 프로세스 {.smaller}
+
+```{mermaid}
+flowchart TD
+    A[원시 텍스트 데이터] --> B[데이터 수집 및 전처리]
+    B --> C[토큰화 및 정규화]
+    C --> D[특성 추출]
+    D --> E[모델 적용]
+    E --> F[결과 해석 및 시각화]
+    F --> G[인사이트 도출]
+    
+    style A fill:#e1f5fe
+    style B fill:#f3e5f5
+    style C fill:#e8f5e8
+    style D fill:#fff3e0
+    style E fill:#fce4ec
+    style F fill:#f1f8e9
+    style G fill:#e0f2f1
+```
+
+## 1단계: 데이터 수집 및 전처리 {.smaller}
+
+### 데이터 수집
+::: {.incremental}
+- <i class="fas fa-globe"></i> **웹 크롤링**: 웹사이트, 블로그, 뉴스 사이트
+- <i class="fas fa-database"></i> **API 활용**: 트위터, 페이스북, 인스타그램
+- <i class="fas fa-file-upload"></i> **파일 업로드**: CSV, JSON, XML, PDF 등
+- <i class="fas fa-cloud"></i> **클라우드 스토리지**: AWS S3, Google Cloud Storage
+:::
+
+### 전처리 작업
+::: {.incremental}
+- <i class="fas fa-broom"></i> **노이즈 제거**: HTML 태그, 특수문자, 이모티콘
+- <i class="fas fa-font"></i> **인코딩 통일**: UTF-8 변환
+- <i class="fas fa-compress"></i> **중복 제거**: 동일한 내용의 문서 제거
+- <i class="fas fa-filter"></i> **언어 필터링**: 분석 대상 언어만 선별
+:::
+
+## 2단계: 토큰화 및 정규화 {.smaller}
+
+### 토큰화 (Tokenization)
+::: {.incremental}
+- <i class="fas fa-cut"></i> **단어 분리**: 문장을 개별 단어로 분할
+- <i class="fas fa-language"></i> **한국어 특성**: 형태소 분석기 활용 (KoNLPy, mecab)
+- <i class="fas fa-puzzle-piece"></i> **서브워드**: BPE, WordPiece 등
+:::
+
+### 정규화 (Normalization)
+::: {.incremental}
+- <i class="fas fa-text-height"></i> **대소문자 통일**: 모든 텍스트를 소문자로 변환
+- <i class="fas fa-eraser"></i> **불용어 제거**: 조사, 접속사, 의미없는 단어
+- <i class="fas fa-compress-alt"></i> **어간 추출**: 단어의 기본형으로 변환
+- <i class="fas fa-spell-check"></i> **맞춤법 교정**: 오타 및 축약어 처리
+:::
+
+```python
+# 한국어 텍스트 전처리 예시
+from konlpy.tag import Okt
+import re
+
+def preprocess_korean_text(text):
+    # HTML 태그 제거
+    text = re.sub('<[^>]*>', '', text)
+    # 특수문자 제거
+    text = re.sub('[^가-힣a-zA-Z0-9\\s]', '', text)
+    # 형태소 분석
+    okt = Okt()
+    tokens = okt.morphs(text)
+    # 불용어 제거
+    stopwords = ['은', '는', '이', '가', '을', '를', '에', '의']
+    tokens = [token for token in tokens if token not in stopwords]
+    return tokens
+```
+
+## 3단계: 특성 추출 {.smaller}
+
+### 1. Bag of Words (BoW)
+::: {.incremental}
+- <i class="fas fa-shopping-bag"></i> 단어의 **출현 빈도**를 벡터로 표현
+- <i class="fas fa-sort-numeric-up"></i> 간단하고 **직관적**인 방법
+- <i class="fas fa-times"></i> 단어의 **순서 정보 손실**
+:::
+
+### 2. TF-IDF (Term Frequency-Inverse Document Frequency)
+::: {.incremental}
+- <i class="fas fa-balance-scale"></i> 단어의 **중요도**를 가중치로 반영
+- <i class="fas fa-chart-line"></i> **문서 전체**에서 드물게 나타나는 단어에 높은 가중치
+- <i class="fas fa-star"></i> 정보 검색에서 **널리 사용**
+:::
+
+### 3. Word Embeddings
+::: {.incremental}
+- <i class="fas fa-vector-square"></i> 단어를 **고차원 벡터**로 표현
+- <i class="fas fa-brain"></i> **의미적 유사성**을 거리로 측정
+- <i class="fas fa-rocket"></i> **Word2Vec**, **GloVe**, **FastText** 등
+:::
+
+## 4단계: 모델 적용 {.smaller}
+
+### 머신러닝 모델
+::: {.columns}
+::: {.column width="50%"}
+#### 분류 모델
+- <i class="fas fa-tree"></i> **Decision Tree**
+- <i class="fas fa-forest"></i> **Random Forest**
+- <i class="fas fa-robot"></i> **SVM**
+- <i class="fas fa-network-wired"></i> **Naive Bayes**
+:::
+
+::: {.column width="50%"}
+#### 클러스터링 모델
+- <i class="fas fa-circle"></i> **K-Means**
+- <i class="fas fa-layer-group"></i> **Hierarchical Clustering**
+- <i class="fas fa-chart-area"></i> **DBSCAN**
+- <i class="fas fa-project-diagram"></i> **LDA** (Topic Modeling)
+:::
+:::
+
+### 딥러닝 모델
+::: {.incremental}
+- <i class="fas fa-brain"></i> **RNN/LSTM**: 순차적 데이터 처리
+- <i class="fas fa-eye"></i> **CNN**: 텍스트의 지역적 패턴 인식
+- <i class="fas fa-transformer"></i> **Transformer**: BERT, GPT 등 최신 모델
+- <i class="fas fa-language"></i> **사전 훈련된 모델**: KoBERT, KoGPT 등
+:::
+
+## 실습: 감정 분석 예제 {.smaller}
+
+```python
+import pandas as pd
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, classification_report
+
+# 데이터 로드
+df = pd.read_csv('movie_reviews.csv')
+
+# 특성 추출
+vectorizer = TfidfVectorizer(max_features=5000, stop_words='english')
+X = vectorizer.fit_transform(df['review'])
+y = df['sentiment']
+
+# 훈련/테스트 분할
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# 모델 훈련
+model = LogisticRegression()
+model.fit(X_train, y_train)
+
+# 예측 및 평가
+y_pred = model.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+print(f"정확도: {accuracy:.3f}")
+```
+
+## 텍스트 마이닝 도구와 라이브러리 {.smaller}
+
+### Python 라이브러리
+::: {.columns}
+::: {.column width="50%"}
+#### 자연어 처리
+- <i class="fas fa-python"></i> **NLTK**: 자연어 처리 툴킷
+- <i class="fas fa-rocket"></i> **spaCy**: 고성능 NLP 라이브러리
+- <i class="fas fa-language"></i> **KoNLPy**: 한국어 형태소 분석
+- <i class="fas fa-brain"></i> **Transformers**: 최신 NLP 모델
+:::
+
+::: {.column width="50%"}
+#### 머신러닝
+- <i class="fas fa-chart-line"></i> **scikit-learn**: 머신러닝 라이브러리
+- <i class="fas fa-fire"></i> **PyTorch**: 딥러닝 프레임워크
+- <i class="fas fa-tensorflow"></i> **TensorFlow**: 구글 딥러닝 프레임워크
+- <i class="fas fa-fast-forward"></i> **Gensim**: 토픽 모델링 특화
+:::
+:::
+
+### R 패키지
+::: {.incremental}
+- <i class="fab fa-r-project"></i> **tm**: 텍스트 마이닝 기본 패키지
+- <i class="fas fa-chart-bar"></i> **tidytext**: tidy 데이터 원칙 적용
+- <i class="fas fa-word"></i> **quanteda**: 정량적 텍스트 분석
+- <i class="fas fa-cloud"></i> **wordcloud**: 워드클라우드 생성
+:::
+
+## 텍스트 마이닝의 도전과제 {.smaller}
+
+### 1. 언어의 복잡성
+::: {.incremental}
+- <i class="fas fa-question"></i> **중의성**: 하나의 단어가 여러 의미
+- <i class="fas fa-comments"></i> **맥락 의존성**: 문맥에 따른 의미 변화
+- <i class="fas fa-smile"></i> **은유와 비유**: 직접적이지 않은 표현
+- <i class="fas fa-language"></i> **언어별 특성**: 문법, 어순, 문화적 차이
+:::
+
+### 2. 데이터 품질
+::: {.incremental}
+- <i class="fas fa-spell-check"></i> **오타와 축약어**: 비표준 표현
+- <i class="fas fa-ban"></i> **노이즈**: 광고, 스팸, 무관한 내용
+- <i class="fas fa-balance-scale"></i> **불균형 데이터**: 클래스별 데이터 양 차이
+- <i class="fas fa-clock"></i> **시간적 변화**: 언어 트렌드의 변화
+:::
+
+### 3. 기술적 한계
+::: {.incremental}
+- <i class="fas fa-memory"></i> **계산 복잡도**: 대용량 데이터 처리
+- <i class="fas fa-eye-slash"></i> **해석 가능성**: 블랙박스 모델의 한계
+- <i class="fas fa-shield-alt"></i> **프라이버시**: 개인정보 보호
+- <i class="fas fa-balance-scale"></i> **편향성**: 훈련 데이터의 편향 반영
+:::
+
+## 텍스트 마이닝 성공 사례 {.smaller}
+
+### 1. 넷플릭스 - 콘텐츠 추천
+- <i class="fas fa-tv"></i> **시청 리뷰 분석**으로 개인화된 추천
+- <i class="fas fa-star"></i> **평점과 댓글**을 통한 콘텐츠 품질 평가
+- <i class="fas fa-chart-line"></i> **시청 패턴 분석**으로 신규 콘텐츠 기획
+
+### 2. 아마존 - 상품 리뷰 분석
+- <i class="fas fa-shopping-cart"></i> **고객 리뷰 감정 분석**
+- <i class="fas fa-thumbs-up"></i> **가짜 리뷰 탐지** 시스템
+- <i class="fas fa-lightbulb"></i> **상품 개선점 도출**
+
+### 3. 트위터 - 실시간 트렌드 분석
+- <i class="fas fa-hashtag"></i> **해시태그 분석**으로 트렌드 파악
+- <i class="fas fa-globe"></i> **실시간 이슈 모니터링**
+- <i class="fas fa-chart-pulse"></i> **여론 분석** 및 **사회적 이슈 추적**
+
+## 텍스트 마이닝 프로젝트 단계별 가이드 {.smaller}
+
+### 1. 문제 정의 및 목표 설정
+::: {.incremental}
+- <i class="fas fa-bullseye"></i> **명확한 비즈니스 목표** 설정
+- <i class="fas fa-question"></i> **해결하고자 하는 문제** 정의
+- <i class="fas fa-chart-bar"></i> **성공 지표** 설정
+:::
+
+### 2. 데이터 수집 및 탐색
+::: {.incremental}
+- <i class="fas fa-database"></i> **데이터 소스** 식별 및 수집
+- <i class="fas fa-search"></i> **데이터 품질** 평가
+- <i class="fas fa-chart-pie"></i> **탐색적 데이터 분석** (EDA)
+:::
+
+### 3. 모델 개발 및 평가
+::: {.incremental}
+- <i class="fas fa-cogs"></i> **적절한 모델** 선택
+- <i class="fas fa-chart-line"></i> **성능 평가** 및 **튜닝**
+- <i class="fas fa-check"></i> **교차 검증** 수행
+:::
+
+### 4. 배포 및 모니터링
+::: {.incremental}
+- <i class="fas fa-rocket"></i> **프로덕션 환경** 배포
+- <i class="fas fa-monitor"></i> **성능 모니터링**
+- <i class="fas fa-sync"></i> **지속적 개선**
+:::
+
+## 텍스트 마이닝의 미래 전망 {.smaller}
+
+### 기술 발전 방향
+::: {.columns}
+::: {.column width="50%"}
+#### 대화형 AI
+- <i class="fas fa-comments"></i> **ChatGPT**, **Claude** 등 대화형 모델
+- <i class="fas fa-microphone"></i> **음성 인식** 통합
+- <i class="fas fa-globe"></i> **다국어 지원** 강화
+:::
+
+::: {.column width="50%"}
+#### 멀티모달 분석
+- <i class="fas fa-image"></i> **텍스트 + 이미지** 분석
+- <i class="fas fa-video"></i> **비디오 콘텐츠** 분석
+- <i class="fas fa-chart-area"></i> **통합 분석** 플랫폼
+:::
+:::
+
+### 응용 분야 확장
+::: {.incremental}
+- <i class="fas fa-user-md"></i> **의료**: 의료 기록 분석, 진단 보조
+- <i class="fas fa-gavel"></i> **법률**: 계약서 분석, 판례 검색
+- <i class="fas fa-graduation-cap"></i> **교육**: 개인화 학습, 자동 채점
+- <i class="fas fa-shield-alt"></i> **보안**: 사이버 위협 탐지, 스팸 필터링
+:::
+
+## 텍스트 마이닝 학습 로드맵 {.smaller}
+
+### 기초 단계 (1-2개월)
+::: {.incremental}
+- <i class="fas fa-book"></i> **기본 개념** 이해: NLP, 정규표현식
+- <i class="fas fa-python"></i> **Python 기초**: pandas, numpy, matplotlib
+- <i class="fas fa-language"></i> **한국어 처리**: KoNLPy, 형태소 분석
+- <i class="fas fa-chart-bar"></i> **기본 분석**: 빈도 분석, 워드클라우드
+:::
+
+### 중급 단계 (2-3개월)
+::: {.incremental}
+- <i class="fas fa-robot"></i> **머신러닝**: scikit-learn, 분류/클러스터링
+- <i class="fas fa-chart-line"></i> **특성 추출**: TF-IDF, Word2Vec
+- <i class="fas fa-heart"></i> **감정 분석**: 실습 프로젝트
+- <i class="fas fa-tags"></i> **주제 모델링**: LDA, NMF
+:::
+
+### 고급 단계 (3-6개월)
+::: {.incremental}
+- <i class="fas fa-brain"></i> **딥러닝**: PyTorch, TensorFlow
+- <i class="fas fa-transformer"></i> **Transformer**: BERT, GPT 활용
+- <i class="fas fa-project-diagram"></i> **종합 프로젝트**: 실제 문제 해결
+- <i class="fas fa-rocket"></i> **배포**: 모델 서빙, API 개발
+:::
+
+## 실습 과제 및 프로젝트 아이디어 {.smaller}
+
+### 초급 프로젝트
+::: {.incremental}
+- <i class="fas fa-star"></i> **영화 리뷰 감정 분석**: 긍정/부정 분류
+- <i class="fas fa-cloud"></i> **뉴스 기사 워드클라우드**: 주요 키워드 시각화
+- <i class="fas fa-shopping-bag"></i> **상품 리뷰 분석**: 평점 예측
+:::
+
+### 중급 프로젝트
+::: {.incremental}
+- <i class="fas fa-newspaper"></i> **뉴스 기사 자동 분류**: 카테고리별 분류
+- <i class="fas fa-comments"></i> **소셜 미디어 트렌드 분석**: 해시태그 분석
+- <i class="fas fa-chart-pie"></i> **고객 피드백 주제 분석**: 불만 사항 자동 분류
+:::
+
+### 고급 프로젝트
+::: {.incremental}
+- <i class="fas fa-robot"></i> **챗봇 개발**: 고객 서비스 자동화
+- <i class="fas fa-search"></i> **문서 검색 엔진**: 의미 기반 검색
+- <i class="fas fa-brain"></i> **텍스트 요약**: 자동 요약 시스템
+:::
+
+## 마무리 및 Q&A {.smaller}
+
+### 핵심 포인트 정리
+::: {.incremental}
+- <i class="fas fa-key"></i> 텍스트 마이닝은 **비정형 데이터**에서 **가치 있는 정보**를 추출하는 기술
+- <i class="fas fa-cogs"></i> **전처리**가 성공의 80%를 좌우
+- <i class="fas fa-chart-line"></i> **비즈니스 목표**와 **기술적 접근**의 균형이 중요
+- <i class="fas fa-rocket"></i> **지속적인 학습**과 **실습**이 핵심
+:::
+
+### 추천 자료
+::: {.incremental}
+- <i class="fas fa-book"></i> **도서**: "자연어 처리 쿡북", "텍스트 마이닝 with 파이썬"
+- <i class="fas fa-graduation-cap"></i> **온라인 강의**: Coursera NLP Specialization
+- <i class="fas fa-code"></i> **실습 플랫폼**: Kaggle, Google Colab
+- <i class="fas fa-users"></i> **커뮤니티**: 한국 NLP 연구회, PyTorch Korea
+:::
+
+### 질문과 답변
+<i class="fas fa-question-circle"></i> **궁금한 점이 있으시면 언제든 질문해주세요!**
+
+---
+
+**감사합니다!** <i class="fas fa-heart"></i>
+
+*연락처: [your-email@example.com]* 
