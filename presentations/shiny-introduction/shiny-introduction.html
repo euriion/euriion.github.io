@@ -1,317 +1,978 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
-  <head>
-    <title>샤이니 Shiny</title>
-    <meta charset="utf-8" />
-    <meta name="author" content="홍성학" />
-    <script src="libs/header-attrs/header-attrs.js"></script>
-    <link href="libs/remark-css/default.css" rel="stylesheet" />
-    <link rel="stylesheet" href="xaringan-custom.css" type="text/css" />
-  </head>
-  <body>
-    <textarea id="source">
-class: center, middle, inverse, title-slide
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
-# 샤이니 Shiny
-## R로 만드는 대화형 웹시각화
-### 홍성학
-### Korea R User Group
-### 2021-08-09 (updated: 2021-08-12)
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
 
----
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="홍성학">
+<meta name="dcterms.date" content="2021-08-09">
 
-&lt;!-- background-image: url(https://upload.wikimedia.org/wikipedia/commons/b/be/Sharingan_triple.svg) --&gt;
-background-image: url(https://teachdatascience.com/post/shiny2/shinyhex.jpg)
-
-
-
-???
-
-Image credit: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Sharingan_triple.svg)
-
----
-&lt;!-- class: center, middle --&gt;
-
-# 샤이니 소개
-
-### Shiny introduction
-
----
-class: inverse, left, middle
-
-# 샤이니는?
-
-- R언어로 대화형 웹 애플리케이션을 만드는데 쓰는 패키지
-- Rstudio 사에서 제작한 패키지
-- Shiny server 까지는 무료
-
-![](https://shiny.rstudio.com/tutorial/written-tutorial/lesson1/images/01_hello.png)
-
-
----
-
-# 샤이니 장점 Shiny Pros
-
-- R언어로 웹 애플리케이션을 제작할 수 있음
-- 짧고 간단한 코드로 대화형 시각화를 구현할 수 있음
-- 분석에 사용하던 코드를 웹 애플리케이션으로 빠르게 바꿀 수 있음
-
-![](https://shiny.rstudio.com/gallery/images/screenshots/movie-explorer.png)
-
----
-
-# 샤이니 단점 Shiny Cons
-
-- 학습 장벽이 있음
-- 복잡한 웹 애플리케이셔을 작성하기 어려움
-- 애플리케이션의 속도가 느린 편
-
-![](http://cdn.app.compendium.com/uploads/user/e7c690e8-6ff9-102a-ac6d-e4aebca50425/f4a5b21d-66fa-4885-92bf-c4e81c06d916/Image/9d07897be6d8ad8b1019f56ff3b3ad28/shiny_ore_dorothea_corr_pearson_1_2000.png)
-
----
-
-# Shiny 코드 생성 방법
-
-Rstudio에서 "메뉴 -&gt; File -&gt; New File -&gt; Shiny Web App.." 선택
-
-![](screenshot1.png)
-
----
-
-# Shiny 코드 예제
-
-
-```r
-library(shiny)
-# Define UI for application that draws a histogram
-ui &lt;- fluidPage(
-    # Application title
-    titlePanel("Old Faithful Geyser Data"),
-    # Sidebar with a slider input for number of bins 
-    sidebarLayout(
-        sidebarPanel(
-          sliderInput("bins", "Number of bins:", min = 1, max = 50, value = 30)
-        ),
-        # Show a plot of the generated distribution
-        mainPanel(plotOutput("distPlot"))
-    )
-)
-# Define server logic required to draw a histogram
-server &lt;- function(input, output) {
-    output$distPlot &lt;- renderPlot({
-        # generate bins based on input$bins from ui.R
-        x    &lt;- faithful[, 2]
-        bins &lt;- seq(min(x), max(x), length.out = input$bins + 1)
-        # draw the histogram with the specified number of bins
-        hist(x, breaks = bins, col = 'darkgray', border = 'white')
-    })
+<title>샤이니 Shiny</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
 }
-# Run the application 
-shinyApp(ui = ui, server = server)
-```
-
----
-
-# Shiny 코드 및 구조 설명
-
-## UI 파트
-
-- 샤이니 웹앱의 눈에 보이는 부분을 처리
-- 타이틀, 상자, 드롭박스와 같은 표현 요소를 배열
-
-
-```r
-ui &lt;- fluidPage(
-    # Application title
-    titlePanel("Old Faithful Geyser Data"),
-    # Sidebar with a slider input for number of bins 
-    sidebarLayout(
-        sidebarPanel(
-          sliderInput("bins", "Number of bins:", min = 1, max = 50, value = 30)
-        ),
-        # Show a plot of the generated distribution
-        mainPanel(plotOutput("distPlot"))
-    )
-)
-```
-
----
-
-
-# Shiny 코드 및 구조 설명
-
-## Server 파트
-
-- UI에서 전달 받은 Input을 사용해서 코드를 실행
-- 코드를 실행하고 결과물을 UI로 전달
-
-
-```r
-server &lt;- function(input, output) {
-    output$distPlot &lt;- renderPlot({
-        # generate bins based on input$bins from ui.R
-        x    &lt;- faithful[, 2]
-        bins &lt;- seq(min(x), max(x), length.out = input$bins + 1)
-        # draw the histogram with the specified number of bins
-        hist(x, breaks = bins, col = 'darkgray', border = 'white')
-    })
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
 }
-```
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
----
 
-# 반응성 (Reactiviy)에 대해서
+<script src="shiny-introduction_files/libs/clipboard/clipboard.min.js"></script>
+<script src="shiny-introduction_files/libs/quarto-html/quarto.js"></script>
+<script src="shiny-introduction_files/libs/quarto-html/popper.min.js"></script>
+<script src="shiny-introduction_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="shiny-introduction_files/libs/quarto-html/anchor.min.js"></script>
+<link href="shiny-introduction_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="shiny-introduction_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="shiny-introduction_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="shiny-introduction_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="shiny-introduction_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 
-- 사용자의 입력을 받고 꼭 필요한 부분의 코드만 재실행
-- 그리고 갱신이 필요한 결과물을 다시 만들어서 그 부분만 바꿔치기
-- 이 작업이 자동으로 연쇄적으로 실행
-- Shiny는 R로만 작동하는것처럼 보이지만 사실은 Javascript가 내무에서 깊이 관여
-- [참고자료](https://shiny.rstudio.com/articles/reactivity-overview.html)
 
----
+</head>
 
-# 알아두면 좋은 사실
+<body class="fullcontent">
 
-- 데이터와 코드가 메모리에 올라간 채로 시작
-- 데이터를 계속해서 로딩해야하거나 동적으로 바꾸려면 요령이 필요함
-- Shiny의 UI부분은 Javascript로 작동함
-- 복잡한 앱을 작성하려면 Javascript를 알아야 하고 Shiny의 구조도 알아야 함
-- ui.R과 server.R로 파트를 나눠서 코드를 작성할 수도 있음
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
 
----
+<main class="content" id="quarto-document-content">
 
-# 참고자료
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">샤이니 Shiny</h1>
+<p class="subtitle lead">R로 만드는 대화형 웹시각화</p>
+</div>
 
-- [샤이니 공식홈](https://shiny.rstudio.com/)
-- [샤이니 갤러리](https://shiny.rstudio.com/gallery/#demos)
-- [사용자 쇼케이스](https://shiny.rstudio.com/gallery/#user-showcase)
 
----
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    홍성학 
+  </div>
+    <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Korea R User Group
+          </p>
+      </div>
+    </div>
 
-# 질문 Question?
+<div class="quarto-title-meta">
 
-홍성학 (euriion@gmail.com)
-    </textarea>
-<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
-<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
-<script>var slideshow = remark.create({
-"highlightStyle": "github",
-"highlightLines": true,
-"countIncrementalSlides": false
-});
-if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
-  window.dispatchEvent(new Event('resize'));
-});
-(function(d) {
-  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
-  if (!r) return;
-  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
-  d.head.appendChild(s);
-})(document);
+      
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 9, 2021</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
 
-(function(d) {
-  var el = d.getElementsByClassName("remark-slides-area");
-  if (!el) return;
-  var slide, slides = slideshow.getSlides(), els = el[0].children;
-  for (var i = 1; i < slides.length; i++) {
-    slide = slides[i];
-    if (slide.properties.continued === "true" || slide.properties.count === "false") {
-      els[i - 1].className += ' has-continuation';
+</header>
+
+<!-- background-image: url(https://upload.wikimedia.org/wikipedia/commons/b/be/Sharingan_triple.svg) -->
+<p>background-image: url(https://teachdatascience.com/post/shiny2/shinyhex.jpg)</p>
+<p>???</p>
+<p>Image credit: <a href="https://commons.wikimedia.org/wiki/File:Sharingan_triple.svg">Wikimedia Commons</a></p>
+<p>class: inverse, left, middle</p>
+<section id="샤이니는" class="level1">
+<h1>샤이니는?</h1>
+<ul>
+<li>R언어로 대화형 웹 애플리케이션을 만드는데 쓰는 패키지</li>
+<li>Rstudio 사에서 제작한 패키지</li>
+<li>Shiny server 까지는 무료</li>
+</ul>
+<p><img src="https://shiny.rstudio.com/tutorial/written-tutorial/lesson1/images/01_hello.png" class="img-fluid"></p>
+<hr>
+</section>
+<section id="샤이니-장점-shiny-pros" class="level1">
+<h1>샤이니 장점 Shiny Pros</h1>
+<ul>
+<li>R언어로 웹 애플리케이션을 제작할 수 있음</li>
+<li>짧고 간단한 코드로 대화형 시각화를 구현할 수 있음</li>
+<li>분석에 사용하던 코드를 웹 애플리케이션으로 빠르게 바꿀 수 있음</li>
+</ul>
+<p><img src="https://shiny.rstudio.com/gallery/images/screenshots/movie-explorer.png" class="img-fluid"></p>
+<hr>
+</section>
+<section id="샤이니-단점-shiny-cons" class="level1">
+<h1>샤이니 단점 Shiny Cons</h1>
+<ul>
+<li>학습 장벽이 있음</li>
+<li>복잡한 웹 애플리케이셔을 작성하기 어려움</li>
+<li>애플리케이션의 속도가 느린 편</li>
+</ul>
+<p><img src="http://cdn.app.compendium.com/uploads/user/e7c690e8-6ff9-102a-ac6d-e4aebca50425/f4a5b21d-66fa-4885-92bf-c4e81c06d916/Image/9d07897be6d8ad8b1019f56ff3b3ad28/shiny_ore_dorothea_corr_pearson_1_2000.png" class="img-fluid"></p>
+<hr>
+</section>
+<section id="shiny-코드-생성-방법" class="level1">
+<h1>Shiny 코드 생성 방법</h1>
+<p>Rstudio에서 “메뉴 -&gt; File -&gt; New File -&gt; Shiny Web App..” 선택</p>
+<p><img src="screenshot1.png" class="img-fluid"></p>
+<hr>
+</section>
+<section id="shiny-코드-예제" class="level1">
+<h1>Shiny 코드 예제</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Define UI for application that draws a histogram</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Application title</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">titlePanel</span>(<span class="st">"Old Faithful Geyser Data"</span>),</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sidebar with a slider input for number of bins </span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarLayout</span>(</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">sidebarPanel</span>(</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>          <span class="fu">sliderInput</span>(<span class="st">"bins"</span>, <span class="st">"Number of bins:"</span>, <span class="at">min =</span> <span class="dv">1</span>, <span class="at">max =</span> <span class="dv">50</span>, <span class="at">value =</span> <span class="dv">30</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        ),</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Show a plot of the generated distribution</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mainPanel</span>(<span class="fu">plotOutput</span>(<span class="st">"distPlot"</span>))</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Define server logic required to draw a histogram</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    output<span class="sc">$</span>distPlot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># generate bins based on input$bins from ui.R</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        x    <span class="ot">&lt;-</span> faithful[, <span class="dv">2</span>]</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        bins <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">min</span>(x), <span class="fu">max</span>(x), <span class="at">length.out =</span> input<span class="sc">$</span>bins <span class="sc">+</span> <span class="dv">1</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        <span class="co"># draw the histogram with the specified number of bins</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>        <span class="fu">hist</span>(x, <span class="at">breaks =</span> bins, <span class="at">col =</span> <span class="st">'darkgray'</span>, <span class="at">border =</span> <span class="st">'white'</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the application </span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="shiny-코드-및-구조-설명" class="level1">
+<h1>Shiny 코드 및 구조 설명</h1>
+<section id="ui-파트" class="level2">
+<h2 class="anchored" data-anchor-id="ui-파트">UI 파트</h2>
+<ul>
+<li>샤이니 웹앱의 눈에 보이는 부분을 처리</li>
+<li>타이틀, 상자, 드롭박스와 같은 표현 요소를 배열</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Application title</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">titlePanel</span>(<span class="st">"Old Faithful Geyser Data"</span>),</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sidebar with a slider input for number of bins </span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarLayout</span>(</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">sidebarPanel</span>(</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>          <span class="fu">sliderInput</span>(<span class="st">"bins"</span>, <span class="st">"Number of bins:"</span>, <span class="at">min =</span> <span class="dv">1</span>, <span class="at">max =</span> <span class="dv">50</span>, <span class="at">value =</span> <span class="dv">30</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        ),</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Show a plot of the generated distribution</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mainPanel</span>(<span class="fu">plotOutput</span>(<span class="st">"distPlot"</span>))</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+</section>
+<section id="shiny-코드-및-구조-설명-1" class="level1">
+<h1>Shiny 코드 및 구조 설명</h1>
+<section id="server-파트" class="level2">
+<h2 class="anchored" data-anchor-id="server-파트">Server 파트</h2>
+<ul>
+<li>UI에서 전달 받은 Input을 사용해서 코드를 실행</li>
+<li>코드를 실행하고 결과물을 UI로 전달</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    output<span class="sc">$</span>distPlot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="co"># generate bins based on input$bins from ui.R</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        x    <span class="ot">&lt;-</span> faithful[, <span class="dv">2</span>]</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        bins <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">min</span>(x), <span class="fu">max</span>(x), <span class="at">length.out =</span> input<span class="sc">$</span>bins <span class="sc">+</span> <span class="dv">1</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="co"># draw the histogram with the specified number of bins</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">hist</span>(x, <span class="at">breaks =</span> bins, <span class="at">col =</span> <span class="st">'darkgray'</span>, <span class="at">border =</span> <span class="st">'white'</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+</section>
+<section id="반응성-reactiviy에-대해서" class="level1">
+<h1>반응성 (Reactiviy)에 대해서</h1>
+<ul>
+<li>사용자의 입력을 받고 꼭 필요한 부분의 코드만 재실행</li>
+<li>그리고 갱신이 필요한 결과물을 다시 만들어서 그 부분만 바꿔치기</li>
+<li>이 작업이 자동으로 연쇄적으로 실행</li>
+<li>Shiny는 R로만 작동하는것처럼 보이지만 사실은 Javascript가 내무에서 깊이 관여</li>
+<li><a href="https://shiny.rstudio.com/articles/reactivity-overview.html">참고자료</a></li>
+</ul>
+<hr>
+</section>
+<section id="알아두면-좋은-사실" class="level1">
+<h1>알아두면 좋은 사실</h1>
+<ul>
+<li>데이터와 코드가 메모리에 올라간 채로 시작</li>
+<li>데이터를 계속해서 로딩해야하거나 동적으로 바꾸려면 요령이 필요함</li>
+<li>Shiny의 UI부분은 Javascript로 작동함</li>
+<li>복잡한 앱을 작성하려면 Javascript를 알아야 하고 Shiny의 구조도 알아야 함</li>
+<li>ui.R과 server.R로 파트를 나눠서 코드를 작성할 수도 있음</li>
+</ul>
+<hr>
+</section>
+<section id="참고자료" class="level1">
+<h1>참고자료</h1>
+<ul>
+<li><a href="https://shiny.rstudio.com/">샤이니 공식홈</a></li>
+<li><a href="https://shiny.rstudio.com/gallery/#demos">샤이니 갤러리</a></li>
+<li><a href="https://shiny.rstudio.com/gallery/#user-showcase">사용자 쇼케이스</a></li>
+</ul>
+<hr>
+</section>
+<section id="shiny-생태계-패키지들" class="level1">
+<h1>Shiny 생태계 패키지들</h1>
+<section id="주요-확장-패키지" class="level2">
+<h2 class="anchored" data-anchor-id="주요-확장-패키지">주요 확장 패키지</h2>
+<ul>
+<li><strong>DT</strong>: 인터랙티브 데이터테이블 생성</li>
+<li><strong>plotly</strong>: 인터랙티브 그래프 생성</li>
+<li><strong>leaflet</strong>: 인터랙티브 지도 생성</li>
+<li><strong>shinydashboard</strong>: 대시보드 레이아웃 생성</li>
+<li><strong>shinyWidgets</strong>: 다양한 추가 위젯 제공</li>
+<li><strong>shinyjs</strong>: JavaScript 기능 추가</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 패키지 설치 예시</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"DT"</span>, <span class="st">"plotly"</span>, <span class="st">"leaflet"</span>, <span class="st">"shinydashboard"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+</section>
+<section id="dt-패키지-예제" class="level1">
+<h1>DT 패키지 예제</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DT)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">titlePanel</span>(<span class="st">"Interactive Data Table"</span>),</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  DT<span class="sc">::</span><span class="fu">dataTableOutput</span>(<span class="st">"table"</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>table <span class="ot">&lt;-</span> DT<span class="sc">::</span><span class="fu">renderDataTable</span>({</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    DT<span class="sc">::</span><span class="fu">datatable</span>(iris, <span class="at">options =</span> <span class="fu">list</span>(<span class="at">pageLength =</span> <span class="dv">10</span>))</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><img src="https://raw.githubusercontent.com/rstudio/DT/master/vignettes/DT-intro_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid"></p>
+<hr>
+</section>
+<section id="plotly-패키지-예제" class="level1">
+<h1>plotly 패키지 예제</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">titlePanel</span>(<span class="st">"Interactive Plotly Chart"</span>),</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plotlyOutput</span>(<span class="st">"plot"</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>plot <span class="ot">&lt;-</span> <span class="fu">renderPlotly</span>({</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(displ, hwy, <span class="at">color =</span> class)) <span class="sc">+</span> </span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>         <span class="fu">geom_point</span>()</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplotly</span>(p)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="leaflet-패키지-예제" class="level1">
+<h1>leaflet 패키지 예제</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaflet)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">titlePanel</span>(<span class="st">"Interactive Map"</span>),</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">leafletOutput</span>(<span class="st">"map"</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>map <span class="ot">&lt;-</span> <span class="fu">renderLeaflet</span>({</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">leaflet</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">addTiles</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">addMarkers</span>(<span class="at">lng =</span> <span class="fl">126.9780</span>, <span class="at">lat =</span> <span class="fl">37.5665</span>, </span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>                 <span class="at">popup =</span> <span class="st">"서울특별시"</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="더-많은-ui-컴포넌트들" class="level1">
+<h1>더 많은 UI 컴포넌트들</h1>
+<section id="입력-컴포넌트-input-components" class="level2">
+<h2 class="anchored" data-anchor-id="입력-컴포넌트-input-components">입력 컴포넌트 (Input Components)</h2>
+<ul>
+<li><code>textInput()</code>: 텍스트 입력</li>
+<li><code>numericInput()</code>: 숫자 입력</li>
+<li><code>selectInput()</code>: 드롭다운 메뉴</li>
+<li><code>checkboxInput()</code>: 체크박스</li>
+<li><code>radioButtons()</code>: 라디오 버튼</li>
+<li><code>dateInput()</code>: 날짜 선택</li>
+<li><code>fileInput()</code>: 파일 업로드</li>
+</ul>
+</section>
+<section id="출력-컴포넌트-output-components" class="level2">
+<h2 class="anchored" data-anchor-id="출력-컴포넌트-output-components">출력 컴포넌트 (Output Components)</h2>
+<ul>
+<li><code>plotOutput()</code>: 그래프 출력</li>
+<li><code>tableOutput()</code>: 테이블 출력</li>
+<li><code>textOutput()</code>: 텍스트 출력</li>
+<li><code>verbatimTextOutput()</code>: 코드 형태 텍스트</li>
+<li><code>downloadButton()</code>: 다운로드 버튼</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="레이아웃-시스템" class="level1">
+<h1>레이아웃 시스템</h1>
+<section id="다양한-레이아웃-옵션" class="level2">
+<h2 class="anchored" data-anchor-id="다양한-레이아웃-옵션">다양한 레이아웃 옵션</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 사이드바 레이아웃</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sidebarLayout</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sidebarPanel</span>(...),</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mainPanel</span>(...)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 네비게이션 바 레이아웃</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">navbarPage</span>(<span class="st">"Title"</span>,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabPanel</span>(<span class="st">"Tab 1"</span>, ...),</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabPanel</span>(<span class="st">"Tab 2"</span>, ...)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 플루이드 로우 레이아웃</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="fu">fluidRow</span>(</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column</span>(<span class="dv">4</span>, ...),</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column</span>(<span class="dv">8</span>, ...)</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+</section>
+<section id="반응성-심화-advanced-reactivity" class="level1">
+<h1>반응성 심화 (Advanced Reactivity)</h1>
+<section id="반응성-함수들" class="level2">
+<h2 class="anchored" data-anchor-id="반응성-함수들">반응성 함수들</h2>
+<ul>
+<li><code>reactive()</code>: 반응형 표현식 생성</li>
+<li><code>observe()</code>: 부작용이 있는 반응형 표현식</li>
+<li><code>eventReactive()</code>: 특정 이벤트에 반응</li>
+<li><code>observeEvent()</code>: 특정 이벤트 감지</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 반응형 데이터</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  filtered_data <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">subset</span>(mtcars, mpg <span class="sc">&gt;</span> input<span class="sc">$</span>mpg_threshold)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 이벤트 반응</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">observeEvent</span>(input<span class="sc">$</span>reset_button, {</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">updateSliderInput</span>(session, <span class="st">"mpg_threshold"</span>, <span class="at">value =</span> <span class="dv">20</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+</section>
+<section id="데이터-처리-및-관리" class="level1">
+<h1>데이터 처리 및 관리</h1>
+<section id="데이터-불러오기-및-처리" class="level2">
+<h2 class="anchored" data-anchor-id="데이터-불러오기-및-처리">데이터 불러오기 및 처리</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 파일 업로드 처리</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  data <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">req</span>(input<span class="sc">$</span>file)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    ext <span class="ot">&lt;-</span> tools<span class="sc">::</span><span class="fu">file_ext</span>(input<span class="sc">$</span>file<span class="sc">$</span>datapath)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">switch</span>(ext,</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">csv =</span> <span class="fu">read.csv</span>(input<span class="sc">$</span>file<span class="sc">$</span>datapath),</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">xlsx =</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(input<span class="sc">$</span>file<span class="sc">$</span>datapath),</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">validate</span>(<span class="st">"Invalid file type"</span>)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>table <span class="ot">&lt;-</span> <span class="fu">renderTable</span>({</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">data</span>()</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+</section>
+<section id="성능-최적화" class="level1">
+<h1>성능 최적화</h1>
+<section id="성능-향상-팁" class="level2">
+<h2 class="anchored" data-anchor-id="성능-향상-팁">성능 향상 팁</h2>
+<ol type="1">
+<li><strong>반응성 최적화</strong>
+<ul>
+<li>불필요한 재계산 방지</li>
+<li><code>isolate()</code> 함수 활용</li>
+<li>데이터 캐싱</li>
+</ul></li>
+<li><strong>메모리 관리</strong>
+<ul>
+<li>큰 데이터셋 처리 시 주의</li>
+<li>메모리 사용량 모니터링</li>
+</ul></li>
+<li><strong>비동기 처리</strong>
+<ul>
+<li><code>future</code> 패키지 활용</li>
+<li>긴 작업의 비동기 처리</li>
+</ul></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 비동기 처리 예제</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(future)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plan</span>(multisession)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>result <span class="ot">&lt;-</span> <span class="fu">renderText</span>({</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">future</span>({</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>      <span class="co"># 긴 계산 작업</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">Sys.sleep</span>(<span class="dv">5</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>      <span class="st">"작업 완료"</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+</section>
+<section id="배포-방법들" class="level1">
+<h1>배포 방법들</h1>
+<section id="shinyapps.io-클라우드-배포" class="level2">
+<h2 class="anchored" data-anchor-id="shinyapps.io-클라우드-배포">1. shinyapps.io (클라우드 배포)</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># rsconnect 패키지 설치</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"rsconnect"</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rsconnect)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 계정 설정</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>rsconnect<span class="sc">::</span><span class="fu">setAccountInfo</span>(<span class="at">name=</span><span class="st">"your-account"</span>,</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>                          <span class="at">token=</span><span class="st">"your-token"</span>,</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>                          <span class="at">secret=</span><span class="st">"your-secret"</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 배포</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>rsconnect<span class="sc">::</span><span class="fu">deployApp</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="shiny-server-자체-서버" class="level2">
+<h2 class="anchored" data-anchor-id="shiny-server-자체-서버">2. Shiny Server (자체 서버)</h2>
+<ul>
+<li>오픈소스 버전 무료 사용 가능</li>
+<li>상용 버전(Shiny Server Pro) 추가 기능 제공</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="보안-고려사항" class="level1">
+<h1>보안 고려사항</h1>
+<section id="보안-체크리스트" class="level2">
+<h2 class="anchored" data-anchor-id="보안-체크리스트">보안 체크리스트</h2>
+<ol type="1">
+<li><strong>입력 데이터 검증</strong>
+<ul>
+<li>사용자 입력 값 검증</li>
+<li>SQL 인젝션 방지</li>
+</ul></li>
+<li><strong>인증 및 권한 관리</strong>
+<ul>
+<li>로그인 시스템 구현</li>
+<li>사용자 권한 관리</li>
+</ul></li>
+<li><strong>데이터 보호</strong>
+<ul>
+<li>민감한 데이터 암호화</li>
+<li>HTTPS 사용</li>
+</ul></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 입력 검증 예제</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">observe</span>({</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">req</span>(input<span class="sc">$</span>user_input)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 입력 값 검증</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">nchar</span>(input<span class="sc">$</span>user_input) <span class="sc">&gt;</span> <span class="dv">100</span>) {</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">showNotification</span>(<span class="st">"입력이 너무 깁니다."</span>, <span class="at">type =</span> <span class="st">"error"</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>()</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+</section>
+<section id="실제-사용-사례" class="level1">
+<h1>실제 사용 사례</h1>
+<section id="다양한-분야에서의-활용" class="level2">
+<h2 class="anchored" data-anchor-id="다양한-분야에서의-활용">다양한 분야에서의 활용</h2>
+<ol type="1">
+<li><strong>비즈니스 대시보드</strong>
+<ul>
+<li>KPI 모니터링</li>
+<li>실시간 데이터 시각화</li>
+</ul></li>
+<li><strong>과학 연구</strong>
+<ul>
+<li>데이터 탐색 도구</li>
+<li>통계 분석 인터페이스</li>
+</ul></li>
+<li><strong>교육</strong>
+<ul>
+<li>인터랙티브 학습 도구</li>
+<li>시뮬레이션 프로그램</li>
+</ul></li>
+<li><strong>정부 및 공공기관</strong>
+<ul>
+<li>정책 시뮬레이션</li>
+<li>공공 데이터 시각화</li>
+</ul></li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="고급-기능들" class="level1">
+<h1>고급 기능들</h1>
+<section id="모듈화-modules" class="level2">
+<h2 class="anchored" data-anchor-id="모듈화-modules">1. 모듈화 (Modules)</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 모듈 UI</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>chartUI <span class="ot">&lt;-</span> <span class="cf">function</span>(id) {</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  ns <span class="ot">&lt;-</span> <span class="fu">NS</span>(id)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plotOutput</span>(<span class="fu">ns</span>(<span class="st">"plot"</span>))</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 모듈 서버</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>chartServer <span class="ot">&lt;-</span> <span class="cf">function</span>(id, data) {</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">moduleServer</span>(id, <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    output<span class="sc">$</span>plot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">plot</span>(<span class="fu">data</span>())</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 메인 앱에서 모듈 사용</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">chartUI</span>(<span class="st">"chart1"</span>)</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>  data <span class="ot">&lt;-</span> <span class="fu">reactive</span>(mtcars)</span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">chartServer</span>(<span class="st">"chart1"</span>, data)</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+</section>
+<section id="고급-기능들-1" class="level1">
+<h1>고급 기능들</h1>
+<section id="사용자-정의-javascript" class="level2">
+<h2 class="anchored" data-anchor-id="사용자-정의-javascript">2. 사용자 정의 JavaScript</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># shinyjs 패키지 사용</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shinyjs)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">useShinyjs</span>(),</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">actionButton</span>(<span class="st">"btn"</span>, <span class="st">"클릭"</span>),</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">div</span>(<span class="at">id =</span> <span class="st">"text"</span>, <span class="st">"안녕하세요!"</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">observeEvent</span>(input<span class="sc">$</span>btn, {</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    shinyjs<span class="sc">::</span><span class="fu">toggle</span>(<span class="st">"text"</span>)  <span class="co"># 텍스트 숨기기/보이기</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="사용자-정의-css" class="level2">
+<h2 class="anchored" data-anchor-id="사용자-정의-css">3. 사용자 정의 CSS</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  tags<span class="sc">$</span><span class="fu">head</span>(</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    tags<span class="sc">$</span><span class="fu">style</span>(<span class="fu">HTML</span>(<span class="st">"</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="st">      .custom-button {</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="st">        background-color: #4CAF50;</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="st">        color: white;</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="st">        padding: 10px 20px;</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="st">        border: none;</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="st">        border-radius: 4px;</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="st">      }</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="st">    "</span>))</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">actionButton</span>(<span class="st">"btn"</span>, <span class="st">"버튼"</span>, <span class="at">class =</span> <span class="st">"custom-button"</span>)</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+</section>
+<section id="디버깅-및-테스팅" class="level1">
+<h1>디버깅 및 테스팅</h1>
+<section id="디버깅-방법" class="level2">
+<h2 class="anchored" data-anchor-id="디버깅-방법">디버깅 방법</h2>
+<ol type="1">
+<li><strong>browser()</strong> 함수 사용</li>
+<li><strong>print()</strong> 문으로 값 확인</li>
+<li><strong>reactlog</strong> 패키지로 반응성 추적</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 디버깅 예제</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>plot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Input value:"</span>, input<span class="sc">$</span>slider))  <span class="co"># 디버깅 출력</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># browser()  # 브레이크포인트</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">hist</span>(<span class="fu">rnorm</span>(input<span class="sc">$</span>slider))</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="테스팅" class="level2">
+<h2 class="anchored" data-anchor-id="테스팅">테스팅</h2>
+<ul>
+<li><strong>shinytest2</strong> 패키지로 자동화된 테스트</li>
+<li><strong>testthat</strong> 패키지로 단위 테스트</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="모범-사례-best-practices" class="level1">
+<h1>모범 사례 (Best Practices)</h1>
+<section id="코드-구조화" class="level2">
+<h2 class="anchored" data-anchor-id="코드-구조화">코드 구조화</h2>
+<ol type="1">
+<li><strong>함수 분리</strong>: 복잡한 로직을 별도 함수로 분리</li>
+<li><strong>모듈화</strong>: 재사용 가능한 컴포넌트 생성</li>
+<li><strong>설정 파일</strong>: 설정값들을 별도 파일로 관리</li>
+</ol>
+</section>
+<section id="사용자-경험-개선" class="level2">
+<h2 class="anchored" data-anchor-id="사용자-경험-개선">사용자 경험 개선</h2>
+<ol type="1">
+<li><strong>로딩 인디케이터</strong>: 긴 작업 중 로딩 표시</li>
+<li><strong>에러 처리</strong>: 사용자 친화적인 에러 메시지</li>
+<li><strong>반응형 디자인</strong>: 모바일 기기 대응</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 로딩 인디케이터 예제</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>output<span class="sc">$</span>plot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">withProgress</span>(<span class="at">message =</span> <span class="st">'그래프 생성 중...'</span>, <span class="at">value =</span> <span class="dv">0</span>, {</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) {</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">incProgress</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">10</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">Sys.sleep</span>(<span class="fl">0.1</span>)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot</span>(mtcars<span class="sc">$</span>mpg, mtcars<span class="sc">$</span>wt)</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+</section>
+<section id="학습-리소스" class="level1">
+<h1>학습 리소스</h1>
+<section id="온라인-자료" class="level2">
+<h2 class="anchored" data-anchor-id="온라인-자료">온라인 자료</h2>
+<ul>
+<li><strong>공식 문서</strong>: https://shiny.rstudio.com/</li>
+<li><strong>Shiny 갤러리</strong>: https://shiny.rstudio.com/gallery/</li>
+<li><strong>Mastering Shiny</strong>: https://mastering-shiny.org/</li>
+<li><strong>Engineering Production-Grade Shiny Apps</strong>: https://engineering-shiny.org/</li>
+</ul>
+</section>
+<section id="커뮤니티" class="level2">
+<h2 class="anchored" data-anchor-id="커뮤니티">커뮤니티</h2>
+<ul>
+<li><strong>RStudio Community</strong>: https://community.rstudio.com/</li>
+<li><strong>Stack Overflow</strong>: #shiny 태그</li>
+<li><strong>한국 R 사용자 모임</strong>: https://www.facebook.com/groups/KoreaRUsers/</li>
+</ul>
+</section>
+<section id="관련-패키지" class="level2">
+<h2 class="anchored" data-anchor-id="관련-패키지">관련 패키지</h2>
+<ul>
+<li><strong>golem</strong>: 프로덕션 수준의 Shiny 앱 개발 프레임워크</li>
+<li><strong>bs4Dash</strong>: Bootstrap 4 대시보드</li>
+<li><strong>shinyMobile</strong>: 모바일 최적화 Shiny 앱</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="실습-과제" class="level1">
+<h1>실습 과제</h1>
+<section id="간단한-데이터-탐색-앱-만들기" class="level2">
+<h2 class="anchored" data-anchor-id="간단한-데이터-탐색-앱-만들기">간단한 데이터 탐색 앱 만들기</h2>
+<ol type="1">
+<li><strong>데이터 업로드</strong> 기능 구현</li>
+<li><strong>기본 통계</strong> 요약 표시</li>
+<li><strong>인터랙티브 그래프</strong> 생성</li>
+<li><strong>필터링</strong> 기능 추가</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 과제 시작 코드</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">titlePanel</span>(<span class="st">"데이터 탐색 앱"</span>),</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sidebarLayout</span>(</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarPanel</span>(</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">fileInput</span>(<span class="st">"file"</span>, <span class="st">"CSV 파일 선택"</span>),</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>      <span class="co"># 추가 입력 요소들...</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mainPanel</span>(</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>      <span class="co"># 출력 요소들...</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+</section>
+<section id="참고자료-1" class="level1">
+<h1>참고자료</h1>
+<ul>
+<li><a href="https://shiny.rstudio.com/">샤이니 공식홈</a></li>
+<li><a href="https://shiny.rstudio.com/gallery/#demos">샤이니 갤러리</a></li>
+<li><a href="https://shiny.rstudio.com/gallery/#user-showcase">사용자 쇼케이스</a></li>
+<li><a href="https://mastering-shiny.org/">Mastering Shiny 책</a></li>
+<li><a href="https://engineering-shiny.org/">Engineering Production-Grade Shiny Apps</a></li>
+<li><a href="https://github.com/rstudio/cheatsheets/blob/master/shiny.pdf">Shiny 치트시트</a></li>
+</ul>
+<hr>
+</section>
+<section id="질문-question" class="level1">
+<h1>질문 Question?</h1>
+<p>홍성학 (euriion@gmail.com)</p>
+<p><strong>감사합니다!</strong></p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
     }
   }
-  var s = d.createElement("style");
-  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
-  d.head.appendChild(s);
-})(document);
-// delete the temporary CSS (for displaying all slides initially) when the user
-// starts to view slides
-(function() {
-  var deleted = false;
-  slideshow.on('beforeShowSlide', function(slide) {
-    if (deleted) return;
-    var sheets = document.styleSheets, node;
-    for (var i = 0; i < sheets.length; i++) {
-      node = sheets[i].ownerNode;
-      if (node.dataset["target"] !== "print-only") continue;
-      node.parentNode.removeChild(node);
-    }
-    deleted = true;
-  });
-})();
-(function() {
-  "use strict"
-  // Replace <script> tags in slides area to make them executable
-  var scripts = document.querySelectorAll(
-    '.remark-slides-area .remark-slide-container script'
-  );
-  if (!scripts.length) return;
-  for (var i = 0; i < scripts.length; i++) {
-    var s = document.createElement('script');
-    var code = document.createTextNode(scripts[i].textContent);
-    s.appendChild(code);
-    var scriptAttrs = scripts[i].attributes;
-    for (var j = 0; j < scriptAttrs.length; j++) {
-      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
-    }
-    scripts[i].parentElement.replaceChild(s, scripts[i]);
-  }
-})();
-(function() {
-  var links = document.getElementsByTagName('a');
-  for (var i = 0; i < links.length; i++) {
-    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
-      links[i].target = '_blank';
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
     }
   }
-})();
-// adds .remark-code-has-line-highlighted class to <pre> parent elements
-// of code chunks containing highlighted lines with class .remark-code-line-highlighted
-(function(d) {
-  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
-  const preParents = [];
-  const findPreParent = function(line, p = 0) {
-    if (p > 1) return null; // traverse up no further than grandparent
-    const el = line.parentElement;
-    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
   };
-
-  for (let line of hlines) {
-    let pre = findPreParent(line);
-    if (pre && !preParents.includes(pre)) preParents.push(pre);
-  }
-  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
-})(document);</script>
-
-<script>
-slideshow._releaseMath = function(el) {
-  var i, text, code, codes = el.getElementsByTagName('code');
-  for (i = 0; i < codes.length;) {
-    code = codes[i];
-    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
-      text = code.textContent;
-      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
-          /^\$\$(.|\s)+\$\$$/.test(text) ||
-          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
-        code.outerHTML = code.innerHTML;  // remove <code></code>
-        continue;
-      }
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
     }
-    i++;
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
   }
-};
-slideshow._releaseMath(document);
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
 </script>
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-(function () {
-  var script = document.createElement('script');
-  script.type = 'text/javascript';
-  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
-  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
-    script.src  = script.src.replace(/^https?:/, '');
-  document.getElementsByTagName('head')[0].appendChild(script);
-})();
-</script>
-  </body>
-</html>
+</div> <!-- /content -->
+
+
+
+</body></html>
