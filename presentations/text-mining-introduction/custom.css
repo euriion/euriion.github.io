@@ -1,0 +1,429 @@
+/*-- scss:rules --*/
+
+/* 텍스트 마이닝 슬라이드 커스텀 스타일 */
+
+/* 기본 폰트 설정 */
+.reveal {
+  font-family: 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+}
+
+/* 제목 스타일 */
+.reveal h1, .reveal h2, .reveal h3 {
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* 강조 색상 - 텍스트 마이닝 테마 (푸른색 계열) */
+.reveal .progress {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.reveal .progress span {
+  background: #4a90e2;
+  transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
+}
+
+/* 링크 스타일 */
+.reveal a {
+  color: #4a90e2;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.reveal a:hover {
+  color: #7bb3f0;
+  text-shadow: none;
+  border: none;
+}
+
+/* 코드 블록 스타일 */
+.reveal pre {
+  background-color: #2d3748;
+  border-radius: 8px;
+  padding: 1em;
+  margin: 1em 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.reveal code {
+  background-color: #4a5568;
+  color: #e2e8f0;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-family: 'Fira Code', 'Consolas', monospace;
+}
+
+/* 인용문 스타일 */
+.reveal blockquote {
+  background: rgba(74, 144, 226, 0.1);
+  border-left: 4px solid #4a90e2;
+  padding: 1em;
+  margin: 1em 0;
+  border-radius: 4px;
+}
+
+/* 리스트 스타일 */
+.reveal ul, .reveal ol {
+  margin-left: 1em;
+}
+
+.reveal li {
+  margin-bottom: 0.5em;
+}
+
+/* 테이블 스타일 */
+.reveal table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin: 1em auto;
+}
+
+.reveal table th {
+  background-color: #4a90e2;
+  color: white;
+  font-weight: 600;
+}
+
+.reveal table td, .reveal table th {
+  text-align: left;
+  padding: 0.5em 1em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.reveal table tr:nth-child(even) {
+  background-color: rgba(74, 144, 226, 0.05);
+}
+
+/* 버튼 스타일 */
+.reveal .button {
+  background-color: #4a90e2;
+  color: white;
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.reveal .button:hover {
+  background-color: #7bb3f0;
+}
+
+/* 콜아웃 박스 스타일 */
+.reveal .callout {
+  border-left: 4px solid #4a90e2;
+  background-color: rgba(74, 144, 226, 0.1);
+  padding: 1em;
+  margin: 1em 0;
+  border-radius: 0 4px 4px 0;
+}
+
+.reveal .callout-tip {
+  border-left-color: #48bb78;
+  background-color: rgba(72, 187, 120, 0.1);
+}
+
+.reveal .callout-warning {
+  border-left-color: #ed8936;
+  background-color: rgba(237, 137, 54, 0.1);
+}
+
+.reveal .callout-note {
+  border-left-color: #4299e1;
+  background-color: rgba(66, 153, 225, 0.1);
+}
+
+.reveal .callout-important {
+  border-left-color: #f56565;
+  background-color: rgba(245, 101, 101, 0.1);
+}
+
+/* 아이콘 스타일 */
+.reveal .fas, .reveal .fab {
+  color: #4a90e2;
+  margin-right: 0.5em;
+}
+
+/* 특별한 아이콘 색상 */
+.reveal .fa-python { color: #3776ab; }
+.reveal .fa-r-project { color: #276dc3; }
+.reveal .fa-brain { color: #9f7aea; }
+.reveal .fa-heart { color: #e53e3e; }
+.reveal .fa-star { color: #ecc94b; }
+
+/* 슬라이드 번호 스타일 */
+.reveal .slide-number {
+  background-color: rgba(74, 144, 226, 0.8);
+  color: white;
+  border-radius: 4px;
+  padding: 0.3em 0.6em;
+  font-size: 0.8em;
+}
+
+/* 네비게이션 컨트롤 스타일 */
+.reveal .controls {
+  color: #4a90e2;
+}
+
+.reveal .controls .navigate-left,
+.reveal .controls .navigate-right,
+.reveal .controls .navigate-up,
+.reveal .controls .navigate-down {
+  border-color: #4a90e2;
+}
+
+.reveal .controls .navigate-left.enabled:hover,
+.reveal .controls .navigate-right.enabled:hover,
+.reveal .controls .navigate-up.enabled:hover,
+.reveal .controls .navigate-down.enabled:hover {
+  border-color: #7bb3f0;
+}
+
+/* 중앙 정렬 클래스 */
+.reveal .center {
+  text-align: center;
+}
+
+/* 작은 글씨 클래스 */
+.reveal .smaller {
+  font-size: 0.8em;
+}
+
+/* 그리드 레이아웃 */
+.reveal .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1em;
+  margin: 1em 0;
+}
+
+/* 카드 스타일 */
+.reveal .card {
+  background-color: rgba(74, 144, 226, 0.1);
+  border-radius: 8px;
+  padding: 1em;
+  border: 1px solid rgba(74, 144, 226, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.reveal .card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+}
+
+/* 강조 텍스트 */
+.reveal .highlight {
+  background-color: rgba(74, 144, 226, 0.3);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  color: #ffffff;
+}
+
+/* 애니메이션 효과 */
+.reveal .slide-in {
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .reveal .columns {
+    flex-direction: column;
+  }
+  
+  .reveal .column {
+    width: 100% !important;
+  }
+  
+  .reveal .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 다크 테마 배경 */
+.reveal .has-dark-background {
+  color: #ffffff;
+}
+
+.reveal .has-dark-background h1,
+.reveal .has-dark-background h2,
+.reveal .has-dark-background h3,
+.reveal .has-dark-background h4,
+.reveal .has-dark-background h5,
+.reveal .has-dark-background h6 {
+  color: #ffffff;
+}
+
+/* 푸터 스타일 */
+.reveal .footer {
+  position: fixed;
+  bottom: 1em;
+  left: 1em;
+  font-size: 0.7em;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* 로고 스타일 */
+.reveal .logo {
+  position: fixed;
+  top: 1em;
+  right: 1em;
+  max-width: 100px;
+  max-height: 50px;
+  opacity: 0.8;
+}
+
+/* Mermaid 다이어그램 스타일 */
+.reveal .mermaid {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  padding: 1em;
+}
+
+/* 패널 탭셋 스타일 */
+.reveal .panel-tabset {
+  margin: 1em 0;
+}
+
+.reveal .panel-tabset .nav-tabs {
+  border-bottom: 2px solid #4a90e2;
+}
+
+.reveal .panel-tabset .nav-tabs .nav-link {
+  color: #4a90e2;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 0.5em 1em;
+  margin-bottom: -2px;
+  transition: all 0.3s ease;
+}
+
+.reveal .panel-tabset .nav-tabs .nav-link.active {
+  color: #ffffff;
+  background-color: #4a90e2;
+  border-bottom-color: #4a90e2;
+}
+
+.reveal .panel-tabset .nav-tabs .nav-link:hover {
+  border-bottom-color: #7bb3f0;
+}
+
+/* 점진적 표시 효과 */
+.reveal .incremental > * {
+  opacity: 0.3;
+}
+
+.reveal .incremental > *.current-fragment {
+  opacity: 1;
+}
+
+/* 섹션 제목 스타일 */
+.reveal .section-title {
+  background: linear-gradient(135deg, #4a90e2, #7bb3f0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 1.5em;
+  font-weight: 700;
+  text-align: center;
+  margin: 1em 0;
+}
+
+/* 메트릭 표시 스타일 */
+.reveal .metric {
+  background-color: rgba(74, 144, 226, 0.1);
+  border-radius: 8px;
+  padding: 1em;
+  text-align: center;
+  margin: 0.5em;
+  border: 2px solid rgba(74, 144, 226, 0.3);
+}
+
+.reveal .metric-value {
+  font-size: 2em;
+  font-weight: 700;
+  color: #4a90e2;
+}
+
+.reveal .metric-label {
+  font-size: 0.9em;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 0.5em;
+}
+
+/* 플로우차트 컨테이너 */
+.reveal .flowchart-container {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  padding: 1em;
+  margin: 1em 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* 유틸리티 클래스 */
+.reveal .text-primary { color: #4a90e2; }
+.reveal .text-success { color: #48bb78; }
+.reveal .text-warning { color: #ed8936; }
+.reveal .text-info { color: #4299e1; }
+.reveal .text-danger { color: #f56565; }
+
+.reveal .bg-primary { background-color: rgba(74, 144, 226, 0.1); }
+.reveal .bg-success { background-color: rgba(72, 187, 120, 0.1); }
+.reveal .bg-warning { background-color: rgba(237, 137, 54, 0.1); }
+.reveal .bg-info { background-color: rgba(66, 153, 225, 0.1); }
+.reveal .bg-danger { background-color: rgba(245, 101, 101, 0.1); }
+
+/* 프로그래밍 언어별 코드 하이라이팅 */
+.reveal .language-python {
+  border-left: 4px solid #3776ab;
+}
+
+.reveal .language-r {
+  border-left: 4px solid #276dc3;
+}
+
+.reveal .language-sql {
+  border-left: 4px solid #336791;
+}
+
+/* 스크롤 가능한 코드 블록 */
+.reveal pre code {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+/* 키워드 강조 */
+.reveal .keyword {
+  color: #4a90e2;
+  font-weight: 600;
+}
+
+/* 수식 스타일 */
+.reveal .math {
+  color: #4a90e2;
+  font-style: italic;
+}
+
+/* 단계별 프로세스 스타일 */
+.reveal .process-step {
+  background: linear-gradient(135deg, rgba(74, 144, 226, 0.1), rgba(123, 179, 240, 0.1));
+  border-radius: 8px;
+  padding: 1em;
+  margin: 0.5em 0;
+  border-left: 4px solid #4a90e2;
+}
+
+.reveal .process-step h3 {
+  color: #4a90e2;
+  margin-top: 0;
+} 

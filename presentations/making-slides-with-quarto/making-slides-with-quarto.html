@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="making-slides-with-quarto_files/libs/clipboard/clipboard.min.js"></script>
+<script src="making-slides-with-quarto_files/libs/quarto-html/tabby.min.js"></script>
+<script src="making-slides-with-quarto_files/libs/quarto-html/popper.min.js"></script>
+<script src="making-slides-with-quarto_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="making-slides-with-quarto_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="making-slides-with-quarto_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="making-slides-with-quarto_files/libs/quarto-html/quarto-syntax-highlighting-dark-0348920b7671f696dc9078d39bff215e.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.32">
+
+  <meta name="author" content="Seonghak Hong">
+  <meta name="dcterms.date" content="2025-07-10">
+  <title>Quarto로 슬라이드 만들기</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="making-slides-with-quarto_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="making-slides-with-quarto_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #e1e4e8; background-color: #24292e; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #e1e4e8; } /* Normal */
+    code span.al { color: #ff5555; font-weight: bold; } /* Alert */
+    code span.an { color: #6a737d; } /* Annotation */
+    code span.at { color: #f97583; } /* Attribute */
+    code span.bn { color: #79b8ff; } /* BaseN */
+    code span.bu { color: #f97583; } /* BuiltIn */
+    code span.cf { color: #f97583; } /* ControlFlow */
+    code span.ch { color: #9ecbff; } /* Char */
+    code span.cn { color: #79b8ff; } /* Constant */
+    code span.co { color: #6a737d; } /* Comment */
+    code span.cv { color: #6a737d; } /* CommentVar */
+    code span.do { color: #6a737d; } /* Documentation */
+    code span.dt { color: #f97583; } /* DataType */
+    code span.dv { color: #79b8ff; } /* DecVal */
+    code span.er { color: #ff5555; text-decoration: underline; } /* Error */
+    code span.ex { color: #f97583; font-weight: bold; } /* Extension */
+    code span.fl { color: #79b8ff; } /* Float */
+    code span.fu { color: #b392f0; } /* Function */
+    code span.im { color: #9ecbff; } /* Import */
+    code span.in { color: #6a737d; } /* Information */
+    code span.kw { color: #f97583; } /* Keyword */
+    code span.op { color: #e1e4e8; } /* Operator */
+    code span.ot { color: #b392f0; } /* Other */
+    code span.pp { color: #f97583; } /* Preprocessor */
+    code span.re { color: #6a737d; } /* RegionMarker */
+    code span.sc { color: #79b8ff; } /* SpecialChar */
+    code span.ss { color: #9ecbff; } /* SpecialString */
+    code span.st { color: #9ecbff; } /* String */
+    code span.va { color: #ffab70; } /* Variable */
+    code span.vs { color: #9ecbff; } /* VerbatimString */
+    code span.wa { color: #ff5555; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="making-slides-with-quarto_files/libs/revealjs/dist/theme/quarto-00033b64c7f4405b1251d0bf85080562.css">
+  <link rel="stylesheet" href="custom.css">
+  <link href="making-slides-with-quarto_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="making-slides-with-quarto_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="making-slides-with-quarto_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="making-slides-with-quarto_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="making-slides-with-quarto_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="making-slides-with-quarto_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <meta name="mermaid-theme" content="dark">
+  <script src="making-slides-with-quarto_files/libs/quarto-diagram/mermaid.min.js"></script>
+  <script src="making-slides-with-quarto_files/libs/quarto-diagram/mermaid-init.js"></script>
+  <link href="making-slides-with-quarto_files/libs/quarto-diagram/mermaid.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="quarto-dark">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Quarto로 슬라이드 만들기</h1>
+  <p class="subtitle">효율적인 프레젠테이션 제작 가이드</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Seonghak Hong 
+</div>
+</div>
+</div>
+
+  <p class="date">2025-07-10</p>
+</section>
+<section id="목차" class="slide level2 smaller scrollable">
+<h2>목차</h2>
+<ol type="1">
+<li class="fragment"><strong>Quarto 소개</strong></li>
+<li class="fragment"><strong>슬라이드 기본 설정</strong></li>
+<li class="fragment"><strong>슬라이드 구조 만들기</strong></li>
+<li class="fragment"><strong>콘텐츠 추가하기</strong></li>
+<li class="fragment"><strong>고급 기능들</strong></li>
+<li class="fragment"><strong>실습 예제</strong></li>
+<li class="fragment"><strong>배포 방법</strong></li>
+</ol>
+</section>
+<section>
+<section id="quarto-소개" class="title-slide slide level1 center">
+<h1>Quarto 소개</h1>
+
+</section>
+<section id="quarto란" class="slide level2 smaller">
+<h2>Quarto란?</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Quarto</strong>는 과학적 기술 출판을 위한 오픈소스 시스템</p>
+<ul>
+<li><i class="fas fa-chart-bar"></i> <strong>다양한 출력 형식</strong>: HTML, PDF, Word, 슬라이드</li>
+<li><i class="fas fa-tools"></i> <strong>다중 언어 지원</strong>: R, Python, Julia, Observable</li>
+<li><i class="fas fa-palette"></i> <strong>풍부한 포맷팅</strong>: 수식, 다이어그램, 인터랙티브 요소</li>
+<li><i class="fas fa-globe"></i> <strong>웹 친화적</strong>: 반응형 디자인, 인터랙티브 기능</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    A[.qmd 파일] --&gt; B[Quarto 엔진]
+    B --&gt; C[HTML 슬라이드]
+    B --&gt; D[PDF 슬라이드]
+    B --&gt; E[PowerPoint]
+    B --&gt; F[Beamer]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="왜-quarto를-사용할까" class="slide level2 smaller">
+<h2>왜 Quarto를 사용할까?</h2>
+<ul>
+<li class="fragment"><i class="fas fa-check-circle text-green-500"></i> <strong>재현 가능한 연구</strong>: 코드와 결과가 함께</li>
+<li class="fragment"><i class="fas fa-check-circle text-green-500"></i> <strong>버전 관리</strong>: Git으로 협업 가능</li>
+<li class="fragment"><i class="fas fa-check-circle text-green-500"></i> <strong>자동화</strong>: 데이터 업데이트 시 자동 갱신</li>
+<li class="fragment"><i class="fas fa-check-circle text-green-500"></i> <strong>일관성</strong>: 브랜딩과 스타일 통일</li>
+<li class="fragment"><i class="fas fa-check-circle text-green-500"></i> <strong>접근성</strong>: 웹 표준 준수</li>
+<li class="fragment"><i class="fas fa-check-circle text-green-500"></i> <strong>무료</strong>: 오픈소스 도구</li>
+</ul>
+</section></section>
+<section>
+<section id="슬라이드-기본-설정" class="title-slide slide level1 center">
+<h1>슬라이드 기본 설정</h1>
+
+</section>
+<section id="yaml-헤더-구성" class="slide level2 smaller">
+<h2>YAML 헤더 구성</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href=""></a><span class="pp">---</span></span>
+<span id="cb1-2"><a href=""></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"프레젠테이션 제목"</span></span>
+<span id="cb1-3"><a href=""></a><span class="fu">subtitle</span><span class="kw">:</span><span class="at"> </span><span class="st">"부제목"</span></span>
+<span id="cb1-4"><a href=""></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"작성자"</span></span>
+<span id="cb1-5"><a href=""></a><span class="fu">date</span><span class="kw">:</span><span class="at"> today</span></span>
+<span id="cb1-6"><a href=""></a><span class="fu">format</span><span class="kw">:</span><span class="at"> </span></span>
+<span id="cb1-7"><a href=""></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
+<span id="cb1-8"><a href=""></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> dark</span></span>
+<span id="cb1-9"><a href=""></a><span class="at">    </span><span class="fu">transition</span><span class="kw">:</span><span class="at"> slide</span></span>
+<span id="cb1-10"><a href=""></a><span class="at">    </span><span class="fu">slide-number</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb1-11"><a href=""></a><span class="at">    </span><span class="fu">chalkboard</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb1-12"><a href=""></a><span class="at">    </span><span class="fu">scrollable</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb1-13"><a href=""></a><span class="at">    </span><span class="fu">footer</span><span class="kw">:</span><span class="at"> </span><span class="st">"푸터 내용"</span></span>
+<span id="cb1-14"><a href=""></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>팁</strong></p>
+</div>
+<div class="callout-content">
+<p><code>date: today</code>를 사용하면 렌더링할 때마다 현재 날짜가 자동으로 업데이트됨</p>
+</div>
+</div>
+</div>
+</section>
+<section id="테마-옵션" class="slide level2 smaller">
+<h2>테마 옵션</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>기본 테마들:</strong> - <code>default</code> - <code>dark</code> - <code>simple</code> - <code>serif</code> - <code>solarized</code> - <code>blood</code> - <code>moon</code> - <code>night</code></p>
+</div><div class="column" style="width:50%;">
+<p><strong>커스텀 CSS:</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href=""></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb2-2"><a href=""></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
+<span id="cb2-3"><a href=""></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">default</span><span class="kw">,</span><span class="at"> custom.css</span><span class="kw">]</span></span>
+<span id="cb2-4"><a href=""></a><span class="at">    </span><span class="fu">css</span><span class="kw">:</span><span class="at"> styles.css</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>온라인 테마:</strong></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href=""></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb3-2"><a href=""></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
+<span id="cb3-3"><a href=""></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> https://example.com/theme.css</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div>
+</section></section>
+<section>
+<section id="슬라이드-구조-만들기" class="title-slide slide level1 center">
+<h1>슬라이드 구조 만들기</h1>
+
+</section>
+<section id="슬라이드-구분-방법" class="slide level2 smaller">
+<h2>슬라이드 구분 방법</h2>
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">레벨 1 헤더</a></li><li><a href="#tabset-1-2">레벨 2 헤더</a></li><li><a href="#tabset-1-3">수평선</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href=""></a><span class="fu"># 섹션 제목</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>새로운 섹션</strong>을 만들고 제목 슬라이드를 생성</p>
+</div>
+<div id="tabset-1-2">
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href=""></a><span class="fu">## 슬라이드 제목</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>새로운 슬라이드</strong>를 만듦</p>
+</div>
+<div id="tabset-1-3">
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href=""></a><span class="co">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>제목 없는 <strong>새로운 슬라이드</strong>를 만듦</p>
+</div>
+</div>
+</div>
+</section>
+<section id="슬라이드-속성" class="slide level2 smaller">
+<h2>슬라이드 속성</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href=""></a><span class="fu">## 슬라이드 제목 {.smaller}</span></span>
+<span id="cb7-2"><a href=""></a><span class="fu">## 슬라이드 제목 {.scrollable}</span></span>
+<span id="cb7-3"><a href=""></a><span class="fu">## 슬라이드 제목 {background-color="blue"}</span></span>
+<span id="cb7-4"><a href=""></a><span class="fu">## 슬라이드 제목 {background-image="image.jpg"}</span></span>
+<span id="cb7-5"><a href=""></a><span class="fu">## 슬라이드 제목 {.center}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>주요 속성들</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><code>.smaller</code>: 작은 글씨</li>
+<li><code>.scrollable</code>: 스크롤 가능</li>
+<li><code>.center</code>: 중앙 정렬</li>
+<li><code>background-*</code>: 배경 설정</li>
+</ul>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="콘텐츠-추가하기" class="title-slide slide level1 center">
+<h1>콘텐츠 추가하기</h1>
+
+</section>
+<section id="텍스트-포맷팅" class="slide level2 smaller scrollable">
+<h2>텍스트 포맷팅</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>기본 마크다운:</strong></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href=""></a>**굵은 글씨**</span>
+<span id="cb8-2"><a href=""></a>*기울임*</span>
+<span id="cb8-3"><a href=""></a>~~취소선~~</span>
+<span id="cb8-4"><a href=""></a><span class="in">`코드`</span></span>
+<span id="cb8-5"><a href=""></a><span class="at">&gt; 인용문</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>결과:</strong> <strong>굵은 글씨</strong><br>
+<em>기울임</em><br>
+<del>취소선</del><br>
+<code>코드</code><br>
+&gt; 인용문</p>
+</div><div class="column" style="width:50%;">
+<p><strong>리스트:</strong></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href=""></a><span class="ss">- </span>항목 1</span>
+<span id="cb9-2"><a href=""></a><span class="ss">- </span>항목 2</span>
+<span id="cb9-3"><a href=""></a><span class="ss">  - </span>하위 항목</span>
+<span id="cb9-4"><a href=""></a>  </span>
+<span id="cb9-5"><a href=""></a><span class="ss">1. </span>번호 리스트</span>
+<span id="cb9-6"><a href=""></a><span class="ss">2. </span>두 번째 항목</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>결과:</strong> - 항목 1 - 항목 2 - 하위 항목</p>
+<ol type="1">
+<li>번호 리스트</li>
+<li>두 번째 항목</li>
+</ol>
+</div></div>
+</section>
+<section id="코드-블록" class="slide level2 smaller">
+<h2>코드 블록</h2>
+<p><strong>R 코드:</strong></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a><span class="co">#| echo: true</span></span>
+<span id="cb10-2"><a href=""></a><span class="co">#| eval: true</span></span>
+<span id="cb10-3"><a href=""></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb10-4"><a href=""></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> mpg, <span class="at">y =</span> hp)) <span class="sc">+</span></span>
+<span id="cb10-5"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb10-6"><a href=""></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Python 코드:</strong></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href=""></a><span class="co">#| echo: true</span></span>
+<span id="cb11-2"><a href=""></a><span class="co">#| eval: false</span></span>
+<span id="cb11-3"><a href=""></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb11-4"><a href=""></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb11-5"><a href=""></a></span>
+<span id="cb11-6"><a href=""></a>df <span class="op">=</span> pd.read_csv(<span class="st">'data.csv'</span>)</span>
+<span id="cb11-7"><a href=""></a>plt.plot(df[<span class="st">'x'</span>], df[<span class="st">'y'</span>])</span>
+<span id="cb11-8"><a href=""></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="수식과-다이어그램" class="slide level2 smaller">
+<h2>수식과 다이어그램</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>LaTeX 수식:</strong></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource latex number-lines code-with-copy"><code class="sourceCode latex"><span id="cb12-1"><a href=""></a><span class="ss">$$E = mc^2$$</span></span>
+<span id="cb12-2"><a href=""></a></span>
+<span id="cb12-3"><a href=""></a><span class="ss">$$</span><span class="sc">\frac</span><span class="ss">{d}{dx}f(x) = </span><span class="sc">\lim</span><span class="ss">_{h </span><span class="sc">\to</span><span class="ss"> 0} </span><span class="sc">\frac</span><span class="ss">{f(x+h) - f(x)}{h}$$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>결과:</strong> <span class="math display">\[E = mc^2\]</span></p>
+<p><span class="math display">\[\frac{d}{dx}f(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}\]</span></p>
+</div><div class="column" style="width:50%;">
+<p><strong>Mermaid 다이어그램:</strong></p>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TD
+    A[시작] --&gt; B{조건}
+    B --&gt;|Yes| C[실행]
+    B --&gt;|No| D[종료]
+    C --&gt; D
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</div></div>
+</section></section>
+<section>
+<section id="고급-기능들" class="title-slide slide level1 center">
+<h1>고급 기능들</h1>
+
+</section>
+<section id="컬럼-레이아웃" class="slide level2 smaller">
+<h2>컬럼 레이아웃</h2>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href=""></a>::: {.columns}</span>
+<span id="cb13-2"><a href=""></a>::: {.column width="40%"}</span>
+<span id="cb13-3"><a href=""></a>왼쪽 컬럼 내용</span>
+<span id="cb13-4"><a href=""></a>:::</span>
+<span id="cb13-5"><a href=""></a></span>
+<span id="cb13-6"><a href=""></a>::: {.column width="60%"}</span>
+<span id="cb13-7"><a href=""></a>오른쪽 컬럼 내용</span>
+<span id="cb13-8"><a href=""></a>:::</span>
+<span id="cb13-9"><a href=""></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="columns">
+<div class="column" style="width:40%;">
+<p><strong>왼쪽 컬럼</strong> - 항목 1 - 항목 2</p>
+</div><div class="column" style="width:60%;">
+<p><strong>오른쪽 컬럼</strong> 더 넓은 공간에 더 많은 내용을 배치할 수 있습니다.</p>
+</div></div>
+</section>
+<section id="인크리멘털-표시" class="slide level2 smaller">
+<h2>인크리멘털 표시</h2>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href=""></a>::: {.incremental}</span>
+<span id="cb14-2"><a href=""></a><span class="ss">- </span>첫 번째 항목</span>
+<span id="cb14-3"><a href=""></a><span class="ss">- </span>두 번째 항목</span>
+<span id="cb14-4"><a href=""></a><span class="ss">- </span>세 번째 항목</span>
+<span id="cb14-5"><a href=""></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li class="fragment">첫 번째 항목</li>
+<li class="fragment">두 번째 항목<br>
+</li>
+<li class="fragment">세 번째 항목</li>
+</ul>
+</section>
+<section id="탭-패널" class="slide level2 smaller">
+<h2>탭 패널</h2>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href=""></a>::: {.panel-tabset}</span>
+<span id="cb15-2"><a href=""></a><span class="fu">### 탭 1</span></span>
+<span id="cb15-3"><a href=""></a>첫 번째 탭의 내용</span>
+<span id="cb15-4"><a href=""></a></span>
+<span id="cb15-5"><a href=""></a><span class="fu">### 탭 2</span></span>
+<span id="cb15-6"><a href=""></a>두 번째 탭의 내용</span>
+<span id="cb15-7"><a href=""></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="panel-tabset">
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">데이터</a></li><li><a href="#tabset-2-2">그래프</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1">
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a><span class="fu">head</span>(mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-2-2">
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a><span class="fu">plot</span>(mtcars<span class="sc">$</span>mpg, mtcars<span class="sc">$</span>hp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="콜아웃-박스" class="slide level2 smaller">
+<h2>콜아웃 박스</h2>
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href=""></a>::: {.callout-note}</span>
+<span id="cb18-2"><a href=""></a><span class="fu">## 참고</span></span>
+<span id="cb18-3"><a href=""></a>중요한 정보를 강조할 때 사용합니다.</span>
+<span id="cb18-4"><a href=""></a>:::</span>
+<span id="cb18-5"><a href=""></a></span>
+<span id="cb18-6"><a href=""></a>::: {.callout-warning}</span>
+<span id="cb18-7"><a href=""></a><span class="fu">## 주의</span></span>
+<span id="cb18-8"><a href=""></a>경고 메시지를 표시할 때 사용합니다.</span>
+<span id="cb18-9"><a href=""></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>참고</strong></p>
+</div>
+<div class="callout-content">
+<p>중요한 정보를 강조할 때 사용합니다.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>주의</strong></p>
+</div>
+<div class="callout-content">
+<p>경고 메시지를 표시할 때 사용합니다.</p>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="실습-예제" class="title-slide slide level1 center">
+<h1>실습 예제</h1>
+
+</section>
+<section id="간단한-슬라이드-만들기" class="slide level2 smaller scrollable">
+<h2>간단한 슬라이드 만들기</h2>
+<ol type="1">
+<li><p><strong>새 파일 생성</strong>: <code>presentation.qmd</code></p></li>
+<li><p><strong>YAML 헤더 작성</strong>:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb19-1"><a href=""></a><span class="pp">---</span></span>
+<span id="cb19-2"><a href=""></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"나의 첫 번째 슬라이드"</span></span>
+<span id="cb19-3"><a href=""></a><span class="fu">format</span><span class="kw">:</span><span class="at"> revealjs</span></span>
+<span id="cb19-4"><a href=""></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>슬라이드 내용 추가</strong>:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href=""></a><span class="fu">## 첫 번째 슬라이드</span></span>
+<span id="cb20-2"><a href=""></a></span>
+<span id="cb20-3"><a href=""></a>안녕하세요!</span>
+<span id="cb20-4"><a href=""></a></span>
+<span id="cb20-5"><a href=""></a><span class="fu">## 두 번째 슬라이드</span></span>
+<span id="cb20-6"><a href=""></a></span>
+<span id="cb20-7"><a href=""></a><span class="ss">- </span>항목 1</span>
+<span id="cb20-8"><a href=""></a><span class="ss">- </span>항목 2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
+</section>
+<section id="렌더링-방법" class="slide level2 smaller scrollable">
+<h2>렌더링 방법</h2>
+<div class="panel-tabset">
+<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">RStudio</a></li><li><a href="#tabset-3-2">터미널</a></li><li><a href="#tabset-3-3">VS Code</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1">
+<ol type="1">
+<li><strong>Render 버튼</strong> 클릭</li>
+<li>또는 <code>Ctrl+Shift+K</code> (Windows/Linux)</li>
+<li>또는 <code>Cmd+Shift+K</code> (Mac)</li>
+</ol>
+</div>
+<div id="tabset-3-2">
+<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href=""></a><span class="ex">quarto</span> render presentation.qmd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-3-3">
+<ol type="1">
+<li><strong>Quarto 확장</strong> 설치</li>
+<li><strong>Ctrl+Shift+P</strong> → “Quarto: Render”</li>
+</ol>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="배포-방법" class="title-slide slide level1 center">
+<h1>배포 방법</h1>
+
+</section>
+<section id="github-pages" class="slide level2 smaller scrollable">
+<h2>GitHub Pages</h2>
+<ol type="1">
+<li><p><strong>GitHub 저장소 생성</strong></p></li>
+<li><p>**_quarto.yml 파일 생성**:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb22-1"><a href=""></a><span class="fu">project</span><span class="kw">:</span></span>
+<span id="cb22-2"><a href=""></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> website</span></span>
+<span id="cb22-3"><a href=""></a><span class="at">  </span><span class="fu">output-dir</span><span class="kw">:</span><span class="at"> docs</span></span>
+<span id="cb22-4"><a href=""></a></span>
+<span id="cb22-5"><a href=""></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb22-6"><a href=""></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb22-7"><a href=""></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> cosmo</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>렌더링 후 푸시</strong>:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href=""></a><span class="ex">quarto</span> render</span>
+<span id="cb23-2"><a href=""></a><span class="fu">git</span> add .</span>
+<span id="cb23-3"><a href=""></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add slides"</span></span>
+<span id="cb23-4"><a href=""></a><span class="fu">git</span> push</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>GitHub Pages 설정</strong>: Settings → Pages → Source: <code>/docs</code></p></li>
+</ol>
+</section>
+<section id="netlify-vercel" class="slide level2 smaller">
+<h2>Netlify &amp; Vercel</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Netlify:</strong> 1. 저장소 연결 2. Build command: <code>quarto render</code> 3. Publish directory: <code>_site</code> 4. 자동 배포 완료</p>
+</div><div class="column" style="width:50%;">
+<p><strong>Vercel:</strong> 1. 저장소 연결 2. Framework: Other 3. Build command: <code>quarto render</code> 4. Output directory: <code>_site</code></p>
+</div></div>
+</section>
+<section id="팁과-트릭" class="slide level2 smaller">
+<h2>팁과 트릭</h2>
+<ul>
+<li class="fragment"><i class="fas fa-bullseye"></i> <strong>간결함</strong>: 슬라이드당 하나의 핵심 메시지</li>
+<li class="fragment"><i class="fas fa-paint-brush"></i> <strong>일관성</strong>: 폰트, 색상, 레이아웃 통일</li>
+<li class="fragment"><i class="fas fa-mobile-alt"></i> <strong>반응형</strong>: 다양한 화면 크기 고려</li>
+<li class="fragment"><i class="fas fa-universal-access"></i> <strong>접근성</strong>: 대비, 폰트 크기 고려</li>
+<li class="fragment"><i class="fas fa-rocket"></i> <strong>성능</strong>: 이미지 최적화, 코드 실행 시간 관리</li>
+<li class="fragment"><i class="fas fa-file-alt"></i> <strong>문서화</strong>: 주석과 설명 추가</li>
+<li class="fragment"><i class="fas fa-sync-alt"></i> <strong>버전 관리</strong>: Git으로 변경사항 추적</li>
+</ul>
+</section>
+<section id="감사합니다" class="slide level2 center">
+<h2>감사합니다</h2>
+<p><strong>질문이 있으신가요?</strong></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>유용한 링크:</strong></p>
+<ul>
+<li><a href="https://quarto.org">Quarto 공식 문서</a><br>
+</li>
+<li><a href="https://revealjs.com">Reveal.js 문서</a><br>
+</li>
+<li><a href="https://github.com/yourusername/repo">GitHub 저장소</a></li>
+</ul>
+</div></div>
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<p><img src="https://quarto.org/quarto.png" class="slide-logo"></p>
+<div class="footer footer-default">
+<p>Quarto 슬라이드 만들기 | 홍성학</p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="making-slides-with-quarto_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="making-slides-with-quarto_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="making-slides-with-quarto_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="making-slides-with-quarto_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="making-slides-with-quarto_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="making-slides-with-quarto_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="making-slides-with-quarto_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="making-slides-with-quarto_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="making-slides-with-quarto_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="making-slides-with-quarto_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="making-slides-with-quarto_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+            const codeEl = trigger.previousElementSibling.cloneNode(true);
+            for (const childEl of codeEl.children) {
+              if (isCodeAnnotation(childEl)) {
+                childEl.remove();
+              }
+            }
+            return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>

@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+/* 기본 폰트 설정 */
+body {
+  font-family: 'Noto Sans KR', sans-serif !important;
+  font-size: 22px !important;
+  line-height: 1.6 !important;
+}
+
+/* 제목 스타일 */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Noto Sans KR', sans-serif !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+  margin: 0.5em 0 !important;
+}
+
+h1 {
+  font-size: 2.2em !important;
+  font-weight: 700 !important;
+}
+
+h2 {
+  font-size: 1.8em !important;
+  font-weight: 600 !important;
+}
+
+h3 {
+  font-size: 1.4em !important;
+  font-weight: 500 !important;
+}
+
+/* 강조 스타일 */
+.highlight {
+  background: rgba(66, 175, 250, 0.3) !important;
+  padding: 3px 8px !important;
+  border-radius: 3px !important;
+  color: #1e88e5 !important;
+  font-weight: bold !important;
+}
+
+.important {
+  color: #e53e3e !important;
+  font-weight: bold !important;
+}
+
+.success {
+  color: #38a169 !important;
+  font-weight: bold !important;
+}
+
+/* 중앙 정렬 */
+.center {
+  text-align: center !important;
+}
+
+/* 작은 텍스트 */
+.small {
+  font-size: 0.9em !important;
+}
+
+/* 큰 텍스트 */
+.large {
+  font-size: 1.2em !important;
+}
+
+/* 코드 블록 스타일 */
+pre {
+  background: #f5f5f5 !important;
+  border: 1px solid #ddd !important;
+  border-radius: 5px !important;
+  padding: 15px !important;
+  margin: 15px 0 !important;
+  overflow-x: auto !important;
+  font-size: 0.85em !important;
+}
+
+code {
+  font-family: 'Consolas', 'Monaco', monospace !important;
+  background: #f5f5f5 !important;
+  padding: 2px 6px !important;
+  border-radius: 3px !important;
+  font-size: 0.9em !important;
+}
+
+/* 테이블 스타일 */
+table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  margin: 15px 0 !important;
+  font-size: 0.9em !important;
+}
+
+table th,
+table td {
+  text-align: left !important;
+  padding: 12px !important;
+  border-bottom: 1px solid #ddd !important;
+}
+
+table th {
+  background: #f8f9fa !important;
+  font-weight: bold !important;
+}
+
+/* 리스트 스타일 */
+ul, ol {
+  margin: 15px 0 !important;
+  padding-left: 30px !important;
+}
+
+li {
+  margin: 8px 0 !important;
+  line-height: 1.5 !important;
+}
+
+/* 이미지 스타일 */
+img {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block !important;
+  margin: 15px auto !important;
+  border-radius: 5px !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+}
+
+/* 슬라이드 내용 간격 조정 */
+.slide {
+  padding: 40px !important;
+}
+
+/* 블록 인용 스타일 */
+blockquote {
+  background: #f8f9fa !important;
+  border-left: 4px solid #1e88e5 !important;
+  padding: 15px !important;
+  margin: 15px 0 !important;
+  font-style: italic !important;
+} 

@@ -1,0 +1,1150 @@
+---
+title: "R을 활용한 실전 데이터 시각화"
+subtitle: "ggplot2를 중심으로 한 효과적인 데이터 스토리텔링"
+author: "홍성학"
+date: "2024-08-15"
+format: 
+  revealjs:
+    theme: night
+    transition: slide
+    background-transition: fade
+    highlight-style: github
+    code-fold: true
+    code-tools: true
+    slide-number: true
+    chalkboard: true
+    scrollable: true
+    incremental: false
+    footer: "R을 활용한 실전 데이터 시각화 | 홍성학"
+    css: custom.css
+    include-in-header:
+      - text: |
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+          <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+mermaid:
+  theme: dark
+editor: visual
+---
+
+## 발표자 소개 {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+### 홍성학
+- <i class="fas fa-user-tie"></i> **Principal Data Scientist & AI Architect**
+- <i class="fas fa-graduation-cap"></i> **전문 분야**: 데이터 사이언스, 머신러닝, 자연어처리
+- <i class="fas fa-code"></i> **주요 기술**: R, Python, SQL, Tableau, Power BI
+- <i class="fas fa-building"></i> **경력**: 10+ 년 데이터 분석 및 AI 프로젝트 경험
+- <i class="fas fa-globe"></i> **Blog**: [euriion.com](https://euriion.com)
+- <i class="fab fa-github"></i> **GitHub**: [github.com/euriion](https://github.com/euriion)
+:::
+
+::: {.column width="50%"}
+### 오늘의 여정
+- <i class="fas fa-chart-line"></i> **데이터 시각화의 중요성**
+- <i class="fas fa-tools"></i> **R & ggplot2 마스터하기**
+- <i class="fas fa-palette"></i> **효과적인 시각화 기법**
+- <i class="fas fa-rocket"></i> **실무 적용 사례**
+- <i class="fas fa-magic"></i> **인터랙티브 시각화**
+:::
+:::
+
+## 데이터 시각화, 왜 중요한가? {.smaller}
+
+### 시각화의 힘
+::: {.incremental}
+- <i class="fas fa-eye"></i> **"A picture is worth a thousand words"**
+- <i class="fas fa-brain"></i> **인간의 뇌는 시각 정보를 0.25초 만에 처리**
+- <i class="fas fa-chart-bar"></i> **복잡한 데이터를 직관적으로 이해**
+- <i class="fas fa-search"></i> **숨겨진 패턴, 트렌드, 이상치 발견**
+- <i class="fas fa-comments"></i> **효과적인 인사이트 전달 및 설득**
+:::
+
+## 비즈니스에서의 가치 {.smaller}
+
+::: {.incremental}
+- <i class="fas fa-dollar-sign"></i> **의사결정 속도 향상** → 비용 절감
+- <i class="fas fa-users"></i> **이해관계자 간 소통 개선**
+- <i class="fas fa-lightbulb"></i> **데이터 기반 혁신 아이디어 도출**
+- <i class="fas fa-trophy"></i> **경쟁 우위 확보**
+:::
+
+## 현대 데이터 시각화의 트렌드 {.smaller}
+
+### 데이터 폭발 시대
+- <i class="fas fa-database"></i> **매일 2.5퀸틸리언 바이트**의 데이터 생성
+- <i class="fas fa-mobile-alt"></i> **IoT, 소셜미디어, 모바일** 확산
+- <i class="fas fa-cloud"></i> **클라우드 기반 분석** 환경 보편화
+- <i class="fas fa-robot"></i> **AI/ML과 시각화**의 융합
+
+## 시각화 도구의 진화 {.smaller}
+
+- <i class="fas fa-code"></i> **코드 기반**: R, Python, D3.js
+- <i class="fas fa-mouse-pointer"></i> **GUI 기반**: Tableau, Power BI
+- <i class="fas fa-globe"></i> **웹 기반**: Observable, Plotly
+- <i class="fas fa-magic"></i> **AI 자동화**: AutoViz, Sweetviz
+
+---
+
+## Part 1: 데이터 시각화 기초 이론 {.smaller}
+
+### 효과적인 시각화의 핵심 원칙
+::: {.incremental}
+- <i class="fas fa-eye"></i> **명료성 (Clarity)**: 메시지를 명확하고 간결하게 전달
+- <i class="fas fa-check-circle"></i> **정확성 (Accuracy)**: 데이터를 왜곡 없이 표현
+- <i class="fas fa-tachometer-alt"></i> **효율성 (Efficiency)**: 최소한의 잉크로 최대한의 정보 전달
+- <i class="fas fa-palette"></i> **심미성 (Aesthetics)**: 보기 좋고 이해하기 쉽게
+- <i class="fas fa-users"></i> **접근성 (Accessibility)**: 모든 사용자가 이해할 수 있게
+:::
+
+## 시각화 설계 프로세스 (1/2) {.smaller}
+
+#### 1. 목적 정의
+- <i class="fas fa-bullseye"></i> **무엇을 보여줄 것인가?**
+- <i class="fas fa-users"></i> **누가 볼 것인가?**
+- <i class="fas fa-question"></i> **어떤 질문에 답할 것인가?**
+
+#### 2. 데이터 탐색
+- <i class="fas fa-search"></i> **데이터 구조 파악**
+- <i class="fas fa-chart-line"></i> **변수 간 관계 분석**
+- <i class="fas fa-exclamation-triangle"></i> **이상치 및 결측값 확인**
+
+## 시각화 설계 프로세스 (2/2) {.smaller}
+
+#### 3. 차트 유형 선택
+- <i class="fas fa-chart-bar"></i> **범주형 데이터**: <br/>막대, 파이 차트
+- <i class="fas fa-chart-line"></i> **연속형 데이터**: <br/>선, 히스토그램
+- <i class="fas fa-chart-scatter"></i> **관계 분석**: <br/>산점도, 상관관계
+
+#### 4. 디자인 및 개선
+- <i class="fas fa-paint-brush"></i> **색상 및 레이아웃**
+- <i class="fas fa-tag"></i> **제목 및 라벨링**
+- <i class="fas fa-comments"></i> **피드백 수집 및 개선**
+
+## 왜 R과 ggplot2인가? {.smaller}
+
+### R의 강점
+- <i class="fas fa-chart-bar"></i> **통계 분석에 특화**된 언어
+- <i class="fas fa-code"></i> **오픈소스**로 무료 사용 가능
+- <i class="fas fa-users"></i> **활발한 커뮤니티**와 패키지 생태계
+- <i class="fas fa-repeat"></i> **재현 가능한 분석** 환경
+- <i class="fas fa-graduation-cap"></i> **학술 연구**에서 널리 사용
+
+## ggplot2의 특징 {.smaller}
+
+- <i class="fas fa-layer-group"></i> **레이어 기반** 그래프 구성
+- <i class="fas fa-book"></i> **Grammar of Graphics** 철학
+- <i class="fas fa-palette"></i> **일관된 API**와 직관적 문법
+- <i class="fas fa-expand-arrows-alt"></i> **확장성**과 커스터마이징
+- <i class="fas fa-chart-area"></i> **출판 품질**의 그래프 생성
+
+## 다른 도구와의 비교 {.smaller}
+
+| 도구 | 장점 | 단점 | 적합한 사용자 |
+|------|------|------|---------------|
+| <i class="fab fa-r-project"></i> **R/ggplot2** | 통계 분석 강력, <br/>커스터마이징 | 학습 곡선 | 데이터 <br/>사이언티스트 |
+| <i class="fas fa-chart-bar"></i> **Tableau** | 직관적 GUI, <br/>빠른 프로토타이핑 | 비용, <br/>코드 기반 아님 | 비즈니스 <br/>분석가 |
+| <i class="fab fa-python"></i> **Python** | 범용성, <br/>머신러닝 통합 | 시각화 <br/>특화 부족 | 개발자, <br/>엔지니어 |
+
+## 개발 환경 설정 {.smaller}
+
+### 필수 소프트웨어 설치
+::: {.incremental}
+1. <i class="fab fa-r-project"></i> **R 설치**: [cran.r-project.org](https://cran.r-project.org/)
+2. <i class="fas fa-desktop"></i> **RStudio Desktop**: [posit.co/download/rstudio-desktop/](https://posit.co/download/rstudio-desktop/)
+3. <i class="fas fa-box"></i> **핵심 패키지 설치**:
+:::
+
+```r
+# 필수 패키지 설치
+install.packages(c(
+  "tidyverse",    # ggplot2 포함 데이터 사이언스 패키지
+  "scales",       # 축 스케일링
+  "RColorBrewer", # 색상 팔레트
+  "plotly",       # 인터랙티브 시각화
+  "patchwork",    # 다중 플롯 조합
+  "ggthemes"      # 추가 테마
+))
+```
+
+### RStudio 환경 설정 팁
+- <i class="fas fa-cog"></i> **Global Options** → **Appearance**: <br/>테마 및 폰트 설정
+- <i class="fas fa-folder"></i> **프로젝트 기반 작업**: <br/>`.Rproj` 파일 활용
+- <i class="fas fa-keyboard"></i> **유용한 단축키**: <br/>`Ctrl+Shift+M` (파이프 연산자 %>%)
+
+## Grammar of Graphics 완전 정복 {.smaller}
+
+### ggplot2의 핵심 철학
+**"그래픽스의 문법"**은 시각화를 **7개의 레이어**로 구성:
+
+1. <i class="fas fa-database"></i> **Data**: 시각화할 데이터프레임
+2. <i class="fas fa-palette"></i> **Aesthetics**: 데이터를 시각적 속성에 매핑
+3. <i class="fas fa-shapes"></i> **Geometries**: 데이터를 표현할 기하학적 객체
+4. <i class="fas fa-chart-line"></i> **Statistics**: 통계적 변환
+
+## Grammar of Graphics - 기본 구조 {.smaller}
+
+### 기본 구조
+```r
+ggplot(data = <DATA>) +
+  aes(<MAPPINGS>) +
+  geom_<GEOM>() +
+  stat_<STAT>() +
+  facet_<FACET>() +
+  coord_<COORD>() +
+  theme_<THEME>()
+```
+
+5. <i class="fas fa-th"></i> **Facets**: 하위 그룹으로 나누어 그리기
+6. <i class="fas fa-compass"></i> **Coordinates**: 좌표계 설정
+7. <i class="fas fa-paint-brush"></i> **Themes**: 비데이터 요소 스타일링
+
+## 레이어별 상세 설명 {.smaller}
+
+::: {.incremental}
+- **Data**: `data.frame` 또는 `tibble` 형태의 정형 데이터
+- **Aesthetics**: x, y, color, size, shape, alpha 등의 시각적 속성
+- **Geometries**: point, line, bar, histogram, boxplot 등의 그래프 유형
+- **Statistics**: smooth, bin, count 등의 통계 변환
+- **Facets**: 조건부 플롯을 위한 패널 분할
+- **Coordinates**: 직교, 극좌표, 지도 투영 등
+- **Themes**: 축, 범례, 배경, 폰트 등의 스타일
+:::
+
+---
+
+## Part 2: ggplot2 기초 마스터하기 {.smaller}
+
+### 첫 번째 ggplot 그려보기
+**단계별 그래프 구성**
+
+1. <i class="fas fa-database"></i> **데이터 준비**
+2. <i class="fas fa-palette"></i> **미학 매핑**
+3. <i class="fas fa-shapes"></i> **기하학적 객체 추가**
+4. <i class="fas fa-paint-brush"></i> **스타일 적용**
+
+```{r}
+#| eval: false
+library(ggplot2)
+library(dplyr)
+
+# 1. 데이터 확인
+glimpse(mpg)
+```
+
+## mpg 데이터셋 소개 {.smaller}
+
+**mpg 데이터셋 소개**
+
+- <i class="fas fa-car"></i> **234개 차량**의 연비 데이터
+- <i class="fas fa-list"></i> **11개 변수**: <br/>제조사, 모델, 엔진 크기, 연비 등
+- <i class="fas fa-chart-line"></i> **연속형**: displ, hwy, cty
+- <i class="fas fa-tags"></i> **범주형**: <br/>manufacturer, class, drv
+
+```{r}
+#| eval: false
+# 2. 기본 캔버스 생성
+ggplot(data = mpg, aes(x = displ, y = hwy))
+```
+
+## 주요 geom 함수들 - 연속형 데이터 {.smaller}
+
+#### 연속형 데이터
+- <i class="fas fa-circle"></i> **`geom_point()`**: 산점도
+- <i class="fas fa-chart-line"></i> **`geom_line()`**: 선 그래프
+- <i class="fas fa-chart-area"></i> **`geom_smooth()`**: 추세선
+- <i class="fas fa-chart-bar"></i> **`geom_histogram()`**: 히스토그램
+- <i class="fas fa-square"></i> **`geom_boxplot()`**: 박스플롯
+- <i class="fas fa-bell"></i> **`geom_density()`**: 밀도 곡선
+
+## 주요 geom 함수들 - 범주형 데이터 {.smaller}
+
+#### 범주형 데이터
+- <i class="fas fa-chart-bar"></i> **`geom_bar()`**: 막대 그래프 (빈도)
+- <i class="fas fa-chart-column"></i> **`geom_col()`**: 막대 그래프 (값)
+- <i class="fas fa-chart-pie"></i> **`geom_pie()`**: 파이 차트
+- <i class="fas fa-th"></i> **`geom_tile()`**: 타일 맵
+- <i class="fas fa-dot-circle"></i> **`geom_dotplot()`**: 도트 플롯
+
+### 산점도 (Scatter Plot) 완전 정복 {.smaller}
+
+#### 기본 산점도
+```{r}
+#| eval: false
+# 엔진 크기와 고속도로 연비의 관계
+ggplot(data = mpg, aes(x = displ, y = hwy)) +
+  geom_point()
+```
+
+#### 고급 산점도 - 다차원 정보 표현
+```{r}
+#| eval: false
+# 색상, 크기, 모양으로 추가 정보 표현
+ggplot(data = mpg, aes(x = displ, y = hwy)) +
+  geom_point(aes(color = class, size = cyl, shape = drv), alpha = 0.7) +
+  scale_color_brewer(type = "qual", palette = "Set1") +
+  scale_size_continuous(range = c(2, 6)) +
+  labs(
+    title = "자동차 엔진 크기와 연비의 관계",
+    subtitle = "차량 유형, 실린더 수, 구동 방식별 분석",
+    x = "엔진 배기량 (L)",
+    y = "고속도로 연비 (MPG)",
+    color = "차량 유형",
+    size = "실린더 수",
+    shape = "구동 방식"
+  )
+```
+
+### 미학(Aesthetics) 매핑 vs 고정값 {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+#### 매핑 (Mapping)
+**데이터 변수와 시각적 속성 연결**
+
+```{r}
+#| eval: false
+# 데이터에 따라 색상 변경
+ggplot(mpg, aes(x = displ, y = hwy, 
+                color = class)) +
+  geom_point()
+```
+
+- <i class="fas fa-link"></i> **aes() 내부**에 지정
+- <i class="fas fa-palette"></i> **범례 자동 생성**
+- <i class="fas fa-chart-line"></i> **데이터 값에 따라 변화**
+:::
+
+::: {.column width="50%"}
+#### 고정값 (Fixed Value)
+**모든 점에 동일한 속성 적용**
+
+```{r}
+#| eval: false
+# 모든 점을 파란색으로 고정
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point(color = "blue", size = 3)
+```
+
+- <i class="fas fa-lock"></i> **geom 함수 내부**에 지정
+- <i class="fas fa-ban"></i> **범례 생성 안됨**
+- <i class="fas fa-equals"></i> **모든 데이터 포인트 동일**
+:::
+:::
+
+### 막대 그래프 마스터하기 {.smaller}
+
+#### geom_bar() vs geom_col()
+::: {.columns}
+::: {.column width="50%"}
+**geom_bar(): 빈도수 자동 계산**
+
+```{r}
+#| eval: false
+# 차량 유형별 개수
+ggplot(mpg, aes(x = class)) +
+  geom_bar(fill = "steelblue", alpha = 0.7) +
+  labs(title = "차량 유형별 개수",
+       x = "차량 유형", y = "개수")
+```
+
+- <i class="fas fa-calculator"></i> **stat_count() 자동 적용**
+- <i class="fas fa-chart-bar"></i> **x축만 지정**
+- <i class="fas fa-hashtag"></i> **빈도 분석에 적합**
+:::
+
+::: {.column width="50%"}
+**geom_col(): 값 직접 지정**
+
+```{r}
+#| eval: false
+# 제조사별 평균 연비
+mpg_summary <- mpg %>%
+  group_by(manufacturer) %>%
+  summarise(avg_hwy = mean(hwy)) %>%
+  slice_max(avg_hwy, n = 5)
+
+ggplot(mpg_summary, aes(x = manufacturer, y = avg_hwy)) +
+  geom_col(fill = "darkgreen", alpha = 0.8)
+```
+
+- <i class="fas fa-chart-column"></i> **x, y축 모두 지정**
+- <i class="fas fa-table"></i> **집계된 데이터 사용**
+- <i class="fas fa-chart-line"></i> **값 비교에 적합**
+:::
+:::
+
+### 히스토그램과 밀도 곡선 {.smaller}
+
+#### 연속형 변수의 분포 확인
+```{r}
+#| eval: false
+# 히스토그램
+ggplot(mpg, aes(x = hwy)) +
+  geom_histogram(bins = 20, fill = "skyblue", color = "white", alpha = 0.7) +
+  labs(title = "고속도로 연비 분포", x = "연비 (MPG)", y = "빈도")
+
+# 밀도 곡선
+ggplot(mpg, aes(x = hwy)) +
+  geom_density(fill = "lightcoral", alpha = 0.5) +
+  labs(title = "고속도로 연비 밀도", x = "연비 (MPG)", y = "밀도")
+
+# 히스토그램 + 밀도 곡선
+ggplot(mpg, aes(x = hwy)) +
+  geom_histogram(aes(y = after_stat(density)), bins = 20, 
+                 fill = "lightblue", alpha = 0.7) +
+  geom_density(color = "red", size = 1) +
+  labs(title = "고속도로 연비 분포 (히스토그램 + 밀도)")
+```
+
+### 박스플롯으로 그룹 비교 {.smaller}
+
+```{r}
+#| eval: false
+# 차량 유형별 연비 비교
+ggplot(mpg, aes(x = class, y = hwy, fill = class)) +
+  geom_boxplot(alpha = 0.7) +
+  geom_jitter(width = 0.2, alpha = 0.5) +  # 개별 데이터 포인트 추가
+  scale_fill_brewer(type = "qual", palette = "Set3") +
+  labs(title = "차량 유형별 고속도로 연비 분포",
+       x = "차량 유형", y = "고속도로 연비 (MPG)") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  guides(fill = "none")  # 범례 제거
+```
+
+**박스플롯 해석**
+
+- <i class="fas fa-minus"></i> **중앙선**: <br/>중앙값 (50번째 백분위수)
+- <i class="fas fa-square"></i> **박스**: <br/>25~75번째 백분위수 (IQR)
+- <i class="fas fa-grip-lines"></i> **수염**: 1.5 × IQR 범위
+- <i class="fas fa-circle"></i> **점**: 이상치 (outlier)
+
+---
+
+## Part 3: ggplot2 중급 테크닉 {.smaller}
+
+### Faceting: 조건부 플롯 마스터하기 {.smaller}
+
+#### facet_wrap() vs facet_grid()
+::: {.columns}
+::: {.column width="50%"}
+**facet_wrap(): 1차원 분할**
+
+```{r}
+#| eval: false
+# 차량 유형별로 분할
+ggplot(mpg, aes(x = displ, y = hwy)) + 
+  geom_point(aes(color = drv)) + 
+  facet_wrap(~ class, nrow = 2) +
+  labs(title = "차량 유형별 엔진 크기와 연비 관계")
+```
+
+- <i class="fas fa-th"></i> **1개 변수**로 패널 분할
+- <i class="fas fa-arrows-alt"></i> **nrow, ncol**로 배치 조정
+- <i class="fas fa-expand"></i> **공간 효율적**
+:::
+
+::: {.column width="50%"}
+**facet_grid(): 2차원 격자**
+
+```{r}
+#| eval: false
+# 구동방식 × 실린더 수로 분할
+ggplot(mpg, aes(x = displ, y = hwy)) + 
+  geom_point(aes(color = class)) + 
+  facet_grid(drv ~ cyl) +
+  labs(title = "구동방식별 × 실린더별 연비 분석")
+```
+
+- <i class="fas fa-th"></i> **2개 변수**로 격자 분할
+- <i class="fas fa-table"></i> **행 × 열** 구조
+- <i class="fas fa-balance-scale"></i> **비교 분석**에 적합
+:::
+:::
+
+#### 고급 Faceting 옵션
+```{r}
+#| eval: false
+# 자유로운 축 스케일과 공간 조정
+ggplot(mpg, aes(x = displ, y = hwy)) + 
+  geom_point(aes(color = drv)) + 
+  geom_smooth(method = "lm", se = FALSE) +
+  facet_wrap(~ class, scales = "free", nrow = 2) +
+  labs(title = "차량 유형별 연비 트렌드 (자유 축 스케일)")
+```
+
+**Faceting 옵션**
+
+- <i class="fas fa-unlock"></i> **scales = "free"**: <br/>각 패널마다 다른 축 범위
+- <i class="fas fa-arrows-alt-h"></i> **scales = "free_x"**: x축만 자유
+- <i class="fas fa-arrows-alt-v"></i> **scales = "free_y"**: y축만 자유
+- <i class="fas fa-tags"></i> **labeller**: <br/>패널 라벨 커스터마이징
+
+### 레이블링과 주석 완전 정복 {.smaller}
+
+#### labs() 함수 활용
+```{r}
+#| eval: false
+ggplot(mpg, aes(x = displ, y = hwy, color = drv)) + 
+  geom_point(size = 2, alpha = 0.7) +
+  labs(
+    title = "자동차 엔진 크기와 고속도로 연비의 관계",
+    subtitle = "구동 방식별 비교 분석 (1999-2008)",
+    caption = "데이터 출처: EPA fuel economy data",
+    x = "엔진 배기량 (리터)",
+    y = "고속도로 연비 (갤런당 마일)",
+    color = "구동 방식",
+    tag = "그림 1"
+  )
+```
+
+#### 텍스트 주석 추가
+```{r}
+#| eval: false
+# 특정 포인트에 주석 추가
+best_efficiency <- mpg %>% 
+  filter(hwy == max(hwy))
+
+ggplot(mpg, aes(x = displ, y = hwy)) + 
+  geom_point(alpha = 0.5) +
+  geom_point(data = best_efficiency, color = "red", size = 3) +
+  annotate("text", x = 2, y = 40, 
+           label = "최고 연비차량\n(44 MPG)", 
+           color = "red", fontface = "bold") +
+  annotate("arrow", x = 2, y = 38, xend = 1.6, yend = 44,
+           color = "red", arrow = arrow(length = unit(0.3, "cm")))
+```
+
+### 색상과 스케일 마스터하기 {.smaller}
+
+#### 색상 팔레트 선택
+::: {.columns}
+::: {.column width="50%"}
+**연속형 변수**
+
+```{r}
+#| eval: false
+# 그라데이션 색상
+ggplot(mpg, aes(x = displ, y = hwy, color = cty)) + 
+  geom_point(size = 3) +
+  scale_color_gradient(low = "blue", high = "red") +
+  labs(color = "도시 연비")
+
+# Viridis 색상 (색맹 친화적)
+ggplot(mpg, aes(x = displ, y = hwy, color = cty)) + 
+  geom_point(size = 3) +
+  scale_color_viridis_c() +
+  labs(color = "도시 연비")
+```
+:::
+
+::: {.column width="50%"}
+**범주형 변수**
+
+```{r}
+#| eval: false
+# ColorBrewer 팔레트
+ggplot(mpg, aes(x = displ, y = hwy, color = class)) + 
+  geom_point(size = 3) +
+  scale_color_brewer(type = "qual", palette = "Set1") +
+  labs(color = "차량 유형")
+
+# 수동 색상 지정
+ggplot(mpg, aes(x = displ, y = hwy, color = drv)) + 
+  geom_point(size = 3) +
+  scale_color_manual(values = c("4" = "#E31A1C", 
+                                "f" = "#1F78B4", 
+                                "r" = "#33A02C")) +
+  labs(color = "구동 방식")
+```
+:::
+:::
+
+### 테마 시스템 완전 정복 {.smaller}
+
+#### 내장 테마 활용
+```{r}
+#| eval: false
+# 다양한 내장 테마 비교
+p_base <- ggplot(mpg, aes(x = displ, y = hwy, color = class)) + 
+  geom_point(size = 2) +
+  labs(title = "테마별 스타일 비교")
+
+# 클래식 테마
+p_base + theme_classic()
+
+# 미니멀 테마  
+p_base + theme_minimal()
+
+# 흑백 테마
+p_base + theme_bw()
+
+# 어두운 테마
+p_base + theme_dark()
+```
+
+#### 커스텀 테마 만들기
+```{r}
+#| eval: false
+# 나만의 테마 정의
+my_theme <- theme_minimal() +
+  theme(
+    # 제목 스타일
+    plot.title = element_text(size = 18, face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(size = 14, hjust = 0.5, color = "gray50"),
+    
+    # 축 스타일
+    axis.title = element_text(size = 12, face = "bold"),
+    axis.text = element_text(size = 10),
+    
+    # 범례 스타일
+    legend.position = "bottom",
+    legend.title = element_text(size = 12, face = "bold"),
+    legend.text = element_text(size = 10),
+    
+    # 패널 스타일
+    panel.grid.major = element_line(color = "gray90", size = 0.5),
+    panel.grid.minor = element_blank(),
+    
+    # 배경 스타일
+    plot.background = element_rect(fill = "white", color = NA),
+    panel.background = element_rect(fill = "gray98", color = NA)
+  )
+
+# 테마 적용
+ggplot(mpg, aes(x = displ, y = hwy, color = class)) + 
+  geom_point(size = 2, alpha = 0.7) +
+  labs(title = "커스텀 테마 적용 예제",
+       subtitle = "깔끔하고 전문적인 스타일") +
+  my_theme
+```
+
+### 통계적 변환과 추세선 {.smaller}
+
+#### 다양한 추세선 옵션
+```{r}
+#| eval: false
+# 선형 회귀선
+ggplot(mpg, aes(x = displ, y = hwy)) + 
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm", se = TRUE, color = "red") +
+  labs(title = "선형 회귀 추세선")
+
+# 로우스(LOESS) 곡선
+ggplot(mpg, aes(x = displ, y = hwy)) + 
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "loess", se = TRUE, color = "blue") +
+  labs(title = "LOESS 평활 곡선")
+
+# 그룹별 추세선
+ggplot(mpg, aes(x = displ, y = hwy, color = drv)) + 
+  geom_point(alpha = 0.7) +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(title = "구동방식별 추세선 비교")
+```
+
+#### 통계 정보 표시
+```{r}
+#| eval: false
+# 상관계수 표시
+library(ggpubr)
+
+ggplot(mpg, aes(x = displ, y = hwy)) + 
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", color = "red") +
+  stat_cor(method = "pearson", label.x = 3, label.y = 40) +
+  labs(title = "상관계수가 표시된 산점도")
+```
+
+---
+
+## Part 4: 실무 활용 고급 기법 {.smaller}
+
+### 데이터 파이프라인과 시각화 {.smaller}
+
+#### dplyr + ggplot2 완벽 조합
+```{r}
+#| eval: false
+library(dplyr)
+library(forcats)  # 팩터 조작
+
+# 복잡한 데이터 전처리 + 시각화
+mpg %>%
+  # 1. 데이터 필터링
+  filter(year == 2008) %>%
+  # 2. 그룹별 요약
+  group_by(manufacturer, class) %>%
+  summarise(
+    avg_hwy = mean(hwy),
+    avg_cty = mean(cty),
+    count = n(),
+    .groups = "drop"
+  ) %>%
+  # 3. 5대 이상 생산한 제조사만
+  filter(count >= 5) %>%
+  # 4. 제조사명 정렬
+  mutate(manufacturer = fct_reorder(manufacturer, avg_hwy)) %>%
+  # 5. 시각화
+  ggplot(aes(x = manufacturer, y = avg_hwy, fill = class)) +
+  geom_col(position = "dodge", alpha = 0.8) +
+  coord_flip() +
+  scale_fill_brewer(type = "qual", palette = "Set3") +
+  labs(
+    title = "2008년 제조사별 평균 고속도로 연비",
+    subtitle = "차량 유형별 비교 (5대 이상 생산 제조사)",
+    x = "제조사", y = "평균 고속도로 연비 (MPG)",
+    fill = "차량 유형"
+  ) +
+  theme_minimal()
+```
+
+### 다중 플롯 조합 기법 {.smaller}
+
+#### patchwork 패키지 활용
+```{r}
+#| eval: false
+library(patchwork)
+
+# 개별 플롯 생성
+p1 <- ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point(aes(color = class), alpha = 0.7) +
+  labs(title = "A) 산점도") +
+  theme_minimal()
+
+p2 <- ggplot(mpg, aes(x = class, y = hwy)) +
+  geom_boxplot(aes(fill = class), alpha = 0.7) +
+  labs(title = "B) 박스플롯") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+p3 <- ggplot(mpg, aes(x = hwy)) +
+  geom_histogram(bins = 20, fill = "skyblue", alpha = 0.7) +
+  labs(title = "C) 히스토그램") +
+  theme_minimal()
+
+p4 <- mpg %>%
+  count(class) %>%
+  ggplot(aes(x = class, y = n)) +
+  geom_col(fill = "coral", alpha = 0.7) +
+  labs(title = "D) 막대그래프", y = "개수") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+# 플롯 조합
+(p1 + p2) / (p3 + p4) +
+  plot_annotation(
+    title = "자동차 연비 데이터 종합 분석",
+    subtitle = "다양한 시각화 기법을 통한 탐색적 데이터 분석",
+    caption = "데이터: mpg dataset"
+  )
+```
+
+### 인터랙티브 시각화 마스터하기 {.smaller}
+
+#### plotly 기본 활용
+```{r}
+#| eval: false
+library(plotly)
+
+# 기본 ggplot 생성
+p <- ggplot(mpg, aes(x = displ, y = hwy, color = class, 
+                     text = paste("제조사:", manufacturer,
+                                  "<br>모델:", model,
+                                  "<br>연비:", hwy, "MPG"))) +
+  geom_point(size = 2, alpha = 0.7) +
+  labs(title = "인터랙티브 산점도",
+       x = "엔진 배기량 (L)", y = "고속도로 연비 (MPG)")
+
+# 인터랙티브 변환
+ggplotly(p, tooltip = "text")
+```
+
+#### 고급 인터랙티브 기능
+```{r}
+#| eval: false
+# 애니메이션 효과
+library(gganimate)
+
+# 연도별 변화 애니메이션
+mpg_anim <- mpg %>%
+  ggplot(aes(x = displ, y = hwy, color = class)) +
+  geom_point(size = 3, alpha = 0.7) +
+  labs(title = "연도별 자동차 연비 변화: {closest_state}",
+       x = "엔진 배기량 (L)", y = "고속도로 연비 (MPG)") +
+  transition_states(year, transition_length = 1, state_length = 2) +
+  ease_aes('linear')
+
+# 애니메이션 렌더링
+animate(mpg_anim, width = 800, height = 600, fps = 10)
+```
+
+### 전문적인 출판 품질 그래프 {.smaller}
+
+#### 학술 논문용 그래프
+```{r}
+#| eval: false
+# 고해상도, 흑백 출판용 그래프
+publication_plot <- ggplot(mpg, aes(x = displ, y = hwy, shape = drv)) +
+  geom_point(size = 2, alpha = 0.8) +
+  geom_smooth(method = "lm", se = TRUE, color = "black", linetype = "dashed") +
+  scale_shape_manual(values = c(16, 17, 15),
+                     labels = c("4WD", "Front", "Rear")) +
+  labs(
+    title = "Relationship between Engine Displacement and Highway MPG",
+    x = "Engine Displacement (L)",
+    y = "Highway Fuel Economy (MPG)",
+    shape = "Drive Type"
+  ) +
+  theme_classic() +
+  theme(
+    plot.title = element_text(size = 14, face = "bold", hjust = 0.5),
+    axis.title = element_text(size = 12, face = "bold"),
+    axis.text = element_text(size = 10),
+    legend.title = element_text(size = 11, face = "bold"),
+    legend.text = element_text(size = 10),
+    legend.position = "bottom"
+  )
+
+# 고해상도 저장
+ggsave("publication_plot.png", publication_plot, 
+       width = 8, height = 6, dpi = 300, units = "in")
+```
+
+### 비즈니스 대시보드 스타일 {.smaller}
+
+#### KPI 대시보드 만들기
+```{r}
+#| eval: false
+# 핵심 지표 계산
+kpi_data <- mpg %>%
+  summarise(
+    total_cars = n(),
+    avg_hwy = round(mean(hwy), 1),
+    avg_cty = round(mean(cty), 1),
+    best_mpg = max(hwy),
+    worst_mpg = min(hwy)
+  )
+
+# KPI 카드 스타일 플롯
+create_kpi_card <- function(value, title, color) {
+  ggplot() +
+    geom_rect(aes(xmin = 0, xmax = 1, ymin = 0, ymax = 1), 
+              fill = color, alpha = 0.2) +
+    annotate("text", x = 0.5, y = 0.7, label = value, 
+             size = 20, fontface = "bold", color = color) +
+    annotate("text", x = 0.5, y = 0.3, label = title, 
+             size = 4, color = "black") +
+    theme_void() +
+    theme(plot.margin = margin(10, 10, 10, 10))
+}
+
+# KPI 카드들 생성
+kpi1 <- create_kpi_card(kpi_data$total_cars, "총 차량 수", "#3498db")
+kpi2 <- create_kpi_card(paste0(kpi_data$avg_hwy, " MPG"), "평균 고속도로 연비", "#e74c3c")
+kpi3 <- create_kpi_card(paste0(kpi_data$best_mpg, " MPG"), "최고 연비", "#2ecc71")
+kpi4 <- create_kpi_card(paste0(kpi_data$worst_mpg, " MPG"), "최저 연비", "#f39c12")
+
+# 대시보드 조합
+dashboard <- (kpi1 + kpi2 + kpi3 + kpi4) / 
+  (p1 + p2) +
+  plot_annotation(
+    title = "자동차 연비 분석 대시보드",
+    theme = theme(plot.title = element_text(size = 18, face = "bold", hjust = 0.5))
+  )
+
+dashboard
+```
+
+### 데이터 스토리텔링 기법 {.smaller}
+
+#### 단계별 스토리 구성
+```{r}
+#| eval: false
+# 1단계: 문제 제기
+story_1 <- ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point(alpha = 0.5, color = "gray") +
+  labs(title = "1. 엔진 크기가 클수록 연비가 나쁠까?",
+       subtitle = "전체 데이터 개관") +
+  theme_minimal()
+
+# 2단계: 패턴 발견
+story_2 <- ggplot(mpg, aes(x = displ, y = hwy, color = class)) +
+  geom_point(alpha = 0.7) +
+  geom_smooth(method = "lm", se = FALSE, color = "red") +
+  labs(title = "2. 전체적으로는 음의 상관관계",
+       subtitle = "하지만 차량 유형별로는 어떨까?") +
+  theme_minimal()
+
+# 3단계: 세부 분석
+story_3 <- ggplot(mpg, aes(x = displ, y = hwy, color = class)) +
+  geom_point(alpha = 0.7) +
+  geom_smooth(method = "lm", se = FALSE) +
+  facet_wrap(~class, scales = "free") +
+  labs(title = "3. 차량 유형별로 다른 패턴",
+       subtitle = "일부 유형에서는 양의 상관관계도 관찰") +
+  theme_minimal()
+
+# 4단계: 결론 및 인사이트
+story_4 <- mpg %>%
+  group_by(class) %>%
+  summarise(correlation = cor(displ, hwy)) %>%
+  ggplot(aes(x = reorder(class, correlation), y = correlation, 
+             fill = ifelse(correlation > 0, "positive", "negative"))) +
+  geom_col(alpha = 0.8) +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  coord_flip() +
+  scale_fill_manual(values = c("negative" = "#e74c3c", "positive" = "#2ecc71")) +
+  labs(title = "4. 결론: 차량 유형이 중요한 변수",
+       subtitle = "픽업트럭과 SUV는 오히려 양의 상관관계",
+       x = "차량 유형", y = "상관계수") +
+  theme_minimal() +
+  guides(fill = "none")
+
+# 스토리 조합
+(story_1 + story_2) / (story_3 + story_4) +
+  plot_annotation(
+    title = "데이터 스토리텔링: 엔진 크기와 연비의 관계",
+    caption = "데이터 기반 인사이트 도출 과정"
+  )
+```
+
+---
+
+## 시각화 베스트 프랙티스 {.smaller}
+
+### 효과적인 시각화를 위한 체크리스트
+::: {.incremental}
+- <i class="fas fa-bullseye"></i> **목적 명확성**: 무엇을 보여주고 싶은가?
+- <i class="fas fa-users"></i> **대상 고려**: 누가 볼 것인가?
+- <i class="fas fa-chart-bar"></i> **적절한 차트**: 데이터 유형에 맞는 시각화
+- <i class="fas fa-palette"></i> **색상 일관성**: 의미 있는 색상 사용
+- <i class="fas fa-text-height"></i> **가독성**: 충분한 크기의 텍스트
+- <i class="fas fa-balance-scale"></i> **비율 정확성**: 왜곡 없는 표현
+- <i class="fas fa-mobile-alt"></i> **반응형 디자인**: 다양한 화면 크기 고려
+:::
+
+### 피해야 할 시각화 실수들
+::: {.columns}
+::: {.column width="50%"}
+#### 디자인 실수
+- <i class="fas fa-times"></i> **3D 효과** 남용
+- <i class="fas fa-times"></i> **과도한 색상** 사용
+- <i class="fas fa-times"></i> **불필요한 장식** 요소
+- <i class="fas fa-times"></i> **읽기 어려운 폰트**
+- <i class="fas fa-times"></i> **범례 부족**
+:::
+
+::: {.column width="50%"}
+#### 데이터 실수
+- <i class="fas fa-times"></i> **y축 조작**으로 과장
+- <i class="fas fa-times"></i> **부적절한 차트** 선택
+- <i class="fas fa-times"></i> **맥락 정보** 누락
+- <i class="fas fa-times"></i> **데이터 출처** 미표기
+- <i class="fas fa-times"></i> **통계적 오해** 유발
+:::
+:::
+
+## 고급 시각화 생태계 {.smaller}
+
+### 확장 패키지 소개
+::: {.columns}
+::: {.column width="50%"}
+#### 특수 목적 시각화
+- <i class="fas fa-chart-network"></i> **네트워크**: <br/>`igraph`, `ggraph`
+- <i class="fas fa-map"></i> **지도**: <br/>`sf`, `leaflet`, `tmap`
+- <i class="fas fa-project-diagram"></i> **계층구조**: <br/>`treemap`, `sunburstR`
+- <i class="fas fa-dna"></i> **생물정보학**: <br/>`ggtree`, `ComplexHeatmap`
+- <i class="fas fa-chart-line"></i> **시계열**: <br/>`forecast`, `timetk`
+:::
+
+::: {.column width="50%"}
+#### 인터랙티브 & 웹
+- <i class="fas fa-mouse-pointer"></i> **인터랙티브**: <br/>`plotly`, `ggiraph`
+- <i class="fas fa-play"></i> **애니메이션**: <br/>`gganimate`, `tweenr`
+- <i class="fas fa-globe"></i> **웹 앱**: <br/>`shiny`, `flexdashboard`
+- <i class="fas fa-cube"></i> **3D 시각화**: <br/>`rayshader`, `rgl`
+- <i class="fas fa-table"></i> **테이블**: <br/>`gt`, `DT`, `reactable`
+:::
+:::
+
+### 미래의 시각화 트렌드
+::: {.incremental}
+- <i class="fas fa-robot"></i> **AI 기반 자동 시각화**: <br/>데이터에 맞는 차트 자동 추천
+- <i class="fas fa-vr-cardboard"></i> **VR/AR 시각화**: <br/>몰입형 데이터 탐색
+- <i class="fas fa-comments"></i> **자연어 쿼리**: <br/>"작년 매출 트렌드 보여줘"
+- <i class="fas fa-mobile-alt"></i> **모바일 우선**: <br/>터치 기반 인터랙션
+- <i class="fas fa-eye"></i> **실시간 대시보드**: <br/>스트리밍 데이터 시각화
+:::
+
+## 실무 적용 가이드 {.smaller}
+
+### 프로젝트 단계별 접근법
+::: {.columns}
+::: {.column width="50%"}
+#### 1. 탐색 단계 (EDA)
+- <i class="fas fa-search"></i> **빠른 프로토타이핑**
+- <i class="fas fa-chart-bar"></i> **기본 차트**로 패턴 파악
+- <i class="fas fa-filter"></i> **데이터 품질** 확인
+- <i class="fas fa-lightbulb"></i> **가설 생성**
+
+#### 2. 분석 단계
+- <i class="fas fa-microscope"></i> **정밀한 분석**
+- <i class="fas fa-chart-line"></i> **통계적 시각화**
+- <i class="fas fa-layer-group"></i> **다차원 분석**
+- <i class="fas fa-balance-scale"></i> **비교 분석**
+:::
+
+::: {.column width="50%"}
+#### 3. 소통 단계
+- <i class="fas fa-users"></i> **대상별 맞춤화**
+- <i class="fas fa-paint-brush"></i> **전문적 디자인**
+- <i class="fas fa-book"></i> **스토리텔링**
+- <i class="fas fa-mobile-alt"></i> **인터랙티브 요소**
+
+#### 4. 배포 단계
+- <i class="fas fa-file-export"></i> **다양한 형식** 출력
+- <i class="fas fa-globe"></i> **웹 배포**
+- <i class="fas fa-sync"></i> **자동 업데이트**
+- <i class="fas fa-chart-pie"></i> **대시보드 구축**
+:::
+:::
+
+### 팀 내 시각화 문화 구축
+::: {.incremental}
+- <i class="fas fa-book-open"></i> **스타일 가이드** 수립
+- <i class="fas fa-code"></i> **코드 템플릿** 공유
+- <i class="fas fa-graduation-cap"></i> **정기 교육** 실시
+- <i class="fas fa-comments"></i> **피드백 문화** 조성
+- <i class="fas fa-trophy"></i> **우수 사례** 공유
+:::
+
+## 학습 로드맵 {.smaller}
+
+### 초급자를 위한 단계별 학습
+::: {.columns}
+::: {.column width="50%"}
+#### 1-2주차: 기초 다지기
+- <i class="fas fa-download"></i> R & RStudio 설치
+- <i class="fas fa-book"></i> ggplot2 문법 이해
+- <i class="fas fa-chart-bar"></i> 기본 차트 만들기
+- <i class="fas fa-palette"></i> 색상과 테마 적용
+
+#### 3-4주차: 중급 기능
+- <i class="fas fa-th"></i> Faceting 활용
+- <i class="fas fa-chart-line"></i> 통계 레이어 추가
+- <i class="fas fa-text-height"></i> 레이블링 마스터
+- <i class="fas fa-layer-group"></i> 다중 플롯 조합
+:::
+
+::: {.column width="50%"}
+#### 5-6주차: 고급 활용
+- <i class="fas fa-mouse-pointer"></i> 인터랙티브 시각화
+- <i class="fas fa-paint-brush"></i> 커스텀 테마 제작
+- <i class="fas fa-globe"></i> 웹 배포
+- <i class="fas fa-project-diagram"></i> 대시보드 구축
+
+#### 7-8주차: 실무 프로젝트
+- <i class="fas fa-briefcase"></i> 실제 데이터 분석
+- <i class="fas fa-presentation"></i> 발표 자료 제작
+- <i class="fas fa-users"></i> 팀 프로젝트 수행
+- <i class="fas fa-trophy"></i> 포트폴리오 구축
+:::
+:::
+
+## 마무리 및 핵심 메시지 {.smaller}
+
+### 오늘 배운 핵심 내용
+::: {.incremental}
+- <i class="fas fa-book"></i> **Grammar of Graphics**: 체계적인 시각화 문법
+- <i class="fas fa-layer-group"></i> **레이어 시스템**: 단계별 그래프 구성
+- <i class="fas fa-palette"></i> **미학 매핑**: 데이터를 시각적 속성으로 변환
+- <i class="fas fa-tools"></i> **실무 기법**: 전처리부터 발표까지
+- <i class="fas fa-rocket"></i> **고급 활용**: 인터랙티브 & 스토리텔링
+:::
+
+### 성공적인 데이터 시각화를 위한 마음가짐
+::: {.columns}
+::: {.column width="50%"}
+- <i class="fas fa-heart"></i> **사용자 중심** 사고
+- <i class="fas fa-search"></i> **끊임없는 탐구**
+- <i class="fas fa-balance-scale"></i> **정확성과 미학**의 균형
+- <i class="fas fa-graduation-cap"></i> **지속적인 학습**
+:::
+
+::: {.column width="50%"}
+- <i class="fas fa-comments"></i> **피드백 수용**
+- <i class="fas fa-lightbulb"></i> **창의적 접근**
+- <i class="fas fa-handshake"></i> **협업 정신**
+- <i class="fas fa-trophy"></i> **품질에 대한 열정**
+:::
+:::
+
+## 추가 학습 리소스 {.smaller}
+
+### 필수 도서 및 자료
+::: {.columns}
+::: {.column width="50%"}
+#### 📚 추천 도서
+- **"R for Data Science"** - Hadley Wickham
+- **"ggplot2: Elegant Graphics"** - Hadley Wickham
+- **"Fundamentals of Data Visualization"** - Claus O. Wilke
+- **"The Grammar of Graphics"** - Leland Wilkinson
+:::
+
+::: {.column width="50%"}
+#### 🌐 온라인 리소스
+- [**R4DS Online**](https://r4ds.had.co.nz/)
+- [**ggplot2 Reference**](https://ggplot2.tidyverse.org/)
+- [**R Graph Gallery**](https://www.r-graph-gallery.com/)
+- [**Posit Recipes**](https://posit.co/resources/)
+:::
+:::
+
+### 커뮤니티 및 지원
+- <i class="fab fa-r-project"></i> **한국 R 사용자회**: [r-korea.github.io](https://r-korea.github.io/)
+- <i class="fab fa-stack-overflow"></i> **Stack Overflow**: R 관련 질문
+- <i class="fab fa-github"></i> **GitHub**: 오픈소스 프로젝트 참여
+- <i class="fab fa-twitter"></i> **#rstats**: 트위터 커뮤니티
+
+## Q & A 세션 {.smaller}
+
+**자주 묻는 질문들:**
+
+::: {.incremental}
+- <i class="fas fa-question-circle"></i> **Q1**: "ggplot2가 다른 시각화 도구보다 어려운 이유는?"
+- <i class="fas fa-question-circle"></i> **Q2**: "실무에서 가장 많이 사용하는 차트 유형은?"
+- <i class="fas fa-question-circle"></i> **Q3**: "색상 선택에 대한 가이드라인이 있나요?"
+- <i class="fas fa-question-circle"></i> **Q4**: "대용량 데이터 시각화 시 주의사항은?"
+- <i class="fas fa-question-circle"></i> **Q5**: "인터랙티브 시각화의 성능 최적화 방법은?"
+:::
+
+**💡 언제든지 질문해 주세요!**
+
+---
+
+## 감사합니다! {.center}
+
+### <i class="fas fa-phone"></i> 연락처 {.smaller}
+
+- <i class="fas fa-envelope"></i> **Email**: euriion@gmail.com
+
+---
+
+### <i class="fas fa-check-circle"></i> 다음 단계 {.smaller}
+
+- <i class="fas fa-code"></i> **실습 프로젝트** 시작하기
+- <i class="fas fa-users"></i> **커뮤니티** 참여하기
+- <i class="fas fa-book"></i> **심화 학습** 계속하기
+- <i class="fas fa-share"></i> **지식 공유**하기
+
+---
+
+### <i class="fas fa-star"></i> 마지막 메시지
+
+> **"데이터 시각화는 단순히 그래프를 그리는 것이 아닙니다.  
+> 데이터 속에 숨겨진 이야기를 발견하고,  
+> 그 이야기를 다른 사람들과 공유하는 것입니다."**
+
+**Happy Visualizing!** <i class="fas fa-chart-bar"></i><i class="fas fa-star"></i> 

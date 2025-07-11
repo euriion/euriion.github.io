@@ -1,0 +1,364 @@
+---
+title: "한국어 임베딩과 R언어"
+subtitle: "자연어처리의 새로운 패러다임"
+author: "홍성학"
+date: "2022년 9월 24일"
+output: 
+  ioslides_presentation:
+    css: custom-ioslides.css
+    widescreen: true
+    smaller: true
+    incremental: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+## 한국어 임베딩과 R언어
+
+<div class="center">
+**자연어처리의 새로운 패러다임**
+
+과거의 한국어 자연어처리 한계를 극복하고  
+워드임베딩을 중심으로 한 현대적 접근법과  
+R에서 활용 가능한 도구들을 소개합니다
+</div>
+
+## 목차
+
+1. **한국어 자연어처리의 역사와 한계**
+2. **워드임베딩: 새로운 패러다임**
+3. **주요 임베딩 기법들**
+4. **R에서의 구현과 활용**
+5. **실제 응용 사례**
+6. **미래 전망**
+
+## 한국어 자연어처리의 과거 문제점
+
+### 3가지 주요 장벽
+
+1. **<span class="important">글자 인코딩 문제</span>**
+   - EUC-KR, CP949 등 다양한 인코딩
+   - 문자 깨짐 현상 (mojibake)
+
+2. **<span class="important">언어 구조적 특성</span>**
+   - 교착어적 특성 (조사, 어미 변화)
+   - 복잡한 형태소 구조
+
+3. **<span class="important">리소스 부족</span>**
+   - 말뭉치 데이터 부족
+   - 연구 지원 및 도구 부족
+
+## 현재 상황: 개선과 과제
+
+### ✅ 해결된 문제들
+- **인코딩 문제**: UTF-8 표준화로 해결
+- **도구 발전**: 다양한 형태소 분석기 등장
+
+### ⚠️ 여전한 과제들
+- **언어 구조적 복잡성**: 여전히 어려움
+- **리소스 격차**: 영어권 대비 부족
+- **도메인별 특화**: 분야별 맞춤형 도구 부족
+
+## 한국어 형태소 분석기 생태계
+
+### 주요 도구들
+
+- **<span class="highlight">은전한닢(MeCab)</span>**: 일본어 기반, 한국어 적용
+- **<span class="highlight">노리(Nori)</span>**: Elasticsearch 내장
+- **<span class="highlight">꼬꼬마(Kkma)</span>**: 서울대 개발
+- **<span class="highlight">한나눔(Hannanum)</span>**: KAIST 개발
+- **<span class="highlight">OKT</span>**: 오픈소스 한국어 처리기
+- **<span class="highlight">Soynlp</span>**: 비지도 학습 기반
+
+### 기술적 접근
+- **기계학습 기반**: HMM, CRF 모델 활용
+- **말뭉치**: 21세기 세종계획 + 추가 데이터
+
+## 전통적 텍스트 처리 방법
+
+### TF-IDF (Term Frequency-Inverse Document Frequency)
+
+**장점**
+- 정보 검색에 적합
+- 구현이 간단
+- 해석이 용이
+
+**단점**
+- 단어 순서 무시 (Bag of Words)
+- 의미적 유사성 파악 어려움
+- 희소 벡터 (Sparse Vector)
+
+## R에서 TF-IDF 구현
+
+### tidytext 패키지 활용
+
+```r
+library(dplyr)
+library(tidytext)
+
+# 문서별 단어 빈도 계산
+book_words <- documents %>%
+  unnest_tokens(word, text) %>%
+  count(document, word, sort = TRUE)
+
+# TF-IDF 계산
+book_tfidf <- book_words %>%
+  bind_tf_idf(word, document, n) %>%
+  arrange(desc(tf_idf))
+```
+
+## 워드임베딩: 패러다임의 전환
+
+### 기존 방식의 한계
+- **희소 표현**: 대부분 0인 고차원 벡터
+- **의미 부재**: 단어 간 의미적 관계 파악 불가
+- **문맥 무시**: 주변 단어 정보 활용 불가
+
+### 워드임베딩의 혁신
+- **밀집 표현**: 낮은 차원의 실수 벡터
+- **의미 보존**: 유사한 의미의 단어는 유사한 벡터
+- **문맥 활용**: 주변 단어를 고려한 학습
+
+## 주요 워드임베딩 기법들
+
+### 1세대: 정적 임베딩
+- **<span class="highlight">Word2Vec</span>** (2013, Google)
+- **<span class="highlight">GloVe</span>** (2014, Stanford)
+- **<span class="highlight">FastText</span>** (2016, Facebook)
+
+### 2세대: 문맥적 임베딩
+- **<span class="highlight">ELMo</span>** (2018, AllenNLP)
+- **<span class="highlight">BERT</span>** (2018, Google)
+- **<span class="highlight">GPT</span>** (2018, OpenAI)
+
+## Word2Vec: 신경망 기반 임베딩
+
+### 두 가지 아키텍처
+
+**CBOW (Continuous Bag of Words)**
+- 주변 단어로 중심 단어 예측
+- 작은 데이터셋에 적합
+
+**Skip-gram**
+- 중심 단어로 주변 단어 예측
+- 큰 데이터셋에 적합
+
+## R에서 Word2Vec 구현
+
+### wordVectors 패키지
+
+```r
+library(wordVectors)
+
+# 모델 훈련
+model <- train_word2vec(
+  train_file = "corpus.txt",
+  output_file = "word2vec_model.bin",
+  vectors = 100,        # 벡터 차원
+  threads = 4,          # 스레드 수
+  window = 5,           # 윈도우 크기
+  iter = 5              # 반복 횟수
+)
+
+# 모델 로드 및 유사 단어 검색
+model <- read.binary.vectors("word2vec_model.bin")
+similar_words <- nearest_to(model, model[["마케팅"]], 10)
+```
+
+## FastText: 서브워드 임베딩
+
+### 혁신적 특징
+- **서브워드 활용**: 단어 내부 구조 고려
+- **OOV 문제 해결**: 미등록 단어 처리 가능
+- **언어 독립적**: 다양한 언어에 적용 가능
+- **빠른 속도**: GPU 없이도 고속 처리
+
+### 한국어 처리 장점
+- 복합어 처리 우수
+- 신조어 대응 가능
+- 형태소 변화 고려
+
+## BERT: 트랜스포머 기반 임베딩
+
+### 핵심 혁신
+- **양방향 인코딩**: 좌우 문맥 모두 고려
+- **트랜스포머 아키텍처**: 어텐션 메커니즘 활용
+- **사전 훈련**: 대량 데이터로 사전 학습
+- **파인튜닝**: 특정 작업에 맞춤 조정
+
+### 구성 요소
+- **토큰 임베딩**: WordPiece 기반
+- **세그먼트 임베딩**: 문장 구분
+- **위치 임베딩**: 순서 정보
+
+## 워드임베딩 활용 분야
+
+### 1. 의미적 검색 (Semantic Search)
+- 키워드 매칭 → 의미 매칭
+- 유사 문서 검색
+- 추천 시스템
+
+### 2. 문서 분류 (Document Classification)
+- 감성 분석
+- 주제 분류
+- 스팸 필터링
+
+### 3. 기계 번역 (Machine Translation)
+- 신경망 기계 번역
+- 다국어 임베딩
+
+## 실제 응용 사례
+
+### 1. 워드클라우드 개선
+- 의미적 그룹화
+- 동의어 통합
+- 더 정확한 키워드 추출
+
+### 2. 감성 분석
+- 문맥 고려한 감성 판단
+- 미묘한 감정 변화 포착
+- 도메인 특화 감성 분석
+
+### 3. 문서 요약
+- 핵심 문장 추출
+- 의미 보존 요약
+- 추상적 요약 생성
+
+## R 워드임베딩 패키지 생태계
+
+### 주요 패키지들
+
+| 패키지 | 기능 | 특징 |
+|--------|------|------|
+| `wordVectors` | Word2Vec | 간단한 인터페이스 |
+| `text2vec` | GloVe, LSA | 고성능, 메모리 효율 |
+| `fastText` | FastText | 서브워드 지원 |
+| `keras`/`tensorflow` | BERT, GPT | 딥러닝 모델 |
+| `tidytext` | 텍스트 마이닝 | tidyverse 연동 |
+
+## 실습: 한국어 Word2Vec
+
+### 1. 데이터 준비
+
+```r
+library(wordVectors)
+library(dplyr)
+
+# 한국어 텍스트 데이터 로드
+korean_text <- readLines("korean_corpus.txt", encoding = "UTF-8")
+
+# 전처리
+clean_text <- korean_text %>%
+  # 특수문자 제거
+  gsub("[^가-힣a-zA-Z0-9\\s]", "", .) %>%
+  # 다중 공백 제거
+  gsub("\\s+", " ", .) %>%
+  # 앞뒤 공백 제거
+  trimws()
+
+# 파일로 저장
+writeLines(clean_text, "preprocessed_corpus.txt")
+```
+
+## 실습: 모델 훈련
+
+### 2. Word2Vec 모델 훈련
+
+```r
+# 모델 훈련
+model <- train_word2vec(
+  train_file = "preprocessed_corpus.txt",
+  output_file = "korean_word2vec.bin",
+  vectors = 200,      # 임베딩 차원
+  threads = 4,        # 병렬 처리
+  window = 5,         # 윈도우 크기
+  iter = 5,           # 반복 횟수
+  min_count = 10,     # 최소 빈도
+  cbow = 0            # Skip-gram 사용
+)
+
+# 모델 로드
+model <- read.binary.vectors("korean_word2vec.bin")
+```
+
+## 한국어 처리 특화 전략
+
+### 1. 형태소 분석 연계
+```r
+library(RcppMeCab)
+
+# 형태소 분석 후 임베딩
+morphs <- pos(text, format = "data.frame")
+noun_text <- morphs %>%
+  filter(pos %in% c("NNG", "NNP")) %>%
+  pull(token) %>%
+  paste(collapse = " ")
+```
+
+### 2. 서브워드 활용
+```r
+# FastText로 OOV 문제 해결
+fasttext_model <- fasttext_interface(
+  list(command = 'skipgram', 
+       wordNgrams = 2,  # 서브워드 활용
+       bucket = 2000000)
+)
+```
+
+## 최신 동향과 미래
+
+### 현재 트렌드
+- **대규모 언어 모델**: GPT, BERT 계열
+- **다국어 모델**: mBERT, XLM-R
+- **효율적 모델**: DistilBERT, ALBERT
+
+### 한국어 특화 모델
+- **KoBERT**: SKT 개발
+- **KoGPT**: 카카오브레인 개발
+- **HanBERT**: 한국전자통신연구원
+
+### 미래 전망
+- **더 큰 모델**: 파라미터 수 증가
+- **멀티모달**: 텍스트 + 이미지
+- **실시간 처리**: 엣지 컴퓨팅
+
+## R 사용자를 위한 권장사항
+
+### 1. 단계별 접근
+1. **기초**: TF-IDF, Word2Vec
+2. **중급**: GloVe, FastText
+3. **고급**: BERT, GPT
+
+### 2. 도구 선택 기준
+- **데이터 크기**: 작은 데이터 → Word2Vec
+- **OOV 문제**: 있음 → FastText
+- **최고 성능**: 필요 → BERT
+
+### 3. 실용적 조언
+- **Python 연동**: `reticulate` 패키지 활용
+- **클라우드 활용**: 대용량 처리
+- **사전 훈련 모델**: 시간 절약
+
+## 결론
+
+### 핵심 메시지
+1. **패러다임 전환**: TF-IDF → 워드임베딩
+2. **의미 중심**: 형태적 → 의미적 유사성
+3. **실용적 접근**: 문제에 맞는 도구 선택
+4. **지속적 발전**: 새로운 기법 학습
+
+### R 사용자 관점
+- **강력한 도구**: 다양한 패키지 활용
+- **Python 연동**: 최신 기법 접근
+- **실무 적용**: 비즈니스 가치 창출
+
+## 질문과 답변
+
+<div class="center">
+**감사합니다!**
+
+더 궁금한 점이 있으시면  
+언제든지 질문해 주세요
+</div> 

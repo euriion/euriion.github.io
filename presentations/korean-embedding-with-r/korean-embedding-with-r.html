@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="홍성학" />
+  <title>한국어 임베딩과 R언어</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="korean-embedding-with-r_files/reveal.js-4.2.1/dist/reset.css">
+  <link rel="stylesheet" href="korean-embedding-with-r_files/reveal.js-4.2.1/dist/reveal.css">
+
+  <style type="text/css">
+    /* CSS from pandoc style.html() */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+            pre > code.sourceCode { white-space: pre; position: relative; }
+            pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+            pre > code.sourceCode > span:empty { height: 1.2em; }
+            code.sourceCode > span { color: inherit; text-decoration: inherit; }
+            div.sourceCode { margin: 1em 0; }
+            pre.sourceCode { margin: 0; }
+            @media screen {
+            div.sourceCode { overflow: auto; }
+            }
+            @media print {
+            pre > code.sourceCode { white-space: pre-wrap; }
+            pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+            }
+            pre.numberSource code
+              { counter-reset: source-line 0; }
+            pre.numberSource code > span
+              { position: relative; left: -4em; counter-increment: source-line; }
+            pre.numberSource code > span > a:first-child::before
+              { content: counter(source-line);
+                position: relative; left: -1em; text-align: right; vertical-align: baseline;
+                border: none; display: inline-block;
+                -webkit-touch-callout: none; -webkit-user-select: none;
+                -khtml-user-select: none; -moz-user-select: none;
+                -ms-user-select: none; user-select: none;
+                padding: 0 4px; width: 4em;
+                color: #aaaaaa;
+              }
+            pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+            div.sourceCode
+              {   }
+            @media screen {
+            pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+            }
+            code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+            code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+            code span.at { color: #7d9029; } /* Attribute */
+            code span.bn { color: #40a070; } /* BaseN */
+            code span.bu { } /* BuiltIn */
+            code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+            code span.ch { color: #4070a0; } /* Char */
+            code span.cn { color: #880000; } /* Constant */
+            code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+            code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+            code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+            code span.dt { color: #902000; } /* DataType */
+            code span.dv { color: #40a070; } /* DecVal */
+            code span.er { color: #ff0000; font-weight: bold; } /* Error */
+            code span.ex { } /* Extension */
+            code span.fl { color: #40a070; } /* Float */
+            code span.fu { color: #06287e; } /* Function */
+            code span.im { } /* Import */
+            code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+            code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+            code span.op { color: #666666; } /* Operator */
+            code span.ot { color: #007020; } /* Other */
+            code span.pp { color: #bc7a00; } /* Preprocessor */
+            code span.sc { color: #4070a0; } /* SpecialChar */
+            code span.ss { color: #bb6688; } /* SpecialString */
+            code span.st { color: #4070a0; } /* String */
+            code span.va { color: #19177c; } /* Variable */
+            code span.vs { color: #4070a0; } /* VerbatimString */
+            code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+              </style>
+
+  <link rel="stylesheet" href="korean-embedding-with-r_files/reveal.js-4.2.1/dist/theme/night.css" id="theme">
+
+
+  <style type="text/css">
+  /* some tweaks to reveal css */
+    .reveal section img {
+      background: rgba(255, 255, 255, 0.85);
+    }
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+  </style>
+
+    <link rel="stylesheet" href="custom.css"/>
+    <script src="korean-embedding-with-r_files/header-attrs-2.29/header-attrs.js"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">한국어 임베딩과 R언어</h1>
+  <h1 class="subtitle">자연어처리의 새로운 패러다임</h1>
+  <h2 class="author">홍성학</h2>
+  <h3 class="date">2022년 9월 24일</h3>
+</section>
+
+<section>
+<section id="한국어-임베딩과-r언어" class="title-slide slide level1">
+<h1>한국어 임베딩과 R언어</h1>
+<div class="center">
+<p><strong>자연어처리의 새로운 패러다임</strong></p>
+<p>과거의 한국어 자연어처리 한계를 극복하고<br />
+워드임베딩을 중심으로 한 현대적 접근법과<br />
+R에서 활용 가능한 도구들을 소개합니다</p>
+</div>
+</section>
+<section id="목차" class="slide level2 center">
+<h2 class="center">목차</h2>
+<ol type="1">
+<li><strong>한국어 자연어처리의 역사와 한계</strong></li>
+<li><strong>워드임베딩: 새로운 패러다임</strong></li>
+<li><strong>주요 임베딩 기법들</strong></li>
+<li><strong>R에서의 구현과 활용</strong></li>
+<li><strong>실제 응용 사례</strong></li>
+<li><strong>미래 전망</strong></li>
+</ol>
+</section>
+<section id="한국어-자연어처리의-과거-문제점" class="slide level2">
+<h2>한국어 자연어처리의 과거 문제점</h2>
+<h3 id="가지-주요-장벽">3가지 주요 장벽</h3>
+<ol type="1">
+<li><strong><span class="important">글자 인코딩 문제</span></strong>
+<ul>
+<li>EUC-KR, CP949 등 다양한 인코딩</li>
+<li>문자 깨짐 현상 (mojibake)</li>
+</ul></li>
+<li><strong><span class="important">언어 구조적 특성</span></strong>
+<ul>
+<li>교착어적 특성 (조사, 어미 변화)</li>
+<li>복잡한 형태소 구조</li>
+</ul></li>
+<li><strong><span class="important">리소스 부족</span></strong>
+<ul>
+<li>말뭉치 데이터 부족</li>
+<li>연구 지원 및 도구 부족</li>
+</ul></li>
+</ol>
+</section>
+<section id="문자-인코딩-문제-예시" class="slide level2">
+<h2>문자 인코딩 문제 예시</h2>
+<div class="center">
+<p><img src="mojibake.png" style="max-width: 80%; height: auto;"></p>
+</div>
+<div class="center small">
+<p>과거 웹사이트에서 흔히 볼 수 있었던 한글 깨짐 현상</p>
+</div>
+</section>
+<section id="현재-상황-개선과-과제" class="slide level2">
+<h2>현재 상황: 개선과 과제</h2>
+<h3 id="해결된-문제들">✅ 해결된 문제들</h3>
+<ul>
+<li><strong>인코딩 문제</strong>: UTF-8 표준화로 해결</li>
+<li><strong>도구 발전</strong>: 다양한 형태소 분석기 등장</li>
+</ul>
+<h3 id="여전한-과제들">⚠️ 여전한 과제들</h3>
+<ul>
+<li><strong>언어 구조적 복잡성</strong>: 여전히 어려움</li>
+<li><strong>리소스 격차</strong>: 영어권 대비 부족</li>
+<li><strong>도메인별 특화</strong>: 분야별 맞춤형 도구 부족</li>
+</ul>
+</section>
+<section id="한국어-형태소-분석기-생태계" class="slide level2">
+<h2>한국어 형태소 분석기 생태계</h2>
+<h3 id="주요-도구들">주요 도구들</h3>
+<ul>
+<li><strong><span class="highlight">은전한닢(MeCab)</span></strong>: 일본어 기반, 한국어 적용</li>
+<li><strong><span class="highlight">노리(Nori)</span></strong>: Elasticsearch 내장</li>
+<li><strong><span class="highlight">꼬꼬마(Kkma)</span></strong>: 서울대 개발</li>
+<li><strong><span class="highlight">한나눔(Hannanum)</span></strong>: KAIST 개발</li>
+<li><strong><span class="highlight">OKT</span></strong>: 오픈소스 한국어 처리기</li>
+<li><strong><span class="highlight">Soynlp</span></strong>: 비지도 학습 기반</li>
+<li><strong><span class="highlight">SentencePiece</span></strong>: 구글 개발</li>
+</ul>
+<h3 id="기술적-접근">기술적 접근</h3>
+<ul>
+<li><strong>기계학습 기반</strong>: HMM, CRF 모델 활용</li>
+<li><strong>말뭉치</strong>: 21세기 세종계획 + 추가 데이터</li>
+</ul>
+</section>
+<section id="형태소-분석-과정" class="slide level2">
+<h2>형태소 분석 과정</h2>
+<div class="center">
+<p><img src="morphs_analysis.png" style="max-width: 80%; height: auto;"></p>
+</div>
+<div class="center small">
+<p>한국어 문장의 형태소 분석 과정 예시</p>
+</div>
+</section>
+<section id="구문-분석과-개체명-인식" class="slide level2">
+<h2>구문 분석과 개체명 인식</h2>
+<h3 id="구문-분석기-syntactic-parser">구문 분석기 (Syntactic Parser)</h3>
+<ul>
+<li>문장을 <strong>트리 구조</strong>로 분석</li>
+<li>주어, 목적어, 서술어 관계 파악</li>
+<li>예: “아버지가 식사를 하신다”
+<ul>
+<li>주어: “아버지가”</li>
+<li>목적어: “식사를”</li>
+<li>서술어: “하신다”</li>
+</ul></li>
+</ul>
+<h3 id="개체명-인식-ner">개체명 인식 (NER)</h3>
+<ul>
+<li>인명, 지명, 기관명, 제품명 등 추출</li>
+<li>정보 추출의 핵심 기술</li>
+</ul>
+</section>
+<section id="한국어-처리의-고유-난제" class="slide level2">
+<h2>한국어 처리의 고유 난제</h2>
+<h3 id="띄어쓰기-문제">1. 띄어쓰기 문제</h3>
+<p><strong>분리는 가능하지만 결합은 어려움</strong></p>
+<pre><code>아버지가방에들어가신다 → 아버지가 방에 들어가신다 ✓
+아버지 가방을 고쳐드렸다 → 아버지가방을 고쳐드렸다 ✗</code></pre>
+<h3 id="복합명사-처리">2. 복합명사 처리</h3>
+<p><strong>문장 형태의 개체명</strong> - “이상한 변호사 우영우” - “오징어게임”<br />
+- “카라마조프가의 형제들”</p>
+</section>
+<section id="전통적-텍스트-처리-방법" class="slide level2">
+<h2>전통적 텍스트 처리 방법</h2>
+<h3 id="tf-idf-term-frequency-inverse-document-frequency">TF-IDF (Term Frequency-Inverse Document Frequency)</h3>
+<p><strong>장점</strong> - 정보 검색에 적합 - 구현이 간단 - 해석이 용이</p>
+<p><strong>단점</strong> - 단어 순서 무시 (Bag of Words) - 의미적 유사성 파악 어려움 - 희소 벡터 (Sparse Vector)</p>
+</section>
+<section id="tf-idf-시각화" class="slide level2">
+<h2>TF-IDF 시각화</h2>
+<div class="center">
+<p><img src="tfidf_sketch.png" style="max-width: 80%; height: auto;"></p>
+</div>
+<div class="center small">
+<p>TF-IDF 계산 과정과 벡터 표현</p>
+</div>
+</section>
+<section id="r에서-tf-idf-구현" class="slide level2">
+<h2>R에서 TF-IDF 구현</h2>
+<h3 id="tidytext-패키지-활용">tidytext 패키지 활용</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="kw">library</span>(tidytext)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="co"># 문서별 단어 빈도 계산</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>book_words &lt;-<span class="st"> </span>documents <span class="op">%&gt;%</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">unnest_tokens</span>(word, text) <span class="op">%&gt;%</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="st">  </span><span class="kw">count</span>(document, word, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a><span class="co"># TF-IDF 계산</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a>book_tfidf &lt;-<span class="st"> </span>book_words <span class="op">%&gt;%</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a><span class="st">  </span><span class="kw">bind_tf_idf</span>(word, document, n) <span class="op">%&gt;%</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(tf_idf))</span></code></pre></div>
+<h3 id="superml-패키지-활용">superml 패키지 활용</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">library</span>(superml)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="co"># TF-IDF 벡터화</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>tfv &lt;-<span class="st"> </span>TfIdfVectorizer<span class="op">$</span><span class="kw">new</span>(<span class="dt">max_features =</span> <span class="dv">1000</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>tf_matrix &lt;-<span class="st"> </span>tfv<span class="op">$</span><span class="kw">fit_transform</span>(documents)</span></code></pre></div>
+</section></section>
+<section>
+<section id="워드임베딩-패러다임의-전환" class="title-slide slide level1">
+<h1>워드임베딩: 패러다임의 전환</h1>
+
+</section>
+<section id="워드임베딩-패러다임의-전환-1" class="slide level2">
+<h2>워드임베딩: 패러다임의 전환</h2>
+<h3 id="기존-방식의-한계">기존 방식의 한계</h3>
+<ul>
+<li><strong>희소 표현</strong>: 대부분 0인 고차원 벡터</li>
+<li><strong>의미 부재</strong>: 단어 간 의미적 관계 파악 불가</li>
+<li><strong>문맥 무시</strong>: 주변 단어 정보 활용 불가</li>
+</ul>
+<h3 id="워드임베딩의-혁신">워드임베딩의 혁신</h3>
+<ul>
+<li><strong>밀집 표현</strong>: 낮은 차원의 실수 벡터</li>
+<li><strong>의미 보존</strong>: 유사한 의미의 단어는 유사한 벡터</li>
+<li><strong>문맥 활용</strong>: 주변 단어를 고려한 학습</li>
+</ul>
+</section>
+<section id="워드임베딩-개념도" class="slide level2">
+<h2>워드임베딩 개념도</h2>
+<div class="center">
+<p><img src="wordembedding.png" style="max-width: 80%; height: auto;"></p>
+</div>
+<div class="center small">
+<p>단어를 고차원 벡터 공간에 매핑하는 워드임베딩</p>
+</div>
+</section>
+<section id="워드임베딩의-장단점" class="slide level2">
+<h2>워드임베딩의 장단점</h2>
+<h3 id="장점">✅ 장점</h3>
+<ul>
+<li><strong>높은 성능</strong>: 대량 데이터로 우수한 결과</li>
+<li><strong>의미적 유사성</strong>: 형태적 매치 → 의미적 매치</li>
+<li><strong>자동화</strong>: 인간의 개입 최소화</li>
+<li><strong>전이학습</strong>: 사전 훈련 모델 활용 가능</li>
+</ul>
+<h3 id="단점">⚠️ 단점</h3>
+<ul>
+<li><strong>계산 비용</strong>: 많은 GPU 자원 필요</li>
+<li><strong>데이터 의존성</strong>: 대량의 학습 데이터 필요</li>
+<li><strong>블랙박스</strong>: 해석이 어려움</li>
+<li><strong>예측 불가능성</strong>: 예상 밖의 결과</li>
+</ul>
+</section>
+<section id="주요-워드임베딩-기법들" class="slide level2">
+<h2>주요 워드임베딩 기법들</h2>
+<h3 id="세대-정적-임베딩">1세대: 정적 임베딩</h3>
+<ul>
+<li><strong><span class="highlight">Word2Vec</span></strong> (2013, Google)</li>
+<li><strong><span class="highlight">GloVe</span></strong> (2014, Stanford)</li>
+<li><strong><span class="highlight">FastText</span></strong> (2016, Facebook)</li>
+</ul>
+<h3 id="세대-문맥적-임베딩">2세대: 문맥적 임베딩</h3>
+<ul>
+<li><strong><span class="highlight">ELMo</span></strong> (2018, AllenNLP)</li>
+<li><strong><span class="highlight">BERT</span></strong> (2018, Google)</li>
+<li><strong><span class="highlight">GPT</span></strong> (2018, OpenAI)</li>
+</ul>
+</section></section>
+<section>
+<section id="주요-임베딩-기법들" class="title-slide slide level1">
+<h1>주요 임베딩 기법들</h1>
+
+</section>
+<section id="word2vec-신경망-기반-임베딩" class="slide level2">
+<h2>Word2Vec: 신경망 기반 임베딩</h2>
+<h3 id="두-가지-아키텍처">두 가지 아키텍처</h3>
+<p><strong>CBOW (Continuous Bag of Words)</strong> - 주변 단어로 중심 단어 예측 - 작은 데이터셋에 적합</p>
+<p><strong>Skip-gram</strong> - 중심 단어로 주변 단어 예측 - 큰 데이터셋에 적합</p>
+</section>
+<section id="word2vec-아키텍처" class="slide level2">
+<h2>Word2Vec 아키텍처</h2>
+<div class="center">
+<p><img src="word2vec-cbow-skipgram.png" style="max-width: 80%; height: auto;"></p>
+</div>
+<div class="center small">
+<p>CBOW와 Skip-gram 모델의 구조 비교</p>
+</div>
+</section>
+<section id="r에서-word2vec-구현" class="slide level2">
+<h2>R에서 Word2Vec 구현</h2>
+<h3 id="wordvectors-패키지">wordVectors 패키지</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="kw">library</span>(wordVectors)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="co"># 모델 훈련</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a>model &lt;-<span class="st"> </span><span class="kw">train_word2vec</span>(</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a>  <span class="dt">train_file =</span> <span class="st">&quot;corpus.txt&quot;</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a>  <span class="dt">output_file =</span> <span class="st">&quot;word2vec_model.bin&quot;</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a>  <span class="dt">vectors =</span> <span class="dv">100</span>,        <span class="co"># 벡터 차원</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a>  <span class="dt">threads =</span> <span class="dv">4</span>,          <span class="co"># 스레드 수</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a>  <span class="dt">window =</span> <span class="dv">5</span>,           <span class="co"># 윈도우 크기</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a>  <span class="dt">iter =</span> <span class="dv">5</span>              <span class="co"># 반복 횟수</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a><span class="co"># 모델 로드 및 유사 단어 검색</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a>model &lt;-<span class="st"> </span><span class="kw">read.binary.vectors</span>(<span class="st">&quot;word2vec_model.bin&quot;</span>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true"></a>similar_words &lt;-<span class="st"> </span><span class="kw">nearest_to</span>(model, model[[<span class="st">&quot;마케팅&quot;</span>]], <span class="dv">10</span>)</span></code></pre></div>
+</section>
+<section id="glove-글로벌-벡터" class="slide level2">
+<h2>GloVe: 글로벌 벡터</h2>
+<h3 id="핵심-아이디어">핵심 아이디어</h3>
+<ul>
+<li><strong>동시 등장 행렬</strong> 활용</li>
+<li><strong>전역 통계</strong> 정보 활용</li>
+<li>Word2Vec + LSA 장점 결합</li>
+</ul>
+<h3 id="특징">특징</h3>
+<ul>
+<li>병렬 처리 가능</li>
+<li>메모리 효율적</li>
+<li>안정적인 성능</li>
+</ul>
+</section>
+<section id="r에서-glove-구현" class="slide level2">
+<h2>R에서 GloVe 구현</h2>
+<h3 id="text2vec-패키지">text2vec 패키지</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="kw">library</span>(text2vec)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="co"># 어휘 생성</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a>vocab &lt;-<span class="st"> </span><span class="kw">create_vocabulary</span>(iterator)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a>vocab &lt;-<span class="st"> </span><span class="kw">prune_vocabulary</span>(vocab, <span class="dt">term_count_min =</span> <span class="dv">5</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a><span class="co"># 동시 등장 행렬 생성</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a>vectorizer &lt;-<span class="st"> </span><span class="kw">vocab_vectorizer</span>(vocab)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a>tcm &lt;-<span class="st"> </span><span class="kw">create_tcm</span>(iterator, vectorizer, <span class="dt">skip_grams_window =</span> <span class="dv">5</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true"></a><span class="co"># GloVe 모델 훈련</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true"></a>glove &lt;-<span class="st"> </span>GlobalVectors<span class="op">$</span><span class="kw">new</span>(<span class="dt">rank =</span> <span class="dv">50</span>, <span class="dt">x_max =</span> <span class="dv">10</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true"></a>wv_main &lt;-<span class="st"> </span>glove<span class="op">$</span><span class="kw">fit_transform</span>(tcm, <span class="dt">n_iter =</span> <span class="dv">10</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true"></a>wv_context &lt;-<span class="st"> </span>glove<span class="op">$</span>components</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true"></a>word_vectors &lt;-<span class="st"> </span>wv_main <span class="op">+</span><span class="st"> </span><span class="kw">t</span>(wv_context)</span></code></pre></div>
+</section>
+<section id="fasttext-서브워드-임베딩" class="slide level2">
+<h2>FastText: 서브워드 임베딩</h2>
+<h3 id="혁신적-특징">혁신적 특징</h3>
+<ul>
+<li><strong>서브워드 활용</strong>: 단어 내부 구조 고려</li>
+<li><strong>OOV 문제 해결</strong>: 미등록 단어 처리 가능</li>
+<li><strong>언어 독립적</strong>: 다양한 언어에 적용 가능</li>
+<li><strong>빠른 속도</strong>: GPU 없이도 고속 처리</li>
+</ul>
+<h3 id="한국어-처리-장점">한국어 처리 장점</h3>
+<ul>
+<li>복합어 처리 우수</li>
+<li>신조어 대응 가능</li>
+<li>형태소 변화 고려</li>
+</ul>
+</section>
+<section id="fasttext-서브워드-처리" class="slide level2">
+<h2>FastText 서브워드 처리</h2>
+<div class="center">
+<p><img src="fasttext-diagram.png" style="max-width: 80%; height: auto;"></p>
+</div>
+<div class="center small">
+<p>FastText의 서브워드 기반 임베딩 생성 과정</p>
+</div>
+</section>
+<section id="r에서-fasttext-구현" class="slide level2">
+<h2>R에서 FastText 구현</h2>
+<h3 id="fasttext-패키지">fastText 패키지</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="kw">library</span>(fastText)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a><span class="co"># 모델 훈련 설정</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a>params &lt;-<span class="st"> </span><span class="kw">list</span>(</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a>  <span class="dt">command =</span> <span class="st">&#39;skipgram&#39;</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a>  <span class="dt">lr =</span> <span class="fl">0.05</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a>  <span class="dt">dim =</span> <span class="dv">100</span>,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true"></a>  <span class="dt">ws =</span> <span class="dv">5</span>,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true"></a>  <span class="dt">epoch =</span> <span class="dv">5</span>,</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true"></a>  <span class="dt">minCount =</span> <span class="dv">5</span>,</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true"></a>  <span class="dt">neg =</span> <span class="dv">5</span>,</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true"></a>  <span class="dt">wordNgrams =</span> <span class="dv">2</span>,</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true"></a>  <span class="dt">loss =</span> <span class="st">&#39;ns&#39;</span>,</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true"></a>  <span class="dt">bucket =</span> <span class="dv">2000000</span>,</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true"></a>  <span class="dt">thread =</span> <span class="dv">4</span>,</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true"></a>  <span class="dt">lrUpdateRate =</span> <span class="dv">100</span>,</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true"></a>  <span class="dt">t =</span> <span class="fl">1e-4</span>,</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true"></a>  <span class="dt">verbose =</span> <span class="dv">2</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true"></a>)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true"></a></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true"></a><span class="co"># 모델 훈련</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true"></a>model &lt;-<span class="st"> </span><span class="kw">fasttext_interface</span>(params, <span class="dt">path_output =</span> <span class="st">&quot;fasttext_logs.txt&quot;</span>)</span></code></pre></div>
+</section>
+<section id="bert-트랜스포머-기반-임베딩" class="slide level2">
+<h2>BERT: 트랜스포머 기반 임베딩</h2>
+<h3 id="핵심-혁신">핵심 혁신</h3>
+<ul>
+<li><strong>양방향 인코딩</strong>: 좌우 문맥 모두 고려</li>
+<li><strong>트랜스포머 아키텍처</strong>: 어텐션 메커니즘 활용</li>
+<li><strong>사전 훈련</strong>: 대량 데이터로 사전 학습</li>
+<li><strong>파인튜닝</strong>: 특정 작업에 맞춤 조정</li>
+</ul>
+<h3 id="구성-요소">구성 요소</h3>
+<ul>
+<li><strong>토큰 임베딩</strong>: WordPiece 기반</li>
+<li><strong>세그먼트 임베딩</strong>: 문장 구분</li>
+<li><strong>위치 임베딩</strong>: 순서 정보</li>
+</ul>
+</section>
+<section id="bert-아키텍처" class="slide level2">
+<h2>BERT 아키텍처</h2>
+<div class="center">
+<p><img src="bert-04.png" style="max-width: 80%; height: auto;"></p>
+</div>
+<div class="center small">
+<p>BERT의 입력 표현과 아키텍처 구조</p>
+</div>
+</section>
+<section id="r에서-bert-활용" class="slide level2">
+<h2>R에서 BERT 활용</h2>
+<h3 id="환경-설정">환경 설정</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="co"># TensorFlow 환경 설정</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a><span class="kw">Sys.setenv</span>(<span class="dt">TF_KERAS =</span> <span class="dv">1</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a>reticulate<span class="op">::</span><span class="kw">use_python</span>(<span class="st">&#39;/usr/bin/python3&#39;</span>, <span class="dt">required =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a><span class="co"># 필요한 패키지 로드</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a><span class="kw">library</span>(keras)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true"></a><span class="kw">library</span>(tensorflow)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true"></a><span class="kw">library</span>(reticulate)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true"></a><span class="co"># BERT 모델 로드 (사전 훈련된 모델)</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true"></a>bert_model &lt;-<span class="st"> </span><span class="kw">load_model_hdf5</span>(<span class="st">&quot;bert_model.h5&quot;</span>)</span></code></pre></div>
+<h3 id="토큰화-및-임베딩-추출">토큰화 및 임베딩 추출</h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="co"># 텍스트 토큰화</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a>tokenize_text &lt;-<span class="st"> </span><span class="cf">function</span>(text, <span class="dt">max_length =</span> <span class="dv">512</span>) {</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a>  <span class="co"># BERT 토크나이저 사용</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a>  tokens &lt;-<span class="st"> </span><span class="kw">bert_tokenizer</span>(text, <span class="dt">max_length =</span> max_length)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a>  <span class="kw">return</span>(tokens)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true"></a>}</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true"></a><span class="co"># 임베딩 추출</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true"></a>get_embeddings &lt;-<span class="st"> </span><span class="cf">function</span>(tokens) {</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true"></a>  embeddings &lt;-<span class="st"> </span><span class="kw">predict</span>(bert_model, tokens)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true"></a>  <span class="kw">return</span>(embeddings)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true"></a>}</span></code></pre></div>
+</section></section>
+<section>
+<section id="r에서의-구현과-활용" class="title-slide slide level1">
+<h1>R에서의 구현과 활용</h1>
+
+</section>
+<section id="워드임베딩-활용-분야" class="slide level2">
+<h2>워드임베딩 활용 분야</h2>
+<h3 id="의미적-검색-semantic-search">1. 의미적 검색 (Semantic Search)</h3>
+<ul>
+<li>키워드 매칭 → 의미 매칭</li>
+<li>유사 문서 검색</li>
+<li>추천 시스템</li>
+</ul>
+<h3 id="문서-분류-document-classification">2. 문서 분류 (Document Classification)</h3>
+<ul>
+<li>감성 분석</li>
+<li>주제 분류</li>
+<li>스팸 필터링</li>
+</ul>
+<h3 id="기계-번역-machine-translation">3. 기계 번역 (Machine Translation)</h3>
+<ul>
+<li>신경망 기계 번역</li>
+<li>다국어 임베딩</li>
+</ul>
+</section>
+<section id="벡터-검색-시스템" class="slide level2">
+<h2>벡터 검색 시스템</h2>
+<div class="center">
+<p><img src="vector-search-01.png" style="max-width: 80%; height: auto;"></p>
+</div>
+<div class="center small">
+<p>벡터 기반 유사도 검색 시스템의 구조</p>
+</div>
+</section>
+<section id="코사인-유사도-활용" class="slide level2">
+<h2>코사인 유사도 활용</h2>
+<h3 id="개념">개념</h3>
+<ul>
+<li>벡터 간 각도 측정</li>
+<li>방향성 중심의 유사도</li>
+<li>크기에 무관한 유사도</li>
+</ul>
+<h3 id="수식">수식</h3>
+<pre><code>cosine_similarity(A, B) = (A · B) / (|A| × |B|)</code></pre>
+<div class="center">
+<p><img src="cosine-similarity.png" style="max-width: 70%; height: auto;"></p>
+</div>
+</section>
+<section id="클러스터링과-분류" class="slide level2">
+<h2>클러스터링과 분류</h2>
+<h3 id="전통적-방법-vs-임베딩-기반">전통적 방법 vs 임베딩 기반</h3>
+<p><strong>전통적 방법</strong> - TF-IDF + 코사인 유사도 - 키워드 매칭 중심 - 표면적 유사성</p>
+<p><strong>임베딩 기반</strong> - 의미적 유사성 - 문맥 고려 - 더 정확한 그룹화</p>
+</section>
+<section id="분류와-클러스터링-비교" class="slide level2">
+<h2>분류와 클러스터링 비교</h2>
+<div class="center">
+<p><img src="classification-clustering.png" style="max-width: 80%; height: auto;"></p>
+</div>
+<div class="center small">
+<p>지도학습 분류와 비지도학습 클러스터링의 차이</p>
+</div>
+</section></section>
+<section>
+<section id="실제-응용-사례" class="title-slide slide level1">
+<h1>실제 응용 사례</h1>
+
+</section>
+<section id="실제-응용-사례-1" class="slide level2">
+<h2>실제 응용 사례</h2>
+<h3 id="워드클라우드-개선">1. 워드클라우드 개선</h3>
+<ul>
+<li>의미적 그룹화</li>
+<li>동의어 통합</li>
+<li>더 정확한 키워드 추출</li>
+</ul>
+<h3 id="감성-분석">2. 감성 분석</h3>
+<ul>
+<li>문맥 고려한 감성 판단</li>
+<li>미묘한 감정 변화 포착</li>
+<li>도메인 특화 감성 분석</li>
+</ul>
+<h3 id="문서-요약">3. 문서 요약</h3>
+<ul>
+<li>핵심 문장 추출</li>
+<li>의미 보존 요약</li>
+<li>추상적 요약 생성</li>
+</ul>
+</section>
+<section id="워드클라우드-진화" class="slide level2">
+<h2>워드클라우드 진화</h2>
+<h3 id="기존-워드클라우드-문제점">기존 워드클라우드 문제점</h3>
+<ul>
+<li>형태소 분석기 의존</li>
+<li>불용어 처리 필요</li>
+<li>표면적 빈도만 고려</li>
+</ul>
+<h3 id="임베딩-기반-개선">임베딩 기반 개선</h3>
+<ul>
+<li>의미적 그룹화</li>
+<li>동의어 통합</li>
+<li>문맥 고려한 중요도</li>
+</ul>
+<div class="center">
+<p><img src="wordcloud1.png" style="max-width: 70%; height: auto;"></p>
+</div>
+</section>
+<section id="t-sne-시각화" class="slide level2">
+<h2>t-SNE 시각화</h2>
+<h3 id="고차원-데이터-시각화">고차원 데이터 시각화</h3>
+<ul>
+<li>차원 축소 기법</li>
+<li>클러스터 구조 파악</li>
+<li>임베딩 품질 평가</li>
+</ul>
+<div class="center">
+<p><img src="t-sne.png" style="max-width: 75%; height: auto;"></p>
+</div>
+</section>
+<section id="r-워드임베딩-패키지-생태계" class="slide level2">
+<h2>R 워드임베딩 패키지 생태계</h2>
+<h3 id="주요-패키지들">주요 패키지들</h3>
+<table>
+<thead>
+<tr class="header">
+<th>패키지</th>
+<th>기능</th>
+<th>특징</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>wordVectors</code></td>
+<td>Word2Vec</td>
+<td>간단한 인터페이스</td>
+</tr>
+<tr class="even">
+<td><code>text2vec</code></td>
+<td>GloVe, LSA</td>
+<td>고성능, 메모리 효율</td>
+</tr>
+<tr class="odd">
+<td><code>fastText</code></td>
+<td>FastText</td>
+<td>서브워드 지원</td>
+</tr>
+<tr class="even">
+<td><code>keras</code>/<code>tensorflow</code></td>
+<td>BERT, GPT</td>
+<td>딥러닝 모델</td>
+</tr>
+<tr class="odd">
+<td><code>tidytext</code></td>
+<td>텍스트 마이닝</td>
+<td>tidyverse 연동</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="실습-한국어-word2vec" class="slide level2">
+<h2>실습: 한국어 Word2Vec</h2>
+<h3 id="데이터-준비">1. 데이터 준비</h3>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="kw">library</span>(wordVectors)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true"></a><span class="co"># 한국어 텍스트 데이터 로드</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true"></a>korean_text &lt;-<span class="st"> </span><span class="kw">readLines</span>(<span class="st">&quot;korean_corpus.txt&quot;</span>, <span class="dt">encoding =</span> <span class="st">&quot;UTF-8&quot;</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true"></a><span class="co"># 전처리</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true"></a>clean_text &lt;-<span class="st"> </span>korean_text <span class="op">%&gt;%</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true"></a><span class="st">  </span><span class="co"># 특수문자 제거</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true"></a><span class="st">  </span><span class="kw">gsub</span>(<span class="st">&quot;[^가-힣a-zA-Z0-9</span><span class="ch">\\</span><span class="st">s]&quot;</span>, <span class="st">&quot;&quot;</span>, .) <span class="op">%&gt;%</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true"></a><span class="st">  </span><span class="co"># 다중 공백 제거</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true"></a><span class="st">  </span><span class="kw">gsub</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">s+&quot;</span>, <span class="st">&quot; &quot;</span>, .) <span class="op">%&gt;%</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true"></a><span class="st">  </span><span class="co"># 앞뒤 공백 제거</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true"></a><span class="st">  </span><span class="kw">trimws</span>()</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true"></a><span class="co"># 파일로 저장</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true"></a><span class="kw">writeLines</span>(clean_text, <span class="st">&quot;preprocessed_corpus.txt&quot;</span>)</span></code></pre></div>
+</section>
+<section id="실습-모델-훈련" class="slide level2">
+<h2>실습: 모델 훈련</h2>
+<h3 id="word2vec-모델-훈련">2. Word2Vec 모델 훈련</h3>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a><span class="co"># 모델 훈련</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true"></a>model &lt;-<span class="st"> </span><span class="kw">train_word2vec</span>(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true"></a>  <span class="dt">train_file =</span> <span class="st">&quot;preprocessed_corpus.txt&quot;</span>,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true"></a>  <span class="dt">output_file =</span> <span class="st">&quot;korean_word2vec.bin&quot;</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true"></a>  <span class="dt">vectors =</span> <span class="dv">200</span>,      <span class="co"># 임베딩 차원</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true"></a>  <span class="dt">threads =</span> <span class="dv">4</span>,        <span class="co"># 병렬 처리</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true"></a>  <span class="dt">window =</span> <span class="dv">5</span>,         <span class="co"># 윈도우 크기</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true"></a>  <span class="dt">iter =</span> <span class="dv">5</span>,           <span class="co"># 반복 횟수</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true"></a>  <span class="dt">min_count =</span> <span class="dv">10</span>,     <span class="co"># 최소 빈도</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true"></a>  <span class="dt">cbow =</span> <span class="dv">0</span>            <span class="co"># Skip-gram 사용</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true"></a>)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true"></a><span class="co"># 모델 로드</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true"></a>model &lt;-<span class="st"> </span><span class="kw">read.binary.vectors</span>(<span class="st">&quot;korean_word2vec.bin&quot;</span>)</span></code></pre></div>
+</section>
+<section id="실습-결과-분석" class="slide level2">
+<h2>실습: 결과 분석</h2>
+<h3 id="유사-단어-검색">3. 유사 단어 검색</h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a><span class="co"># 특정 단어와 유사한 단어들 찾기</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a>similar_words &lt;-<span class="st"> </span><span class="kw">nearest_to</span>(model, model[[<span class="st">&quot;한국어&quot;</span>]], <span class="dv">10</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true"></a><span class="kw">print</span>(similar_words)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true"></a><span class="co"># 단어 간 유사도 계산</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true"></a>similarity &lt;-<span class="st"> </span><span class="kw">cosineSimilarity</span>(model[[<span class="st">&quot;컴퓨터&quot;</span>]], model[[<span class="st">&quot;기계&quot;</span>]])</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true"></a><span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;유사도:&quot;</span>, similarity))</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true"></a><span class="co"># 단어 벡터 시각화</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true"></a><span class="kw">library</span>(Rtsne)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true"></a><span class="co"># 주요 단어들 선택</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true"></a>key_words &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;한국어&quot;</span>, <span class="st">&quot;언어&quot;</span>, <span class="st">&quot;컴퓨터&quot;</span>, <span class="st">&quot;기계&quot;</span>, <span class="st">&quot;학습&quot;</span>, <span class="st">&quot;데이터&quot;</span>)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true"></a>word_vectors &lt;-<span class="st"> </span>model[key_words, ]</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true"></a></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true"></a><span class="co"># t-SNE 적용</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true"></a>tsne_result &lt;-<span class="st"> </span><span class="kw">Rtsne</span>(word_vectors, <span class="dt">dims =</span> <span class="dv">2</span>, <span class="dt">perplexity =</span> <span class="dv">3</span>)</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true"></a></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true"></a><span class="co"># 시각화</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true"></a>plot_data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true"></a>  <span class="dt">word =</span> key_words,</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true"></a>  <span class="dt">x =</span> tsne_result<span class="op">$</span>Y[, <span class="dv">1</span>],</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true"></a>  <span class="dt">y =</span> tsne_result<span class="op">$</span>Y[, <span class="dv">2</span>]</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true"></a>)</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true"></a></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true"></a><span class="kw">ggplot</span>(plot_data, <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">label =</span> word)) <span class="op">+</span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_text</span>(<span class="dt">hjust =</span> <span class="dv">0</span>, <span class="dt">vjust =</span> <span class="dv">0</span>, <span class="dt">size =</span> <span class="dv">4</span>) <span class="op">+</span></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;한국어 단어 임베딩 시각화&quot;</span>)</span></code></pre></div>
+</section>
+<section id="성능-평가와-개선" class="slide level2">
+<h2>성능 평가와 개선</h2>
+<h3 id="평가-지표">평가 지표</h3>
+<ul>
+<li><strong>내재적 평가</strong>: 단어 유사도 태스크</li>
+<li><strong>외재적 평가</strong>: 다운스트림 태스크 성능</li>
+<li><strong>정성적 평가</strong>: 유사 단어 검사</li>
+</ul>
+<h3 id="개선-방법">개선 방법</h3>
+<ul>
+<li><strong>하이퍼파라미터 튜닝</strong>: 차원, 윈도우, 학습률</li>
+<li><strong>데이터 품질</strong>: 전처리, 도메인 특화</li>
+<li><strong>앙상블</strong>: 여러 모델 결합</li>
+</ul>
+</section>
+<section id="실제-비즈니스-활용" class="slide level2">
+<h2>실제 비즈니스 활용</h2>
+<h3 id="검색-엔진-개선">1. 검색 엔진 개선</h3>
+<ul>
+<li>의미 기반 검색</li>
+<li>쿼리 확장</li>
+<li>개인화 추천</li>
+</ul>
+<h3 id="콘텐츠-추천">2. 콘텐츠 추천</h3>
+<ul>
+<li>유사 기사 추천</li>
+<li>개인화 뉴스 피드</li>
+<li>상품 추천</li>
+</ul>
+<h3 id="고객-서비스">3. 고객 서비스</h3>
+<ul>
+<li>챗봇 개선</li>
+<li>FAQ 자동 매칭</li>
+<li>감정 분석</li>
+</ul>
+</section>
+<section id="한국어-처리-특화-전략" class="slide level2">
+<h2>한국어 처리 특화 전략</h2>
+<h3 id="형태소-분석-연계">1. 형태소 분석 연계</h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a><span class="kw">library</span>(RcppMeCab)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true"></a><span class="co"># 형태소 분석 후 임베딩</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true"></a>morphs &lt;-<span class="st"> </span><span class="kw">pos</span>(text, <span class="dt">format =</span> <span class="st">&quot;data.frame&quot;</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true"></a>noun_text &lt;-<span class="st"> </span>morphs <span class="op">%&gt;%</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">filter</span>(pos <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;NNG&quot;</span>, <span class="st">&quot;NNP&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true"></a><span class="st">  </span><span class="kw">pull</span>(token) <span class="op">%&gt;%</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true"></a><span class="st">  </span><span class="kw">paste</span>(<span class="dt">collapse =</span> <span class="st">&quot; &quot;</span>)</span></code></pre></div>
+<h3 id="서브워드-활용">2. 서브워드 활용</h3>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a><span class="co"># FastText로 OOV 문제 해결</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true"></a>fasttext_model &lt;-<span class="st"> </span><span class="kw">fasttext_interface</span>(</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true"></a>  <span class="kw">list</span>(<span class="dt">command =</span> <span class="st">&#39;skipgram&#39;</span>, </span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true"></a>       <span class="dt">wordNgrams =</span> <span class="dv">2</span>,  <span class="co"># 서브워드 활용</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true"></a>       <span class="dt">bucket =</span> <span class="dv">2000000</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true"></a>)</span></code></pre></div>
+</section></section>
+<section>
+<section id="미래-전망" class="title-slide slide level1">
+<h1>미래 전망</h1>
+
+</section>
+<section id="최신-동향과-미래" class="slide level2">
+<h2>최신 동향과 미래</h2>
+<h3 id="현재-트렌드">현재 트렌드</h3>
+<ul>
+<li><strong>대규모 언어 모델</strong>: GPT, BERT 계열</li>
+<li><strong>다국어 모델</strong>: mBERT, XLM-R</li>
+<li><strong>효율적 모델</strong>: DistilBERT, ALBERT</li>
+</ul>
+<h3 id="한국어-특화-모델">한국어 특화 모델</h3>
+<ul>
+<li><strong>KoBERT</strong>: SKT 개발</li>
+<li><strong>KoGPT</strong>: 카카오브레인 개발</li>
+<li><strong>HanBERT</strong>: 한국전자통신연구원</li>
+</ul>
+<h3 id="미래-전망-1">미래 전망</h3>
+<ul>
+<li><strong>더 큰 모델</strong>: 파라미터 수 증가</li>
+<li><strong>멀티모달</strong>: 텍스트 + 이미지</li>
+<li><strong>실시간 처리</strong>: 엣지 컴퓨팅</li>
+</ul>
+</section>
+<section id="r-사용자를-위한-권장사항" class="slide level2">
+<h2>R 사용자를 위한 권장사항</h2>
+<h3 id="단계별-접근">1. 단계별 접근</h3>
+<ol type="1">
+<li><strong>기초</strong>: TF-IDF, Word2Vec</li>
+<li><strong>중급</strong>: GloVe, FastText</li>
+<li><strong>고급</strong>: BERT, GPT</li>
+</ol>
+<h3 id="도구-선택-기준">2. 도구 선택 기준</h3>
+<ul>
+<li><strong>데이터 크기</strong>: 작은 데이터 → Word2Vec</li>
+<li><strong>OOV 문제</strong>: 있음 → FastText</li>
+<li><strong>최고 성능</strong>: 필요 → BERT</li>
+</ul>
+<h3 id="실용적-조언">3. 실용적 조언</h3>
+<ul>
+<li><strong>Python 연동</strong>: <code>reticulate</code> 패키지 활용</li>
+<li><strong>클라우드 활용</strong>: 대용량 처리</li>
+<li><strong>사전 훈련 모델</strong>: 시간 절약</li>
+</ul>
+</section>
+<section id="한계와-주의사항" class="slide level2">
+<h2>한계와 주의사항</h2>
+<h3 id="기술적-한계">기술적 한계</h3>
+<ul>
+<li><strong>편향성</strong>: 학습 데이터 편향 반영</li>
+<li><strong>해석성</strong>: 블랙박스 모델</li>
+<li><strong>계산 비용</strong>: 높은 자원 요구</li>
+</ul>
+<h3 id="윤리적-고려사항">윤리적 고려사항</h3>
+<ul>
+<li><strong>공정성</strong>: 성별, 인종 편향</li>
+<li><strong>프라이버시</strong>: 개인정보 보호</li>
+<li><strong>투명성</strong>: 의사결정 과정 공개</li>
+</ul>
+</section>
+<section id="결론" class="slide level2">
+<h2>결론</h2>
+<h3 id="핵심-메시지">핵심 메시지</h3>
+<ol type="1">
+<li><strong>패러다임 전환</strong>: TF-IDF → 워드임베딩</li>
+<li><strong>의미 중심</strong>: 형태적 → 의미적 유사성</li>
+<li><strong>실용적 접근</strong>: 문제에 맞는 도구 선택</li>
+<li><strong>지속적 발전</strong>: 새로운 기법 학습</li>
+</ol>
+<h3 id="r-사용자-관점">R 사용자 관점</h3>
+<ul>
+<li><strong>강력한 도구</strong>: 다양한 패키지 활용</li>
+<li><strong>Python 연동</strong>: 최신 기법 접근</li>
+<li><strong>실무 적용</strong>: 비즈니스 가치 창출</li>
+</ul>
+</section>
+<section id="참고-자료" class="slide level2">
+<h2>참고 자료</h2>
+<h3 id="주요-논문">주요 논문</h3>
+<ul>
+<li>Mikolov et al. (2013): Word2Vec</li>
+<li>Pennington et al. (2014): GloVe</li>
+<li>Bojanowski et al. (2017): FastText</li>
+<li>Devlin et al. (2018): BERT</li>
+</ul>
+<h3 id="유용한-링크">유용한 링크</h3>
+<ul>
+<li><a href="https://github.com/currentslab/awesome-vector-search">Awesome Vector Search</a></li>
+<li><a href="https://github.com/songys/korean-nlp-resources">Korean NLP Resources</a></li>
+<li><a href="https://www.tidytextmining.com/">R Text Mining</a></li>
+</ul>
+</section>
+<section id="질문과-답변" class="slide level2 center">
+<h2 class="center">질문과 답변</h2>
+<p><strong>감사합니다!</strong></p>
+<div class="center">
+<p>더 궁금한 점이 있으시면<br />
+언제든지 질문해 주세요</p>
+</div>
+</section></section>
+    </div>
+  </div>
+
+  <script src="korean-embedding-with-r_files/reveal.js-4.2.1/dist/reveal.js"></script>
+  
+  <!-- reveal.js plugins -->
+  
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+        // Display a presentation progress bar
+        progress: true,
+        // Display the page number of the current slide
+        slideNumber: true,
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+        // Push each slide change to the browser history
+        // Implies `hash: true`
+        history: truefalse,
+        // Vertical centering of slides
+        center: truetrue,
+        // Transition style
+        transition: 'slideslide', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'fadefade', // none/fade/slide/convex/concave/zoom
+
+
+
+        // Optional reveal.js plugins
+        plugins: [
+        ]
+      });
+
+    </script>
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+
+  </body>
+</html>

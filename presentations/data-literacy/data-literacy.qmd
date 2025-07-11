@@ -1,0 +1,293 @@
+---
+title: "데이터 문해력"
+subtitle: "데이터 기반 의사결정의 핵심 역량"
+author: "홍성학"
+date: today
+format: 
+  revealjs:
+    theme: night
+    transition: slide
+    background-transition: fade
+    highlight-style: github
+    code-fold: true
+    code-tools: true
+    slide-number: true
+    chalkboard: true
+    scrollable: true
+    incremental: false
+    footer: "데이터 문해력 | 홍성학"
+    css: custom.css
+    include-in-header:
+      - text: |
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+mermaid:
+  theme: dark
+editor: visual
+---
+
+## 데이터 문해력이란? {.smaller}
+
+::: {.incremental}
+- <i class="fas fa-chart-line"></i> 데이터를 **읽고, 이해하고, 분석하고, 시각화**하여 의미 있는 정보를 도출하는 능력
+- <i class="fas fa-brain"></i> 데이터를 바탕으로 **합리적인 의사결정**을 내릴 수 있는 능력
+- <i class="fas fa-search"></i> 데이터의 **한계와 편향**을 인식하고 비판적으로 사고하는 능력
+:::
+
+::: {.notes}
+데이터 문해력은 단순히 숫자를 읽는 것을 넘어서, 데이터 뒤에 숨겨진 의미를 파악하고 실제 의사결정에 활용할 수 있는 종합적인 능력입니다.
+:::
+
+## 현대 사회에서 데이터의 중요성 {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+### 데이터 폭발 시대
+- <i class="fas fa-database"></i> 매일 2.5퀸틸리언 바이트의 데이터 생성
+- <i class="fas fa-calendar-alt"></i> 2020년 이후 전 세계 데이터의 90%가 생성됨
+- <i class="fas fa-network-wired"></i> IoT, 소셜미디어, 모바일 기기 등의 확산
+:::
+
+::: {.column width="50%"}
+### 비즈니스 환경의 변화
+- <i class="fas fa-chart-bar"></i> 데이터 기반 의사결정이 표준화
+- <i class="fas fa-trophy"></i> 경쟁력의 핵심 요소로 부상
+- <i class="fas fa-users"></i> 모든 직무에서 데이터 활용 능력 요구
+:::
+:::
+
+## 왜 데이터 문해력이 중요한가? {.smaller}
+
+### 1. 더 나은 의사결정 
+- <i class="fas fa-bullseye"></i> **객관적 근거** 기반의 판단
+- <i class="fas fa-shield-alt"></i> **리스크 최소화**와 성공 확률 증대
+- <i class="fas fa-ban"></i> **편향과 직관의 오류** 방지
+
+### 2. 업무 효율성 증대 
+- <i class="fas fa-robot"></i> **자동화**를 통한 반복 작업 감소
+- <i class="fas fa-search-plus"></i> **패턴 인식**으로 문제 해결 속도 향상
+- <i class="fas fa-crystal-ball"></i> **예측 분석**으로 선제적 대응
+
+### 3. 새로운 기회 창출 
+- <i class="fas fa-lightbulb"></i> **숨겨진 인사이트** 발견
+- <i class="fas fa-chart-line"></i> **시장 트렌드** 조기 포착
+- <i class="fas fa-rocket"></i> **혁신적 아이디어** 도출
+
+## 데이터 문해력의 핵심 요소 {.smaller}
+
+### 1. 비판적 사고 
+::: {.incremental}
+- <i class="fas fa-search"></i> **데이터의 출처**와 수집 방법 검증
+- <i class="fas fa-exclamation-triangle"></i> **편향과 오류** 가능성 인식
+- <i class="fas fa-arrows-alt-h"></i> **상관관계 vs 인과관계** 구분
+- <i class="fas fa-book-open"></i> **맥락적 해석**의 중요성
+:::
+
+### 2. 통계적 지식 
+::: {.incremental}
+- <i class="fas fa-calculator"></i> **기술통계**: 평균, 중앙값, 표준편차
+- <i class="fas fa-chart-bar"></i> **추론통계**: 가설검정, 신뢰구간
+- <i class="fas fa-dice"></i> **확률과 분포** 이해
+- <i class="fas fa-users"></i> **표본과 모집단**의 관계
+:::
+
+## 데이터 문해력의 핵심 요소 (계속) {.smaller}
+
+### 3. 데이터 시각화 
+::: {.incremental}
+- <i class="fas fa-chart-pie"></i> **적절한 차트 선택**: 막대그래프, 선그래프, 산점도 등
+- <i class="fas fa-palette"></i> **색상과 디자인** 원칙
+- <i class="fas fa-book"></i> **스토리텔링**과 내러티브 구성
+- <i class="fas fa-eye-slash"></i> **오해를 불러일으키는 시각화** 피하기
+:::
+
+### 4. 도구 활용 능력 
+::: {.incremental}
+- <i class="fas fa-table"></i> **Excel/Google Sheets**: 기본 분석 도구
+- <i class="fas fa-database"></i> **SQL**: 데이터베이스 쿼리
+- <i class="fas fa-code"></i> **Python/R**: 고급 분석 및 모델링
+- <i class="fas fa-chart-area"></i> **Tableau/Power BI**: 시각화 도구
+:::
+
+## 데이터 문해력 발전 단계 {.smaller}
+
+::: {.columns}
+::: {.column width="30%"}
+### 초급 단계
+- <i class="fas fa-chart-bar"></i> 기본 통계 이해
+- <i class="fas fa-chart-pie"></i> 간단한 차트 해석
+- <i class="fas fa-table"></i> Excel 활용
+- <i class="fas fa-broom"></i> 데이터 정리
+:::
+
+::: {.column width="30%"}
+### 중급 단계
+- <i class="fas fa-calculator"></i> 고급 통계 분석
+- <i class="fas fa-chart-area"></i> 복합 시각화
+- <i class="fas fa-database"></i> SQL 활용
+- <i class="fas fa-search-plus"></i> 패턴 인식
+:::
+
+::: {.column width="30%"}
+### 고급 단계
+- <i class="fas fa-crystal-ball"></i> 예측 모델링
+- <i class="fas fa-brain"></i> 머신러닝 활용
+- <i class="fas fa-robot"></i> 자동화 구현
+- <i class="fas fa-lightbulb"></i> 전략적 인사이트
+:::
+:::
+
+## 실무에서의 데이터 문해력 활용 {.smaller}
+
+### 마케팅 분야
+- <i class="fas fa-users"></i> **고객 세분화** 및 타겟팅
+- <i class="fas fa-chart-line"></i> **캠페인 성과 분석**
+- <i class="fas fa-dollar-sign"></i> **ROI 측정** 및 최적화
+- <i class="fas fa-trending-up"></i> **시장 트렌드 분석**
+
+### 운영 분야
+- <i class="fas fa-cogs"></i> **프로세스 최적화**
+- <i class="fas fa-check-circle"></i> **품질 관리**
+- <i class="fas fa-boxes"></i> **재고 관리**
+- <i class="fas fa-cut"></i> **비용 절감 분석**
+
+### 인사 분야
+- <i class="fas fa-smile"></i> **직원 만족도 조사**
+- <i class="fas fa-star"></i> **성과 평가 분석**
+- <i class="fas fa-door-open"></i> **이직률 예측**
+- <i class="fas fa-handshake"></i> **채용 효율성 분석**
+
+## 데이터 문해력 향상 방법 {.smaller}
+
+### 1. 기초 역량 강화
+::: {.incremental}
+- <i class="fas fa-book"></i> **통계학 기초** 학습
+- <i class="fas fa-tools"></i> **데이터 분석 도구** 익히기
+- <i class="fas fa-chart-pie"></i> **시각화 원칙** 이해
+- <i class="fas fa-building"></i> **비즈니스 도메인** 지식 습득
+:::
+
+### 2. 실습과 프로젝트
+::: {.incremental}
+- <i class="fas fa-project-diagram"></i> **개인 프로젝트** 수행
+- <i class="fas fa-cloud-download-alt"></i> **온라인 데이터셋** 활용
+- <i class="fas fa-trophy"></i> **캐글 경진대회** 참여
+- <i class="fas fa-puzzle-piece"></i> **실무 문제** 해결 경험
+:::
+
+### 3. 지속적 학습
+::: {.incremental}
+- <i class="fas fa-rss"></i> **최신 트렌드** 파악
+- <i class="fas fa-users"></i> **커뮤니티 참여**
+- <i class="fas fa-network-wired"></i> **전문가 네트워킹**
+- <i class="fas fa-comments"></i> **피드백 수집**
+:::
+
+## 데이터 문해력의 함정과 주의사항 {.smaller}
+
+### 1. 데이터 편향 인식
+- <i class="fas fa-balance-scale"></i> **표본 편향**: 대표성 부족
+- <i class="fas fa-eye"></i> **확증 편향**: 원하는 결과만 찾기
+- <i class="fas fa-medal"></i> **생존자 편향**: 성공 사례만 고려
+
+### 2. 상관관계 vs 인과관계
+- <i class="fas fa-link"></i> 상관관계가 있다고 인과관계가 있는 것은 아님
+- <i class="fas fa-question"></i> 제3의 변수가 영향을 미칠 수 있음
+- <i class="fas fa-clock"></i> 시간적 순서와 논리적 메커니즘 고려
+
+### 3. 과도한 일반화 주의
+- <i class="fas fa-map-marker-alt"></i> 특정 상황에서만 유효한 결과
+- <i class="fas fa-ruler"></i> 표본 크기와 통계적 유의성 고려
+- <i class="fas fa-globe"></i> 맥락과 환경의 중요성
+
+## 조직에서의 데이터 문해력 문화 {.smaller}
+
+### 데이터 기반 의사결정 문화 조성
+::: {.incremental}
+- <i class="fas fa-user-tie"></i> **리더십의 솔선수범**
+- <i class="fas fa-key"></i> **데이터 접근성** 향상
+- <i class="fas fa-graduation-cap"></i> **실패를 통한 학습** 장려
+- <i class="fas fa-chalkboard-teacher"></i> **교육과 훈련** 지원
+:::
+
+### 협업과 소통
+::: {.incremental}
+- <i class="fas fa-book-open"></i> **데이터 스토리텔링** 역량
+- <i class="fas fa-comments"></i> **비전문가와의 소통** 능력
+- <i class="fas fa-chart-line"></i> **시각화를 통한 설득**
+- <i class="fas fa-users"></i> **데이터 기반 토론** 문화
+:::
+
+## 미래의 데이터 문해력 {.smaller}
+
+### 새로운 기술과 트렌드
+- <i class="fas fa-robot"></i> **인공지능과 머신러닝**의 대중화
+- <i class="fas fa-magic"></i> **자동화된 인사이트** 도출
+- <i class="fas fa-clock"></i> **실시간 데이터 분석**
+- <i class="fas fa-eye"></i> **증강 분석 (Augmented Analytics)**
+
+### 변화하는 역량 요구사항
+- <i class="fas fa-brain"></i> **AI 도구 활용** 능력
+- <i class="fas fa-heart"></i> **윤리적 데이터 사용**
+- <i class="fas fa-shield-alt"></i> **개인정보 보호** 인식
+- <i class="fas fa-balance-scale"></i> **알고리즘 편향** 이해
+
+## 실습 예제: 매출 데이터 분석 {.smaller}
+
+### 문제 상황
+<i class="fas fa-shopping-cart"></i> 온라인 쇼핑몰의 월별 매출이 감소하고 있습니다. 원인을 파악하고 해결책을 제시해야 합니다.
+
+### 분석 접근법
+1. <i class="fas fa-download"></i> **데이터 수집**: 매출, 방문자, 전환율, 평균 주문액
+2. <i class="fas fa-search"></i> **탐색적 분석**: 트렌드, 패턴, 이상치 확인
+3. <i class="fas fa-layer-group"></i> **세분화 분석**: 제품별, 고객별, 채널별 분석
+4. <i class="fas fa-lightbulb"></i> **가설 설정**: 가능한 원인들 나열
+5. <i class="fas fa-check"></i> **검증**: 데이터로 가설 검증
+6. <i class="fas fa-tasks"></i> **액션 플랜**: 개선 방안 도출
+
+## 마무리 {.smaller}
+
+### 데이터 문해력은 이제 필수 역량입니다
+
+::: {.incremental}
+- <i class="fas fa-briefcase"></i> **모든 직무**에서 데이터 활용 능력 요구
+- <i class="fas fa-trophy"></i> **경쟁력 확보**의 핵심 요소
+- <i class="fas fa-graduation-cap"></i> **평생 학습**이 필요한 영역
+- <i class="fas fa-building"></i> **조직 전체**의 역량 향상 필요
+:::
+
+### 시작하는 방법
+1. <i class="fas fa-calculator"></i> **기초 통계** 학습부터 시작
+2. <i class="fas fa-chart-bar"></i> **실무 데이터**로 연습
+3. <i class="fas fa-users"></i> **커뮤니티 참여**로 경험 공유
+4. <i class="fas fa-arrow-up"></i> **지속적 학습**으로 역량 발전
+
+---
+
+## 질문과 토론 {.smaller}
+
+**함께 나누고 싶은 질문들:**
+
+- <i class="fas fa-question-circle"></i> 여러분의 업무에서 데이터를 어떻게 활용하고 계신가요?
+- <i class="fas fa-exclamation-triangle"></i> 데이터 분석 시 가장 어려운 점은 무엇인가요?
+- <i class="fas fa-lightbulb"></i> 조직에서 데이터 문해력을 높이기 위한 방안은?
+
+## 감사합니다 {.center}
+
+**질문이 있으신가요?**
+
+::: {.columns}
+::: {.column width="50%"}
+**유용한 리소스:**
+
+- [Kaggle Learn](https://www.kaggle.com/learn)
+- [Google Analytics Academy](https://analytics.google.com/analytics/academy)
+- [Coursera Data Science](https://www.coursera.org/browse/data-science)
+- [데이터 사이언스 스쿨](https://datascienceschool.net)
+:::
+
+::: {.column width="50%"}
+**연락처:**
+
+- 이메일: euriion@gmail.com
+:::
+::: 

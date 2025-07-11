@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="cosine-similarity_files/libs/clipboard/clipboard.min.js"></script>
+<script src="cosine-similarity_files/libs/quarto-html/tabby.min.js"></script>
+<script src="cosine-similarity_files/libs/quarto-html/popper.min.js"></script>
+<script src="cosine-similarity_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="cosine-similarity_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="cosine-similarity_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="cosine-similarity_files/libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.2.335">
+
+  <meta name="author" content="홍성학">
+  <title>코사인 유사도 (Cosine Similarity)</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="cosine-similarity_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="cosine-similarity_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #e1e4e8; background-color: #24292e; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #e1e4e8; } /* Normal */
+    code span.al { color: #ff5555; font-weight: bold; } /* Alert */
+    code span.an { color: #6a737d; } /* Annotation */
+    code span.at { color: #f97583; } /* Attribute */
+    code span.bn { color: #79b8ff; } /* BaseN */
+    code span.bu { color: #f97583; } /* BuiltIn */
+    code span.cf { color: #f97583; } /* ControlFlow */
+    code span.ch { color: #9ecbff; } /* Char */
+    code span.cn { color: #79b8ff; } /* Constant */
+    code span.co { color: #6a737d; } /* Comment */
+    code span.cv { color: #6a737d; } /* CommentVar */
+    code span.do { color: #6a737d; } /* Documentation */
+    code span.dt { color: #f97583; } /* DataType */
+    code span.dv { color: #79b8ff; } /* DecVal */
+    code span.er { color: #ff5555; text-decoration: underline; } /* Error */
+    code span.ex { color: #f97583; font-weight: bold; } /* Extension */
+    code span.fl { color: #79b8ff; } /* Float */
+    code span.fu { color: #b392f0; } /* Function */
+    code span.im { color: #9ecbff; } /* Import */
+    code span.in { color: #6a737d; } /* Information */
+    code span.kw { color: #f97583; } /* Keyword */
+    code span.op { color: #e1e4e8; } /* Operator */
+    code span.ot { color: #b392f0; } /* Other */
+    code span.pp { color: #f97583; } /* Preprocessor */
+    code span.re { color: #6a737d; } /* RegionMarker */
+    code span.sc { color: #79b8ff; } /* SpecialChar */
+    code span.ss { color: #9ecbff; } /* SpecialString */
+    code span.st { color: #9ecbff; } /* String */
+    code span.va { color: #ffab70; } /* Variable */
+    code span.vs { color: #9ecbff; } /* VerbatimString */
+    code span.wa { color: #ff5555; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="cosine-similarity_files/libs/revealjs/dist/theme/quarto.css" id="theme">
+  <link rel="stylesheet" href="custom.css">
+  <link href="cosine-similarity_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="cosine-similarity_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="cosine-similarity_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="cosine-similarity_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="cosine-similarity_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="cosine-similarity_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-captioned.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-captioned) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-captioned.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-captioned .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-captioned .callout-caption  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-captioned.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-captioned.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-caption {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-caption {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-caption {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-captioned .callout-body > .callout-content > :last-child {
+    margin-bottom: 0.5rem;
+  }
+
+  .callout.callout-captioned .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-captioned) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-caption {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-caption {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-caption {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-caption {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-caption {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body class="quarto-dark">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">코사인 유사도 (Cosine Similarity)</h1>
+  <p class="subtitle">벡터 간 유사성 측정의 핵심 개념</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+홍성학 
+</div>
+</div>
+</div>
+
+  <p class="date">7/7/15</p>
+</section>
+<section id="코사인-유사도란" class="slide level2 smaller">
+<h2>코사인 유사도란?</h2>
+<div>
+<ul>
+<li class="fragment"><i class="fas fa-vector-square"></i> 두 벡터 간의 <strong>각도</strong>를 이용한 유사성 측정 방법</li>
+<li class="fragment"><i class="fas fa-compass"></i> 벡터의 <strong>크기와 무관</strong>하게 방향만으로 유사성 판단</li>
+<li class="fragment"><i class="fas fa-chart-line"></i> <strong>-1부터 1까지</strong>의 값을 가지며, 1에 가까울수록 유사</li>
+<li class="fragment"><i class="fas fa-brain"></i> <strong>텍스트 마이닝</strong>, <strong>추천 시스템</strong>, <strong>이미지 분석</strong> 등에 널리 활용</li>
+</ul>
+</div>
+<aside class="notes">
+<p>코사인 유사도는 벡터 공간에서 두 벡터 간의 각도를 측정하여 유사성을 판단하는 방법입니다. 벡터의 크기보다는 방향에 중점을 두는 것이 특징입니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="수학적-정의" class="slide level2 smaller">
+<h2>수학적 정의</h2>
+<h3 id="공식">공식</h3>
+<p><span class="math display">\[\cos(\theta) = \frac{\mathbf{A} \cdot \mathbf{B}}{|\mathbf{A}||\mathbf{B}|} = \frac{\sum_{i=1}^{n} A_i B_i}{\sqrt{\sum_{i=1}^{n} A_i^2} \sqrt{\sum_{i=1}^{n} B_i^2}}\]</span></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="구성-요소">구성 요소</h3>
+<ul>
+<li><i class="fas fa-dot-circle"></i> <strong>분자</strong>: 두 벡터의 내적 (dot product)</li>
+<li><i class="fas fa-ruler"></i> <strong>분모</strong>: 각 벡터의 크기(norm)의 곱</li>
+<li><i class="fas fa-angle-right"></i> <strong>θ</strong>: 두 벡터 간의 각도</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h3 id="값의-의미">값의 의미</h3>
+<ul>
+<li><i class="fas fa-equals"></i> <strong>1</strong>: 완전히 동일한 방향</li>
+<li><i class="fas fa-circle"></i> <strong>0</strong>: 수직 (직교)</li>
+<li><i class="fas fa-minus"></i> <strong>-1</strong>: 완전히 반대 방향</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="차원-예시" class="slide level2 smaller">
+<h2>2차원 예시</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="벡터-a-3-4-b-1-2">벡터 A = (3, 4), B = (1, 2)</h3>
+<p><strong>1단계: 내적 계산</strong> <span class="math display">\[\mathbf{A} \cdot \mathbf{B} = 3 \times 1 + 4 \times 2 = 11\]</span></p>
+<p><strong>2단계: 각 벡터의 크기</strong> <span class="math display">\[|\mathbf{A}| = \sqrt{3^2 + 4^2} = 5\]</span> <span class="math display">\[|\mathbf{B}| = \sqrt{1^2 + 2^2} = \sqrt{5}\]</span></p>
+<p><strong>3단계: 코사인 유사도</strong> <span class="math display">\[\cos(\theta) = \frac{11}{5 \times \sqrt{5}} = \frac{11}{5\sqrt{5}} \approx 0.982\]</span></p>
+</div><div class="column" style="width:50%;">
+<h3 id="해석">해석</h3>
+<ul>
+<li><i class="fas fa-thumbs-up"></i> <strong>0.982</strong>: 매우 높은 유사도</li>
+<li><i class="fas fa-angle-right"></i> <strong>각도</strong>: 약 11.3도</li>
+<li><i class="fas fa-chart-line"></i> <strong>의미</strong>: 두 벡터가 거의 같은 방향</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="다른-유사도-측정-방법과의-비교" class="slide level2 smaller">
+<h2>다른 유사도 측정 방법과의 비교</h2>
+<div class="columns">
+<div class="column" style="width:33%;">
+<h3 id="유클리드-거리">유클리드 거리</h3>
+<ul>
+<li><i class="fas fa-ruler-combined"></i> <strong>거리 기반</strong> 측정</li>
+<li><i class="fas fa-arrows-alt"></i> <strong>크기에 민감</strong></li>
+<li><i class="fas fa-map-marker-alt"></i> 절대적 위치 중요</li>
+</ul>
+<p><span class="math display">\[d = \sqrt{\sum_{i=1}^{n} (A_i - B_i)^2}\]</span></p>
+</div><div class="column" style="width:33%;">
+<h3 id="맨하탄-거리">맨하탄 거리</h3>
+<ul>
+<li><i class="fas fa-th-large"></i> <strong>격자 기반</strong> 거리</li>
+<li><i class="fas fa-plus"></i> <strong>절댓값의 합</strong></li>
+<li><i class="fas fa-city"></i> 도시 블록 거리</li>
+</ul>
+<p><span class="math display">\[d = \sum_{i=1}^{n} |A_i - B_i|\]</span></p>
+</div><div class="column" style="width:33%;">
+<h3 id="코사인-유사도">코사인 유사도</h3>
+<ul>
+<li><i class="fas fa-compass"></i> <strong>각도 기반</strong> 측정</li>
+<li><i class="fas fa-expand-arrows-alt"></i> <strong>크기에 무관</strong></li>
+<li><i class="fas fa-arrows-alt-h"></i> 상대적 방향 중요</li>
+</ul>
+<p><span class="math display">\[\cos(\theta) = \frac{\mathbf{A} \cdot \mathbf{B}}{|\mathbf{A}||\mathbf{B}|}\]</span></p>
+</div>
+</div>
+</section>
+<section id="언제-코사인-유사도를-사용할까" class="slide level2 smaller">
+<h2>언제 코사인 유사도를 사용할까?</h2>
+<h3 id="적합한-상황">적합한 상황</h3>
+<div>
+<ul>
+<li class="fragment"><i class="fas fa-file-alt"></i> <strong>텍스트 분석</strong>: 문서의 길이와 무관하게 내용 유사성 비교</li>
+<li class="fragment"><i class="fas fa-star"></i> <strong>추천 시스템</strong>: 사용자 평점 패턴 분석</li>
+<li class="fragment"><i class="fas fa-image"></i> <strong>이미지 처리</strong>: 픽셀 강도 패턴 비교</li>
+<li class="fragment"><i class="fas fa-chart-bar"></i> <strong>고차원 데이터</strong>: 차원의 저주 완화</li>
+</ul>
+</div>
+<h3 id="부적합한-상황">부적합한 상황</h3>
+<div>
+<ul>
+<li class="fragment"><i class="fas fa-ruler"></i> <strong>절대적 크기</strong>가 중요한 경우</li>
+<li class="fragment"><i class="fas fa-map-marker-alt"></i> <strong>위치 정보</strong>가 핵심인 경우</li>
+<li class="fragment"><i class="fas fa-minus"></i> <strong>음수 값</strong>이 특별한 의미를 가지는 경우</li>
+<li class="fragment"><i class="fas fa-balance-scale"></i> <strong>크기 차이</strong>가 의미 있는 경우</li>
+</ul>
+</div>
+</section>
+<section id="텍스트-마이닝에서의-활용" class="slide level2 smaller">
+<h2>텍스트 마이닝에서의 활용</h2>
+<h3 id="tf-idf-벡터와-코사인-유사도">TF-IDF 벡터와 코사인 유사도</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>문서 1</strong>: “머신러닝은 인공지능의 한 분야입니다” <strong>문서 2</strong>: “딥러닝은 머신러닝의 한 방법입니다”</p>
+<h3 id="단어-빈도-행렬">단어 빈도 행렬</h3>
+<table>
+<thead>
+<tr class="header">
+<th>단어</th>
+<th>문서1</th>
+<th>문서2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>머신러닝</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>인공지능</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>딥러닝</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>분야</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>방법</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div><div class="column" style="width:50%;">
+<h3 id="코사인-유사도-계산">코사인 유사도 계산</h3>
+<ul>
+<li><i class="fas fa-vector-square"></i> <strong>벡터 A</strong>: [1, 1, 0, 1, 0]</li>
+<li><i class="fas fa-vector-square"></i> <strong>벡터 B</strong>: [1, 0, 1, 0, 1]</li>
+<li><i class="fas fa-calculator"></i> <strong>내적</strong>: 1×1 = 1</li>
+<li><i class="fas fa-ruler"></i> <strong>크기</strong>: √3 × √3 = 3</li>
+<li><i class="fas fa-equals"></i> <strong>결과</strong>: 1/3 ≈ 0.333</li>
+</ul>
+<p><strong>해석</strong>: 중간 정도의 유사성</p>
+</div>
+</div>
+</section>
+<section id="추천-시스템에서의-활용" class="slide level2 smaller">
+<h2>추천 시스템에서의 활용</h2>
+<h3 id="사용자-기반-협업-필터링">사용자 기반 협업 필터링</h3>
+<div class="columns">
+<div class="column" style="width:60%;">
+<h3 id="사용자-아이템-평점-행렬">사용자-아이템 평점 행렬</h3>
+<table>
+<thead>
+<tr class="header">
+<th>사용자</th>
+<th>영화A</th>
+<th>영화B</th>
+<th>영화C</th>
+<th>영화D</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>사용자1</td>
+<td>5</td>
+<td>3</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>사용자2</td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>사용자3</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td>사용자4</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<h3 id="사용자1과-사용자2의-유사도">사용자1과 사용자2의 유사도</h3>
+<p><span class="math display">\[\cos(\theta) = \frac{5×4 + 3×0 + 0×0 + 1×1}{\sqrt{5^2+3^2+0^2+1^2} × \sqrt{4^2+0^2+0^2+1^2}}\]</span> <span class="math display">\[= \frac{21}{\sqrt{35} × \sqrt{17}} ≈ 0.86\]</span></p>
+</div><div class="column" style="width:40%;">
+<h3 id="활용-방법">활용 방법</h3>
+<ul>
+<li><i class="fas fa-users"></i> <strong>유사 사용자</strong> 발견</li>
+<li><i class="fas fa-star"></i> <strong>평점 예측</strong></li>
+<li><i class="fas fa-thumbs-up"></i> <strong>추천 생성</strong></li>
+<li><i class="fas fa-filter"></i> <strong>개인화 필터링</strong></li>
+</ul>
+<h3 id="장점">장점</h3>
+<ul>
+<li><i class="fas fa-chart-line"></i> <strong>평점 스케일</strong> 무관</li>
+<li><i class="fas fa-balance-scale"></i> <strong>편향 감소</strong></li>
+<li><i class="fas fa-expand-arrows-alt"></i> <strong>희소성 처리</strong></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="파이썬-구현-예제" class="slide level2 smaller">
+<h2>파이썬 구현 예제</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="im">from</span> sklearn.metrics.pairwise <span class="im">import</span> cosine_similarity</span>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="kw">def</span> cosine_similarity_manual(A, B):</span>
+<span id="cb1-5"><a href="#cb1-5"></a>    <span class="co">"""</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="co">    수동으로 코사인 유사도 계산</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="co">    """</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a>    dot_product <span class="op">=</span> np.dot(A, B)</span>
+<span id="cb1-9"><a href="#cb1-9"></a>    norm_A <span class="op">=</span> np.linalg.norm(A)</span>
+<span id="cb1-10"><a href="#cb1-10"></a>    norm_B <span class="op">=</span> np.linalg.norm(B)</span>
+<span id="cb1-11"><a href="#cb1-11"></a>    </span>
+<span id="cb1-12"><a href="#cb1-12"></a>    <span class="cf">return</span> dot_product <span class="op">/</span> (norm_A <span class="op">*</span> norm_B)</span>
+<span id="cb1-13"><a href="#cb1-13"></a></span>
+<span id="cb1-14"><a href="#cb1-14"></a><span class="co"># 예제 벡터</span></span>
+<span id="cb1-15"><a href="#cb1-15"></a>vector_A <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>])</span>
+<span id="cb1-16"><a href="#cb1-16"></a>vector_B <span class="op">=</span> np.array([<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>])</span>
+<span id="cb1-17"><a href="#cb1-17"></a>vector_C <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>])</span>
+<span id="cb1-18"><a href="#cb1-18"></a></span>
+<span id="cb1-19"><a href="#cb1-19"></a><span class="co"># 수동 계산</span></span>
+<span id="cb1-20"><a href="#cb1-20"></a>sim_AB <span class="op">=</span> cosine_similarity_manual(vector_A, vector_B)</span>
+<span id="cb1-21"><a href="#cb1-21"></a>sim_AC <span class="op">=</span> cosine_similarity_manual(vector_A, vector_C)</span>
+<span id="cb1-22"><a href="#cb1-22"></a></span>
+<span id="cb1-23"><a href="#cb1-23"></a><span class="bu">print</span>(<span class="ss">f"A와 B의 유사도: </span><span class="sc">{</span>sim_AB<span class="sc">:.3f}</span><span class="ss">"</span>)  <span class="co"># 1.000 (완전히 동일한 방향)</span></span>
+<span id="cb1-24"><a href="#cb1-24"></a><span class="bu">print</span>(<span class="ss">f"A와 C의 유사도: </span><span class="sc">{</span>sim_AC<span class="sc">:.3f}</span><span class="ss">"</span>)  <span class="co"># 0.000 (수직)</span></span>
+<span id="cb1-25"><a href="#cb1-25"></a></span>
+<span id="cb1-26"><a href="#cb1-26"></a><span class="co"># scikit-learn 사용</span></span>
+<span id="cb1-27"><a href="#cb1-27"></a>vectors <span class="op">=</span> np.array([vector_A, vector_B, vector_C])</span>
+<span id="cb1-28"><a href="#cb1-28"></a>similarity_matrix <span class="op">=</span> cosine_similarity(vectors)</span>
+<span id="cb1-29"><a href="#cb1-29"></a><span class="bu">print</span>(<span class="st">"유사도 행렬:"</span>)</span>
+<span id="cb1-30"><a href="#cb1-30"></a><span class="bu">print</span>(similarity_matrix)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="r-구현-예제" class="slide level2 smaller">
+<h2>R 구현 예제</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># 기본 함수로 구현</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>cosine_similarity <span class="ot">&lt;-</span> <span class="cf">function</span>(A, B) {</span>
+<span id="cb2-3"><a href="#cb2-3"></a>  dot_product <span class="ot">&lt;-</span> <span class="fu">sum</span>(A <span class="sc">*</span> B)</span>
+<span id="cb2-4"><a href="#cb2-4"></a>  norm_A <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">sum</span>(A<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb2-5"><a href="#cb2-5"></a>  norm_B <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">sum</span>(B<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb2-6"><a href="#cb2-6"></a>  </span>
+<span id="cb2-7"><a href="#cb2-7"></a>  <span class="fu">return</span>(dot_product <span class="sc">/</span> (norm_A <span class="sc">*</span> norm_B))</span>
+<span id="cb2-8"><a href="#cb2-8"></a>}</span>
+<span id="cb2-9"><a href="#cb2-9"></a></span>
+<span id="cb2-10"><a href="#cb2-10"></a><span class="co"># 예제 벡터</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>vector_A <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
+<span id="cb2-12"><a href="#cb2-12"></a>vector_B <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>)</span>
+<span id="cb2-13"><a href="#cb2-13"></a>vector_C <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb2-14"><a href="#cb2-14"></a></span>
+<span id="cb2-15"><a href="#cb2-15"></a><span class="co"># 유사도 계산</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a>sim_AB <span class="ot">&lt;-</span> <span class="fu">cosine_similarity</span>(vector_A, vector_B)</span>
+<span id="cb2-17"><a href="#cb2-17"></a>sim_AC <span class="ot">&lt;-</span> <span class="fu">cosine_similarity</span>(vector_A, vector_C)</span>
+<span id="cb2-18"><a href="#cb2-18"></a></span>
+<span id="cb2-19"><a href="#cb2-19"></a><span class="fu">cat</span>(<span class="st">"A와 B의 유사도:"</span>, <span class="fu">round</span>(sim_AB, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb2-20"><a href="#cb2-20"></a><span class="fu">cat</span>(<span class="st">"A와 C의 유사도:"</span>, <span class="fu">round</span>(sim_AC, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb2-21"><a href="#cb2-21"></a></span>
+<span id="cb2-22"><a href="#cb2-22"></a><span class="co"># 패키지 사용 (lsa 패키지)</span></span>
+<span id="cb2-23"><a href="#cb2-23"></a><span class="fu">library</span>(lsa)</span>
+<span id="cb2-24"><a href="#cb2-24"></a><span class="fu">cosine</span>(vector_A, vector_B)</span>
+<span id="cb2-25"><a href="#cb2-25"></a><span class="fu">cosine</span>(vector_A, vector_C)</span>
+<span id="cb2-26"><a href="#cb2-26"></a></span>
+<span id="cb2-27"><a href="#cb2-27"></a><span class="co"># 행렬 형태로 한 번에 계산</span></span>
+<span id="cb2-28"><a href="#cb2-28"></a>vectors <span class="ot">&lt;-</span> <span class="fu">rbind</span>(vector_A, vector_B, vector_C)</span>
+<span id="cb2-29"><a href="#cb2-29"></a>similarity_matrix <span class="ot">&lt;-</span> <span class="fu">cosine</span>(<span class="fu">t</span>(vectors))</span>
+<span id="cb2-30"><a href="#cb2-30"></a><span class="fu">print</span>(similarity_matrix)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="실제-응용-사례" class="slide level2 smaller">
+<h2>실제 응용 사례</h2>
+<h3 id="검색-엔진">1. 검색 엔진</h3>
+<div>
+<ul>
+<li class="fragment"><i class="fas fa-search"></i> <strong>쿼리-문서 유사도</strong> 계산</li>
+<li class="fragment"><i class="fas fa-sort-amount-down"></i> <strong>검색 결과 순위</strong> 결정</li>
+<li class="fragment"><i class="fas fa-language"></i> <strong>의미적 유사성</strong> 파악</li>
+<li class="fragment"><i class="fas fa-robot"></i> <strong>자동 태깅</strong> 시스템</li>
+</ul>
+</div>
+<h3 id="소셜-네트워크-분석">2. 소셜 네트워크 분석</h3>
+<div>
+<ul>
+<li class="fragment"><i class="fas fa-users"></i> <strong>사용자 관심사</strong> 유사성</li>
+<li class="fragment"><i class="fas fa-share-alt"></i> <strong>콘텐츠 추천</strong></li>
+<li class="fragment"><i class="fas fa-network-wired"></i> <strong>커뮤니티 발견</strong></li>
+<li class="fragment"><i class="fas fa-hashtag"></i> <strong>해시태그 분석</strong></li>
+</ul>
+</div>
+<h3 id="바이오인포매틱스">3. 바이오인포매틱스</h3>
+<div>
+<ul>
+<li class="fragment"><i class="fas fa-dna"></i> <strong>유전자 발현</strong> 패턴 비교</li>
+<li class="fragment"><i class="fas fa-pills"></i> <strong>약물 유사성</strong> 분석</li>
+<li class="fragment"><i class="fas fa-microscope"></i> <strong>단백질 구조</strong> 비교</li>
+<li class="fragment"><i class="fas fa-virus"></i> <strong>질병 진단</strong> 보조</li>
+</ul>
+</div>
+</section>
+<section id="장점과-단점" class="slide level2 smaller">
+<h2>장점과 단점</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="장점-1">장점</h3>
+<ul>
+<li><i class="fas fa-expand-arrows-alt"></i> <strong>크기 무관성</strong>: 벡터 크기에 영향받지 않음</li>
+<li><i class="fas fa-chart-line"></i> <strong>정규화 효과</strong>: 자동으로 정규화됨</li>
+<li><i class="fas fa-calculator"></i> <strong>계산 효율성</strong>: 비교적 간단한 연산</li>
+<li><i class="fas fa-layer-group"></i> <strong>고차원 대응</strong>: 차원이 높아도 안정적</li>
+<li><i class="fas fa-balance-scale"></i> <strong>대칭성</strong>: A와 B의 순서 무관</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h3 id="단점">단점</h3>
+<ul>
+<li><i class="fas fa-ruler"></i> <strong>크기 정보 손실</strong>: 벡터의 크기 무시</li>
+<li><i class="fas fa-minus"></i> <strong>음수 처리</strong>: 음수 값의 의미 해석 어려움</li>
+<li><i class="fas fa-equals"></i> <strong>0 벡터 문제</strong>: 분모가 0이 되는 경우</li>
+<li><i class="fas fa-chart-bar"></i> <strong>분포 가정</strong>: 벡터가 원점에서 시작한다고 가정</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="개선된-변형들" class="slide level2 smaller">
+<h2>개선된 변형들</h2>
+<h3 id="조정된-코사인-유사도-adjusted-cosine-similarity">1. 조정된 코사인 유사도 (Adjusted Cosine Similarity)</h3>
+<ul>
+<li><i class="fas fa-balance-scale"></i> <strong>평균 중심화</strong>: 각 차원의 평균을 빼서 편향 제거</li>
+<li><i class="fas fa-star"></i> <strong>추천 시스템</strong>에서 사용자 평점 편향 해결</li>
+</ul>
+<p><span class="math display">\[\cos(\theta) = \frac{\sum_{i=1}^{n} (A_i - \bar{A})(B_i - \bar{B})}{\sqrt{\sum_{i=1}^{n} (A_i - \bar{A})^2} \sqrt{\sum_{i=1}^{n} (B_i - \bar{B})^2}}\]</span></p>
+<h3 id="가중-코사인-유사도-weighted-cosine-similarity">2. 가중 코사인 유사도 (Weighted Cosine Similarity)</h3>
+<ul>
+<li><i class="fas fa-weight"></i> <strong>가중치 적용</strong>: 중요한 차원에 더 큰 가중치</li>
+<li><i class="fas fa-chart-pie"></i> <strong>도메인 지식</strong> 반영</li>
+</ul>
+<p><span class="math display">\[\cos(\theta) = \frac{\sum_{i=1}^{n} w_i A_i B_i}{\sqrt{\sum_{i=1}^{n} w_i A_i^2} \sqrt{\sum_{i=1}^{n} w_i B_i^2}}\]</span></p>
+</section>
+<section id="실습-문서-유사도-분석" class="slide level2 smaller">
+<h2>실습: 문서 유사도 분석</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">from</span> sklearn.feature_extraction.text <span class="im">import</span> TfidfVectorizer</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="im">from</span> sklearn.metrics.pairwise <span class="im">import</span> cosine_similarity</span>
+<span id="cb3-3"><a href="#cb3-3"></a></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="co"># 예제 문서들</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>documents <span class="op">=</span> [</span>
+<span id="cb3-6"><a href="#cb3-6"></a>    <span class="st">"머신러닝은 인공지능의 한 분야입니다"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7"></a>    <span class="st">"딥러닝은 머신러닝의 발전된 형태입니다"</span>,</span>
+<span id="cb3-8"><a href="#cb3-8"></a>    <span class="st">"자연어 처리는 컴퓨터가 인간의 언어를 이해하는 기술입니다"</span>,</span>
+<span id="cb3-9"><a href="#cb3-9"></a>    <span class="st">"컴퓨터 비전은 이미지를 분석하는 AI 기술입니다"</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a>]</span>
+<span id="cb3-11"><a href="#cb3-11"></a></span>
+<span id="cb3-12"><a href="#cb3-12"></a><span class="co"># TF-IDF 벡터화</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a>vectorizer <span class="op">=</span> TfidfVectorizer()</span>
+<span id="cb3-14"><a href="#cb3-14"></a>tfidf_matrix <span class="op">=</span> vectorizer.fit_transform(documents)</span>
+<span id="cb3-15"><a href="#cb3-15"></a></span>
+<span id="cb3-16"><a href="#cb3-16"></a><span class="co"># 코사인 유사도 계산</span></span>
+<span id="cb3-17"><a href="#cb3-17"></a>similarity_matrix <span class="op">=</span> cosine_similarity(tfidf_matrix)</span>
+<span id="cb3-18"><a href="#cb3-18"></a></span>
+<span id="cb3-19"><a href="#cb3-19"></a><span class="co"># 결과 출력</span></span>
+<span id="cb3-20"><a href="#cb3-20"></a>feature_names <span class="op">=</span> vectorizer.get_feature_names_out()</span>
+<span id="cb3-21"><a href="#cb3-21"></a><span class="bu">print</span>(<span class="st">"특성 단어들:"</span>, feature_names)</span>
+<span id="cb3-22"><a href="#cb3-22"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">문서 간 유사도 행렬:"</span>)</span>
+<span id="cb3-23"><a href="#cb3-23"></a><span class="cf">for</span> i, doc <span class="kw">in</span> <span class="bu">enumerate</span>(documents):</span>
+<span id="cb3-24"><a href="#cb3-24"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">문서 </span><span class="sc">{</span>i<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>doc[:<span class="dv">20</span>]<span class="sc">}</span><span class="ss">..."</span>)</span>
+<span id="cb3-25"><a href="#cb3-25"></a>    <span class="cf">for</span> j, similarity <span class="kw">in</span> <span class="bu">enumerate</span>(similarity_matrix[i]):</span>
+<span id="cb3-26"><a href="#cb3-26"></a>        <span class="cf">if</span> i <span class="op">!=</span> j:</span>
+<span id="cb3-27"><a href="#cb3-27"></a>            <span class="bu">print</span>(<span class="ss">f"  vs 문서 </span><span class="sc">{</span>j<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>similarity<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="성능-최적화-팁" class="slide level2 smaller">
+<h2>성능 최적화 팁</h2>
+<h3 id="벡터화-최적화">1. 벡터화 최적화</h3>
+<div>
+<ul>
+<li class="fragment"><i class="fas fa-memory"></i> <strong>희소 행렬</strong> 사용 (scipy.sparse)</li>
+<li class="fragment"><i class="fas fa-microchip"></i> <strong>NumPy 벡터화</strong> 연산 활용</li>
+<li class="fragment"><i class="fas fa-layer-group"></i> <strong>배치 처리</strong>로 여러 벡터 동시 계산</li>
+<li class="fragment"><i class="fas fa-database"></i> <strong>메모리 효율적</strong> 데이터 구조 선택</li>
+</ul>
+</div>
+<h3 id="근사-알고리즘">2. 근사 알고리즘</h3>
+<div>
+<ul>
+<li class="fragment"><i class="fas fa-random"></i> <strong>LSH</strong> (Locality Sensitive Hashing)</li>
+<li class="fragment"><i class="fas fa-compress"></i> <strong>차원 축소</strong> 기법 활용</li>
+<li class="fragment"><i class="fas fa-tree"></i> <strong>트리 기반</strong> 인덱싱</li>
+<li class="fragment"><i class="fas fa-cut"></i> <strong>임계값 기반</strong> 필터링</li>
+</ul>
+</div>
+<h3 id="하드웨어-활용">3. 하드웨어 활용</h3>
+<div>
+<ul>
+<li class="fragment"><i class="fas fa-microchip"></i> <strong>GPU 가속</strong> (CUDA, OpenCL)</li>
+<li class="fragment"><i class="fas fa-server"></i> <strong>분산 컴퓨팅</strong> (Spark, Dask)</li>
+<li class="fragment"><i class="fas fa-bolt"></i> <strong>병렬 처리</strong> 최적화</li>
+<li class="fragment"><i class="fas fa-memory"></i> <strong>메모리 맵핑</strong> 활용</li>
+</ul>
+</div>
+</section>
+<section id="결론" class="slide level2 smaller">
+<h2>결론</h2>
+<h3 id="코사인-유사도의-핵심-가치">코사인 유사도의 핵심 가치</h3>
+<div>
+<ul>
+<li class="fragment"><i class="fas fa-compass"></i> <strong>방향성 중심</strong>: 벡터의 방향으로 유사성 측정</li>
+<li class="fragment"><i class="fas fa-expand-arrows-alt"></i> <strong>크기 무관성</strong>: 절대적 크기보다 상대적 패턴 중요</li>
+<li class="fragment"><i class="fas fa-cogs"></i> <strong>범용성</strong>: 다양한 도메인에서 활용 가능</li>
+<li class="fragment"><i class="fas fa-rocket"></i> <strong>확장성</strong>: 고차원 데이터에서도 효과적</li>
+</ul>
+</div>
+<h3 id="선택-기준">선택 기준</h3>
+<div>
+<ul>
+<li class="fragment"><i class="fas fa-question"></i> <strong>크기가 중요한가?</strong> → 유클리드 거리 고려</li>
+<li class="fragment"><i class="fas fa-compass"></i> <strong>방향이 중요한가?</strong> → 코사인 유사도 선택</li>
+<li class="fragment"><i class="fas fa-chart-bar"></i> <strong>데이터 특성은?</strong> → 희소성, 차원, 분포 고려</li>
+<li class="fragment"><i class="fas fa-target"></i> <strong>목적은 무엇인가?</strong> → 분류, 추천, 검색 등</li>
+</ul>
+</div>
+<h3 id="미래-발전-방향">미래 발전 방향</h3>
+<div>
+<ul>
+<li class="fragment"><i class="fas fa-brain"></i> <strong>딥러닝과의 결합</strong>: 학습된 임베딩에서의 유사도</li>
+<li class="fragment"><i class="fas fa-network-wired"></i> <strong>그래프 기반 확장</strong>: 네트워크 구조 고려</li>
+<li class="fragment"><i class="fas fa-robot"></i> <strong>자동화</strong>: 최적 유사도 메트릭 자동 선택</li>
+</ul>
+</div>
+</section>
+<section id="참고-자료" class="slide level2 smaller">
+<h2>참고 자료</h2>
+<h3 id="추천-도서">추천 도서</h3>
+<ul>
+<li><i class="fas fa-book"></i> <strong>“Introduction to Information Retrieval”</strong> - Manning, Raghavan, Schütze</li>
+<li><i class="fas fa-book"></i> <strong>“Pattern Recognition and Machine Learning”</strong> - Bishop</li>
+<li><i class="fas fa-book"></i> <strong>“Recommender Systems Handbook”</strong> - Ricci et al.</li>
+</ul>
+<h3 id="온라인-리소스">온라인 리소스</h3>
+<ul>
+<li><i class="fas fa-globe"></i> <strong>scikit-learn 문서</strong>: 코사인 유사도 구현</li>
+<li><i class="fas fa-code"></i> <strong>Kaggle</strong>: 실제 데이터셋으로 실습</li>
+<li><i class="fas fa-video"></i> <strong>YouTube</strong>: 시각적 설명 동영상</li>
+</ul>
+<h3 id="실습-데이터셋">실습 데이터셋</h3>
+<ul>
+<li><i class="fas fa-file-alt"></i> <strong>20 Newsgroups</strong>: 텍스트 분류</li>
+<li><i class="fas fa-film"></i> <strong>MovieLens</strong>: 영화 추천</li>
+<li><i class="fas fa-shopping-cart"></i> <strong>Amazon Reviews</strong>: 상품 추천</li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 class="center" id="감사합니다">감사합니다!</h3>
+<p><i class="fas fa-envelope"></i> <strong>연락처</strong>: euriion@gmail.com<br>
+<i class="fab fa-github"></i> <strong>GitHub</strong>: github.com/euriion<br>
+<i class="fas fa-blog"></i> <strong>블로그</strong>: euriion.com</p>
+<div class="footer footer-default">
+<p>코사인 유사도 | 홍성학</p>
+</div>
+</section>
+    </div>
+  </div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="cosine-similarity_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="cosine-similarity_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="cosine-similarity_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="cosine-similarity_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="cosine-similarity_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="cosine-similarity_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="cosine-similarity_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="cosine-similarity_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="cosine-similarity_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="cosine-similarity_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="cosine-similarity_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'smaller': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const clipboard = new window.ClipboardJS('.code-copy-button', {
+        target: function(trigger) {
+          return trigger.previousElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      });
+      function tippyHover(el, contentFn) {
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto-reveal',
+          placement: 'bottom-start'
+        };
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          return note.innerHTML;
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>

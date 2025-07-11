@@ -1,0 +1,540 @@
+---
+title: "애드테크 기초와 실무"
+subtitle: "디지털 광고 기술의 이해와 활용"
+author: "Seonghak Hong"
+date: today
+format: 
+  revealjs:
+    theme: night
+    transition: slide
+    background-transition: fade
+    highlight-style: github
+    code-fold: true
+    code-tools: true
+    slide-number: true
+    chalkboard: true
+    scrollable: true
+    incremental: false
+    footer: "애드테크 기초와 실무 | 홍성학"
+    css: custom.css
+    include-in-header:
+      - text: |
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+mermaid:
+  theme: dark
+editor: visual
+---
+
+## 목차 {.smaller}
+
+::: {.incremental}
+1. **애드테크 개요**
+2. **디지털 광고 생태계**
+3. **프로그래매틱 광고**
+4. **데이터와 타겟팅**
+5. **광고 성과 측정**
+6. **개인정보보호와 쿠키리스**
+7. **미래 전망과 트렌드**
+:::
+
+# 애드테크 개요
+
+## 애드테크(AdTech)란? {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**애드테크**는 디지털 광고 기술의 총칭
+
+- <i class="fas fa-bullseye"></i> **타겟팅**: 정확한 사용자에게 광고 전달
+- <i class="fas fa-chart-line"></i> **최적화**: 실시간 성과 개선
+- <i class="fas fa-robot"></i> **자동화**: 프로그래매틱 광고 거래
+- <i class="fas fa-analytics"></i> **측정**: 정교한 성과 분석
+- <i class="fas fa-users"></i> **개인화**: 사용자 맞춤형 광고
+:::
+
+::: {.column width="50%"}
+```{mermaid}
+flowchart TD
+    A[광고주] --> B[DSP]
+    B --> C[Ad Exchange]
+    C --> D[SSP]
+    D --> E[퍼블리셔]
+    F[DMP] --> B
+    G[사용자] --> E
+```
+:::
+:::
+
+## 애드테크의 발전 과정 {.smaller}
+
+::: {.incremental}
+- <i class="fas fa-newspaper"></i> **1990년대**: 배너 광고의 시작
+- <i class="fas fa-search"></i> **2000년대**: 검색 광고의 등장 (Google AdWords)
+- <i class="fas fa-share-alt"></i> **2010년대**: 소셜미디어 광고 플랫폼
+- <i class="fas fa-mobile-alt"></i> **2015년+**: 모바일 퍼스트 광고
+- <i class="fas fa-brain"></i> **2020년+**: AI/ML 기반 광고 최적화
+- <i class="fas fa-shield-alt"></i> **현재**: 개인정보보호 중심 광고
+:::
+
+# 디지털 광고 생태계
+
+## 주요 플레이어들 {.smaller}
+
+::: {.panel-tabset}
+### 광고주 (Advertiser)
+- **역할**: 제품/서비스 홍보
+- **목표**: 브랜드 인지도, 전환율 증대
+- **도구**: DSP, 광고 대행사
+
+### 퍼블리셔 (Publisher)
+- **역할**: 광고 지면 제공
+- **목표**: 수익 최대화
+- **도구**: SSP, 광고 네트워크
+
+### 애드테크 벤더
+- **역할**: 기술 솔루션 제공
+- **서비스**: DSP, SSP, DMP, 애드서버
+- **목표**: 플랫폼 수수료 수익
+:::
+
+## 광고 거래 방식 {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**전통적 방식:**
+
+- 직접 거래 (Direct Deal)
+- 프리미엄 인벤토리
+- 고정 가격 (CPM)
+- 수동 협상
+
+**장점:**
+
+- 품질 보장
+- 브랜드 안전성
+- 예측 가능한 비용
+:::
+
+::: {.column width="50%"}
+**프로그래매틱 방식:**
+
+- 실시간 경매 (RTB)
+- 자동화된 거래
+- 동적 가격 결정
+- 데이터 기반 타겟팅
+
+**장점:**
+
+- 효율성
+- 확장성
+- 정교한 타겟팅
+:::
+:::
+
+# 프로그래매틱 광고
+
+## RTB (Real-Time Bidding) 과정 {.smaller}
+
+```{mermaid}
+sequenceDiagram
+    participant U as 사용자
+    participant P as 퍼블리셔
+    participant S as SSP
+    participant E as Ad Exchange
+    participant D as DSP
+    participant A as 광고주
+    
+    U->>P: 웹페이지 방문
+    P->>S: 광고 요청
+    S->>E: 입찰 요청
+    E->>D: 입찰 기회 전송
+    D->>A: 타겟팅 확인
+    A->>D: 입찰 결정
+    D->>E: 입찰 제출
+    E->>S: 낙찰 결과
+    S->>P: 광고 크리에이티브
+    P->>U: 광고 노출
+```
+
+## DSP vs SSP {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**DSP (Demand-Side Platform)**
+
+- <i class="fas fa-shopping-cart"></i> **광고주 도구**
+- <i class="fas fa-bullseye"></i> **타겟팅 최적화**
+- <i class="fas fa-chart-bar"></i> **성과 분석**
+- <i class="fas fa-dollar-sign"></i> **비용 효율성**
+
+**주요 기능:**
+
+- 실시간 입찰
+- 오디언스 타겟팅
+- 크리에이티브 관리
+- 성과 리포팅
+:::
+
+::: {.column width="50%"}
+**SSP (Supply-Side Platform)**
+
+- <i class="fas fa-store"></i> **퍼블리셔 도구**
+- <i class="fas fa-money-bill-wave"></i> **수익 최대화**
+- <i class="fas fa-shield-alt"></i> **브랜드 안전성**
+- <i class="fas fa-cog"></i> **인벤토리 관리**
+
+**주요 기능:**
+
+- 가격 최적화
+- 광고 품질 관리
+- 수익 분석
+- 광고 블로킹
+:::
+:::
+
+## 프로그래매틱 거래 유형 {.smaller}
+
+::: {.incremental}
+- <i class="fas fa-gavel"></i> **Open Auction**: 공개 경매, 모든 구매자 참여
+- <i class="fas fa-handshake"></i> **Private Marketplace (PMP)**: 초청된 구매자만 참여
+- <i class="fas fa-star"></i> **Preferred Deal**: 고정 가격, 우선 구매권
+- <i class="fas fa-lock"></i> **Programmatic Guaranteed**: 보장된 인벤토리, 자동화된 거래
+:::
+
+# 데이터와 타겟팅
+
+## 데이터 유형 {.smaller}
+
+::: {.panel-tabset}
+### 1st Party Data
+**자사 데이터**
+
+- 웹사이트 방문자 데이터
+- 고객 데이터베이스
+- 앱 사용 데이터
+- 이메일 구독자 정보
+
+**특징:**
+
+- 높은 정확도
+- 개인정보보호 준수
+- 무료 사용
+
+### 2nd Party Data
+**파트너 데이터**
+
+- 파트너사 고객 데이터
+- 제휴사 데이터
+- 공유 데이터
+
+**특징:**
+
+- 신뢰할 수 있는 출처
+- 상호 이익
+- 제한적 규모
+
+### 3rd Party Data
+**외부 데이터**
+
+- 데이터 브로커 제공
+- 인구통계학적 데이터
+- 관심사 데이터
+
+**특징:**
+
+- 대규모 데이터
+- 개인정보보호 이슈
+- 정확도 한계
+:::
+
+## 타겟팅 방법 {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**기본 타겟팅:**
+
+- 지역 (Geo-targeting)
+- 연령, 성별
+- 디바이스 타입
+- 시간대
+
+**행동 타겟팅:**
+
+- 웹사이트 방문 이력
+- 구매 패턴
+- 검색 키워드
+- 앱 사용 패턴
+:::
+
+::: {.column width="50%"}
+**고급 타겟팅:**
+
+- 룩얼라이크 (Lookalike)
+- 리타겟팅 (Retargeting)
+- 크로스 디바이스
+- 실시간 컨텍스트
+
+**AI 기반 타겟팅:**
+
+- 머신러닝 최적화
+- 예측 모델링
+- 자동화된 세그멘테이션
+:::
+:::
+
+## DMP (Data Management Platform) {.smaller}
+
+```{mermaid}
+flowchart TB
+    subgraph "데이터 수집"
+        A[웹사이트]
+        B[모바일 앱]
+        C[CRM]
+        D[소셜미디어]
+    end
+    
+    subgraph "DMP"
+        E[데이터 통합]
+        F[세그멘테이션]
+        G[오디언스 생성]
+    end
+    
+    subgraph "활용"
+        H[DSP]
+        I[이메일 마케팅]
+        J[웹사이트 개인화]
+    end
+    
+    A --> E
+    B --> E
+    C --> E
+    D --> E
+    E --> F
+    F --> G
+    G --> H
+    G --> I
+    G --> J
+```
+
+# 광고 성과 측정
+
+## 주요 KPI {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**노출 관련 지표:**
+
+- **Impressions**: 광고 노출 수
+- **Reach**: 도달한 사용자 수
+- **Frequency**: 평균 노출 빈도
+- **Viewability**: 실제 조회 가능한 노출
+
+**클릭 관련 지표:**
+
+- **CTR**: 클릭률 (Click-Through Rate)
+- **CPC**: 클릭당 비용 (Cost Per Click)
+- **Quality Score**: 광고 품질 점수
+:::
+
+::: {.column width="50%"}
+**전환 관련 지표:**
+
+- **CVR**: 전환율 (Conversion Rate)
+- **CPA**: 전환당 비용 (Cost Per Acquisition)
+- **ROAS**: 광고 수익률 (Return on Ad Spend)
+- **LTV**: 고객 생애 가치 (Lifetime Value)
+
+**브랜드 관련 지표:**
+
+- **Brand Awareness**: 브랜드 인지도
+- **Brand Recall**: 브랜드 회상도
+- **Brand Sentiment**: 브랜드 감정
+:::
+:::
+
+## 어트리뷰션 모델 {.smaller}
+
+::: {.incremental}
+- <i class="fas fa-flag-checkered"></i> **Last Click**: 마지막 클릭에 100% 기여
+- <i class="fas fa-play"></i> **First Click**: 첫 번째 클릭에 100% 기여
+- <i class="fas fa-balance-scale"></i> **Linear**: 모든 터치포인트에 동일 기여
+- <i class="fas fa-chart-line"></i> **Time Decay**: 시간에 따른 감소 기여
+- <i class="fas fa-trophy"></i> **Position-Based**: 첫 번째와 마지막에 더 많은 기여
+- <i class="fas fa-brain"></i> **Data-Driven**: 머신러닝 기반 기여도 분석
+:::
+
+## 측정 도구와 플랫폼 {.smaller}
+
+::: {.panel-tabset}
+### 웹 분석
+- **Google Analytics**: 웹사이트 트래픽 분석
+- **Adobe Analytics**: 엔터프라이즈 분석
+- **Mixpanel**: 이벤트 기반 분석
+
+### 광고 분석
+- **Google Ads**: 검색 광고 성과
+- **Facebook Ads Manager**: 소셜 광고 성과
+- **Amazon DSP**: 아마존 광고 분석
+
+### 통합 분석
+- **AppsFlyer**: 모바일 어트리뷰션
+- **Adjust**: 모바일 측정 플랫폼
+- **Branch**: 딥링크 및 어트리뷰션
+:::
+
+# 개인정보보호와 쿠키리스
+
+## 개인정보보호 규제 {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**GDPR (유럽)**
+
+- 명시적 동의 필요
+- 데이터 이동권
+- 삭제권 (잊혀질 권리)
+- 높은 벌금 (매출의 4%)
+
+**CCPA (캘리포니아)**
+
+- 개인정보 판매 거부권
+- 개인정보 열람권
+- 삭제 요구권
+- 차별 금지
+:::
+
+::: {.column width="50%"}
+**국내 규제**
+
+- 개인정보보호법
+- 정보통신망법
+- 위치정보보호법
+- 신용정보법
+
+**업계 이니셔티브**
+
+- IAB의 Transparency & Consent Framework
+- Google의 Privacy Sandbox
+- Apple의 App Tracking Transparency
+:::
+:::
+
+## 쿠키리스 시대 {.smaller}
+
+::: {.incremental}
+- <i class="fas fa-ban"></i> **3rd Party Cookie 차단**: Safari, Firefox 기본 차단
+- <i class="fas fa-calendar-alt"></i> **Chrome 쿠키 폐지**: 2024년 예정 (연기됨)
+- <i class="fas fa-mobile-alt"></i> **모바일 ID 제한**: iOS 14.5+ ATT, Android Privacy Sandbox
+- <i class="fas fa-shield-alt"></i> **사용자 프라이버시 중심**: 투명성과 제어권 강화
+:::
+
+## 대안 기술들 {.smaller}
+
+::: {.panel-tabset}
+### 1st Party Data 강화
+- **Customer Data Platform (CDP)**
+- **Zero-Party Data 수집**
+- **로그인 기반 ID**
+- **이메일 해싱**
+
+### 새로운 ID 솔루션
+- **Unified ID 2.0**
+- **LiveRamp IdentityLink**
+- **Google Topics API**
+- **Apple Private Click Measurement**
+
+### 컨텍스트 광고
+- **키워드 기반 타겟팅**
+- **콘텐츠 분석**
+- **실시간 컨텍스트**
+- **브랜드 안전성 강화**
+:::
+
+# 미래 전망과 트렌드
+
+## 기술 트렌드 {.smaller}
+
+::: {.incremental}
+- <i class="fas fa-robot"></i> **AI/ML 고도화**: 자동화된 캠페인 최적화
+- <i class="fas fa-tv"></i> **Connected TV (CTV)**: 스트리밍 서비스 광고
+- <i class="fas fa-volume-up"></i> **오디오 광고**: 팟캐스트, 음성 검색
+- <i class="fas fa-cube"></i> **AR/VR 광고**: 몰입형 광고 경험
+- <i class="fas fa-comments"></i> **대화형 광고**: 챗봇, 음성 인터페이스
+- <i class="fas fa-gamepad"></i> **게임 내 광고**: 인게임, 어드버게임
+:::
+
+## 산업 변화 {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**월드 가든 (Walled Garden)**
+
+- Google, Facebook, Amazon 독점 강화
+- 자체 데이터 생태계 구축
+- 외부 측정 도구 제한
+
+**오픈 웹 생태계**
+
+- 표준화된 프로토콜
+- 상호 운용성 강화
+- 투명성 증대
+:::
+
+::: {.column width="50%"}
+**소매 미디어 (Retail Media)**
+
+- 이커머스 플랫폼 광고
+- 1st Party 데이터 활용
+- 구매 시점 타겟팅
+
+**브랜드 안전성**
+
+- 콘텐츠 적합성 검증
+- 가짜 뉴스 방지
+- 브랜드 이미지 보호
+:::
+:::
+
+## 실무 적용 가이드 {.smaller}
+
+::: {.callout-tip}
+## 성공적인 애드테크 전략
+
+1. **데이터 중심 접근**: 1st Party 데이터 구축 우선
+2. **통합 측정**: 크로스 채널 어트리뷰션 구현
+3. **프라이버시 준수**: 규제 대응 체계 구축
+4. **지속적 테스트**: A/B 테스트와 최적화
+5. **기술 파트너십**: 전문 벤더와 협력
+:::
+
+::: {.callout-warning}
+## 주의사항
+
+- 개인정보보호 규제 준수 필수
+- 브랜드 안전성 모니터링
+- 투명한 데이터 수집과 사용
+- 사용자 경험 우선 고려
+:::
+
+## 감사합니다 {.center}
+
+**질문이 있으신가요?**
+
+::: {.columns}
+::: {.column width="50%"}
+**유용한 리소스:**
+
+- [IAB 한국](https://www.iabkorea.net)
+- [Google Ads Help](https://support.google.com/google-ads)
+- [Facebook Business](https://business.facebook.com)
+- [애드테크 뉴스](https://digiday.com)
+:::
+
+::: {.column width="50%"}
+**연락처:**
+
+- 이메일: euriion@gmail.com
+- LinkedIn: linkedin.com/in/euriion
+- 블로그: euriion.com
+:::
+:::

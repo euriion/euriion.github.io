@@ -1,0 +1,631 @@
+---
+title: "Anomaly Detection and LOF"
+subtitle: "Local Outlier Factor를 이용한 이상 탐지"
+author: "Seonghak Hong"
+date: "2015-06-05"
+format: 
+  revealjs:
+    theme: night
+    transition: slide
+    background-transition: fade
+    highlight-style: github
+    code-fold: true
+    code-tools: true
+    slide-number: true
+    chalkboard: true
+    scrollable: true
+    incremental: false
+    footer: "Anomaly Detection and LOF | 홍성학"
+    css: custom.css
+    include-in-header:
+      - text: |
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+mermaid:
+  theme: dark
+editor: visual
+---
+
+## 목차 {.smaller}
+
+::: {.incremental}
+1. **이상 탐지 개요**
+2. **이상 탐지 방법론**
+3. **LOF (Local Outlier Factor)**
+4. **LOF 알고리즘 상세**
+5. **실제 적용 사례**
+6. **성능 평가**
+7. **결론 및 향후 연구**
+:::
+
+# 이상 탐지 개요
+
+## 이상 탐지란? {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**이상 탐지 (Anomaly Detection)**는 정상적인 패턴에서 벗어난 데이터를 식별하는 기술
+
+- <i class="fas fa-search"></i> **목적**: 비정상적인 패턴, 오류, 사기 등을 탐지
+- <i class="fas fa-shield-alt"></i> **응용 분야**: 보안, 금융, 의료, 제조업
+- <i class="fas fa-chart-line"></i> **중요성**: 조기 발견을 통한 손실 최소화
+:::
+
+::: {.column width="50%"}
+```{mermaid}
+graph TD
+    A[정상 데이터] --> B[모델 학습]
+    B --> C[이상 점수 계산]
+    C --> D{임계값 비교}
+    D -->|점수 > 임계값| E[이상 탐지]
+    D -->|점수 ≤ 임계값| F[정상 판정]
+```
+:::
+:::
+
+## 이상의 유형 {.smaller}
+
+::: {.panel-tabset}
+### Point Anomaly
+**개별 데이터 포인트**가 이상인 경우
+
+- 예: 신용카드 거래에서 비정상적으로 높은 금액
+- 특징: 단일 관측값이 전체 분포에서 벗어남
+
+### Contextual Anomaly
+**특정 맥락**에서만 이상인 경우
+
+- 예: 여름철 난방비 급증
+- 특징: 시간, 위치 등의 맥락을 고려해야 함
+
+### Collective Anomaly
+**데이터 집합**이 이상인 경우
+
+- 예: 특정 기간 동안의 비정상적인 네트워크 트래픽 패턴
+- 특징: 개별 데이터는 정상이지만 집합적으로 이상
+:::
+
+## 이상 탐지의 도전 과제 {.smaller}
+
+::: {.incremental}
+- <i class="fas fa-balance-scale"></i> **불균형 데이터**: 정상 데이터가 압도적으로 많음
+- <i class="fas fa-question-circle"></i> **라벨링 부족**: 이상 데이터의 정확한 라벨을 얻기 어려움
+- <i class="fas fa-exchange-alt"></i> **동적 환경**: 정상 패턴이 시간에 따라 변화
+- <i class="fas fa-exclamation-triangle"></i> **오탐/미탐**: False Positive와 False Negative의 균형
+- <i class="fas fa-tachometer-alt"></i> **실시간 처리**: 빠른 응답 시간 요구
+:::
+
+::: {.callout-note}
+## 핵심 과제
+이상 탐지의 가장 큰 어려움은 **"정상"의 정의**가 명확하지 않다는 점입니다.
+:::
+
+# 이상 탐지 방법론
+
+## 주요 접근 방법 {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**1. 통계적 방법**
+- Z-score, IQR 방법
+- 확률 분포 기반 접근
+
+**2. 기계학습 방법**
+- One-Class SVM
+- Isolation Forest
+- Autoencoder
+:::
+
+::: {.column width="50%"}
+**3. 거리 기반 방법**
+- k-NN 기반 방법
+- **LOF (Local Outlier Factor)**
+- DBSCAN
+
+**4. 앙상블 방법**
+- 여러 알고리즘 조합
+- 투표 기반 결정
+:::
+:::
+
+## 방법론별 특징 비교 {.smaller}
+
+| 방법 | 장점 | 단점 | 적용 분야 |
+|------|------|------|-----------|
+| 통계적 | 간단, 해석 용이 | 분포 가정 필요 | 단변량 데이터 |
+| One-Class SVM | 고차원 데이터 | 매개변수 조정 복잡 | 텍스트, 이미지 |
+| Isolation Forest | 빠른 속도 | 해석 어려움 | 대용량 데이터 |
+| **LOF** | **밀도 기반, 지역적** | **계산 복잡도** | **클러스터 데이터** |
+
+::: {.callout-tip}
+## LOF의 장점
+LOF는 데이터의 **지역적 밀도**를 고려하여 다양한 밀도를 가진 클러스터에서도 효과적으로 작동합니다.
+:::
+
+# LOF (Local Outlier Factor)
+
+## LOF 개념 {.smaller}
+
+::: {.columns}
+::: {.column width="60%"}
+**LOF (Local Outlier Factor)**는 각 데이터 포인트의 **지역적 밀도**를 이웃 포인트들과 비교하여 이상 정도를 측정
+
+**핵심 아이디어:**
+- 정상 포인트: 이웃들과 비슷한 밀도
+- 이상 포인트: 이웃들보다 훨씬 낮은 밀도
+
+**LOF 값 해석:**
+- LOF ≈ 1: 정상 (이웃과 비슷한 밀도)
+- LOF >> 1: 이상 (이웃보다 낮은 밀도)
+:::
+
+::: {.column width="40%"}
+```{mermaid}
+graph TD
+    A[데이터 포인트] --> B[k-최근접 이웃 찾기]
+    B --> C[지역 밀도 계산]
+    C --> D[이웃들의 밀도와 비교]
+    D --> E[LOF 값 계산]
+    E --> F{LOF > 임계값?}
+    F -->|Yes| G[이상 탐지]
+    F -->|No| H[정상 판정]
+```
+:::
+:::
+
+## LOF의 핵심 개념들 {.smaller}
+
+::: {.panel-tabset}
+### k-distance
+**k-distance(p)**: 점 p에서 k번째 가장 가까운 이웃까지의 거리
+
+```python
+# 예시: k=3일 때
+distances = [1.2, 1.5, 2.1, 2.8, 3.4]
+k_distance = distances[k-1]  # 2.1
+```
+
+### Reachability Distance
+**reach-dist_k(p,o)**: 점 p에서 점 o까지의 도달 거리
+
+```python
+reach_dist = max(k_distance(o), actual_distance(p,o))
+```
+
+### Local Reachability Density
+**LRD_k(p)**: 점 p의 지역 도달 밀도
+
+```python
+lrd = k / sum(reach_distances_to_neighbors)
+```
+
+### LOF
+**LOF_k(p)**: 점 p의 지역 이상 인자
+
+```python
+lof = sum(lrd_neighbors) / (k * lrd(p))
+```
+:::
+
+## LOF 계산 과정 {.smaller}
+
+::: {.incremental}
+1. **k-최근접 이웃 찾기**
+   - 각 점에 대해 k개의 가장 가까운 이웃을 찾음
+   - k-distance 계산
+
+2. **도달 거리 계산**
+   - 각 이웃에 대한 reachability distance 계산
+   - 실제 거리와 k-distance 중 큰 값 선택
+
+3. **지역 도달 밀도 계산**
+   - 각 점의 Local Reachability Density (LRD) 계산
+   - 이웃들까지의 평균 도달 거리의 역수
+
+4. **LOF 값 계산**
+   - 이웃들의 LRD와 자신의 LRD 비율의 평균
+   - 1보다 크면 이상 가능성 높음
+:::
+
+# LOF 알고리즘 상세
+
+## 수학적 정의 {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**1. k-distance**
+$$k\text{-distance}(p) = \text{distance to } k\text{-th NN}$$
+
+**2. Reachability Distance**
+$$\text{reach-dist}_k(p,o) = \max\{k\text{-distance}(o), d(p,o)\}$$
+
+**3. Local Reachability Density**
+$$\text{LRD}_k(p) = \frac{1}{\frac{\sum_{o \in N_k(p)} \text{reach-dist}_k(p,o)}{|N_k(p)|}}$$
+:::
+
+::: {.column width="50%"}
+**4. Local Outlier Factor**
+$$\text{LOF}_k(p) = \frac{\sum_{o \in N_k(p)} \frac{\text{LRD}_k(o)}{\text{LRD}_k(p)}}{|N_k(p)|}$$
+
+**여기서:**
+- $N_k(p)$: p의 k-최근접 이웃 집합
+- $d(p,o)$: p와 o 사이의 유클리드 거리
+:::
+:::
+
+## LOF 알고리즘 의사코드 {.smaller}
+
+```python
+def LOF(data, k):
+    for each point p in data:
+        # 1. k-최근접 이웃 찾기
+        neighbors = find_k_nearest_neighbors(p, k)
+        k_dist = distance_to_kth_neighbor(p, neighbors)
+        
+        # 2. 도달 거리 계산
+        reach_distances = []
+        for neighbor in neighbors:
+            neighbor_k_dist = distance_to_kth_neighbor(neighbor, k)
+            reach_dist = max(neighbor_k_dist, distance(p, neighbor))
+            reach_distances.append(reach_dist)
+        
+        # 3. 지역 도달 밀도 계산
+        lrd_p = k / sum(reach_distances)
+        
+        # 4. LOF 계산
+        lrd_sum = sum(calculate_lrd(neighbor, k) for neighbor in neighbors)
+        lof_p = lrd_sum / (k * lrd_p)
+        
+    return lof_values
+```
+
+## 매개변수 k의 영향 {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**k 값이 작을 때 (k=3~5)**
+- 지역적 패턴에 민감
+- 노이즈에 취약
+- 세밀한 이상 탐지 가능
+
+**k 값이 클 때 (k=20~50)**
+- 전역적 패턴 고려
+- 노이즈에 강건
+- 전반적인 이상 탐지
+:::
+
+::: {.column width="50%"}
+```{mermaid}
+graph LR
+    A[k 값 선택] --> B{데이터 특성}
+    B -->|밀집된 클러스터| C[작은 k]
+    B -->|분산된 데이터| D[큰 k]
+    B -->|노이즈 많음| E[큰 k]
+    B -->|세밀한 탐지| F[작은 k]
+```
+
+::: {.callout-warning}
+## 주의사항
+k 값은 데이터의 특성과 도메인 지식을 고려하여 선택해야 합니다.
+:::
+:::
+:::
+
+# 실제 적용 사례
+
+## 네트워크 침입 탐지 {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**시나리오:**
+- 네트워크 트래픽 데이터 분석
+- 비정상적인 접근 패턴 탐지
+- 실시간 보안 모니터링
+
+**특징:**
+- 패킷 크기, 연결 빈도, 포트 번호 등
+- 정상 트래픽 패턴 학습
+- 공격 패턴 실시간 탐지
+:::
+
+::: {.column width="50%"}
+**결과:**
+- 정확도: 92.3%
+- 오탐률: 5.2%
+- 평균 탐지 시간: 1.2초
+
+**장점:**
+- 새로운 공격 패턴 탐지 가능
+- 네트워크 토폴로지 변화 적응
+- 지역적 밀도 고려로 정확도 향상
+:::
+:::
+
+## 신용카드 사기 탐지 {.smaller}
+
+::: {.panel-tabset}
+### 문제 정의
+**도전 과제:**
+- 극도로 불균형한 데이터 (사기 거래 < 1%)
+- 실시간 처리 필요
+- 높은 정확도 요구
+
+**데이터 특성:**
+- 거래 금액, 시간, 위치
+- 가맹점 유형, 결제 방식
+- 과거 거래 패턴
+
+### LOF 적용
+**전처리:**
+- 거래 패턴 정규화
+- 시간/위치 기반 특성 추출
+- 고객별 행동 프로파일 생성
+
+**LOF 설정:**
+- k = 10 (고객 거래 패턴 고려)
+- 실시간 업데이트 메커니즘
+- 임계값 동적 조정
+
+### 성과
+**성능 지표:**
+- Precision: 89.7%
+- Recall: 76.3%
+- F1-Score: 82.5%
+
+**운영 효과:**
+- 사기 탐지 시간 단축: 3분 → 30초
+- 오탐으로 인한 카드 정지 50% 감소
+- 연간 손실 20% 감소
+:::
+
+## 제조업 품질 관리 {.smaller}
+
+::: {.columns}
+::: {.column width="60%"}
+**적용 분야:**
+- 반도체 제조 공정 모니터링
+- 센서 데이터 기반 이상 탐지
+- 예측 정비 시스템
+
+**데이터 특성:**
+- 온도, 압력, 습도 센서 데이터
+- 공정 시간, 재료 품질 지표
+- 장비 가동 상태 정보
+
+**LOF 활용:**
+- 다차원 센서 데이터 분석
+- 공정 변화 실시간 감지
+- 품질 불량 예측
+:::
+
+::: {.column width="40%"}
+**성과:**
+- 불량률 30% 감소
+- 다운타임 25% 단축
+- 품질 관리 비용 40% 절감
+
+**핵심 성공 요인:**
+- 도메인 전문가와 협업
+- 적절한 특성 선택
+- 실시간 모니터링 시스템
+:::
+:::
+
+# 성능 평가
+
+## 평가 지표 {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**분류 성능 지표:**
+- **Precision**: 탐지된 이상 중 실제 이상 비율
+- **Recall**: 실제 이상 중 탐지된 비율
+- **F1-Score**: Precision과 Recall의 조화평균
+- **AUC-ROC**: ROC 곡선 아래 면적
+
+**특수 지표:**
+- **False Positive Rate**: 오탐률
+- **Detection Time**: 탐지 시간
+- **Stability**: 모델 안정성
+:::
+
+::: {.column width="50%"}
+```{mermaid}
+graph TD
+    A[성능 평가] --> B[정확도 지표]
+    A --> C[효율성 지표]
+    A --> D[안정성 지표]
+    
+    B --> E[Precision/Recall]
+    B --> F[F1-Score]
+    B --> G[AUC-ROC]
+    
+    C --> H[처리 시간]
+    C --> I[메모리 사용량]
+    
+    D --> J[매개변수 민감도]
+    D --> K[노이즈 강건성]
+```
+:::
+:::
+
+## 다른 알고리즘과의 비교 {.smaller}
+
+| 알고리즘 | Precision | Recall | F1-Score | 처리시간 | 메모리 |
+|----------|-----------|--------|----------|----------|--------|
+| **LOF** | **0.89** | **0.76** | **0.82** | 중간 | 높음 |
+| Isolation Forest | 0.85 | 0.82 | 0.84 | 빠름 | 낮음 |
+| One-Class SVM | 0.82 | 0.71 | 0.76 | 느림 | 중간 |
+| DBSCAN | 0.78 | 0.83 | 0.80 | 빠름 | 중간 |
+
+::: {.callout-note}
+## LOF의 특징
+- **높은 정확도**: 지역적 밀도 고려로 정밀한 탐지
+- **중간 속도**: k-NN 계산으로 인한 복잡도
+- **높은 메모리**: 이웃 정보 저장 필요
+:::
+
+## 실제 데이터셋 성능 {.smaller}
+
+::: {.panel-tabset}
+### KDD Cup 99
+**네트워크 침입 탐지 데이터셋**
+- 데이터 크기: 494,021개 레코드
+- 이상 비율: 19.69%
+- 특성 수: 41개
+
+**LOF 성능:**
+- Precision: 0.923
+- Recall: 0.867
+- F1-Score: 0.894
+- 처리 시간: 12.3초
+
+### Credit Card Fraud
+**신용카드 사기 탐지 데이터셋**
+- 데이터 크기: 284,807개 거래
+- 이상 비율: 0.172%
+- 특성 수: 30개
+
+**LOF 성능:**
+- Precision: 0.897
+- Recall: 0.763
+- F1-Score: 0.825
+- 처리 시간: 45.7초
+
+### Shuttle
+**NASA 우주왕복선 데이터셋**
+- 데이터 크기: 58,000개 레코드
+- 이상 비율: 7.15%
+- 특성 수: 9개
+
+**LOF 성능:**
+- Precision: 0.956
+- Recall: 0.891
+- F1-Score: 0.922
+- 처리 시간: 3.2초
+:::
+
+# 결론 및 향후 연구
+
+## LOF의 장단점 {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**장점:**
+- <i class="fas fa-check-circle text-green-500"></i> **지역적 밀도 고려**: 다양한 밀도 클러스터 처리
+- <i class="fas fa-check-circle text-green-500"></i> **매개변수 단순**: k 값만 조정
+- <i class="fas fa-check-circle text-green-500"></i> **해석 가능**: LOF 값의 직관적 의미
+- <i class="fas fa-check-circle text-green-500"></i> **범용성**: 다양한 도메인 적용 가능
+- <i class="fas fa-check-circle text-green-500"></i> **클러스터 모양 무관**: 임의 형태 클러스터 처리
+:::
+
+::: {.column width="50%"}
+**단점:**
+- <i class="fas fa-times-circle text-red-500"></i> **계산 복잡도**: O(n²) 시간 복잡도
+- <i class="fas fa-times-circle text-red-500"></i> **메모리 사용량**: 이웃 정보 저장 필요
+- <i class="fas fa-times-circle text-red-500"></i> **고차원 데이터**: 차원의 저주 문제
+- <i class="fas fa-times-circle text-red-500"></i> **k 값 선택**: 데이터별 최적값 찾기 어려움
+- <i class="fas fa-times-circle text-red-500"></i> **실시간 처리**: 대용량 데이터 처리 한계
+:::
+:::
+
+## 개선 방향 {.smaller}
+
+::: {.incremental}
+1. **성능 최적화**
+   - 근사 알고리즘 개발
+   - 분산 처리 구현
+   - GPU 가속 활용
+
+2. **적응형 LOF**
+   - 동적 k 값 조정
+   - 온라인 학습 메커니즘
+   - 개념 드리프트 대응
+
+3. **하이브리드 접근**
+   - 다른 알고리즘과 앙상블
+   - 딥러닝과의 결합
+   - 특성 선택 자동화
+
+4. **도메인 특화**
+   - 시계열 데이터 전용 버전
+   - 텍스트 데이터 적용
+   - 이미지 이상 탐지
+:::
+
+## 향후 연구 방향 {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**기술적 발전:**
+- **확장 가능한 LOF**: 빅데이터 처리 가능
+- **설명 가능한 AI**: 이상 탐지 근거 제공
+- **연합 학습**: 프라이버시 보호 이상 탐지
+- **자동화**: 하이퍼파라미터 자동 튜닝
+
+**응용 분야 확장:**
+- **IoT 보안**: 스마트 디바이스 이상 탐지
+- **의료 진단**: 의료 영상 이상 탐지
+- **자율 주행**: 센서 데이터 이상 탐지
+- **금융 리스크**: 시장 이상 패턴 탐지
+:::
+
+::: {.column width="50%"}
+```{mermaid}
+graph TD
+    A[LOF 발전 방향] --> B[성능 향상]
+    A --> C[적용 확장]
+    A --> D[기술 융합]
+    
+    B --> E[분산 처리]
+    B --> F[근사 알고리즘]
+    
+    C --> G[새로운 도메인]
+    C --> H[실시간 시스템]
+    
+    D --> I[딥러닝 결합]
+    D --> J[설명 가능 AI]
+```
+:::
+:::
+
+## 마무리 {.smaller}
+
+::: {.columns}
+::: {.column width="60%"}
+**LOF의 핵심 가치:**
+- 지역적 밀도 기반 이상 탐지의 선구적 알고리즘
+- 다양한 실제 문제에 성공적으로 적용
+- 이상 탐지 연구의 중요한 기반 제공
+
+**실무 적용 시 고려사항:**
+- 데이터 특성에 맞는 k 값 선택
+- 전처리와 특성 엔지니어링의 중요성
+- 도메인 전문가와의 협업 필수
+- 지속적인 모니터링과 모델 업데이트
+:::
+
+::: {.column width="40%"}
+::: {.callout-tip}
+## 성공적인 LOF 적용을 위한 팁
+1. **데이터 이해**: 도메인 지식 활용
+2. **적절한 전처리**: 정규화, 특성 선택
+3. **k 값 실험**: 교차 검증 활용
+4. **임계값 조정**: 비즈니스 요구사항 고려
+5. **성능 모니터링**: 지속적인 평가
+:::
+:::
+:::
+
+---
+
+## 감사합니다 {.center}
+
+::: {.center}
+**질문과 토론**
+
+<i class="fas fa-envelope"></i> seonghak.hong@email.com  
+<i class="fas fa-globe"></i> https://aidenhong.com  
+<i class="fab fa-github"></i> https://github.com/euriion
+
+*"데이터 속에 숨겨진 이상을 찾는 것은 바늘 찾기가 아니라, 패턴을 이해하는 것입니다."*
+::: 

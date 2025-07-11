@@ -1,8 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:300italic,700italic,300,700);
 
 /* Aiden Custom*/
-<<<<<<< HEAD
-
 @import url(dco6pro-d.css);
 body {
     padding: 50px;
@@ -283,8 +281,10 @@ screen and (max-width: 480px) {
     height: 120px;
     background: url(http://www.gravatar.com/avatar/e159add00b20e7a140c1b75179c80010.png?size=120);
     border-radius: 50%;
+    margin-bottom: 15px;  
     /*the magic*/
-=======
+}
+
 @import url(dco6pro-d.css);
 
 body {

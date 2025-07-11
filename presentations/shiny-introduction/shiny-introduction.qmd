@@ -1,0 +1,552 @@
+---
+title: "샤이니 Shiny"
+subtitle: "R로 만드는 대화형 웹시각화"
+author: "홍성학"
+institute: "Korea R User Group"
+date: "2021-08-09"
+date-modified: today
+format:
+  revealjs:
+    theme: default
+    css: custom.css
+    highlight-style: pygments
+    center: true
+    transition: slide
+    self-contained: false
+    slide-level: 2
+    controls: true
+    progress: true
+    history: true
+    keyboard: true
+    overview: true
+    touch: true
+    loop: false
+    rtl: false
+    shuffle: false
+    fragments: true
+    embedded: false
+    help: true
+    show-notes: false
+    auto-slide: 0
+    auto-slide-stoppable: true
+    mouse-wheel: false
+    hide-address-bar: true
+    preview-links: false
+    transition-speed: default
+    background-transition: fade
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+## 목차
+
+1. 샤이니 소개
+2. 샤이니 기본 구조
+3. 반응성 (Reactivity)
+4. 주요 UI 컴포넌트
+5. 생태계 패키지
+6. 고급 기능
+7. 배포 및 성능 최적화
+8. 실습 과제
+
+## 샤이니는?
+
+- R언어로 대화형 웹 애플리케이션을 만드는데 쓰는 패키지
+- RStudio 사에서 제작한 패키지
+- Shiny server 까지는 무료
+
+![](https://shiny.rstudio.com/tutorial/written-tutorial/lesson1/images/01_hello.png)
+
+## 샤이니 장점
+
+- R언어로 웹 애플리케이션을 제작할 수 있음
+- 짧고 간단한 코드로 대화형 시각화를 구현할 수 있음
+- 분석에 사용하던 코드를 웹 애플리케이션으로 빠르게 바꿀 수 있음
+
+![](https://shiny.rstudio.com/gallery/images/screenshots/movie-explorer.png)
+
+## 샤이니 단점
+
+- 학습 장벽이 있음
+- 복잡한 웹 애플리케이션을 작성하기 어려움
+- 애플리케이션의 속도가 느린 편
+
+## Shiny 코드 생성 방법
+
+RStudio에서 "메뉴 → File → New File → Shiny Web App.." 선택
+
+![](screenshot1.png)
+
+## 기본 코드 구조
+
+```{r}
+#| eval: false
+#| echo: true
+library(shiny)
+
+# UI 정의
+ui <- fluidPage(
+    titlePanel("Old Faithful Geyser Data"),
+    sidebarLayout(
+        sidebarPanel(
+          sliderInput("bins", "Number of bins:", 
+                      min = 1, max = 50, value = 30)
+        ),
+        mainPanel(plotOutput("distPlot"))
+    )
+)
+
+# Server 로직 정의
+server <- function(input, output) {
+    output$distPlot <- renderPlot({
+        x <- faithful[, 2]
+        bins <- seq(min(x), max(x), length.out = input$bins + 1)
+        hist(x, breaks = bins, col = 'darkgray', border = 'white')
+    })
+}
+
+# 앱 실행
+shinyApp(ui = ui, server = server)
+```
+
+## UI 파트
+
+- 샤이니 웹앱의 눈에 보이는 부분을 처리
+- 타이틀, 상자, 드롭박스와 같은 표현 요소를 배열
+
+```{r}
+#| eval: false
+#| echo: true
+ui <- fluidPage(
+    titlePanel("Old Faithful Geyser Data"),
+    sidebarLayout(
+        sidebarPanel(
+          sliderInput("bins", "Number of bins:", 
+                      min = 1, max = 50, value = 30)
+        ),
+        mainPanel(plotOutput("distPlot"))
+    )
+)
+```
+
+## Server 파트
+
+- UI에서 전달 받은 Input을 사용해서 코드를 실행
+- 코드를 실행하고 결과물을 UI로 전달
+
+```{r}
+#| eval: false
+#| echo: true
+server <- function(input, output) {
+    output$distPlot <- renderPlot({
+        x <- faithful[, 2]
+        bins <- seq(min(x), max(x), length.out = input$bins + 1)
+        hist(x, breaks = bins, col = 'darkgray', border = 'white')
+    })
+}
+```
+
+## 반응성이란?
+
+- 사용자의 입력을 받고 꼭 필요한 부분의 코드만 재실행
+- 갱신이 필요한 결과물을 다시 만들어서 그 부분만 바꿔치기
+- 이 작업이 자동으로 연쇄적으로 실행
+- Shiny는 R로만 작동하는 것처럼 보이지만 사실은 JavaScript가 내부에서 깊이 관여
+
+[참고자료](https://shiny.rstudio.com/articles/reactivity-overview.html)
+
+## 반응성 함수들
+
+```{r}
+#| eval: false
+#| echo: true
+server <- function(input, output) {
+  # 반응형 데이터
+  filtered_data <- reactive({
+    subset(mtcars, mpg > input$mpg_threshold)
+  })
+  
+  # 이벤트 반응
+  observeEvent(input$reset_button, {
+    updateSliderInput(session, "mpg_threshold", value = 20)
+  })
+  
+  # 부작용이 있는 반응형 표현식
+  observe({
+    print(paste("Current threshold:", input$mpg_threshold))
+  })
+}
+```
+
+## 입력 컴포넌트 (Input Components)
+
+```{r}
+#| eval: false
+#| echo: true
+# 다양한 입력 요소들
+textInput("text", "텍스트 입력")
+numericInput("num", "숫자 입력", value = 10)
+selectInput("select", "선택", choices = c("A", "B", "C"))
+checkboxInput("checkbox", "체크박스", value = FALSE)
+radioButtons("radio", "라디오 버튼", choices = c("X", "Y", "Z"))
+dateInput("date", "날짜 선택")
+fileInput("file", "파일 업로드")
+sliderInput("slider", "슬라이더", min = 0, max = 100, value = 50)
+```
+
+## 출력 컴포넌트 (Output Components)
+
+```{r}
+#| eval: false
+#| echo: true
+# 다양한 출력 요소들
+plotOutput("plot")          # 그래프 출력
+tableOutput("table")        # 테이블 출력
+textOutput("text")          # 텍스트 출력
+verbatimTextOutput("code")  # 코드 형태 텍스트
+downloadButton("download", "다운로드")  # 다운로드 버튼
+```
+
+## 레이아웃 시스템
+
+```{r}
+#| eval: false
+#| echo: true
+# 사이드바 레이아웃
+sidebarLayout(
+  sidebarPanel(...),
+  mainPanel(...)
+)
+
+# 네비게이션 바 레이아웃
+navbarPage("Title",
+  tabPanel("Tab 1", ...),
+  tabPanel("Tab 2", ...)
+)
+
+# 플루이드 로우 레이아웃
+fluidRow(
+  column(4, ...),
+  column(8, ...)
+)
+```
+
+## 주요 확장 패키지
+
+- **DT**: 인터랙티브 데이터테이블 생성
+- **plotly**: 인터랙티브 그래프 생성
+- **leaflet**: 인터랙티브 지도 생성
+- **shinydashboard**: 대시보드 레이아웃 생성
+- **shinyWidgets**: 다양한 추가 위젯 제공
+- **shinyjs**: JavaScript 기능 추가
+
+```{r}
+#| eval: false
+#| echo: true
+# 패키지 설치
+install.packages(c("DT", "plotly", "leaflet", "shinydashboard"))
+```
+
+## DT 패키지 예제
+
+```{r}
+#| eval: false
+#| echo: true
+library(shiny)
+library(DT)
+
+ui <- fluidPage(
+  titlePanel("Interactive Data Table"),
+  DT::dataTableOutput("table")
+)
+
+server <- function(input, output) {
+  output$table <- DT::renderDataTable({
+    DT::datatable(iris, options = list(pageLength = 10))
+  })
+}
+
+shinyApp(ui = ui, server = server)
+```
+
+## plotly 패키지 예제
+
+```{r}
+#| eval: false
+#| echo: true
+library(shiny)
+library(plotly)
+
+ui <- fluidPage(
+  titlePanel("Interactive Plotly Chart"),
+  plotlyOutput("plot")
+)
+
+server <- function(input, output) {
+  output$plot <- renderPlotly({
+    p <- ggplot(mpg, aes(displ, hwy, color = class)) + 
+         geom_point()
+    ggplotly(p)
+  })
+}
+
+shinyApp(ui = ui, server = server)
+```
+
+## leaflet 패키지 예제
+
+```{r}
+#| eval: false
+#| echo: true
+library(shiny)
+library(leaflet)
+
+ui <- fluidPage(
+  titlePanel("Interactive Map"),
+  leafletOutput("map")
+)
+
+server <- function(input, output) {
+  output$map <- renderLeaflet({
+    leaflet() %>%
+      addTiles() %>%
+      addMarkers(lng = 126.9780, lat = 37.5665, 
+                 popup = "서울특별시")
+  })
+}
+
+shinyApp(ui = ui, server = server)
+```
+
+## 모듈화 (Modules)
+
+```{r}
+#| eval: false
+#| echo: true
+# 모듈 UI
+chartUI <- function(id) {
+  ns <- NS(id)
+  plotOutput(ns("plot"))
+}
+
+# 모듈 서버
+chartServer <- function(id, data) {
+  moduleServer(id, function(input, output, session) {
+    output$plot <- renderPlot({
+      plot(data())
+    })
+  })
+}
+
+# 메인 앱에서 모듈 사용
+ui <- fluidPage(chartUI("chart1"))
+server <- function(input, output, session) {
+  data <- reactive(mtcars)
+  chartServer("chart1", data)
+}
+```
+
+## 사용자 정의 JavaScript
+
+```{r}
+#| eval: false
+#| echo: true
+library(shinyjs)
+
+ui <- fluidPage(
+  useShinyjs(),
+  actionButton("btn", "클릭"),
+  div(id = "text", "안녕하세요!")
+)
+
+server <- function(input, output, session) {
+  observeEvent(input$btn, {
+    shinyjs::toggle("text")  # 텍스트 숨기기/보이기
+  })
+}
+```
+
+## 데이터 처리 및 파일 업로드
+
+```{r}
+#| eval: false
+#| echo: true
+server <- function(input, output) {
+  data <- reactive({
+    req(input$file)
+    
+    ext <- tools::file_ext(input$file$datapath)
+    
+    switch(ext,
+      csv = read.csv(input$file$datapath),
+      xlsx = readxl::read_excel(input$file$datapath),
+      validate("Invalid file type")
+    )
+  })
+  
+  output$table <- renderTable({
+    data()
+  })
+}
+```
+
+## 배포 방법
+
+### 1. shinyapps.io (클라우드 배포)
+
+```{r}
+#| eval: false
+#| echo: true
+# rsconnect 패키지 설치
+install.packages("rsconnect")
+library(rsconnect)
+
+# 계정 설정
+rsconnect::setAccountInfo(name="your-account",
+                          token="your-token",
+                          secret="your-secret")
+
+# 배포
+rsconnect::deployApp()
+```
+
+### 2. Shiny Server (자체 서버)
+
+- 오픈소스 버전 무료 사용 가능
+- 상용 버전(Shiny Server Pro) 추가 기능 제공
+
+## 성능 최적화
+
+### 성능 향상 팁
+
+1. **반응성 최적화**
+   - 불필요한 재계산 방지
+   - `isolate()` 함수 활용
+
+2. **메모리 관리**
+   - 큰 데이터셋 처리 시 주의
+   - 메모리 사용량 모니터링
+
+3. **비동기 처리**
+   - `future` 패키지 활용
+
+```{r}
+#| eval: false
+#| echo: true
+# 로딩 인디케이터 예제
+output$plot <- renderPlot({
+  withProgress(message = '그래프 생성 중...', value = 0, {
+    for (i in 1:10) {
+      incProgress(1/10)
+      Sys.sleep(0.1)
+    }
+    plot(mtcars$mpg, mtcars$wt)
+  })
+})
+```
+
+## 보안 고려사항
+
+```{r}
+#| eval: false
+#| echo: true
+# 입력 검증 예제
+server <- function(input, output) {
+  observe({
+    req(input$user_input)
+    
+    # 입력 값 검증
+    if (nchar(input$user_input) > 100) {
+      showNotification("입력이 너무 깁니다.", type = "error")
+      return()
+    }
+  })
+}
+```
+
+## 디버깅 및 테스팅
+
+```{r}
+#| eval: false
+#| echo: true
+# 디버깅 예제
+server <- function(input, output) {
+  output$plot <- renderPlot({
+    print(paste("Input value:", input$slider))  # 디버깅 출력
+    
+    # browser()  # 브레이크포인트
+    
+    hist(rnorm(input$slider))
+  })
+}
+```
+
+- **shinytest2** 패키지로 자동화된 테스트
+- **testthat** 패키지로 단위 테스트
+
+## 간단한 데이터 탐색 앱 만들기
+
+### 과제 요구사항
+
+1. **데이터 업로드** 기능 구현
+2. **기본 통계** 요약 표시
+3. **인터랙티브 그래프** 생성
+4. **필터링** 기능 추가
+
+```{r}
+#| eval: false
+#| echo: true
+# 과제 시작 코드
+ui <- fluidPage(
+  titlePanel("데이터 탐색 앱"),
+  sidebarLayout(
+    sidebarPanel(
+      fileInput("file", "CSV 파일 선택"),
+      # 추가 입력 요소들...
+    ),
+    mainPanel(
+      # 출력 요소들...
+    )
+  )
+)
+```
+
+## 학습 리소스
+
+### 온라인 자료
+
+- **공식 문서**: https://shiny.rstudio.com/
+- **Shiny 갤러리**: https://shiny.rstudio.com/gallery/
+- **Mastering Shiny**: https://mastering-shiny.org/
+- **Engineering Production-Grade Shiny Apps**: https://engineering-shiny.org/
+
+### 커뮤니티
+
+- **RStudio Community**: https://community.rstudio.com/
+- **Stack Overflow**: #shiny 태그
+- **한국 R 사용자 모임**: https://www.facebook.com/groups/KoreaRUsers/
+
+## 실제 사용 사례
+
+### 다양한 분야에서의 활용
+
+1. **비즈니스 대시보드** - KPI 모니터링, 실시간 데이터 시각화
+2. **과학 연구** - 데이터 탐색 도구, 통계 분석 인터페이스
+3. **교육** - 인터랙티브 학습 도구, 시뮬레이션 프로그램
+4. **정부 및 공공기관** - 정책 시뮬레이션, 공공 데이터 시각화
+
+## 알아두면 좋은 사실
+
+- 데이터와 코드가 메모리에 올라간 채로 시작
+- 데이터를 계속해서 로딩해야 하거나 동적으로 바꾸려면 요령이 필요함
+- Shiny의 UI 부분은 JavaScript로 작동함
+- 복잡한 앱을 작성하려면 JavaScript를 알아야 하고 Shiny의 구조도 알아야 함
+- ui.R과 server.R로 파트를 나눠서 코드를 작성할 수도 있음
+
+## 질문 Question?
+
+홍성학 (euriion@gmail.com)
+
+**감사합니다!** 

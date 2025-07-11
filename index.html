@@ -1,30 +1,28 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ko">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Seonghak Hong</title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>홍성학 (Seonghak Hong) - Principal Data Scientist & AI Architect</title>
+    <meta name="description" content="Principal Data Scientist & AI Architect specializing in ML/AI systems architecture and data strategy">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QLPKKW5H5H"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
+        function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'G-QLPKKW5H5H');
     </script>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
         @font-face {
             font-family: 'NEXON Lv1 Gothic OTF';
             src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff') format('woff');
@@ -32,227 +30,879 @@
             font-style: normal;
         }
         
-        @font-face {
-            font-family: 'GongGothicMedium';
-            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');
-            font-weight: normal;
-            font-style: normal;
+        body {
+            font-family: 'NEXON Lv1 Gothic OTF', -apple-system, BlinkMacSystemFont, sans-serif;
         }
         
-        @font-face {
-            font-family: 'GongGothicBold';
-            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicBold.woff') format('woff');
-            font-weight: normal;
-            font-style: normal;
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 280px;
+            width: calc(100% - 280px);
+            height: 2px;
+            background: black;
+            z-index: 1000;
+            transition: width 0.3s ease;
         }
         
-        @font-face {
-            font-family: 'GongGothicLight';
-            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicLight.woff') format('woff');
-            font-weight: normal;
-            font-style: normal;
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100vh;
+            background: black;
+            color: white;
+            z-index: 100;
+            overflow-y: auto;
         }
         
-        @font-face {
-            font-family: 'ONE-Mobile-Regular';
-            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/ONE-Mobile-Regular.woff') format('woff');
-            font-weight: normal;
-            font-style: normal;
+        .main-content {
+            margin-left: 280px;
+            min-height: 100vh;
         }
         
-        @font-face {
-            font-family: 'ONE-Mobile-Title';
-            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/ONE-Mobile-Title.woff') format('woff');
-            font-weight: normal;
-            font-style: normal;
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
         }
         
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            font-family: 'GongGothicLight', 'Noto Sans KR', sans-serif;
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         
-        .slide {
-            font-family: 'ONE-Mobile-Regular', 'Nexon Lv1 Gothic OTF', 'Noto Sans KR', sans-serif;
+        .hover-lift {
+            transition: all 0.3s ease;
         }
         
-        p {
-            font-family: 'Nexon Lv1 Gothic OTF', 'Noto Sans KR', sans-serif;
+        .hover-lift:hover {
+            transform: translateY(-2px);
         }
         
-        ul,
-        ui {
-            font-family: 'Nexon Lv1 Gothic OTF', 'Noto Sans KR', sans-serif;
+        .border-gradient {
+            position: relative;
         }
         
-        .period {
-            font-weight: small;
-            color: green;
+        .border-gradient::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, black 0%, transparent 100%);
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .scroll-progress {
+                left: 0;
+                width: 100%;
+                top: 60px;
+            }
         }
     </style>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'nexon': ['NEXON Lv1 Gothic OTF', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary': '#000000',
+                        'secondary': '#ffffff',
+                        'gray-custom': {
+                            100: '#f8f9fa',
+                            200: '#e9ecef',
+                            300: '#dee2e6',
+                            400: '#ced4da',
+                            500: '#adb5bd',
+                            600: '#6c757d',
+                            700: '#495057',
+                            800: '#343a40',
+                            900: '#212529'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 </head>
 
-<body>
-    <div class="wrapper">
-        <header>
-            <div class="profileimage"></div>
-            <h2>홍성학, Seonghak Hong (Aiden)</h2>
-            <h3>하는 일 Job title</h3>
-            <p>
-                <span>👨‍🏭 <strong>Data Tech Guru</strong></span><br />
-                <span>✔ Data Scientist</span><br />
-                <span>✔ ML/AI Engineer</span><br />
-                <span>✔ Big data Engineer</span><br />
-                <span>✔ Software Engineer</span><br />
-                <span>✔ Data Analyst</span><br />
-            </p>
-            <h3>소셜 Social network</h3>
-            <p>
-                <a class="view" href="https://euriion.com" target="_blank">🔗 블로그 blog</a><br/>
-                <a class="view" href="https://github.com/euriion" target="_blank">🔗 깃헙 gitHub</a><br/>
-                <a class="view" href="httas://www.slideshare.net/SeonghakHong/documents" target="_blank">🔗 슬라이드 slideshare</a><br/>
-                <a class="view" href="https://www.facebook.com/euriion" target="_blank">🔗 페이스북 Facebook</a><br/>
-                <a class="view" href="https://twitter.com/euriion" target="_blank">🔗 트위터 twitter</a><br/>
-                <a class="view" href="https://intothedata.com" target="_blank">🔗 위키 wiki</a><br/>
-                <!-- <a class="view" href="https://www.pinterest.com/euriion/" target="_blank">🔗 Pinterest</a><br/>
-                <a class="view" href="https://www.tiktok.com/@euriion" target="_blank">🔗 Tiktok</a><br/> -->
-            </p>
-        </header>
-        <section>
-            <h3> 👨‍🏫 소개 Profile</h3>
-            <p>
-<<<<<<< HEAD
-                <p>데이터와 데이터 소프트웨어 개발에 관련된 모든 일을 하는 기술자입니다. </p>
-                <p>소프트웨어 개발, 데이터마이닝, 데이터과학, 데이터분석, 데이터프로세싱, BI/DW, 데이터 처리 시스템과 관련된 일 합니다.</p>
-                <p>데이터마이닝, 텍스트마이닝, 기계학습, 인공지능 기술을 사용합니다.</p>
-                <p>많은 컴퓨터언어를 사용합니다. Python, Go, Rust, C, C++, Javascript, Java, Ruby, Go, SQL, CSS, XML, ... </p>
-                <p>디지털마케팅, 애드테크, 빅데이터 회사인 와이더플래닛에서 CTO스탭의 기술 펠로우, 수석 데이터과학자로 일하고 있습니다</p>
-                <p>가끔 사내/사외에 데이터과학과 생산성, 협업과 강연을 하며 데이터 기술 컨설팅과 멘토링을 하고있습니다.</p>
-=======
-                <ul>
-                    <li>데이터 그루 (Data guru) 입니다. </li>
-                    <li>데이터과학과 소프트웨어 개발을 하는 기술자입니다. </li>
-                    <li>소프트웨어 개발, 데이터마이닝, 데이터과학, 데이터분석, 데이터프로세싱, BI/DW, 데이터 처리 시스템과 관련된 일을 하는 사람입니다.</li>
-                    <li>데이터마이닝, 텍스트마이닝, 기계학습, 인공지능 기술을 사용합니다.</li>
-                    <li>많은 컴퓨터언어를 사용하는 랭귀지 중독자입니다. Python, Go, Rust, C, C++, Javascript, Java, Ruby, Go, SQL, CSS, XML, ... </li>
-                    <li>디지털마케팅, 애드테크, 빅데이터 회사인 와이더플래닛에서 CTO스탭의 기술 펠로우, 수석 데이터과학자로 일하고 있습니다.</li>
-                    <li>가끔 사내/사외에 데이터과학과 생산성, 협업과 강연을 하며 데이터 기술 컨설팅과 멘토링을 하고있습니다.</li>
-                </ul>
->>>>>>> main
-            </p>
-        </section>
-        <section>
-            <h3> 👓 전문 분야 Speciality</h3>
-            <p>
-                <ul>
-                    <li>애드테크, 마테크, 디지털마케팅, 그로쓰해킹 비즈니스
-                        <br />Business analytics on Ad tech, Martech, Digital marketing, Growth hacking</li>
-                    <li>이상감지, 부정감지, 사기감지, 어뷰징감지
-                        <br />Fraud, Abuse and Anomaly Detection</li>
-                    <li>실시간 데이터 분석
-                        <br />Realtime Analysis</li>
-                    <li>AI, 기계학습, 데이터마이닝, 통계 분석
-                        <br />Machine learning, Data Mining and Statistical analysis</li>
-                    <li>BI/DW, 빅데이터, 예측 진단 분석
-                        <br />BI/DW, Big data, Prescriptive and predictive Analysis</li>
-                    <li>데이터 시각화
-                        <br />Data visualization</li>
-                    <li>재현가능연구
-                        <br />Reproducible Research</li>
-                </ul>
-            </p>
-        </section>
-        <section>
-            <h3> 📄 오픈 슬라이드 Open slides</h3>
-            <ul>
-                <li>
-                    <a href="presentations/setup-github-for-making-a-static-website/setup-github-for-making-a-static-website.html" target="_blank">
-                깃헙(github)에 도메인을 연결해서 웹페이지 무료로 서비스하기</a> 2021-07-02
-                </li>
-                <li>
-                    <a href="presentations/shiny-introduction/shiny-introduction.html" target="_blank">
-                        Shiny 소개 - R로 만드는 반응형 분석 웹 애플리케이션
-                    </a> 2021-08-11
-                </li>
-            </ul>
-        </section>
-        <section>
-            <h3> 🏫 강연 및 활동 Lecture and social activity</h3>
-            <ul>
-                <li>
-                    <a href="https://use-r.kr/" target="_blank">
-                한국 R 컨퍼런스 2021 운영진</a> <span class="period">2021년</span>
-                </li>
-                <li>
-                    <a href="https://contributionacademy.oopy.io/" target="_blank">
-                    2021 오픈소스 컨트리뷰션 아카데미 마스터 프론티어 멘토</a> <span class="period">2021년 7월 12일 ~ </span>
-                </li>
-                <li>
-                    <a href="https://ktnexr.com" target="_blank">
-                    kt 클라우드웨어 빅데이터/데이터과학자 인증 교육 강사</a> <span class="period">2012년 ~ 2014년</span>
-                </li>
-                <li>
-                    <a href="" target="_blank">
-                    한국 R 사용자 모임 운영진</a> <span class="period">2011년 ~ 2014년</span>
-                </li>
-            </ul>
+<body class="bg-white text-black font-nexon text-sm">
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" id="scrollProgress"></div>
 
-        </section>
-        <section>
-            <h3> 🛠 자료 모음 useful sites, tools, and others</h3>
-            <p><a href="useful_tools.html">🛠 유용한 도구 모음 Useful tools</a></p>
-        </section>
-        <section>
-            <h3> 📚 저서 Book</h3>
-            <p>
-                <a href="http://r-visualization.com" target="_blank">R을 활용한 데이터 시각화 (R visualization book)</a>
-            </p>
-        </section>
-        <!-- <section>
-            <h3>
-                <a name="support-or-contact" class="anchor" href="#interest">🏫</a> 관심사 Interests
-            </h3>
-            <p>
-                Data analysis, Machine learning, Data Mining, Data visualization, Automation, Massive data Processing and Traffic management (Big Data), Distributed data processing, Information retrieval, Artifcial intelligence, Vision computing, AR, VR, XR
-            </p>
-        </section> -->
-        <section>
-            <h3>
-                <a name="support-or-contact" class="anchor" href="#support-or-career">
-                    <span class="octicon octicon-link">✉</span></a> 경력 Career
-            </h3>
-            <p><a href="https://linkedin.com/euriion" target="_blank">링크드인(Linkedin)</a>과 <a href="https://www.facebook.com/euriion" target="_blank">페이스북(Facebook)</a>을 참고하세요.</p>
-        </section>
-        <section>
-            <h3>
-                <a name="support-or-contact" class="anchor" href="#support-or-contact">
-                    <span class="octicon octicon-link">✉</span></a> 연락처 Contact
-            </h3>
-            <ul>
-                <li>email:
-                    <a href="mainto:euriion@gmail.com">euriion@gmail.com</a>
-                </li>
-                <li>
-                    <a href="https://open.kakao.com/o/gCxMELI" target="_blank">카카오톡 오픈채팅</a>
-                </li>
-            </ul>
-        </section>
-        <footer>
-            <p id="copyright_year"></p>
-            <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small>
-                <small>Modified by Seonghak Hong</small></p>
-        </footer>
+    <!-- Mobile Header -->
+    <div class="md:hidden fixed top-0 left-0 right-0 bg-white border-b border-gray-200 z-40 px-4 py-3">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <img src="https://avatars.githubusercontent.com/u/198962?v=4" 
+                     alt="홍성학 프로필 이미지" 
+                     class="w-8 h-8 rounded-full">
+                <div>
+                    <div class="text-sm font-bold">홍성학</div>
+                    <div class="text-xs text-gray-600">Full Stack Data Expert</div>
+                </div>
+            </div>
+            <button id="mobileMenuBtn" class="bg-black text-white p-2 rounded">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="p-6">
+            <!-- Profile Image -->
+            <div class="flex justify-center mb-6">
+                <img src="https://avatars.githubusercontent.com/u/198962?v=4" 
+                     alt="홍성학 프로필 이미지" 
+                     class="w-20 h-20 rounded-full border-2 border-white">
+            </div>
+            
+            <!-- Profile Info -->
+            <div class="text-center mb-8">
+                <h1 class="text-lg font-bold mb-2">홍성학</h1>
+                <div class="text-xs opacity-90 mb-1">Seonghak Hong</div>
+                <div class="text-xs font-medium mb-1">Full Stack Data Expert</div>
+                <div class="text-xs font-medium mb-3">AI/ML Expert</div>
+            </div>
+            
+            <!-- Navigation -->
+            <nav class="mb-8">
+                <ul class="space-y-2">
+                    <li><a href="#profile" class="block py-2 px-3 rounded hover:bg-gray-800 transition-colors text-xs">프로필</a></li>
+                    <li><a href="#achievements" class="block py-2 px-3 rounded hover:bg-gray-800 transition-colors text-xs">활동</a></li>
+                    <li><a href="#publications" class="block py-2 px-3 rounded hover:bg-gray-800 transition-colors text-xs">발표 자료</a></li>
+                    <li><a href="#tools" class="block py-2 px-3 rounded hover:bg-gray-800 transition-colors text-xs">도구 모음</a></li>
+                    <li><a href="#contact" class="block py-2 px-3 rounded hover:bg-gray-800 transition-colors text-xs">소셜네트워크 & 이메일</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Social Links -->
+            <div class="space-y-2">
+                <a href="https://github.com/euriion" target="_blank" 
+                   class="flex items-center gap-2 py-2 px-3 rounded hover:bg-gray-800 transition-colors text-xs">
+                    <i class="fab fa-github w-4"></i>
+                    <span>GitHub</span>
+                </a>
+                <a href="https://euriion.com" target="_blank" 
+                   class="flex items-center gap-2 py-2 px-3 rounded hover:bg-gray-800 transition-colors text-xs">
+                    <i class="fas fa-blog w-4"></i>
+                    <span>Blog</span>
+                </a>
+                <a href="https://intothedata.com" target="_blank" 
+                   class="flex items-center gap-2 py-2 px-3 rounded hover:bg-gray-800 transition-colors text-xs">
+                    <i class="fas fa-book w-4"></i>
+                    <span>Wiki book</span>
+                </a>
+                <a href="https://www.slideshare.net/SeonghakHong/documents" target="_blank" 
+                   class="flex items-center gap-2 py-2 px-3 rounded hover:bg-gray-800 transition-colors text-xs">
+                    <i class="fab fa-slideshare w-4"></i>
+                    <span>SlideShare</span>
+                </a>
+                <a href="https://linkedin.com/in/euriion" target="_blank" 
+                   class="flex items-center gap-2 py-2 px-3 rounded hover:bg-gray-800 transition-colors text-xs">
+                    <i class="fab fa-linkedin w-4"></i>
+                    <span>LinkedIn</span>
+                </a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content bg-white">
+        <!-- About Section -->
+        <section id="profile" class="py-12 md:py-12 pt-20">
+            <div class="container mx-auto px-6">
+                <div class="fade-in">
+                    <h2 class="text-2xl font-bold mb-8 text-center">프로필</h2>                    
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-gray-50 p-6 border-gradient hover-lift">
+                            <div class="flex items-center mb-4">
+                                <i class="fas fa-database text-lg mr-3"></i>
+                                <h3 class="text-lg font-bold">풀스택 데이터 전문가</h3>
+                            </div>
+                            <p class="text-gray-700 mb-4 leading-relaxed text-sm">
+                                데이터 사이언스, 데이터 엔지니어링, 빅데이터 플랫폼 구축, 데이터 거버넌스 관리, BI/DW, 고급 통계 분석
+                            </p>
+                            <div class="flex flex-wrap gap-1">
+                                <span class="px-2 py-1 bg-black text-white text-xs rounded-full">Spark</span>
+                                <span class="px-2 py-1 bg-black text-white text-xs rounded-full">Hive</span>
+                                <span class="px-2 py-1 bg-black text-white text-xs rounded-full">Kafka</span>
+                                <span class="px-2 py-1 bg-black text-white text-xs rounded-full">Airflow</span>
+                                <span class="px-2 py-1 bg-black text-white text-xs rounded-full">BigQuery</span>
+                                <span class="px-2 py-1 bg-black text-white text-xs rounded-full">Databricks</span>
+                                <span class="px-2 py-1 bg-black text-white text-xs rounded-full">Redshift</span>
+                                <span class="px-2 py-1 bg-black text-white text-xs rounded-full">Elasticsearch</span>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 p-6 border-gradient hover-lift">
+                            <div class="flex items-center mb-4">
+                                <i class="fas fa-brain text-lg mr-3"></i>
+                                <h3 class="text-lg font-bold">ML/AI 아키텍트</h3>
+                            </div>
+                            <p class="text-gray-700 mb-4 leading-relaxed text-sm">
+                                기계학습, 인공지능, LLM, AI 에이전트 구현, AI/ML 파이프라인과 서빙, 엔터프라이즈급 머신러닝 시스템 아키텍처
+                                딥러닝, 강화학습, 추천시스템, ML/AI 기반 비즈니스 솔루션 개발
+                            </p>
+                            <div class="flex flex-wrap gap-1">
+                                <span class="px-2 py-1 bg-black text-white text-xs rounded-full">TensorFlow</span>
+                                <span class="px-2 py-1 bg-black text-white text-xs rounded-full">PyTorch</span>
+                                <span class="px-2 py-1 bg-black text-white text-xs rounded-full">Kubernetes</span>
+                                <span class="px-2 py-1 bg-black text-white text-xs rounded-full">MLOps</span>
+                            </div>
+                        </div> 
+                        
+                        <div class="bg-gray-50 p-6 border-gradient hover-lift">
+                            <div class="flex items-center mb-4">
+                                <i class="fas fa-code text-lg mr-3"></i>
+                                <h3 class="text-lg font-bold">풀스택 소프트웨어 엔지니어</h3>
+                            </div>
+                            <p class="text-gray-700 mb-4 leading-relaxed text-sm">
+                                Python, Go, Rust, Java,JavaScript 등 다양한 언어를 활용, 백엔드/프론트 시스템 개발,  
+                                분산 컴퓨팅, GPU 클러스터 최적화, ML/AI 서비스 개발
+                            </p>
+                            <div class="flex flex-wrap gap-1">
+                                <span class="px-2 py-1 bg-black text-white text-xs rounded-full">Python</span>
+                                <span class="px-2 py-1 bg-black text-white text-xs rounded-full">R</span>
+                                <span class="px-2 py-1 bg-black text-white text-xs rounded-full">SQL</span>
+                                <span class="px-2 py-1 bg-black text-white text-xs rounded-full">Go</span>
+                                <span class="px-2 py-1 bg-black text-white text-xs rounded-full">JavaScript</span>
+                                <span class="px-2 py-1 bg-black text-white text-xs rounded-full">Java</span>
+                                <span class="px-2 py-1 bg-black text-white text-xs rounded-full">C#</span>
+                                <span class="px-2 py-1 bg-black text-white text-xs rounded-full">C++</span>
+                                <span class="px-2 py-1 bg-black text-white text-xs rounded-full">C</span>
+                                <span class="px-2 py-1 bg-black text-white text-xs rounded-full">Perl</span>                                
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-6 border-gradient hover-lift">
+                            <div class="flex items-center mb-4">
+                                <i class="fas fa-users text-lg mr-3"></i>
+                                <h3 class="text-lg font-bold">기술 리더</h3>
+                            </div>
+                            <p class="text-gray-700 mb-4 leading-relaxed text-sm">
+                                기술 조직 관리와 구축, 인재 육성 및 교육, 크로스펑셔널 협업 관리, 연구소 관리
+                            </p>
+                            <div class="flex flex-wrap gap-1">
+                                <span class="px-2 py-1 bg-black text-white text-xs rounded-full">Team Building</span>
+                                <span class="px-2 py-1 bg-black text-white text-xs rounded-full">Mentoring</span>
+                                <span class="px-2 py-1 bg-black text-white text-xs rounded-full">Strategy</span>
+                                <span class="px-2 py-1 bg-black text-white text-xs rounded-full">Innovation</span>
+                                <span class="px-2 py-1 bg-black text-white text-xs rounded-full">Research center</span> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section id="achievements" class="py-12 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="fade-in">
+                    <h2 class="text-2xl font-bold mb-8 text-center">활동</h2>
+                    
+                    <div class="space-y-4">
+                        <div class="bg-white p-6 border-l-4 border-black hover-lift">
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 bg-black rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fab fa-r-project text-white text-sm"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold mb-1">한국R사용자회 이사회 멤버, 기술 자문위원</h3>
+                                    <p class="text-gray-700 mb-2 leading-relaxed text-sm">
+                                        국내 R 생태계 발전을 위한 기술 자문 및 커뮤니티 리더십 역할을 수행
+                                    </p>
+                                    <div class="text-xs font-medium">2022년 - 현재</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white p-6 border-l-4 border-black hover-lift">
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 bg-black rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-microphone text-white text-sm"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold mb-1">UseR 및 빅데이터/데이터사이언스 컨퍼런스 연설자</h3>
+                                    <p class="text-gray-700 mb-2 leading-relaxed text-sm">
+                                        빅데이터, 데이터 분석, 머신러닝, 데이터 파이프라인, AI 에인저트 등 실무 중심의 기술 발표
+                                    </p>
+                                    <div class="text-xs font-medium">2014년 - 현재</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white p-6 border-l-4 border-black hover-lift">
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 bg-black rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-chalkboard-teacher text-white text-sm"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold mb-1">데이터 사이언티스 / 오픈소스 개발자 그룹 멘토</h3>
+                                    <p class="text-gray-700 mb-2 leading-relaxed text-sm">
+                                        오픈소스 컨트리뷰션 아카데미와 정부 지원 프로그램의 프로그램 멘토
+                                    </p>
+                                    <div class="text-xs font-medium"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white p-6 border-l-4 border-black hover-lift">
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 bg-black rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-building text-white text-sm"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold mb-1">데이터/AI 전략 컨설턴트</h3>
+                                    <p class="text-gray-700 mb-2 leading-relaxed text-sm">
+                                        글로벌 기업들의 디지털 트랜스포메이션 및 AI 전략 수립을 자문
+                                    </p>
+                                    <div class="text-xs font-medium"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 border-l-4 border-black hover-lift">
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 bg-black rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-bullhorn text-white text-sm"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold mb-1">애드테크/마테크/디지털마케팅 전문가 & 교육 컨설턴트</h3>
+                                    <p class="text-gray-700 mb-2 leading-relaxed text-sm">
+                                        디지털 마케팅 기술 스택 구축, 광고 플랫폼 최적화, 마케팅 자동화 시스템 설계 및 관련 교육
+                                    </p>
+                                    <div class="text-xs font-medium">2015년 - 현재</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Publications Section -->
+        <section id="publications" class="py-12">
+            <div class="container mx-auto px-6">
+                <div class="fade-in">
+                    <h2 class="text-2xl font-bold mb-8 text-center">발표 자료와 저서</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+                        <div class="bg-white border-2 border-black hover-lift">
+                            <a href="presentations/data-visualization-with-r/data-visualization-with-r.html" target="_blank" class="block">
+                                <div class="bg-black text-white p-4 text-center">
+                                    <i class="fas fa-palette text-2xl mb-2"></i>
+                                    <h3 class="text-sm font-bold">R을 활용한 실전 데이터 시각화</h3>
+                                </div>
+                                <div class="p-4">
+                                    <div class="text-xs text-gray-600 mb-2">2024-08-15</div>
+                                    <p class="text-xs text-gray-700 mb-3 leading-relaxed">
+                                        R과 ggplot2를 중심으로, 실무에 바로 적용할 수 있는 데이터 시각화 기법과 그래픽스 문법의 원리를 소개합니다.
+                                    </p>
+                                    <div class="inline-flex items-center gap-1 text-black font-medium hover:underline text-xs">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        발표 자료 보기
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="bg-white border-2 border-black hover-lift">
+                            <a href="presentations/data-literacy/data-literacy.html" target="_blank" class="block">
+                                <div class="bg-black text-white p-4 text-center">
+                                    <i class="fas fa-book-reader text-2xl mb-2"></i>
+                                    <h3 class="text-sm font-bold">데이터 문해력</h3>
+                                </div>
+                                <div class="p-4">
+                                    <div class="text-xs text-gray-600 mb-2">2024-07-26</div>
+                                    <p class="text-xs text-gray-700 mb-3 leading-relaxed">
+                                        데이터를 읽고, 이해하고, 분석하여 합리적인 의사결정을 내리는 데이터 문해력의 중요성과 핵심 요소를 소개합니다.
+                                    </p>
+                                    <div class="inline-flex items-center gap-1 text-black font-medium hover:underline text-xs">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        발표 자료 보기
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <div class="bg-white border-2 border-black hover-lift">
+                            <a href="presentations/korean-embedding-with-r/korean-embedding-with-r.html" target="_blank" class="block">
+                                <div class="bg-black text-white p-4 text-center">
+                                    <i class="fas fa-language text-2xl mb-2"></i>
+                                    <h3 class="text-sm font-bold">한국어 임베딩과 R</h3>
+                                </div>
+                                <div class="p-4">
+                                    <div class="text-xs text-gray-600 mb-2">2022-09-24</div>
+                                    <p class="text-xs text-gray-700 mb-3 leading-relaxed">
+                                        한국어 텍스트 분석을 위한 Word2Vec, FastText, BERT 등 다양한 임베딩 기법을 R로 구현하는 방법을 소개
+                                    </p>
+                                    <div class="inline-flex items-center gap-1 text-black font-medium hover:underline text-xs">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        발표 자료 보기
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <div class="bg-white border-2 border-black hover-lift">
+                            <a href="presentations/setup-github-for-making-a-static-website/setup-github-for-making-a-static-website.html" target="_blank" class="block">
+                                <div class="bg-black text-white p-4 text-center">
+                                    <i class="fab fa-github text-2xl mb-2"></i>
+                                    <h3 class="text-sm font-bold">GitHub에 도메인 연결해서 웹사이트 만들기</h3>
+                                </div>
+                                <div class="p-4">
+                                    <div class="text-xs text-gray-600 mb-2">2021-07-02</div>
+                                    <p class="text-xs text-gray-700 mb-3 leading-relaxed">
+                                        GitHub Pages를 사용해 정적 웹사이트를 만들고 커스텀 도메인을 연결하는 전체 과정을 단계별로 설명
+                                    </p>
+                                    <div class="inline-flex items-center gap-1 text-black font-medium hover:underline text-xs">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        발표 자료 보기
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <div class="bg-white border-2 border-black hover-lift">
+                            <a href="presentations/shiny-introduction/shiny-introduction.html" target="_blank" class="block">
+                                <div class="bg-black text-white p-4 text-center">
+                                    <i class="fas fa-chart-line text-2xl mb-2"></i>
+                                    <h3 class="text-sm font-bold">Shiny 소개</h3>
+                                </div>
+                                <div class="p-4">
+                                    <div class="text-xs text-gray-600 mb-2">2021-08-11</div>
+                                    <p class="text-xs text-gray-700 mb-3 leading-relaxed">
+                                        R Shiny를 이용한 인터랙티브 웹 애플리케이션 개발 기초부터 실무 중심의 활용법 설명
+                                    </p>
+                                    <div class="inline-flex items-center gap-1 text-black font-medium hover:underline text-xs">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        발표 자료 보기
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="bg-white border-2 border-black hover-lift">
+                            <a href="presentations/making-slides-with-quarto/making-slides-with-quarto.html" target="_blank" class="block">
+                                <div class="bg-black text-white p-4 text-center">
+                                    <i class="fas fa-file-powerpoint text-2xl mb-2"></i>
+                                    <h3 class="text-sm font-bold">Quarto로 슬라이드 만들기</h3>
+                                </div>
+                                <div class="p-4">
+                                    <div class="text-xs text-gray-600 mb-2">2025-07-10</div>
+                                    <p class="text-xs text-gray-700 mb-3 leading-relaxed">
+                                        <i class="fas fa-magic"></i> Quarto를 활용한 프레젠테이션 슬라이드 제작 방법과 고급 기능들을 소개
+                                    </p>
+                                    <div class="inline-flex items-center gap-1 text-black font-medium hover:underline text-xs">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        발표 자료 보기
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="bg-white border-2 border-black hover-lift">
+                            <a href="presentations/ecommerce-recommendation-system/ecommerce-recommendation-system.html" target="_blank" class="block">
+                                <div class="bg-black text-white p-4 text-center">
+                                    <i class="fas fa-shopping-cart text-2xl mb-2"></i>
+                                    <h3 class="text-sm font-bold">E-commerce 상품추천 시스템</h3>
+                                </div>
+                                <div class="p-4">
+                                    <div class="text-xs text-gray-600 mb-2">2024-12-21</div>
+                                    <p class="text-xs text-gray-700 mb-3 leading-relaxed">
+                                        개인화된 쇼핑 경험을 위한 AI 기반 추천 시스템 구축 방법과 실무 적용 사례를 소개합니다.
+                                    </p>
+                                    <div class="inline-flex items-center gap-1 text-black font-medium hover:underline text-xs">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        발표 자료 보기
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="bg-white border-2 border-black hover-lift">
+                            <a href="presentations/ad-tech-fundamentals/ad-tech-fundamentals.html" target="_blank" class="block">
+                                <div class="bg-black text-white p-4 text-center">
+                                    <i class="fas fa-bullhorn text-2xl mb-2"></i>
+                                    <h3 class="text-sm font-bold">애드테크 기초와 실무</h3>
+                                </div>
+                                <div class="p-4">
+                                    <div class="text-xs text-gray-600 mb-2">2024-12-21</div>
+                                    <p class="text-xs text-gray-700 mb-3 leading-relaxed">
+                                        디지털 광고 기술의 이해와 활용, 프로그래매틱 광고, 개인정보보호 시대의 마케팅 전략
+                                    </p>
+                                    <div class="inline-flex items-center gap-1 text-black font-medium hover:underline text-xs">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        발표 자료 보기
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="bg-white border-2 border-black hover-lift">
+                            <a href="presentations/iot-bigdata-with-r/iot-bigdata-with-r.html" target="_blank" class="block">
+                                <div class="bg-black text-white p-4 text-center">
+                                    <i class="fas fa-wifi text-2xl mb-2"></i>
+                                    <h3 class="text-sm font-bold">IoT-BigData with R</h3>
+                                </div>
+                                <div class="p-4">
+                                    <div class="text-xs text-gray-600 mb-2">2025-01-11</div>
+                                    <p class="text-xs text-gray-700 mb-3 leading-relaxed">
+                                        R을 활용한 IoT 빅데이터 분석, 실시간 데이터 처리, 시각화 및 대시보드 구축 방법을 소개합니다.
+                                    </p>
+                                    <div class="inline-flex items-center gap-1 text-black font-medium hover:underline text-xs">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        발표 자료 보기
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="bg-white border-2 border-black hover-lift">
+                            <a href="presentations/reproducible-research-with-jekyll/reproducible-research-with-jekyll.html" target="_blank" class="block">
+                                <div class="bg-black text-white p-4 text-center">
+                                    <i class="fab fa-github text-2xl mb-2"></i>
+                                    <h3 class="text-sm font-bold">Reproducible Research with Jekyll</h3>
+                                </div>
+                                <div class="p-4">
+                                    <div class="text-xs text-gray-600 mb-2">2025-01-16</div>
+                                    <p class="text-xs text-gray-700 mb-3 leading-relaxed">
+                                        Jekyll을 활용한 재현 가능한 연구 워크플로우 구축, GitHub Pages를 통한 연구 결과 공유 및 협업 방법을 소개합니다.
+                                    </p>
+                                    <div class="inline-flex items-center gap-1 text-black font-medium hover:underline text-xs">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        발표 자료 보기
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="bg-white border-2 border-black hover-lift">
+                            <a href="presentations/anomaly-detection-lof/anomaly-detection-lof.html" target="_blank" class="block">
+                                <div class="bg-black text-white p-4 text-center">
+                                    <i class="fas fa-search text-2xl mb-2"></i>
+                                    <h3 class="text-sm font-bold">Anomaly Detection and LOF</h3>
+                                </div>
+                                <div class="p-4">
+                                    <div class="text-xs text-gray-600 mb-2">2015-06-05</div>
+                                    <p class="text-xs text-gray-700 mb-3 leading-relaxed">
+                                        Local Outlier Factor를 이용한 이상 탐지 기법의 원리와 실제 적용 사례를 소개합니다.
+                                    </p>
+                                    <div class="inline-flex items-center gap-1 text-black font-medium hover:underline text-xs">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        발표 자료 보기
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="bg-white border-2 border-black hover-lift">
+                            <a href="presentations/kriging-interpolation/kriging-interpolation.html" target="_blank" class="block">
+                                <div class="bg-black text-white p-4 text-center">
+                                    <i class="fas fa-map-marked-alt text-2xl mb-2"></i>
+                                    <h3 class="text-sm font-bold">크리깅(Kriging) 보간법</h3>
+                                </div>
+                                <div class="p-4">
+                                    <div class="text-xs text-gray-600 mb-2">2025-01-16</div>
+                                    <p class="text-xs text-gray-700 mb-3 leading-relaxed">
+                                        공간 데이터 분석을 위한 지구통계학적 접근법, 크리깅 보간법의 원리와 실무 적용 방법을 소개합니다.
+                                    </p>
+                                    <div class="inline-flex items-center gap-1 text-black font-medium hover:underline text-xs">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        발표 자료 보기
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="bg-white border-2 border-black hover-lift">
+                            <a href="presentations/text-mining-introduction/text-mining-introduction.html" target="_blank" class="block">
+                                <div class="bg-black text-white p-4 text-center">
+                                    <i class="fas fa-file-alt text-2xl mb-2"></i>
+                                    <h3 class="text-sm font-bold">텍스트 마이닝 소개</h3>
+                                </div>
+                                <div class="p-4">
+                                    <div class="text-xs text-gray-600 mb-2">2025-01-16</div>
+                                    <p class="text-xs text-gray-700 mb-3 leading-relaxed">
+                                        비정형 텍스트 데이터에서 가치 있는 정보를 추출하는 텍스트 마이닝의 기본 개념부터 실무 활용까지 포괄적으로 소개합니다.
+                                    </p>
+                                    <div class="inline-flex items-center gap-1 text-black font-medium hover:underline text-xs">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        발표 자료 보기
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="bg-white border-2 border-black hover-lift">
+                            <a href="presentations/cosine-similarity/cosine-similarity.html" target="_blank" class="block">
+                                <div class="bg-black text-white p-4 text-center">
+                                    <i class="fas fa-vector-square text-2xl mb-2"></i>
+                                    <h3 class="text-sm font-bold">코사인 유사도 (Cosine Similarity)</h3>
+                                </div>
+                                <div class="p-4">
+                                    <div class="text-xs text-gray-600 mb-2">2025-01-16</div>
+                                    <p class="text-xs text-gray-700 mb-3 leading-relaxed">
+                                        벡터 간 유사성 측정의 핵심 개념, 코사인 유사도의 원리와 텍스트 마이닝, 추천 시스템 등 실무 활용 방법을 소개합니다.
+                                    </p>
+                                    <div class="inline-flex items-center gap-1 text-black font-medium hover:underline text-xs">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        발표 자료 보기
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Book Section -->
+                    <div class="bg-gray-50 p-6 border-l-4 border-black hover-lift">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 bg-black rounded-full flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-book text-white text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold mb-1">R을 활용한 데이터 시각화</h3>
+                                <p class="text-gray-700 mb-2 leading-relaxed text-sm">
+                                    실무 활용 중심의 R 데이터 시각화 기법 전문서
+                                </p>
+                                <div class="text-xs text-gray-600 mb-2">도서출판 인사이트</div>
+                                <a href="http://r-visualization.com" 
+                                   target="_blank" 
+                                   class="inline-flex items-center gap-1 text-black font-medium hover:underline text-xs">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    도서 정보 보기
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tools Section -->
+        <section id="tools" class="py-12 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="fade-in">
+                    <h2 class="text-2xl font-bold mb-8 text-center">도구 모음</h2>
+                    
+                    <div class="bg-white p-6 border-l-4 border-black hover-lift">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 bg-black rounded-full flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-toolbox text-white text-sm"></i>
+                            </div>
+                            <div class="w-full">
+                                <h3 class="text-lg font-bold mb-4">유용한 도구 모음</h3>
+                                <p class="text-gray-700 mb-4 leading-relaxed text-sm">
+                                    데이터 사이언스, 머신러닝, 웹 개발에 필요한 다양한 도구들을 정리한 큐레이션 리스트
+                                </p>
+                                
+                                <div id="tools-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-4">
+                                    <!-- Tools will be populated here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-12">
+            <div class="container mx-auto px-6">
+                <div class="fade-in">
+                    <div class="bg-black text-white p-8 text-center">
+                        <h2 class="text-2xl font-bold mb-4">소셜네트워크 & 이메일</h2>
+                        <p class="text-sm mb-6 opacity-90">
+                            협업 제안, 기술 자문, 강연 요청 등 언제든지 연락해 주세요.
+                        </p>
+                        
+                        <div class="flex flex-wrap justify-center gap-4">
+                            <a href="mailto:euriion@gmail.com" 
+                               class="flex items-center gap-2 px-4 py-2 border border-white rounded-full hover:bg-white hover:text-black transition-all duration-300 text-sm">
+                                <i class="fas fa-envelope"></i>
+                                <span>euriion@gmail.com</span>
+                            </a>
+                            <a href="https://linkedin.com/in/euriion" 
+                               target="_blank" 
+                               class="flex items-center gap-2 px-4 py-2 border border-white rounded-full hover:bg-white hover:text-black transition-all duration-300 text-sm">
+                                <i class="fab fa-linkedin"></i>
+                                <span>LinkedIn</span>
+                            </a>
+                            <a href="https://github.com/euriion" 
+                               target="_blank" 
+                               class="flex items-center gap-2 px-4 py-2 border border-white rounded-full hover:bg-white hover:text-black transition-all duration-300 text-sm">
+                                <i class="fab fa-github"></i>
+                                <span>GitHub</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-gray-50 py-6">
+            <div class="container mx-auto px-6 text-center">
+                <p class="text-gray-600 mb-1 text-xs">
+                    &copy; <span id="currentYear"></span> Seonghak Hong
+                </p>
+                <p class="text-xs text-gray-500">
+                    Hosted on GitHub Pages
+                </p>
+            </div>
+        </footer>
+    </main>
+
+    <!-- No external dependencies needed for CSV loading -->
+    
     <script>
-        $(document).ready(() => {
-            $('#copyright_year').text(" last updated " + new Date().getFullYear());
+        // Load and display CSV data as cards using fetch
+        async function loadToolsData() {
+            try {
+                const response = await fetch("useful_tools_data.csv");
+                const csvText = await response.text();
+                
+                // Parse CSV manually
+                const lines = csvText.trim().split('\n');
+                const headers = lines[0].split(',');
+                const data = [];
+                
+                for (let i = 1; i < lines.length; i++) {
+                    const values = lines[i].split(',');
+                    const row = {};
+                    headers.forEach((header, index) => {
+                        row[header] = values[index];
+                    });
+                    data.push(row);
+                }
+                
+                console.log("CSV data loaded:", data); // Debug log
+                
+                const toolsGrid = document.getElementById('tools-grid');
+                toolsGrid.innerHTML = ''; // Clear existing content
+                
+                if (data && data.length > 0) {
+                    data.forEach(tool => {
+                        const card = document.createElement('div');
+                        card.className = 'tool-card bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow duration-200 hover-lift';
+                        
+                        card.innerHTML = `
+                            <h4 class="font-bold text-sm mb-2 text-gray-800">${tool.name}</h4>
+                            <span class="inline-block px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full mb-2">${tool.category}</span>
+                            <div class="mt-2">
+                                <a href="${tool.link}" target="_blank" class="inline-flex items-center gap-1 text-black hover:text-gray-700 text-xs font-medium">
+                                    <i class="fas fa-external-link-alt"></i> 도구 보기
+                                </a>
+                            </div>
+                        `;
+                        
+                        toolsGrid.appendChild(card);
+                    });
+                } else {
+                    toolsGrid.innerHTML = '<div class="text-center text-gray-500 py-8">도구 데이터를 불러오는 중입니다...</div>';
+                }
+            } catch (error) {
+                console.error("Error loading CSV:", error);
+                const toolsGrid = document.getElementById('tools-grid');
+                toolsGrid.innerHTML = '<div class="text-center text-red-500 py-8">도구 데이터를 불러오는데 실패했습니다.</div>';
+            }
+        }
+        
+        // Load tools data when page loads
+        loadToolsData();
+        
+        // Update copyright year
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const sidebar = document.getElementById('sidebar');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!sidebar.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                sidebar.classList.remove('open');
+            }
+        });
+
+        // Scroll progress indicator
+        window.addEventListener('scroll', () => {
+            const scrollProgress = document.getElementById('scrollProgress');
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            scrollProgress.style.width = scrollPercent + '%';
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu after clicking
+                    sidebar.classList.remove('open');
+                }
+            });
+        });
+
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease-in-out';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
         });
     </script>
 </body>
-
 </html>
