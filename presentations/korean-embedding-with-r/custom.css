@@ -3,9 +3,23 @@
 /* 기본 폰트 설정 */
 .reveal {
   font-family: 'Noto Sans KR', sans-serif !important;
-  font-size: 32px !important;
+  font-size: 28px !important;
   font-weight: normal;
   color: #fff !important;
+}
+
+/* 슬라이드 구분 강화 */
+.reveal .slides section {
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  text-align: left !important;
+  padding: 40px !important;
+}
+
+.reveal .slides section.center {
+  text-align: center !important;
 }
 
 .reveal h1,
@@ -148,16 +162,7 @@
   font-size: 1.2em !important;
 }
 
-/* 슬라이드 레이아웃 개선 */
-.reveal .slides section {
-  text-align: left !important;
-  padding: 20px !important;
-}
-
-.reveal .slides section.center {
-  text-align: center !important;
-}
-
+/* 슬라이드 내부 요소 정렬 */
 .reveal .slides section .center {
   text-align: center !important;
 }

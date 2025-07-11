@@ -9,8 +9,18 @@ output:
     highlight: "pygments"
     center: true
     transition: "slide"
-    self_contained: true
+    self_contained: false
     css: custom.css
+    slide_level: 2
+    reveal_options:
+      slideNumber: true
+      hash: true
+      history: false
+      controls: true
+      progress: true
+      center: true
+      transition: "slide"
+      backgroundTransition: "fade"
 ---
 
 ```{r setup, include=FALSE}
@@ -27,8 +37,6 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 R에서 활용 가능한 도구들을 소개합니다
 </div>
 
----
-
 ## 목차 {.center}
 
 1. **한국어 자연어처리의 역사와 한계**
@@ -37,8 +45,6 @@ R에서 활용 가능한 도구들을 소개합니다
 4. **R에서의 구현과 활용**
 5. **실제 응용 사례**
 6. **미래 전망**
-
----
 
 ## 한국어 자연어처리의 과거 문제점
 
@@ -56,8 +62,6 @@ R에서 활용 가능한 도구들을 소개합니다
    - 말뭉치 데이터 부족
    - 연구 지원 및 도구 부족
 
----
-
 ## 문자 인코딩 문제 예시
 
 <div class="center">
@@ -67,8 +71,6 @@ R에서 활용 가능한 도구들을 소개합니다
 <div class="center small">
 과거 웹사이트에서 흔히 볼 수 있었던 한글 깨짐 현상
 </div>
-
----
 
 ## 현재 상황: 개선과 과제
 
@@ -80,8 +82,6 @@ R에서 활용 가능한 도구들을 소개합니다
 - **언어 구조적 복잡성**: 여전히 어려움
 - **리소스 격차**: 영어권 대비 부족
 - **도메인별 특화**: 분야별 맞춤형 도구 부족
-
----
 
 ## 한국어 형태소 분석기 생태계
 
@@ -99,8 +99,6 @@ R에서 활용 가능한 도구들을 소개합니다
 - **기계학습 기반**: HMM, CRF 모델 활용
 - **말뭉치**: 21세기 세종계획 + 추가 데이터
 
----
-
 ## 형태소 분석 과정
 
 <div class="center">
@@ -110,8 +108,6 @@ R에서 활용 가능한 도구들을 소개합니다
 <div class="center small">
 한국어 문장의 형태소 분석 과정 예시
 </div>
-
----
 
 ## 구문 분석과 개체명 인식
 
@@ -126,8 +122,6 @@ R에서 활용 가능한 도구들을 소개합니다
 ### 개체명 인식 (NER)
 - 인명, 지명, 기관명, 제품명 등 추출
 - 정보 추출의 핵심 기술
-
----
 
 ## 한국어 처리의 고유 난제
 
@@ -147,8 +141,6 @@ R에서 활용 가능한 도구들을 소개합니다
 - "오징어게임"  
 - "카라마조프가의 형제들"
 
----
-
 ## 전통적 텍스트 처리 방법
 
 ### TF-IDF (Term Frequency-Inverse Document Frequency)
@@ -163,8 +155,6 @@ R에서 활용 가능한 도구들을 소개합니다
 - 의미적 유사성 파악 어려움
 - 희소 벡터 (Sparse Vector)
 
----
-
 ## TF-IDF 시각화
 
 <div class="center">
@@ -174,8 +164,6 @@ R에서 활용 가능한 도구들을 소개합니다
 <div class="center small">
 TF-IDF 계산 과정과 벡터 표현
 </div>
-
----
 
 ## R에서 TF-IDF 구현
 
@@ -206,7 +194,7 @@ tfv <- TfIdfVectorizer$new(max_features = 1000)
 tf_matrix <- tfv$fit_transform(documents)
 ```
 
----
+# 워드임베딩: 패러다임의 전환
 
 ## 워드임베딩: 패러다임의 전환
 
@@ -220,8 +208,6 @@ tf_matrix <- tfv$fit_transform(documents)
 - **의미 보존**: 유사한 의미의 단어는 유사한 벡터
 - **문맥 활용**: 주변 단어를 고려한 학습
 
----
-
 ## 워드임베딩 개념도
 
 <div class="center">
@@ -231,8 +217,6 @@ tf_matrix <- tfv$fit_transform(documents)
 <div class="center small">
 단어를 고차원 벡터 공간에 매핑하는 워드임베딩
 </div>
-
----
 
 ## 워드임베딩의 장단점
 
@@ -248,8 +232,6 @@ tf_matrix <- tfv$fit_transform(documents)
 - **블랙박스**: 해석이 어려움
 - **예측 불가능성**: 예상 밖의 결과
 
----
-
 ## 주요 워드임베딩 기법들
 
 ### 1세대: 정적 임베딩
@@ -262,7 +244,7 @@ tf_matrix <- tfv$fit_transform(documents)
 - **<span class="highlight">BERT</span>** (2018, Google)
 - **<span class="highlight">GPT</span>** (2018, OpenAI)
 
----
+# 주요 임베딩 기법들
 
 ## Word2Vec: 신경망 기반 임베딩
 
@@ -276,8 +258,6 @@ tf_matrix <- tfv$fit_transform(documents)
 - 중심 단어로 주변 단어 예측
 - 큰 데이터셋에 적합
 
----
-
 ## Word2Vec 아키텍처
 
 <div class="center">
@@ -287,8 +267,6 @@ tf_matrix <- tfv$fit_transform(documents)
 <div class="center small">
 CBOW와 Skip-gram 모델의 구조 비교
 </div>
-
----
 
 ## R에서 Word2Vec 구현
 
@@ -312,8 +290,6 @@ model <- read.binary.vectors("word2vec_model.bin")
 similar_words <- nearest_to(model, model[["마케팅"]], 10)
 ```
 
----
-
 ## GloVe: 글로벌 벡터
 
 ### 핵심 아이디어
@@ -325,8 +301,6 @@ similar_words <- nearest_to(model, model[["마케팅"]], 10)
 - 병렬 처리 가능
 - 메모리 효율적
 - 안정적인 성능
-
----
 
 ## R에서 GloVe 구현
 
@@ -350,8 +324,6 @@ wv_context <- glove$components
 word_vectors <- wv_main + t(wv_context)
 ```
 
----
-
 ## FastText: 서브워드 임베딩
 
 ### 혁신적 특징
@@ -365,8 +337,6 @@ word_vectors <- wv_main + t(wv_context)
 - 신조어 대응 가능
 - 형태소 변화 고려
 
----
-
 ## FastText 서브워드 처리
 
 <div class="center">
@@ -376,8 +346,6 @@ word_vectors <- wv_main + t(wv_context)
 <div class="center small">
 FastText의 서브워드 기반 임베딩 생성 과정
 </div>
-
----
 
 ## R에서 FastText 구현
 
@@ -408,8 +376,6 @@ params <- list(
 model <- fasttext_interface(params, path_output = "fasttext_logs.txt")
 ```
 
----
-
 ## BERT: 트랜스포머 기반 임베딩
 
 ### 핵심 혁신
@@ -423,8 +389,6 @@ model <- fasttext_interface(params, path_output = "fasttext_logs.txt")
 - **세그먼트 임베딩**: 문장 구분
 - **위치 임베딩**: 순서 정보
 
----
-
 ## BERT 아키텍처
 
 <div class="center">
@@ -434,8 +398,6 @@ model <- fasttext_interface(params, path_output = "fasttext_logs.txt")
 <div class="center small">
 BERT의 입력 표현과 아키텍처 구조
 </div>
-
----
 
 ## R에서 BERT 활용
 
@@ -472,7 +434,7 @@ get_embeddings <- function(tokens) {
 }
 ```
 
----
+# R에서의 구현과 활용
 
 ## 워드임베딩 활용 분야
 
@@ -490,8 +452,6 @@ get_embeddings <- function(tokens) {
 - 신경망 기계 번역
 - 다국어 임베딩
 
----
-
 ## 벡터 검색 시스템
 
 <div class="center">
@@ -501,8 +461,6 @@ get_embeddings <- function(tokens) {
 <div class="center small">
 벡터 기반 유사도 검색 시스템의 구조
 </div>
-
----
 
 ## 코사인 유사도 활용
 
@@ -520,8 +478,6 @@ cosine_similarity(A, B) = (A · B) / (|A| × |B|)
 <img src="cosine-similarity.png" style="max-width: 70%; height: auto;">
 </div>
 
----
-
 ## 클러스터링과 분류
 
 ### 전통적 방법 vs 임베딩 기반
@@ -536,8 +492,6 @@ cosine_similarity(A, B) = (A · B) / (|A| × |B|)
 - 문맥 고려
 - 더 정확한 그룹화
 
----
-
 ## 분류와 클러스터링 비교
 
 <div class="center">
@@ -548,7 +502,7 @@ cosine_similarity(A, B) = (A · B) / (|A| × |B|)
 지도학습 분류와 비지도학습 클러스터링의 차이
 </div>
 
----
+# 실제 응용 사례
 
 ## 실제 응용 사례
 
@@ -567,8 +521,6 @@ cosine_similarity(A, B) = (A · B) / (|A| × |B|)
 - 의미 보존 요약
 - 추상적 요약 생성
 
----
-
 ## 워드클라우드 진화
 
 ### 기존 워드클라우드 문제점
@@ -585,8 +537,6 @@ cosine_similarity(A, B) = (A · B) / (|A| × |B|)
 <img src="wordcloud1.png" style="max-width: 70%; height: auto;">
 </div>
 
----
-
 ## t-SNE 시각화
 
 ### 고차원 데이터 시각화
@@ -597,8 +547,6 @@ cosine_similarity(A, B) = (A · B) / (|A| × |B|)
 <div class="center">
 <img src="t-sne.png" style="max-width: 75%; height: auto;">
 </div>
-
----
 
 ## R 워드임베딩 패키지 생태계
 
@@ -611,8 +559,6 @@ cosine_similarity(A, B) = (A · B) / (|A| × |B|)
 | `fastText` | FastText | 서브워드 지원 |
 | `keras`/`tensorflow` | BERT, GPT | 딥러닝 모델 |
 | `tidytext` | 텍스트 마이닝 | tidyverse 연동 |
-
----
 
 ## 실습: 한국어 Word2Vec
 
@@ -638,8 +584,6 @@ clean_text <- korean_text %>%
 writeLines(clean_text, "preprocessed_corpus.txt")
 ```
 
----
-
 ## 실습: 모델 훈련
 
 ### 2. Word2Vec 모델 훈련
@@ -660,8 +604,6 @@ model <- train_word2vec(
 # 모델 로드
 model <- read.binary.vectors("korean_word2vec.bin")
 ```
-
----
 
 ## 실습: 결과 분석
 
@@ -701,8 +643,6 @@ ggplot(plot_data, aes(x = x, y = y, label = word)) +
   labs(title = "한국어 단어 임베딩 시각화")
 ```
 
----
-
 ## 성능 평가와 개선
 
 ### 평가 지표
@@ -714,8 +654,6 @@ ggplot(plot_data, aes(x = x, y = y, label = word)) +
 - **하이퍼파라미터 튜닝**: 차원, 윈도우, 학습률
 - **데이터 품질**: 전처리, 도메인 특화
 - **앙상블**: 여러 모델 결합
-
----
 
 ## 실제 비즈니스 활용
 
@@ -733,8 +671,6 @@ ggplot(plot_data, aes(x = x, y = y, label = word)) +
 - 챗봇 개선
 - FAQ 자동 매칭
 - 감정 분석
-
----
 
 ## 한국어 처리 특화 전략
 
@@ -760,7 +696,7 @@ fasttext_model <- fasttext_interface(
 )
 ```
 
----
+# 미래 전망
 
 ## 최신 동향과 미래
 
@@ -779,8 +715,6 @@ fasttext_model <- fasttext_interface(
 - **멀티모달**: 텍스트 + 이미지
 - **실시간 처리**: 엣지 컴퓨팅
 
----
-
 ## R 사용자를 위한 권장사항
 
 ### 1. 단계별 접근
@@ -798,8 +732,6 @@ fasttext_model <- fasttext_interface(
 - **클라우드 활용**: 대용량 처리
 - **사전 훈련 모델**: 시간 절약
 
----
-
 ## 한계와 주의사항
 
 ### 기술적 한계
@@ -811,8 +743,6 @@ fasttext_model <- fasttext_interface(
 - **공정성**: 성별, 인종 편향
 - **프라이버시**: 개인정보 보호
 - **투명성**: 의사결정 과정 공개
-
----
 
 ## 결론
 
@@ -827,8 +757,6 @@ fasttext_model <- fasttext_interface(
 - **Python 연동**: 최신 기법 접근
 - **실무 적용**: 비즈니스 가치 창출
 
----
-
 ## 참고 자료
 
 ### 주요 논문
@@ -841,8 +769,6 @@ fasttext_model <- fasttext_interface(
 - [Awesome Vector Search](https://github.com/currentslab/awesome-vector-search)
 - [Korean NLP Resources](https://github.com/songys/korean-nlp-resources)
 - [R Text Mining](https://www.tidytextmining.com/)
-
----
 
 ## 질문과 답변 {.center}
 
