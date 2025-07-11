@@ -1,0 +1,651 @@
+---
+title: "Reproducible Research with Jekyll"
+subtitle: "정적 사이트 생성기를 활용한 재현 가능한 연구 워크플로우"
+author: "Seonghak Hong"
+date: 2014-04-01
+format: 
+  revealjs:
+    theme: night
+    transition: slide
+    background-transition: fade
+    highlight-style: github
+    code-fold: true
+    code-tools: true
+    slide-number: true
+    chalkboard: true
+    scrollable: true
+    incremental: false
+    footer: "Reproducible Research with Jekyll | 홍성학"
+    logo: "https://jekyllrb.com/img/logo-2x.png"
+    css: custom.css
+    include-in-header:
+      - text: |
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+mermaid:
+  theme: dark
+editor: visual
+---
+
+## 목차 {.smaller}
+
+::: {.incremental}
+1. **재현 가능한 연구란?**
+2. **Jekyll 소개**
+3. **Jekyll을 활용한 연구 워크플로우**
+4. **실습: 연구 사이트 구축**
+5. **GitHub Pages 배포**
+6. **고급 기능들**
+7. **Best Practices**
+:::
+
+# 재현 가능한 연구란?
+
+## 재현 가능한 연구의 정의 {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**재현 가능한 연구 (Reproducible Research)**
+
+- <i class="fas fa-sync-alt"></i> **동일한 결과**: 같은 데이터와 방법으로 같은 결과 도출
+- <i class="fas fa-share-alt"></i> **투명성**: 연구 과정과 방법론 공개
+- <i class="fas fa-code"></i> **코드 공유**: 분석 코드와 스크립트 제공
+- <i class="fas fa-database"></i> **데이터 접근성**: 원본 데이터 또는 샘플 데이터 제공
+:::
+
+::: {.column width="50%"}
+```{mermaid}
+flowchart TD
+    A[원본 데이터] --> B[분석 코드]
+    B --> C[결과]
+    C --> D[보고서/논문]
+    D --> E[재현 검증]
+    E --> F[신뢰성 확보]
+    
+    style A fill:#e1f5fe
+    style B fill:#f3e5f5
+    style C fill:#e8f5e8
+    style D fill:#fff3e0
+    style E fill:#fce4ec
+    style F fill:#e0f2f1
+```
+:::
+:::
+
+## 재현 가능한 연구의 중요성 {.smaller}
+
+::: {.incremental}
+- <i class="fas fa-check-circle text-green-500"></i> **과학적 신뢰성**: 연구 결과의 검증 가능성
+- <i class="fas fa-check-circle text-green-500"></i> **협업 효율성**: 팀원 간 연구 과정 공유
+- <i class="fas fa-check-circle text-green-500"></i> **지식 전수**: 후속 연구자들의 학습 자료
+- <i class="fas fa-check-circle text-green-500"></i> **오류 발견**: 동료 검토를 통한 품질 향상
+- <i class="fas fa-check-circle text-green-500"></i> **연구 확장**: 기존 연구의 발전과 확장
+:::
+
+::: {.callout-note}
+## 연구 재현성의 위기
+최근 연구에 따르면, 많은 과학 연구들이 재현되지 않는 문제가 대두되고 있습니다. 특히 심리학, 의학, 경제학 분야에서 이러한 문제가 심각합니다.
+:::
+
+# Jekyll 소개
+
+## Jekyll이란? {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**Jekyll**은 Ruby 기반의 정적 사이트 생성기
+
+- <i class="fas fa-gem"></i> **Ruby 기반**: 강력한 템플릿 엔진
+- <i class="fas fa-markdown"></i> **Markdown 지원**: 쉬운 콘텐츠 작성
+- <i class="fas fa-github"></i> **GitHub Pages**: 무료 호스팅 지원
+- <i class="fas fa-plug"></i> **플러그인**: 풍부한 확장 기능
+- <i class="fas fa-palette"></i> **테마**: 다양한 디자인 옵션
+:::
+
+::: {.column width="50%"}
+```{mermaid}
+flowchart LR
+    A[Markdown 파일] --> B[Jekyll 엔진]
+    C[YAML 설정] --> B
+    D[템플릿] --> B
+    B --> E[HTML 사이트]
+    
+    style A fill:#e3f2fd
+    style B fill:#f3e5f5
+    style C fill:#e8f5e8
+    style D fill:#fff3e0
+    style E fill:#fce4ec
+```
+:::
+:::
+
+## Jekyll의 장점 {.smaller}
+
+::: {.panel-tabset}
+### 연구자 관점
+- **버전 관리**: Git을 통한 연구 과정 추적
+- **협업**: 여러 연구자가 동시에 작업 가능
+- **재현성**: 코드와 결과를 함께 관리
+- **문서화**: 자동화된 문서 생성
+
+### 기술적 관점
+- **빠른 속도**: 정적 사이트의 빠른 로딩
+- **보안**: 데이터베이스 없는 안전한 구조
+- **확장성**: 플러그인을 통한 기능 확장
+- **무료**: GitHub Pages 무료 호스팅
+
+### 사용자 관점
+- **접근성**: 웹 브라우저로 쉽게 접근
+- **검색**: 구글 등 검색 엔진 최적화
+- **반응형**: 모바일 친화적 디자인
+- **공유**: URL을 통한 쉬운 공유
+:::
+
+# Jekyll을 활용한 연구 워크플로우
+
+## 기본 워크플로우 {.smaller}
+
+```{mermaid}
+flowchart TD
+    A[연구 계획] --> B[Jekyll 사이트 설정]
+    B --> C[데이터 수집]
+    C --> D[분석 코드 작성]
+    D --> E[결과 문서화]
+    E --> F[사이트 업데이트]
+    F --> G[GitHub 커밋]
+    G --> H[자동 배포]
+    H --> I[결과 공유]
+    
+    J[동료 검토] --> K[피드백 반영]
+    K --> D
+    
+    style A fill:#e1f5fe
+    style B fill:#f3e5f5
+    style C fill:#e8f5e8
+    style D fill:#fff3e0
+    style E fill:#fce4ec
+    style F fill:#e0f2f1
+    style G fill:#f1f8e9
+    style H fill:#fef7e0
+    style I fill:#fce4ec
+```
+
+## 디렉토리 구조 {.smaller}
+
+```
+research-project/
+├── _config.yml          # Jekyll 설정
+├── _data/              # 데이터 파일
+│   ├── datasets.yml
+│   └── parameters.yml
+├── _includes/          # 재사용 가능한 컴포넌트
+│   ├── header.html
+│   └── footer.html
+├── _layouts/           # 페이지 레이아웃
+│   ├── default.html
+│   └── post.html
+├── _posts/             # 연구 로그/블로그
+│   └── 2024-01-15-analysis-results.md
+├── _sass/              # 스타일시트
+├── assets/             # 이미지, CSS, JS
+├── data/               # 원본 데이터
+├── scripts/            # 분석 스크립트
+├── results/            # 분석 결과
+└── index.md            # 홈페이지
+```
+
+## 설정 파일 예시 {.smaller}
+
+**_config.yml**
+```yaml
+title: "My Research Project"
+description: "재현 가능한 연구 프로젝트"
+author: "연구자 이름"
+email: "researcher@example.com"
+
+# GitHub 정보
+github_username: yourusername
+repository: your-repo-name
+
+# 빌드 설정
+markdown: kramdown
+highlighter: rouge
+theme: minima
+
+# 플러그인
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# 제외할 파일
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+```
+
+# 실습: 연구 사이트 구축
+
+## 1단계: Jekyll 설치 {.smaller}
+
+::: {.panel-tabset}
+### macOS
+```bash
+# Ruby 설치 (Homebrew 사용)
+brew install ruby
+
+# Jekyll 설치
+gem install jekyll bundler
+
+# 새 사이트 생성
+jekyll new my-research-site
+cd my-research-site
+```
+
+### Windows
+```bash
+# Ruby 설치 (RubyInstaller 사용)
+# https://rubyinstaller.org/ 에서 다운로드
+
+# Jekyll 설치
+gem install jekyll bundler
+
+# 새 사이트 생성
+jekyll new my-research-site
+cd my-research-site
+```
+
+### Linux
+```bash
+# Ruby 설치
+sudo apt-get install ruby-full build-essential zlib1g-dev
+
+# Jekyll 설치
+gem install jekyll bundler
+
+# 새 사이트 생성
+jekyll new my-research-site
+cd my-research-site
+```
+:::
+
+## 2단계: 기본 구조 설정 {.smaller}
+
+**연구 페이지 생성**
+```markdown
+---
+layout: default
+title: "연구 개요"
+---
+
+# 연구 제목: 데이터 분석을 통한 사용자 행동 패턴 분석
+
+## 연구 목적
+이 연구는 웹사이트 사용자의 행동 패턴을 분석하여...
+
+## 연구 방법
+1. 데이터 수집: Google Analytics API 활용
+2. 전처리: Python pandas 라이브러리 사용
+3. 분석: R을 이용한 통계 분석
+4. 시각화: ggplot2와 D3.js 활용
+
+## 주요 결과
+- 사용자 세션 시간 평균: 3분 42초
+- 페이지 이탈률: 45.2%
+- 모바일 사용자 비율: 68.4%
+```
+
+## 3단계: 분석 결과 포함 {.smaller}
+
+**분석 결과 페이지**
+```markdown
+---
+layout: default
+title: "분석 결과"
+---
+
+# 분석 결과
+
+## 데이터 개요
+- 분석 기간: 2024년 1월 - 3월
+- 총 데이터 수: 10,000건
+- 분석 도구: R 4.3.0, Python 3.9
+
+## 주요 발견사항
+
+### 1. 사용자 행동 패턴
+{% include_relative results/user_behavior_chart.html %}
+
+### 2. 시간별 접속 패턴
+![시간별 접속 패턴]({{ site.baseurl }}/assets/images/hourly_pattern.png)
+
+### 3. 통계적 유의성 검증
+- p-value: 0.0032 (< 0.05)
+- 신뢰구간: 95%
+- 효과 크기: 0.67 (중간 크기)
+
+## 코드 재현
+분석에 사용된 모든 코드는 [GitHub 저장소](https://github.com/username/repo)에서 확인할 수 있습니다.
+```
+
+# GitHub Pages 배포
+
+## GitHub Pages 설정 {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**1. 저장소 생성**
+- GitHub에서 새 저장소 생성
+- 저장소명: `username.github.io` 또는 프로젝트명
+- Public으로 설정
+
+**2. 로컬 연결**
+```bash
+git init
+git add .
+git commit -m "Initial commit"
+git remote add origin https://github.com/username/repo.git
+git push -u origin main
+```
+:::
+
+::: {.column width="50%"}
+**3. Pages 활성화**
+- Settings → Pages
+- Source: Deploy from a branch
+- Branch: main / (root)
+- Save
+
+**4. 자동 배포**
+- 코드 변경 시 자동으로 사이트 업데이트
+- 보통 1-2분 내에 반영
+- https://username.github.io/repo 에서 확인
+:::
+:::
+
+## GitHub Actions 워크플로우 {.smaller}
+
+**.github/workflows/jekyll.yml**
+```yaml
+name: Build and Deploy Jekyll Site
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      
+    - name: Setup Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.0
+        bundler-cache: true
+        
+    - name: Build Jekyll site
+      run: bundle exec jekyll build
+      
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./_site
+```
+
+# 고급 기능들
+
+## 데이터 시각화 통합 {.smaller}
+
+::: {.panel-tabset}
+### D3.js 차트
+```html
+<!-- _includes/d3_chart.html -->
+<div id="chart"></div>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+  // D3.js 차트 코드
+  const data = {{ site.data.analysis_results | jsonify }};
+  
+  const svg = d3.select("#chart")
+    .append("svg")
+    .attr("width", 600)
+    .attr("height", 400);
+    
+  // 차트 구현...
+</script>
+```
+
+### Plotly 차트
+```html
+<!-- _includes/plotly_chart.html -->
+<div id="plotly-chart"></div>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script>
+  const data = [
+    {
+      x: {{ site.data.chart_data.x | jsonify }},
+      y: {{ site.data.chart_data.y | jsonify }},
+      type: 'scatter'
+    }
+  ];
+  
+  Plotly.newPlot('plotly-chart', data);
+</script>
+```
+
+### R 결과 임베드
+```r
+# R 스크립트에서 HTML 출력 생성
+library(htmlwidgets)
+library(plotly)
+
+p <- plot_ly(data, x = ~x, y = ~y, type = 'scatter')
+htmlwidgets::saveWidget(p, "results/interactive_plot.html")
+```
+:::
+
+## 동적 콘텐츠 생성 {.smaller}
+
+**데이터 파일 활용**
+```yaml
+# _data/experiments.yml
+- name: "실험 1"
+  date: "2024-01-15"
+  status: "완료"
+  results: 
+    - metric: "정확도"
+      value: 0.87
+    - metric: "재현율"
+      value: 0.92
+
+- name: "실험 2"
+  date: "2024-01-20"
+  status: "진행중"
+  results: []
+```
+
+**템플릿에서 활용**
+```liquid
+{% for experiment in site.data.experiments %}
+<div class="experiment">
+  <h3>{{ experiment.name }}</h3>
+  <p>날짜: {{ experiment.date }}</p>
+  <p>상태: {{ experiment.status }}</p>
+  
+  {% if experiment.results.size > 0 %}
+    <h4>결과:</h4>
+    {% for result in experiment.results %}
+      <p>{{ result.metric }}: {{ result.value }}</p>
+    {% endfor %}
+  {% endif %}
+</div>
+{% endfor %}
+```
+
+## 플러그인 활용 {.smaller}
+
+**Gemfile**
+```ruby
+source "https://rubygems.org"
+
+gem "jekyll", "~> 4.3"
+gem "jekyll-feed"
+gem "jekyll-sitemap"
+gem "jekyll-seo-tag"
+gem "jekyll-scholar"      # 학술 인용
+gem "jekyll-jupyter-notebook"  # Jupyter 노트북 지원
+gem "jekyll-mermaid"      # 다이어그램
+gem "jekyll-toc"          # 목차 자동 생성
+
+group :jekyll_plugins do
+  gem "jekyll-timeago"
+  gem "jekyll-paginate"
+end
+```
+
+# Best Practices
+
+## 연구 문서화 원칙 {.smaller}
+
+::: {.incremental}
+- <i class="fas fa-file-alt"></i> **명확한 문서화**: 모든 분석 과정을 상세히 기록
+- <i class="fas fa-code-branch"></i> **버전 관리**: 코드와 데이터의 변경 사항 추적
+- <i class="fas fa-users"></i> **협업 고려**: 다른 연구자가 이해하기 쉽게 작성
+- <i class="fas fa-sync"></i> **정기적 업데이트**: 연구 진행에 따라 지속적으로 업데이트
+- <i class="fas fa-shield-alt"></i> **데이터 보안**: 민감한 데이터는 별도 관리
+:::
+
+::: {.callout-tip}
+## 팁: README 파일 작성
+각 디렉토리에 README.md 파일을 작성하여 해당 폴더의 내용과 사용법을 설명하세요.
+:::
+
+## 코드 구조화 {.smaller}
+
+**분석 스크립트 구조**
+```
+scripts/
+├── 01_data_collection.py    # 데이터 수집
+├── 02_data_cleaning.R       # 데이터 전처리
+├── 03_exploratory_analysis.py  # 탐색적 분석
+├── 04_statistical_analysis.R   # 통계 분석
+├── 05_visualization.py      # 시각화
+└── utils/                   # 유틸리티 함수
+    ├── data_utils.py
+    └── plot_utils.R
+```
+
+**각 스크립트의 구조**
+```python
+#!/usr/bin/env python3
+"""
+데이터 수집 스크립트
+작성자: 홍성학
+작성일: 2024-01-15
+목적: API를 통한 사용자 행동 데이터 수집
+"""
+
+import pandas as pd
+import requests
+from datetime import datetime
+
+# 설정
+API_KEY = "your_api_key"
+BASE_URL = "https://api.example.com"
+
+def collect_data(start_date, end_date):
+    """데이터 수집 함수"""
+    # 구현 내용...
+    pass
+
+if __name__ == "__main__":
+    # 실행 코드
+    data = collect_data("2024-01-01", "2024-03-31")
+    data.to_csv("../data/raw_data.csv", index=False)
+    print(f"데이터 수집 완료: {len(data)} 건")
+```
+
+## 재현성 체크리스트 {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**데이터 관리**
+- [ ] 원본 데이터 보존
+- [ ] 데이터 출처 명시
+- [ ] 전처리 과정 문서화
+- [ ] 데이터 딕셔너리 작성
+
+**코드 관리**
+- [ ] 버전 관리 시스템 사용
+- [ ] 코드 주석 작성
+- [ ] 함수와 모듈 분리
+- [ ] 테스트 코드 작성
+:::
+
+::: {.column width="50%"}
+**환경 관리**
+- [ ] 의존성 목록 작성
+- [ ] 가상 환경 설정
+- [ ] 실행 환경 문서화
+- [ ] Docker 컨테이너 고려
+
+**문서화**
+- [ ] README 파일 작성
+- [ ] 분석 보고서 작성
+- [ ] 결과 해석 포함
+- [ ] 한계점 명시
+:::
+:::
+
+## 마무리 {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**Jekyll의 장점**
+- 간단한 설정과 사용법
+- GitHub Pages 무료 호스팅
+- 마크다운 기반 쉬운 작성
+- 풍부한 플러그인 생태계
+- 버전 관리 통합
+
+**연구에서의 활용**
+- 연구 과정 투명화
+- 결과 공유 및 협업
+- 지속적인 업데이트
+- 동료 검토 용이성
+:::
+
+::: {.column width="50%"}
+**다음 단계**
+1. 본인의 연구 프로젝트에 적용
+2. 팀원들과 워크플로우 공유
+3. 고급 기능들 점진적 도입
+4. 커뮤니티 피드백 수집
+
+**유용한 자료**
+- [Jekyll 공식 문서](https://jekyllrb.com/)
+- [GitHub Pages 가이드](https://pages.github.com/)
+- [Jekyll 테마 모음](https://jekyllthemes.io/)
+:::
+:::
+
+---
+
+## 감사합니다! {.center}
+
+::: {.center}
+**질문이 있으시면 언제든지 연락주세요**
+
+<i class="fas fa-envelope"></i> euriion@gmail.com  
+<i class="fab fa-github"></i> [github.com/euriion](https://github.com/euriion)  
+<i class="fab fa-linkedin"></i> [linkedin.com/in/euriion](https://linkedin.com/in/euriion)
+
+**이 슬라이드도 Jekyll로 만들어졌습니다!**
+::: 

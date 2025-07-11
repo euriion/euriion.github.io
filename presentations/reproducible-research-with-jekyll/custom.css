@@ -1,0 +1,424 @@
+/* Tailwind CSS CDN */
+@import url('https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css');
+
+/* Heroicons CSS */
+.icon {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+/* 타겟 아이콘 */
+.icon-target::before {
+  content: "";
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-right: 0.5rem;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%233b82f6'%3e%3cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'/%3e%3c/svg%3e");
+  background-size: contain;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+}
+
+/* 설정 아이콘 */
+.icon-cog::before {
+  content: "";
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-right: 0.5rem;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3e%3cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z'/%3e%3cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M15 12a3 3 0 11-6 0 3 3 0 016 0z'/%3e%3c/svg%3e");
+  background-size: contain;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+}
+
+/* 건물 아이콘 */
+.icon-building::before {
+  content: "";
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-right: 0.5rem;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23f59e0b'%3e%3cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4'/%3e%3c/svg%3e");
+  background-size: contain;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+}
+
+/* 펜 아이콘 */
+.icon-pencil::before {
+  content: "";
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-right: 0.5rem;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2310b981'%3e%3cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z'/%3e%3c/svg%3e");
+  background-size: contain;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+}
+
+/* 로켓 아이콘 */
+.icon-rocket::before {
+  content: "";
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-right: 0.5rem;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%238b5cf6'%3e%3cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M13 10V3L4 14h7v7l9-11h-7z'/%3e%3c/svg%3e");
+  background-size: contain;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+}
+
+/* 전구 아이콘 */
+.icon-lightbulb::before {
+  content: "";
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-right: 0.5rem;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23f59e0b'%3e%3cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z'/%3e%3c/svg%3e");
+  background-size: contain;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+}
+
+/* 지구 아이콘 */
+.icon-globe::before {
+  content: "";
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-right: 0.5rem;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2306b6d4'%3e%3cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z'/%3e%3c/svg%3e");
+  background-size: contain;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+}
+
+/* SVG 아이콘 스타일 */
+.svg-icon {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+  fill: currentColor;
+}
+
+/* 아이콘 컨테이너 */
+.icon-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* 커스텀 스타일 */
+.reveal {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.reveal .slides section {
+  text-align: left;
+}
+
+.reveal .slides section.center {
+  text-align: center;
+}
+
+/* 목차 스타일 */
+.reveal .incremental > * {
+  opacity: 0.5;
+}
+
+.reveal .incremental > *.current-fragment {
+  opacity: 1;
+}
+
+/* 코드 블록 스타일 */
+.reveal pre {
+  background: #1e293b;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin: 1rem 0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.reveal code {
+  background: #334155;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+}
+
+/* 컬럼 레이아웃 개선 */
+.reveal .columns {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.reveal .column {
+  flex: 1;
+}
+
+/* 콜아웃 박스 스타일 */
+.reveal .callout-note {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  border-left: 4px solid #2563eb;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+}
+
+.reveal .callout-warning {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  border-left: 4px solid #f59e0b;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+}
+
+.reveal .callout-tip {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border-left: 4px solid #10b981;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+}
+
+/* 탭 패널 스타일 */
+.reveal .panel-tabset {
+  margin: 1rem 0;
+}
+
+.reveal .panel-tabset .nav-tabs {
+  display: flex;
+  border-bottom: 2px solid #374151;
+  margin-bottom: 1rem;
+}
+
+.reveal .panel-tabset .nav-tabs .nav-link {
+  padding: 0.5rem 1rem;
+  background: #374151;
+  border: none;
+  color: #d1d5db;
+  cursor: pointer;
+  border-radius: 0.5rem 0.5rem 0 0;
+  margin-right: 0.25rem;
+}
+
+.reveal .panel-tabset .nav-tabs .nav-link.active {
+  background: #1f2937;
+  color: #f8fafc;
+}
+
+/* 리스트 스타일 개선 */
+.reveal ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.reveal ul li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin: 0.5rem 0;
+}
+
+.reveal ul li:before {
+  content: "▶";
+  position: absolute;
+  left: 0;
+  color: #3b82f6;
+  font-size: 0.75em;
+}
+
+.reveal ol {
+  padding-left: 1.5rem;
+}
+
+.reveal ol li {
+  margin: 0.5rem 0;
+}
+
+/* 버튼 스타일 */
+.reveal .btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.reveal .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+/* 제목 슬라이드 스타일 */
+.reveal .title-slide h1 {
+  font-size: 3rem;
+  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+}
+
+.reveal .title-slide h2 {
+  font-size: 1.5rem;
+  color: #94a3b8;
+  margin-bottom: 2rem;
+}
+
+/* 섹션 제목 스타일 */
+.reveal .section-title {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  padding: 2rem;
+  border-radius: 1rem;
+  text-align: center;
+}
+
+.reveal .section-title h1 {
+  font-size: 2.5rem;
+  margin: 0;
+}
+
+/* 진행 표시줄 스타일 */
+.reveal .progress {
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%);
+}
+
+/* 슬라이드 번호 스타일 */
+.reveal .slide-number {
+  background: rgba(59, 130, 246, 0.2);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  backdrop-filter: blur(10px);
+}
+
+/* 푸터 스타일 */
+.reveal .footer {
+  background: rgba(30, 41, 59, 0.9);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  backdrop-filter: blur(10px);
+}
+
+/* Mermaid 다이어그램 스타일 */
+.reveal .mermaid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.reveal .mermaid svg {
+  max-width: 100%;
+  height: auto;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .reveal .columns {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .reveal .title-slide h1 {
+    font-size: 2rem;
+  }
+  
+  .reveal .section-title h1 {
+    font-size: 2rem;
+  }
+}
+
+/* 전환 효과 완전 제거 */
+.reveal .slides section {
+  transition: none !important;
+  animation: none !important;
+  transform: none !important;
+}
+
+.reveal .slides section.past,
+.reveal .slides section.present,
+.reveal .slides section.future {
+  transition: none !important;
+  animation: none !important;
+  transform: none !important;
+}
+
+/* 슬라이드 전환 애니메이션 제거 */
+.reveal .slides section.past {
+  display: none !important;
+}
+
+.reveal .slides section.present {
+  display: block !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.reveal .slides section.future {
+  display: none !important;
+}
+
+/* 배경 전환 효과 제거 */
+.reveal .backgrounds .slide-background {
+  transition: none !important;
+  animation: none !important;
+}
+
+.reveal .backgrounds .slide-background.past,
+.reveal .backgrounds .slide-background.present,
+.reveal .backgrounds .slide-background.future {
+  transition: none !important;
+  animation: none !important;
+}
+
+/* 프래그먼트 애니메이션도 제거 */
+.reveal .slides section .fragment {
+  transition: none !important;
+  animation: none !important;
+}
+
+.reveal .slides section .fragment.visible {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* 스크롤바 스타일 */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3b82f6;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2563eb;
+} 
