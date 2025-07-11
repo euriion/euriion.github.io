@@ -181,6 +181,507 @@ server <- function(input, output) {
 
 ---
 
+# Shiny 생태계 패키지들
+
+## 주요 확장 패키지
+
+- **DT**: 인터랙티브 데이터테이블 생성
+- **plotly**: 인터랙티브 그래프 생성
+- **leaflet**: 인터랙티브 지도 생성
+- **shinydashboard**: 대시보드 레이아웃 생성
+- **shinyWidgets**: 다양한 추가 위젯 제공
+- **shinyjs**: JavaScript 기능 추가
+
+```{r eval=FALSE, tidy=FALSE}
+# 패키지 설치 예시
+install.packages(c("DT", "plotly", "leaflet", "shinydashboard"))
+```
+
+---
+
+# DT 패키지 예제
+
+```{r eval=FALSE, tidy=FALSE}
+library(shiny)
+library(DT)
+
+ui <- fluidPage(
+  titlePanel("Interactive Data Table"),
+  DT::dataTableOutput("table")
+)
+
+server <- function(input, output) {
+  output$table <- DT::renderDataTable({
+    DT::datatable(iris, options = list(pageLength = 10))
+  })
+}
+
+shinyApp(ui = ui, server = server)
+```
+
+![](https://raw.githubusercontent.com/rstudio/DT/master/vignettes/DT-intro_files/figure-html/unnamed-chunk-4-1.png)
+
+---
+
+# plotly 패키지 예제
+
+```{r eval=FALSE, tidy=FALSE}
+library(shiny)
+library(plotly)
+
+ui <- fluidPage(
+  titlePanel("Interactive Plotly Chart"),
+  plotlyOutput("plot")
+)
+
+server <- function(input, output) {
+  output$plot <- renderPlotly({
+    p <- ggplot(mpg, aes(displ, hwy, color = class)) + 
+         geom_point()
+    ggplotly(p)
+  })
+}
+
+shinyApp(ui = ui, server = server)
+```
+
+---
+
+# leaflet 패키지 예제
+
+```{r eval=FALSE, tidy=FALSE}
+library(shiny)
+library(leaflet)
+
+ui <- fluidPage(
+  titlePanel("Interactive Map"),
+  leafletOutput("map")
+)
+
+server <- function(input, output) {
+  output$map <- renderLeaflet({
+    leaflet() %>%
+      addTiles() %>%
+      addMarkers(lng = 126.9780, lat = 37.5665, 
+                 popup = "서울특별시")
+  })
+}
+
+shinyApp(ui = ui, server = server)
+```
+
+---
+
+# 더 많은 UI 컴포넌트들
+
+## 입력 컴포넌트 (Input Components)
+
+- `textInput()`: 텍스트 입력
+- `numericInput()`: 숫자 입력
+- `selectInput()`: 드롭다운 메뉴
+- `checkboxInput()`: 체크박스
+- `radioButtons()`: 라디오 버튼
+- `dateInput()`: 날짜 선택
+- `fileInput()`: 파일 업로드
+
+## 출력 컴포넌트 (Output Components)
+
+- `plotOutput()`: 그래프 출력
+- `tableOutput()`: 테이블 출력
+- `textOutput()`: 텍스트 출력
+- `verbatimTextOutput()`: 코드 형태 텍스트
+- `downloadButton()`: 다운로드 버튼
+
+---
+
+# 레이아웃 시스템
+
+## 다양한 레이아웃 옵션
+
+```{r eval=FALSE, tidy=FALSE}
+# 사이드바 레이아웃
+sidebarLayout(
+  sidebarPanel(...),
+  mainPanel(...)
+)
+
+# 네비게이션 바 레이아웃
+navbarPage("Title",
+  tabPanel("Tab 1", ...),
+  tabPanel("Tab 2", ...)
+)
+
+# 플루이드 로우 레이아웃
+fluidRow(
+  column(4, ...),
+  column(8, ...)
+)
+```
+
+---
+
+# 반응성 심화 (Advanced Reactivity)
+
+## 반응성 함수들
+
+- `reactive()`: 반응형 표현식 생성
+- `observe()`: 부작용이 있는 반응형 표현식
+- `eventReactive()`: 특정 이벤트에 반응
+- `observeEvent()`: 특정 이벤트 감지
+
+```{r eval=FALSE, tidy=FALSE}
+server <- function(input, output) {
+  # 반응형 데이터
+  filtered_data <- reactive({
+    subset(mtcars, mpg > input$mpg_threshold)
+  })
+  
+  # 이벤트 반응
+  observeEvent(input$reset_button, {
+    updateSliderInput(session, "mpg_threshold", value = 20)
+  })
+}
+```
+
+---
+
+# 데이터 처리 및 관리
+
+## 데이터 불러오기 및 처리
+
+```{r eval=FALSE, tidy=FALSE}
+# 파일 업로드 처리
+server <- function(input, output) {
+  data <- reactive({
+    req(input$file)
+    
+    ext <- tools::file_ext(input$file$datapath)
+    
+    switch(ext,
+      csv = read.csv(input$file$datapath),
+      xlsx = readxl::read_excel(input$file$datapath),
+      validate("Invalid file type")
+    )
+  })
+  
+  output$table <- renderTable({
+    data()
+  })
+}
+```
+
+---
+
+# 성능 최적화
+
+## 성능 향상 팁
+
+1. **반응성 최적화**
+   - 불필요한 재계산 방지
+   - `isolate()` 함수 활용
+   - 데이터 캐싱
+
+2. **메모리 관리**
+   - 큰 데이터셋 처리 시 주의
+   - 메모리 사용량 모니터링
+
+3. **비동기 처리**
+   - `future` 패키지 활용
+   - 긴 작업의 비동기 처리
+
+```{r eval=FALSE, tidy=FALSE}
+# 비동기 처리 예제
+library(future)
+plan(multisession)
+
+server <- function(input, output) {
+  output$result <- renderText({
+    future({
+      # 긴 계산 작업
+      Sys.sleep(5)
+      "작업 완료"
+    })
+  })
+}
+```
+
+---
+
+# 배포 방법들
+
+## 1. shinyapps.io (클라우드 배포)
+
+```{r eval=FALSE, tidy=FALSE}
+# rsconnect 패키지 설치
+install.packages("rsconnect")
+library(rsconnect)
+
+# 계정 설정
+rsconnect::setAccountInfo(name="your-account",
+                          token="your-token",
+                          secret="your-secret")
+
+# 배포
+rsconnect::deployApp()
+```
+
+## 2. Shiny Server (자체 서버)
+
+- 오픈소스 버전 무료 사용 가능
+- 상용 버전(Shiny Server Pro) 추가 기능 제공
+
+---
+
+# 보안 고려사항
+
+## 보안 체크리스트
+
+1. **입력 데이터 검증**
+   - 사용자 입력 값 검증
+   - SQL 인젝션 방지
+
+2. **인증 및 권한 관리**
+   - 로그인 시스템 구현
+   - 사용자 권한 관리
+
+3. **데이터 보호**
+   - 민감한 데이터 암호화
+   - HTTPS 사용
+
+```{r eval=FALSE, tidy=FALSE}
+# 입력 검증 예제
+server <- function(input, output) {
+  observe({
+    req(input$user_input)
+    
+    # 입력 값 검증
+    if (nchar(input$user_input) > 100) {
+      showNotification("입력이 너무 깁니다.", type = "error")
+      return()
+    }
+  })
+}
+```
+
+---
+
+# 실제 사용 사례
+
+## 다양한 분야에서의 활용
+
+1. **비즈니스 대시보드**
+   - KPI 모니터링
+   - 실시간 데이터 시각화
+
+2. **과학 연구**
+   - 데이터 탐색 도구
+   - 통계 분석 인터페이스
+
+3. **교육**
+   - 인터랙티브 학습 도구
+   - 시뮬레이션 프로그램
+
+4. **정부 및 공공기관**
+   - 정책 시뮬레이션
+   - 공공 데이터 시각화
+
+---
+
+# 고급 기능들
+
+## 1. 모듈화 (Modules)
+
+```{r eval=FALSE, tidy=FALSE}
+# 모듈 UI
+chartUI <- function(id) {
+  ns <- NS(id)
+  plotOutput(ns("plot"))
+}
+
+# 모듈 서버
+chartServer <- function(id, data) {
+  moduleServer(id, function(input, output, session) {
+    output$plot <- renderPlot({
+      plot(data())
+    })
+  })
+}
+
+# 메인 앱에서 모듈 사용
+ui <- fluidPage(
+  chartUI("chart1")
+)
+
+server <- function(input, output, session) {
+  data <- reactive(mtcars)
+  chartServer("chart1", data)
+}
+```
+
+---
+
+# 고급 기능들
+
+## 2. 사용자 정의 JavaScript
+
+```{r eval=FALSE, tidy=FALSE}
+# shinyjs 패키지 사용
+library(shinyjs)
+
+ui <- fluidPage(
+  useShinyjs(),
+  actionButton("btn", "클릭"),
+  div(id = "text", "안녕하세요!")
+)
+
+server <- function(input, output, session) {
+  observeEvent(input$btn, {
+    shinyjs::toggle("text")  # 텍스트 숨기기/보이기
+  })
+}
+```
+
+## 3. 사용자 정의 CSS
+
+```{r eval=FALSE, tidy=FALSE}
+ui <- fluidPage(
+  tags$head(
+    tags$style(HTML("
+      .custom-button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+      }
+    "))
+  ),
+  actionButton("btn", "버튼", class = "custom-button")
+)
+```
+
+---
+
+# 디버깅 및 테스팅
+
+## 디버깅 방법
+
+1. **browser()** 함수 사용
+2. **print()** 문으로 값 확인
+3. **reactlog** 패키지로 반응성 추적
+
+```{r eval=FALSE, tidy=FALSE}
+# 디버깅 예제
+server <- function(input, output) {
+  output$plot <- renderPlot({
+    print(paste("Input value:", input$slider))  # 디버깅 출력
+    
+    # browser()  # 브레이크포인트
+    
+    hist(rnorm(input$slider))
+  })
+}
+```
+
+## 테스팅
+
+- **shinytest2** 패키지로 자동화된 테스트
+- **testthat** 패키지로 단위 테스트
+
+---
+
+# 모범 사례 (Best Practices)
+
+## 코드 구조화
+
+1. **함수 분리**: 복잡한 로직을 별도 함수로 분리
+2. **모듈화**: 재사용 가능한 컴포넌트 생성
+3. **설정 파일**: 설정값들을 별도 파일로 관리
+
+## 사용자 경험 개선
+
+1. **로딩 인디케이터**: 긴 작업 중 로딩 표시
+2. **에러 처리**: 사용자 친화적인 에러 메시지
+3. **반응형 디자인**: 모바일 기기 대응
+
+```{r eval=FALSE, tidy=FALSE}
+# 로딩 인디케이터 예제
+output$plot <- renderPlot({
+  withProgress(message = '그래프 생성 중...', value = 0, {
+    for (i in 1:10) {
+      incProgress(1/10)
+      Sys.sleep(0.1)
+    }
+    plot(mtcars$mpg, mtcars$wt)
+  })
+})
+```
+
+---
+
+# 학습 리소스
+
+## 온라인 자료
+
+- **공식 문서**: https://shiny.rstudio.com/
+- **Shiny 갤러리**: https://shiny.rstudio.com/gallery/
+- **Mastering Shiny**: https://mastering-shiny.org/
+- **Engineering Production-Grade Shiny Apps**: https://engineering-shiny.org/
+
+## 커뮤니티
+
+- **RStudio Community**: https://community.rstudio.com/
+- **Stack Overflow**: #shiny 태그
+- **한국 R 사용자 모임**: https://www.facebook.com/groups/KoreaRUsers/
+
+## 관련 패키지
+
+- **golem**: 프로덕션 수준의 Shiny 앱 개발 프레임워크
+- **bs4Dash**: Bootstrap 4 대시보드
+- **shinyMobile**: 모바일 최적화 Shiny 앱
+
+---
+
+# 실습 과제
+
+## 간단한 데이터 탐색 앱 만들기
+
+1. **데이터 업로드** 기능 구현
+2. **기본 통계** 요약 표시
+3. **인터랙티브 그래프** 생성
+4. **필터링** 기능 추가
+
+```{r eval=FALSE, tidy=FALSE}
+# 과제 시작 코드
+ui <- fluidPage(
+  titlePanel("데이터 탐색 앱"),
+  sidebarLayout(
+    sidebarPanel(
+      fileInput("file", "CSV 파일 선택"),
+      # 추가 입력 요소들...
+    ),
+    mainPanel(
+      # 출력 요소들...
+    )
+  )
+)
+```
+
+---
+
+# 참고자료
+
+- [샤이니 공식홈](https://shiny.rstudio.com/)
+- [샤이니 갤러리](https://shiny.rstudio.com/gallery/#demos)
+- [사용자 쇼케이스](https://shiny.rstudio.com/gallery/#user-showcase)
+- [Mastering Shiny 책](https://mastering-shiny.org/)
+- [Engineering Production-Grade Shiny Apps](https://engineering-shiny.org/)
+- [Shiny 치트시트](https://github.com/rstudio/cheatsheets/blob/master/shiny.pdf)
+
+---
+
 # 질문 Question?
 
 홍성학 (euriion@gmail.com)
+
+**감사합니다!**
