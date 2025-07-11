@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+/* 기본 폰트 설정 */
+.reveal {
+  font-family: 'Noto Sans KR', sans-serif !important;
+  font-size: 32px !important;
+  font-weight: normal;
+  color: #fff !important;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  font-family: 'Noto Sans KR', sans-serif !important;
+  color: #fff !important;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  text-transform: none;
+  text-shadow: none;
+  word-wrap: break-word;
+  margin: 0.5em 0 !important;
+}
+
+.reveal h1 {
+  font-size: 2.2em !important;
+  font-weight: 700 !important;
+}
+
+.reveal h2 {
+  font-size: 1.6em !important;
+  font-weight: 600 !important;
+}
+
+.reveal h3 {
+  font-size: 1.3em !important;
+  font-weight: 500 !important;
+}
+
+.reveal p {
+  margin: 15px 0 !important;
+  line-height: 1.6 !important;
+}
+
+.reveal ul, .reveal ol {
+  margin: 15px 0 !important;
+  line-height: 1.6 !important;
+}
+
+.reveal li {
+  margin: 8px 0 !important;
+}
+
+.reveal blockquote {
+  font-style: italic;
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-left: 5px solid #42affa !important;
+  padding: 15px !important;
+  margin: 15px 0 !important;
+}
+
+.reveal code {
+  font-family: 'Consolas', 'Monaco', monospace !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  padding: 2px 6px !important;
+  border-radius: 3px !important;
+  font-size: 0.85em !important;
+}
+
+.reveal pre {
+  background: rgba(0, 0, 0, 0.3) !important;
+  border-radius: 5px !important;
+  padding: 15px !important;
+  margin: 15px 0 !important;
+  overflow: auto !important;
+  font-size: 0.75em !important;
+}
+
+.reveal pre code {
+  background: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  max-height: 400px !important;
+  word-wrap: normal !important;
+}
+
+.reveal table {
+  margin: 15px auto !important;
+  border-collapse: collapse !important;
+  border-spacing: 0 !important;
+  font-size: 0.8em !important;
+}
+
+.reveal table th,
+.reveal table td {
+  text-align: left !important;
+  padding: 0.3em 0.6em !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+.reveal table th {
+  font-weight: bold !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.reveal img {
+  margin: 15px auto !important;
+  max-width: 90% !important;
+  height: auto !important;
+  border: none !important;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3) !important;
+  display: block !important;
+}
+
+/* 강조 스타일 */
+.highlight {
+  background: rgba(66, 175, 250, 0.3) !important;
+  padding: 3px 8px !important;
+  border-radius: 3px !important;
+  color: #42affa !important;
+  font-weight: bold !important;
+}
+
+.important {
+  color: #ff6b6b !important;
+  font-weight: bold !important;
+}
+
+.success {
+  color: #51cf66 !important;
+  font-weight: bold !important;
+}
+
+/* 중앙 정렬 */
+.center {
+  text-align: center !important;
+}
+
+/* 작은 텍스트 */
+.small {
+  font-size: 0.8em !important;
+}
+
+/* 큰 텍스트 */
+.large {
+  font-size: 1.2em !important;
+}
+
+/* 슬라이드 레이아웃 개선 */
+.reveal .slides section {
+  text-align: left !important;
+  padding: 20px !important;
+}
+
+.reveal .slides section.center {
+  text-align: center !important;
+}
+
+.reveal .slides section .center {
+  text-align: center !important;
+}
+
+/* 진행 바 및 컨트롤 스타일 */
+.reveal .progress {
+  color: #42affa !important;
+}
+
+.reveal .controls {
+  color: #42affa !important;
+} 

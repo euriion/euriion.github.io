@@ -4,14 +4,10 @@ subtitle: "R로 만드는 대화형 웹시각화"
 author: "홍성학"
 institute: "Korea R User Group"
 date: "2021-08-09 (updated: `r Sys.Date()`)"
-output:
-  xaringan::moon_reader:
-    lib_dir: libs
-    nature:
-      highlightStyle: github
-      highlightLines: true
-      countIncrementalSlides: false
-    css: ["default", "xaringan-custom.css"]
+format:
+  revealjs:
+    theme: default
+    css: xaringan-custom.css
 ---
 
 <!-- background-image: url(https://upload.wikimedia.org/wikipedia/commons/b/be/Sharingan_triple.svg) -->
