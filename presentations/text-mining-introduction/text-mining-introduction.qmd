@@ -52,6 +52,7 @@ editor: visual
 
 ::: {.column width="50%"}
 ### 비즈니스 가치 창출
+
 - <i class="fas fa-users"></i> **고객 감정 분석**
 - <i class="fas fa-trending-up"></i> **시장 트렌드 파악**
 - <i class="fas fa-shield-alt"></i> **리스크 모니터링**
@@ -68,6 +69,7 @@ editor: visual
 - <i class="fas fa-comments"></i> **소셜 미디어** 반응 분석
 
 ### 2. 주제 모델링 (Topic Modeling)
+
 - <i class="fas fa-tags"></i> **문서 분류** 및 **주제 추출**
 - <i class="fas fa-search"></i> **정보 검색** 시스템
 - <i class="fas fa-newspaper"></i> **뉴스 카테고리** 자동 분류
@@ -180,6 +182,7 @@ def preprocess_korean_text(text):
 ::: {.columns}
 ::: {.column width="50%"}
 #### 분류 모델
+
 - <i class="fas fa-tree"></i> **Decision Tree**
 - <i class="fas fa-forest"></i> **Random Forest**
 - <i class="fas fa-robot"></i> **SVM**
@@ -188,6 +191,7 @@ def preprocess_korean_text(text):
 
 ::: {.column width="50%"}
 #### 클러스터링 모델
+
 - <i class="fas fa-circle"></i> **K-Means**
 - <i class="fas fa-layer-group"></i> **Hierarchical Clustering**
 - <i class="fas fa-chart-area"></i> **DBSCAN**
@@ -241,6 +245,7 @@ print(f"정확도: {accuracy:.3f}")
 ::: {.columns}
 ::: {.column width="50%"}
 #### 자연어 처리
+
 - <i class="fas fa-python"></i> **NLTK**: 자연어 처리 툴킷
 - <i class="fas fa-rocket"></i> **spaCy**: 고성능 NLP 라이브러리
 - <i class="fas fa-language"></i> **KoNLPy**: 한국어 형태소 분석
@@ -249,6 +254,7 @@ print(f"정확도: {accuracy:.3f}")
 
 ::: {.column width="50%"}
 #### 머신러닝
+
 - <i class="fas fa-chart-line"></i> **scikit-learn**: 머신러닝 라이브러리
 - <i class="fas fa-fire"></i> **PyTorch**: 딥러닝 프레임워크
 - <i class="fas fa-tensorflow"></i> **TensorFlow**: 구글 딥러닝 프레임워크
@@ -298,11 +304,13 @@ print(f"정확도: {accuracy:.3f}")
 - <i class="fas fa-chart-line"></i> **시청 패턴 분석**으로 신규 콘텐츠 기획
 
 ### 2. 아마존 - 상품 리뷰 분석
+
 - <i class="fas fa-shopping-cart"></i> **고객 리뷰 감정 분석**
 - <i class="fas fa-thumbs-up"></i> **가짜 리뷰 탐지** 시스템
 - <i class="fas fa-lightbulb"></i> **상품 개선점 도출**
 
 ### 3. 트위터 - 실시간 트렌드 분석
+
 - <i class="fas fa-hashtag"></i> **해시태그 분석**으로 트렌드 파악
 - <i class="fas fa-globe"></i> **실시간 이슈 모니터링**
 - <i class="fas fa-chart-pulse"></i> **여론 분석** 및 **사회적 이슈 추적**
@@ -331,6 +339,7 @@ print(f"정확도: {accuracy:.3f}")
 :::
 
 ### 4. 배포 및 모니터링
+
 ::: {.incremental}
 - <i class="fas fa-rocket"></i> **프로덕션 환경** 배포
 - <i class="fas fa-monitor"></i> **성능 모니터링**
