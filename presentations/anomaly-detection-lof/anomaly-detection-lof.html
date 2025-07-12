@@ -5,12 +5,11 @@
 <script src="anomaly-detection-lof_files/libs/quarto-html/popper.min.js"></script>
 <script src="anomaly-detection-lof_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="anomaly-detection-lof_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="anomaly-detection-lof_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="anomaly-detection-lof_files/libs/quarto-html/quarto-syntax-highlighting-dark-0348920b7671f696dc9078d39bff215e.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.32">
+<link href="anomaly-detection-lof_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="anomaly-detection-lof_files/libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.2.335">
 
   <meta name="author" content="Seonghak Hong">
-  <meta name="dcterms.date" content="2015-06-05">
   <title>Anomaly Detection and LOF</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -26,11 +25,9 @@
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
       width: 0.8em;
-      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
-    /* CSS for syntax highlighting */
-    html { -webkit-text-size-adjust: 100%; }
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -96,7 +93,7 @@
     code span.vs { color: #9ecbff; } /* VerbatimString */
     code span.wa { color: #ff5555; } /* Warning */
   </style>
-  <link rel="stylesheet" href="anomaly-detection-lof_files/libs/revealjs/dist/theme/quarto-00033b64c7f4405b1251d0bf85080562.css">
+  <link rel="stylesheet" href="anomaly-detection-lof_files/libs/revealjs/dist/theme/quarto.css" id="theme">
   <link rel="stylesheet" href="custom.css">
   <link href="anomaly-detection-lof_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="anomaly-detection-lof_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -104,6 +101,203 @@
   <link href="anomaly-detection-lof_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
   <link href="anomaly-detection-lof_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
   <link href="anomaly-detection-lof_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-captioned.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-captioned) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-captioned.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-captioned .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-captioned .callout-caption  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-captioned.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-captioned.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-caption {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-caption {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-caption {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-captioned .callout-body > .callout-content > :last-child {
+    margin-bottom: 0.5rem;
+  }
+
+  .callout.callout-captioned .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-captioned) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-caption {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-caption {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-caption {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-caption {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-caption {
+    background-color: #ffe5d0
+  }
+
+  </style>
   <style type="text/css">
     .reveal div.sourceCode {
       margin: 0;
@@ -192,7 +386,6 @@
       margin-right: 0; 
     }
   </style>
-  <meta name="mermaid-theme" content="dark">
   <script src="anomaly-detection-lof_files/libs/quarto-diagram/mermaid.min.js"></script>
   <script src="anomaly-detection-lof_files/libs/quarto-diagram/mermaid-init.js"></script>
   <link href="anomaly-detection-lof_files/libs/quarto-diagram/mermaid.css" rel="stylesheet">
@@ -214,10 +407,11 @@ Seonghak Hong
 </div>
 </div>
 
-  <p class="date">2015-06-05</p>
+  <p class="date">6/5/15</p>
 </section>
-<section id="목차" class="slide level2 smaller scrollable">
+<section id="목차" class="slide level2 smaller">
 <h2>목차</h2>
+<div>
 <ol type="1">
 <li class="fragment"><strong>이상 탐지 개요</strong></li>
 <li class="fragment"><strong>이상 탐지 방법론</strong></li>
@@ -227,6 +421,7 @@ Seonghak Hong
 <li class="fragment"><strong>성능 평가</strong></li>
 <li class="fragment"><strong>결론 및 향후 연구</strong></li>
 </ol>
+</div>
 </section>
 <section>
 <section id="이상-탐지-개요" class="title-slide slide level1 center">
@@ -248,24 +443,26 @@ Seonghak Hong
 조기 발견을 통한 손실 최소화</li>
 </ul>
 </div><div class="column" style="width:50%;">
-<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph TD
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-1">graph TD
     A[정상 데이터] --&gt; B[모델 학습]
     B --&gt; C[이상 점수 계산]
     C --&gt; D{임계값 비교}
     D --&gt;|점수 &gt; 임계값| E[이상 탐지]
     D --&gt;|점수 ≤ 임계값| F[정상 판정]
 </pre>
+<div id="mermaid-tooltip-1" class="mermaidTooltip">
+
 </div>
-<p></p></figure><p></p>
+<p></p>
 </div>
 </div>
 </div>
-</div></div>
+</div>
+</div>
 </section>
 <section id="이상의-유형" class="slide level2 smaller">
 <h2>이상의 유형</h2>
@@ -298,6 +495,7 @@ Seonghak Hong
 </section>
 <section id="이상-탐지의-도전-과제" class="slide level2 smaller">
 <h2>이상 탐지의 도전 과제</h2>
+<div>
 <ul>
 <li class="fragment"><i class="fas fa-balance-scale"></i> <strong>불균형 데이터</strong>:<br>
 정상 데이터가 압도적으로 많음</li>
@@ -310,9 +508,10 @@ False Positive와 False Negative의 균형</li>
 <li class="fragment"><i class="fas fa-tachometer-alt"></i> <strong>실시간 처리</strong>:<br>
 빠른 응답 시간 요구</li>
 </ul>
-<div class="callout callout-note callout-titled callout-style-default">
+</div>
+<div class="callout callout-note callout-captioned callout-style-default">
 <div class="callout-body">
-<div class="callout-title">
+<div class="callout-caption">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -320,7 +519,7 @@ False Positive와 False Negative의 균형</li>
 </div>
 <div class="callout-content">
 <p>이상 탐지의 가장 큰 어려움은 <strong>“정상”의 정의</strong>가<br>
-명확하지 않다는 점입니다.</p>
+명확하지 않다는 점</p>
 </div>
 </div>
 </div>
@@ -357,11 +556,12 @@ False Positive와 False Negative의 균형</li>
 <li>여러 알고리즘 조합</li>
 <li>투표 기반 결정</li>
 </ul>
-</div></div>
+</div>
+</div>
 </section>
 <section id="방법론별-특징-비교" class="slide level2 smaller">
 <h2>방법론별 특징 비교</h2>
-<table class="caption-top">
+<table>
 <colgroup>
 <col style="width: 20%">
 <col style="width: 20%">
@@ -403,9 +603,9 @@ False Positive와 False Negative의 균형</li>
 </tr>
 </tbody>
 </table>
-<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout callout-tip callout-captioned callout-style-default">
 <div class="callout-body">
-<div class="callout-title">
+<div class="callout-caption">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -429,15 +629,22 @@ False Positive와 False Negative의 균형</li>
 <div class="column" style="width:60%;">
 <p><strong>LOF (Local Outlier Factor)</strong>는 각 데이터 포인트의 <strong>지역적 밀도</strong>를<br>
 이웃 포인트들과 비교하여 이상 정도를 측정</p>
-<p><strong>핵심 아이디어:</strong> - 정상 포인트: 이웃들과 비슷한 밀도 - 이상 포인트: 이웃들보다 훨씬 낮은 밀도</p>
-<p><strong>LOF 값 해석:</strong> - LOF ≈ 1: 정상 (이웃과 비슷한 밀도) - LOF &gt;&gt; 1: 이상 (이웃보다 낮은 밀도)</p>
+<p><strong>핵심 아이디어:</strong></p>
+<ul>
+<li>정상 포인트: 이웃들과 비슷한 밀도</li>
+<li>이상 포인트: 이웃들보다 훨씬 낮은 밀도</li>
+</ul>
+<p><strong>LOF 값 해석:</strong></p>
+<ul>
+<li>LOF ≈ 1: 정상 (이웃과 비슷한 밀도)</li>
+<li>LOF &gt;&gt; 1: 이상 (이웃보다 낮은 밀도)</li>
+</ul>
 </div><div class="column" style="width:40%;">
-<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph TD
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-2">graph TD
     A[데이터 포인트] --&gt; B[k-최근접 이웃 찾기]
     B --&gt; C[지역 밀도 계산]
     C --&gt; D[이웃들의 밀도와 비교]
@@ -446,12 +653,15 @@ False Positive와 False Negative의 균형</li>
     F --&gt;|Yes| G[이상 탐지]
     F --&gt;|No| H[정상 판정]
 </pre>
+<div id="mermaid-tooltip-2" class="mermaidTooltip">
+
 </div>
-<p></p></figure><p></p>
+<p></p>
 </div>
 </div>
 </div>
-</div></div>
+</div>
+</div>
 </section>
 <section id="lof의-핵심-개념들" class="slide level2 smaller">
 <h2>LOF의 핵심 개념들</h2>
@@ -460,49 +670,49 @@ False Positive와 False Negative의 균형</li>
 <div class="tab-content">
 <div id="tabset-2-1">
 <p><strong>k-distance(p)</strong>: 점 p에서 k번째 가장 가까운 이웃까지의 거리</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href=""></a><span class="co"># 예시: k=3일 때</span></span>
-<span id="cb1-2"><a href=""></a>distances <span class="op">=</span> [<span class="fl">1.2</span>, <span class="fl">1.5</span>, <span class="fl">2.1</span>, <span class="fl">2.8</span>, <span class="fl">3.4</span>]</span>
-<span id="cb1-3"><a href=""></a>k_distance <span class="op">=</span> distances[k<span class="op">-</span><span class="dv">1</span>]  <span class="co"># 2.1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># 예시: k=3일 때</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>distances <span class="op">=</span> [<span class="fl">1.2</span>, <span class="fl">1.5</span>, <span class="fl">2.1</span>, <span class="fl">2.8</span>, <span class="fl">3.4</span>]</span>
+<span id="cb1-3"><a href="#cb1-3"></a>k_distance <span class="op">=</span> distances[k<span class="op">-</span><span class="dv">1</span>]  <span class="co"># 2.1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="tabset-2-2">
 <p><strong>reach-dist_k(p,o)</strong>: 점 p에서 점 o까지의 도달 거리</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href=""></a>reach_dist <span class="op">=</span> <span class="bu">max</span>(k_distance(o), actual_distance(p,o))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>reach_dist <span class="op">=</span> <span class="bu">max</span>(k_distance(o), actual_distance(p,o))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="tabset-2-3">
 <p><strong>LRD_k(p)</strong>: 점 p의 지역 도달 밀도</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href=""></a>lrd <span class="op">=</span> k <span class="op">/</span> <span class="bu">sum</span>(reach_distances_to_neighbors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>lrd <span class="op">=</span> k <span class="op">/</span> <span class="bu">sum</span>(reach_distances_to_neighbors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="tabset-2-4">
 <p><strong>LOF_k(p)</strong>: 점 p의 지역 이상 인자</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href=""></a>lof <span class="op">=</span> <span class="bu">sum</span>(lrd_neighbors) <span class="op">/</span> (k <span class="op">*</span> lrd(p))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>lof <span class="op">=</span> <span class="bu">sum</span>(lrd_neighbors) <span class="op">/</span> (k <span class="op">*</span> lrd(p))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="lof-계산-과정" class="slide level2 smaller scrollable">
+<section id="lof-계산-과정" class="slide level2 smaller">
 <h2>LOF 계산 과정</h2>
-<ol type="1">
-<li class="fragment"><strong>k-최근접 이웃 찾기</strong>
+<div>
+<p><strong>1. k-최근접 이웃 찾기</strong></p>
 <ul>
 <li class="fragment">각 점에 대해 k개의 가장 가까운 이웃을 찾음</li>
 <li class="fragment">k-distance 계산</li>
-</ul></li>
-<li class="fragment"><strong>도달 거리 계산</strong>
+</ul>
+<p><strong>2. 도달 거리 계산</strong></p>
 <ul>
 <li class="fragment">각 이웃에 대한 reachability distance 계산</li>
 <li class="fragment">실제 거리와 k-distance 중 큰 값 선택</li>
-</ul></li>
-<li class="fragment"><strong>지역 도달 밀도 계산</strong>
+</ul>
+<p><strong>3. 지역 도달 밀도 계산</strong></p>
 <ul>
 <li class="fragment">각 점의 Local Reachability Density (LRD) 계산</li>
 <li class="fragment">이웃들까지의 평균 도달 거리의 역수</li>
-</ul></li>
-<li class="fragment"><strong>LOF 값 계산</strong>
+</ul>
+<p><strong>4. LOF 값 계산</strong></p>
 <ul>
 <li class="fragment">이웃들의 LRD와 자신의 LRD 비율의 평균</li>
 <li class="fragment">1보다 크면 이상 가능성 높음</li>
-</ul></li>
-</ol>
+</ul>
+</div>
 </section></section>
 <section>
 <section id="lof-알고리즘-상세" class="title-slide slide level1 center">
@@ -518,60 +728,76 @@ False Positive와 False Negative의 균형</li>
 <p><strong>3. Local Reachability Density</strong> <span class="math display">\[\text{LRD}_k(p) = \frac{1}{\frac{\sum_{o \in N_k(p)} \text{reach-dist}_k(p,o)}{|N_k(p)|}}\]</span></p>
 </div><div class="column" style="width:50%;">
 <p><strong>4. Local Outlier Factor</strong> <span class="math display">\[\text{LOF}_k(p) = \frac{\sum_{o \in N_k(p)} \frac{\text{LRD}_k(o)}{\text{LRD}_k(p)}}{|N_k(p)|}\]</span></p>
-<p><strong>여기서:</strong> - <span class="math inline">\(N_k(p)\)</span>: p의 k-최근접 이웃 집합 - <span class="math inline">\(d(p,o)\)</span>: p와 o 사이의 유클리드 거리</p>
-</div></div>
+<p><strong>여기서:</strong></p>
+<ul>
+<li><span class="math inline">\(N_k(p)\)</span>: p의 k-최근접 이웃 집합</li>
+<li><span class="math inline">\(d(p,o)\)</span>: p와 o 사이의 유클리드 거리</li>
+</ul>
+</div>
+</div>
 </section>
 <section id="lof-알고리즘-의사코드" class="slide level2 smaller">
 <h2>LOF 알고리즘 의사코드</h2>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href=""></a><span class="kw">def</span> LOF(data, k):</span>
-<span id="cb5-2"><a href=""></a>    <span class="cf">for</span> each point p <span class="kw">in</span> data:</span>
-<span id="cb5-3"><a href=""></a>        <span class="co"># 1. k-최근접 이웃 찾기</span></span>
-<span id="cb5-4"><a href=""></a>        neighbors <span class="op">=</span> find_k_nearest_neighbors(p, k)</span>
-<span id="cb5-5"><a href=""></a>        k_dist <span class="op">=</span> distance_to_kth_neighbor(p, neighbors)</span>
-<span id="cb5-6"><a href=""></a>        </span>
-<span id="cb5-7"><a href=""></a>        <span class="co"># 2. 도달 거리 계산</span></span>
-<span id="cb5-8"><a href=""></a>        reach_distances <span class="op">=</span> []</span>
-<span id="cb5-9"><a href=""></a>        <span class="cf">for</span> neighbor <span class="kw">in</span> neighbors:</span>
-<span id="cb5-10"><a href=""></a>            neighbor_k_dist <span class="op">=</span> distance_to_kth_neighbor(neighbor, k)</span>
-<span id="cb5-11"><a href=""></a>            reach_dist <span class="op">=</span> <span class="bu">max</span>(neighbor_k_dist, distance(p, neighbor))</span>
-<span id="cb5-12"><a href=""></a>            reach_distances.append(reach_dist)</span>
-<span id="cb5-13"><a href=""></a>        </span>
-<span id="cb5-14"><a href=""></a>        <span class="co"># 3. 지역 도달 밀도 계산</span></span>
-<span id="cb5-15"><a href=""></a>        lrd_p <span class="op">=</span> k <span class="op">/</span> <span class="bu">sum</span>(reach_distances)</span>
-<span id="cb5-16"><a href=""></a>        </span>
-<span id="cb5-17"><a href=""></a>        <span class="co"># 4. LOF 계산</span></span>
-<span id="cb5-18"><a href=""></a>        lrd_sum <span class="op">=</span> <span class="bu">sum</span>(calculate_lrd(neighbor, k) <span class="cf">for</span> neighbor <span class="kw">in</span> neighbors)</span>
-<span id="cb5-19"><a href=""></a>        lof_p <span class="op">=</span> lrd_sum <span class="op">/</span> (k <span class="op">*</span> lrd_p)</span>
-<span id="cb5-20"><a href=""></a>        </span>
-<span id="cb5-21"><a href=""></a>    <span class="cf">return</span> lof_values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">def</span> LOF(data, k):</span>
+<span id="cb5-2"><a href="#cb5-2"></a>    <span class="cf">for</span> each point p <span class="kw">in</span> data:</span>
+<span id="cb5-3"><a href="#cb5-3"></a>        <span class="co"># 1. k-최근접 이웃 찾기</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a>        neighbors <span class="op">=</span> find_k_nearest_neighbors(p, k)</span>
+<span id="cb5-5"><a href="#cb5-5"></a>        k_dist <span class="op">=</span> distance_to_kth_neighbor(p, neighbors)</span>
+<span id="cb5-6"><a href="#cb5-6"></a>        </span>
+<span id="cb5-7"><a href="#cb5-7"></a>        <span class="co"># 2. 도달 거리 계산</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a>        reach_distances <span class="op">=</span> []</span>
+<span id="cb5-9"><a href="#cb5-9"></a>        <span class="cf">for</span> neighbor <span class="kw">in</span> neighbors:</span>
+<span id="cb5-10"><a href="#cb5-10"></a>            neighbor_k_dist <span class="op">=</span> distance_to_kth_neighbor(neighbor, k)</span>
+<span id="cb5-11"><a href="#cb5-11"></a>            reach_dist <span class="op">=</span> <span class="bu">max</span>(neighbor_k_dist, distance(p, neighbor))</span>
+<span id="cb5-12"><a href="#cb5-12"></a>            reach_distances.append(reach_dist)</span>
+<span id="cb5-13"><a href="#cb5-13"></a>        </span>
+<span id="cb5-14"><a href="#cb5-14"></a>        <span class="co"># 3. 지역 도달 밀도 계산</span></span>
+<span id="cb5-15"><a href="#cb5-15"></a>        lrd_p <span class="op">=</span> k <span class="op">/</span> <span class="bu">sum</span>(reach_distances)</span>
+<span id="cb5-16"><a href="#cb5-16"></a>        </span>
+<span id="cb5-17"><a href="#cb5-17"></a>        <span class="co"># 4. LOF 계산</span></span>
+<span id="cb5-18"><a href="#cb5-18"></a>        lrd_sum <span class="op">=</span> <span class="bu">sum</span>(calculate_lrd(neighbor, k) <span class="cf">for</span> neighbor <span class="kw">in</span> neighbors)</span>
+<span id="cb5-19"><a href="#cb5-19"></a>        lof_p <span class="op">=</span> lrd_sum <span class="op">/</span> (k <span class="op">*</span> lrd_p)</span>
+<span id="cb5-20"><a href="#cb5-20"></a>        </span>
+<span id="cb5-21"><a href="#cb5-21"></a>    <span class="cf">return</span> lof_values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="매개변수-k의-영향" class="slide level2 smaller">
 <h2>매개변수 k의 영향</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p><strong>k 값이 작을 때 (k=3~5)</strong> - 지역적 패턴에 민감 - 노이즈에 취약 - 세밀한 이상 탐지 가능</p>
-<p><strong>k 값이 클 때 (k=20~50)</strong> - 전역적 패턴 고려 - 노이즈에 강건 - 전반적인 이상 탐지</p>
+<p><strong>k 값이 작을 때 (k=3~5)</strong></p>
+<ul>
+<li>지역적 패턴에 민감</li>
+<li>노이즈에 취약</li>
+<li>세밀한 이상 탐지 가능</li>
+</ul>
+<p><strong>k 값이 클 때 (k=20~50)</strong></p>
+<ul>
+<li>전역적 패턴 고려</li>
+<li>노이즈에 강건</li>
+<li>전반적인 이상 탐지</li>
+</ul>
 </div><div class="column" style="width:50%;">
-<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph LR
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-3">graph LR
     A[k 값 선택] --&gt; B{데이터 특성}
     B --&gt;|밀집된 클러스터| C[작은 k]
     B --&gt;|분산된 데이터| D[큰 k]
     B --&gt;|노이즈 많음| E[큰 k]
     B --&gt;|세밀한 탐지| F[작은 k]
 </pre>
+<div id="mermaid-tooltip-3" class="mermaidTooltip">
+
 </div>
-<p></p></figure><p></p>
+<p></p>
 </div>
 </div>
 </div>
-<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout callout-warning callout-captioned callout-style-default">
 <div class="callout-body">
-<div class="callout-title">
+<div class="callout-caption">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -583,7 +809,8 @@ False Positive와 False Negative의 균형</li>
 </div>
 </div>
 </div>
-</div></div>
+</div>
+</div>
 </section></section>
 <section>
 <section id="실제-적용-사례" class="title-slide slide level1 center">
@@ -594,12 +821,33 @@ False Positive와 False Negative의 균형</li>
 <h2>네트워크 침입 탐지</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p><strong>시나리오:</strong> - 네트워크 트래픽 데이터 분석 - 비정상적인 접근 패턴 탐지 - 실시간 보안 모니터링</p>
-<p><strong>특징:</strong> - 패킷 크기, 연결 빈도, 포트 번호 등 - 정상 트래픽 패턴 학습 - 공격 패턴 실시간 탐지</p>
+<p><strong>시나리오:</strong></p>
+<ul>
+<li>네트워크 트래픽 데이터 분석</li>
+<li>비정상적인 접근 패턴 탐지</li>
+<li>실시간 보안 모니터링</li>
+</ul>
+<p><strong>특징:</strong></p>
+<ul>
+<li>패킷 크기, 연결 빈도, 포트 번호 등</li>
+<li>정상 트래픽 패턴 학습</li>
+<li>공격 패턴 실시간 탐지</li>
+</ul>
 </div><div class="column" style="width:50%;">
-<p><strong>결과:</strong> - 정확도: 92.3% - 오탐률: 5.2% - 평균 탐지 시간: 1.2초</p>
-<p><strong>장점:</strong> - 새로운 공격 패턴 탐지 가능 - 네트워크 토폴로지 변화 적응 - 지역적 밀도 고려로 정확도 향상</p>
-</div></div>
+<p><strong>결과:</strong></p>
+<ul>
+<li>정확도: 92.3%</li>
+<li>오탐률: 5.2%</li>
+<li>평균 탐지 시간: 1.2초</li>
+</ul>
+<p><strong>장점:</strong></p>
+<ul>
+<li>새로운 공격 패턴 탐지 가능</li>
+<li>네트워크 토폴로지 변화 적응</li>
+<li>지역적 밀도 고려로 정확도 향상</li>
+</ul>
+</div>
+</div>
 </section>
 <section id="신용카드-사기-탐지" class="slide level2 smaller">
 <h2>신용카드 사기 탐지</h2>
@@ -607,16 +855,46 @@ False Positive와 False Negative의 균형</li>
 <ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">문제 정의</a></li><li><a href="#tabset-3-2">LOF 적용</a></li><li><a href="#tabset-3-3">성과</a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1">
-<p><strong>도전 과제:</strong> - 극도로 불균형한 데이터 (사기 거래 &lt; 1%) - 실시간 처리 필요 - 높은 정확도 요구</p>
-<p><strong>데이터 특성:</strong> - 거래 금액, 시간, 위치 - 가맹점 유형, 결제 방식 - 과거 거래 패턴</p>
+<p><strong>도전 과제:</strong></p>
+<ul>
+<li>극도로 불균형한 데이터 (사기 거래 &lt; 1%)</li>
+<li>실시간 처리 필요</li>
+<li>높은 정확도 요구</li>
+</ul>
+<p><strong>데이터 특성:</strong></p>
+<ul>
+<li>거래 금액, 시간, 위치</li>
+<li>가맹점 유형, 결제 방식</li>
+<li>과거 거래 패턴</li>
+</ul>
 </div>
 <div id="tabset-3-2">
-<p><strong>전처리:</strong> - 거래 패턴 정규화 - 시간/위치 기반 특성 추출 - 고객별 행동 프로파일 생성</p>
-<p><strong>LOF 설정:</strong> - k = 10 (고객 거래 패턴 고려) - 실시간 업데이트 메커니즘 - 임계값 동적 조정</p>
+<p><strong>전처리:</strong></p>
+<ul>
+<li>거래 패턴 정규화</li>
+<li>시간/위치 기반 특성 추출</li>
+<li>고객별 행동 프로파일 생성</li>
+</ul>
+<p><strong>LOF 설정:</strong></p>
+<ul>
+<li>k = 10 (고객 거래 패턴 고려)</li>
+<li>실시간 업데이트 메커니즘</li>
+<li>임계값 동적 조정</li>
+</ul>
 </div>
 <div id="tabset-3-3">
-<p><strong>성능 지표:</strong> - Precision: 89.7% - Recall: 76.3% - F1-Score: 82.5%</p>
-<p><strong>운영 효과:</strong> - 사기 탐지 시간 단축: 3분 → 30초 - 오탐으로 인한 카드 정지 50% 감소 - 연간 손실 20% 감소</p>
+<p><strong>성능 지표:</strong></p>
+<ul>
+<li>Precision: 89.7%</li>
+<li>Recall: 76.3%</li>
+<li>F1-Score: 82.5%</li>
+</ul>
+<p><strong>운영 효과:</strong></p>
+<ul>
+<li>사기 탐지 시간 단축: 3분 → 30초</li>
+<li>오탐으로 인한 카드 정지 50% 감소</li>
+<li>연간 손실 20% 감소</li>
+</ul>
 </div>
 </div>
 </div>
@@ -625,13 +903,39 @@ False Positive와 False Negative의 균형</li>
 <h2>제조업 품질 관리</h2>
 <div class="columns">
 <div class="column" style="width:60%;">
-<p><strong>적용 분야:</strong> - 반도체 제조 공정 모니터링 - 센서 데이터 기반 이상 탐지 - 예측 정비 시스템</p>
-<p><strong>데이터 특성:</strong> - 온도, 압력, 습도 센서 데이터 - 공정 시간, 재료 품질 지표 - 장비 가동 상태 정보</p>
-<p><strong>LOF 활용:</strong> - 다차원 센서 데이터 분석 - 공정 변화 실시간 감지 - 품질 불량 예측</p>
+<p><strong>적용 분야:</strong></p>
+<ul>
+<li>반도체 제조 공정 모니터링</li>
+<li>센서 데이터 기반 이상 탐지</li>
+<li>예측 정비 시스템</li>
+</ul>
+<p><strong>데이터 특성:</strong></p>
+<ul>
+<li>온도, 압력, 습도 센서 데이터</li>
+<li>공정 시간, 재료 품질 지표</li>
+<li>장비 가동 상태 정보</li>
+</ul>
+<p><strong>LOF 활용:</strong></p>
+<ul>
+<li>다차원 센서 데이터 분석</li>
+<li>공정 변화 실시간 감지</li>
+<li>품질 불량 예측</li>
+</ul>
 </div><div class="column" style="width:40%;">
-<p><strong>성과:</strong> - 불량률 30% 감소 - 다운타임 25% 단축 - 품질 관리 비용 40% 절감</p>
-<p><strong>핵심 성공 요인:</strong> - 도메인 전문가와 협업 - 적절한 특성 선택 - 실시간 모니터링 시스템</p>
-</div></div>
+<p><strong>성과:</strong></p>
+<ul>
+<li>불량률 30% 감소</li>
+<li>다운타임 25% 단축</li>
+<li>품질 관리 비용 40% 절감</li>
+</ul>
+<p><strong>핵심 성공 요인:</strong></p>
+<ul>
+<li>도메인 전문가와 협업</li>
+<li>적절한 특성 선택</li>
+<li>실시간 모니터링 시스템</li>
+</ul>
+</div>
+</div>
 </section></section>
 <section>
 <section id="성능-평가" class="title-slide slide level1 center">
@@ -642,15 +946,25 @@ False Positive와 False Negative의 균형</li>
 <h2>평가 지표</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p><strong>분류 성능 지표:</strong> - <strong>Precision</strong>: 탐지된 이상 중 실제 이상 비율 - <strong>Recall</strong>: 실제 이상 중 탐지된 비율 - <strong>F1-Score</strong>: Precision과 Recall의 조화평균 - <strong>AUC-ROC</strong>: ROC 곡선 아래 면적</p>
-<p><strong>특수 지표:</strong> - <strong>False Positive Rate</strong>: 오탐률 - <strong>Detection Time</strong>: 탐지 시간 - <strong>Stability</strong>: 모델 안정성</p>
+<p><strong>분류 성능 지표:</strong></p>
+<ul>
+<li><strong>Precision</strong>: 탐지된 이상 중 실제 이상 비율</li>
+<li><strong>Recall</strong>: 실제 이상 중 탐지된 비율</li>
+<li><strong>F1-Score</strong>: Precision과 Recall의 조화평균</li>
+<li><strong>AUC-ROC</strong>: ROC 곡선 아래 면적</li>
+</ul>
+<p><strong>특수 지표:</strong></p>
+<ul>
+<li><strong>False Positive Rate</strong>: 오탐률</li>
+<li><strong>Detection Time</strong>: 탐지 시간</li>
+<li><strong>Stability</strong>: 모델 안정성</li>
+</ul>
 </div><div class="column" style="width:50%;">
-<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph TD
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-4">graph TD
     A[성능 평가] --&gt; B[정확도 지표]
     A --&gt; C[효율성 지표]
     A --&gt; D[안정성 지표]
@@ -665,16 +979,19 @@ False Positive와 False Negative의 균형</li>
     D --&gt; J[매개변수 민감도]
     D --&gt; K[노이즈 강건성]
 </pre>
+<div id="mermaid-tooltip-4" class="mermaidTooltip">
+
 </div>
-<p></p></figure><p></p>
+<p></p>
 </div>
 </div>
 </div>
-</div></div>
+</div>
+</div>
 </section>
 <section id="다른-알고리즘과의-비교" class="slide level2 smaller">
 <h2>다른 알고리즘과의 비교</h2>
-<table class="caption-top">
+<table>
 <thead>
 <tr class="header">
 <th>알고리즘</th>
@@ -720,9 +1037,9 @@ False Positive와 False Negative의 균형</li>
 </tr>
 </tbody>
 </table>
-<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout callout-note callout-captioned callout-style-default">
 <div class="callout-body">
-<div class="callout-title">
+<div class="callout-caption">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -744,16 +1061,49 @@ False Positive와 False Negative의 균형</li>
 <ul id="tabset-4" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-4-1">KDD Cup 99</a></li><li><a href="#tabset-4-2">Credit Card Fraud</a></li><li><a href="#tabset-4-3">Shuttle</a></li></ul>
 <div class="tab-content">
 <div id="tabset-4-1">
-<p><strong>네트워크 침입 탐지 데이터셋</strong> - 데이터 크기: 494,021개 레코드 - 이상 비율: 19.69% - 특성 수: 41개</p>
-<p><strong>LOF 성능:</strong> - Precision: 0.923 - Recall: 0.867 - F1-Score: 0.894 - 처리 시간: 12.3초</p>
+<p><strong>네트워크 침입 탐지 데이터셋</strong></p>
+<ul>
+<li>데이터 크기: 494,021개 레코드</li>
+<li>이상 비율: 19.69%</li>
+<li>특성 수: 41개</li>
+</ul>
+<p><strong>LOF 성능:</strong></p>
+<ul>
+<li>Precision: 0.923</li>
+<li>Recall: 0.867</li>
+<li>F1-Score: 0.894</li>
+<li>처리 시간: 12.3초</li>
+</ul>
 </div>
 <div id="tabset-4-2">
-<p><strong>신용카드 사기 탐지 데이터셋</strong> - 데이터 크기: 284,807개 거래 - 이상 비율: 0.172% - 특성 수: 30개</p>
-<p><strong>LOF 성능:</strong> - Precision: 0.897 - Recall: 0.763 - F1-Score: 0.825 - 처리 시간: 45.7초</p>
+<p><strong>신용카드 사기 탐지 데이터셋</strong></p>
+<ul>
+<li>데이터 크기: 284,807개 거래</li>
+<li>이상 비율: 0.172%</li>
+<li>특성 수: 30개</li>
+</ul>
+<p><strong>LOF 성능:</strong></p>
+<ul>
+<li>Precision: 0.897</li>
+<li>Recall: 0.763</li>
+<li>F1-Score: 0.825</li>
+<li>처리 시간: 45.7초</li>
+</ul>
 </div>
 <div id="tabset-4-3">
-<p><strong>NASA 우주왕복선 데이터셋</strong> - 데이터 크기: 58,000개 레코드 - 이상 비율: 7.15% - 특성 수: 9개</p>
-<p><strong>LOF 성능:</strong> - Precision: 0.956 - Recall: 0.891 - F1-Score: 0.922 - 처리 시간: 3.2초</p>
+<p><strong>NASA 우주왕복선 데이터셋</strong></p>
+<ul>
+<li>데이터 크기: 58,000개 레코드</li>
+<li>이상 비율: 7.15%</li>
+<li>특성 수: 9개</li>
+</ul>
+<p><strong>LOF 성능:</strong></p>
+<ul>
+<li>Precision: 0.956</li>
+<li>Recall: 0.891</li>
+<li>F1-Score: 0.922</li>
+<li>처리 시간: 3.2초</li>
+</ul>
 </div>
 </div>
 </div>
@@ -767,63 +1117,92 @@ False Positive와 False Negative의 균형</li>
 <h2>LOF의 장단점</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p><strong>장점:</strong> - <i class="fas fa-check-circle text-green-500"></i> <strong>지역적 밀도 고려</strong>:<br>
-다양한 밀도 클러스터 처리 - <i class="fas fa-check-circle text-green-500"></i> <strong>매개변수 단순</strong>:<br>
-k 값만 조정 - <i class="fas fa-check-circle text-green-500"></i> <strong>해석 가능</strong>:<br>
-LOF 값의 직관적 의미 - <i class="fas fa-check-circle text-green-500"></i> <strong>범용성</strong>:<br>
-다양한 도메인 적용 가능 - <i class="fas fa-check-circle text-green-500"></i> <strong>클러스터 모양 무관</strong>:<br>
-임의 형태 클러스터 처리</p>
+<p><strong>장점:</strong></p>
+<ul>
+<li><i class="fas fa-check-circle text-green-500"></i> <strong>지역적 밀도 고려</strong>:<br>
+다양한 밀도 클러스터 처리</li>
+<li><i class="fas fa-check-circle text-green-500"></i> <strong>매개변수 단순</strong>:<br>
+k 값만 조정</li>
+<li><i class="fas fa-check-circle text-green-500"></i> <strong>해석 가능</strong>:<br>
+LOF 값의 직관적 의미</li>
+<li><i class="fas fa-check-circle text-green-500"></i> <strong>범용성</strong>:<br>
+다양한 도메인 적용 가능</li>
+<li><i class="fas fa-check-circle text-green-500"></i> <strong>클러스터 모양 무관</strong>:<br>
+임의 형태 클러스터 처리</li>
+</ul>
 </div><div class="column" style="width:50%;">
-<p><strong>단점:</strong> - <i class="fas fa-times-circle text-red-500"></i> <strong>계산 복잡도</strong>:<br>
-O(n²) 시간 복잡도 - <i class="fas fa-times-circle text-red-500"></i> <strong>메모리 사용량</strong>:<br>
-이웃 정보 저장 필요 - <i class="fas fa-times-circle text-red-500"></i> <strong>고차원 데이터</strong>:<br>
-차원의 저주 문제 - <i class="fas fa-times-circle text-red-500"></i> <strong>k 값 선택</strong>:<br>
-데이터별 최적값 찾기 어려움 - <i class="fas fa-times-circle text-red-500"></i> <strong>실시간 처리</strong>:<br>
-대용량 데이터 처리 한계</p>
-</div></div>
+<p><strong>단점:</strong></p>
+<ul>
+<li><i class="fas fa-times-circle text-red-500"></i> <strong>계산 복잡도</strong>:<br>
+O(n²) 시간 복잡도</li>
+<li><i class="fas fa-times-circle text-red-500"></i> <strong>메모리 사용량</strong>:<br>
+이웃 정보 저장 필요</li>
+<li><i class="fas fa-times-circle text-red-500"></i> <strong>고차원 데이터</strong>:<br>
+차원의 저주 문제</li>
+<li><i class="fas fa-times-circle text-red-500"></i> <strong>k 값 선택</strong>:<br>
+데이터별 최적값 찾기 어려움</li>
+<li><i class="fas fa-times-circle text-red-500"></i> <strong>실시간 처리</strong>:<br>
+대용량 데이터 처리 한계</li>
+</ul>
+</div>
+</div>
 </section>
-<section id="개선-방향" class="slide level2 smaller scrollable">
+<section id="개선-방향" class="slide level2 smaller">
 <h2>개선 방향</h2>
-<ol type="1">
-<li class="fragment"><strong>성능 최적화</strong>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>성능 최적화</strong></p>
 <ul>
-<li class="fragment">근사 알고리즘 개발</li>
-<li class="fragment">분산 처리 구현</li>
-<li class="fragment">GPU 가속 활용</li>
-</ul></li>
-<li class="fragment"><strong>적응형 LOF</strong>
+<li>근사 알고리즘 개발</li>
+<li>분산 처리 구현</li>
+<li>GPU 가속 활용</li>
+</ul>
+<p><strong>적응형 LOF</strong></p>
 <ul>
-<li class="fragment">동적 k 값 조정</li>
-<li class="fragment">온라인 학습 메커니즘</li>
-<li class="fragment">개념 드리프트 대응</li>
-</ul></li>
-<li class="fragment"><strong>하이브리드 접근</strong>
+<li>동적 k 값 조정</li>
+<li>온라인 학습 메커니즘</li>
+<li>개념 드리프트 대응</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>하이브리드 접근</strong></p>
 <ul>
-<li class="fragment">다른 알고리즘과 앙상블</li>
-<li class="fragment">딥러닝과의 결합</li>
-<li class="fragment">특성 선택 자동화</li>
-</ul></li>
-<li class="fragment"><strong>도메인 특화</strong>
+<li>다른 알고리즘과 앙상블</li>
+<li>딥러닝과의 결합</li>
+<li>특성 선택 자동화</li>
+</ul>
+<p><strong>도메인 특화</strong></p>
 <ul>
-<li class="fragment">시계열 데이터 전용 버전</li>
-<li class="fragment">텍스트 데이터 적용</li>
-<li class="fragment">이미지 이상 탐지</li>
-</ul></li>
-</ol>
+<li>시계열 데이터 전용 버전</li>
+<li>텍스트 데이터 적용</li>
+<li>이미지 이상 탐지</li>
+</ul>
+</div>
+</div>
 </section>
 <section id="향후-연구-방향" class="slide level2 smaller">
 <h2>향후 연구 방향</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p><strong>기술적 발전:</strong> - <strong>확장 가능한 LOF</strong>: 빅데이터 처리 가능 - <strong>설명 가능한 AI</strong>: 이상 탐지 근거 제공 - <strong>연합 학습</strong>: 프라이버시 보호 이상 탐지 - <strong>자동화</strong>: 하이퍼파라미터 자동 튜닝</p>
-<p><strong>응용 분야 확장:</strong> - <strong>IoT 보안</strong>: 스마트 디바이스 이상 탐지 - <strong>의료 진단</strong>: 의료 영상 이상 탐지 - <strong>자율 주행</strong>: 센서 데이터 이상 탐지 - <strong>금융 리스크</strong>: 시장 이상 패턴 탐지</p>
+<p><strong>기술적 발전:</strong></p>
+<ul>
+<li><strong>확장 가능한 LOF</strong>: 빅데이터 처리 가능</li>
+<li><strong>설명 가능한 AI</strong>: 이상 탐지 근거 제공</li>
+<li><strong>연합 학습</strong>: 프라이버시 보호 이상 탐지</li>
+<li><strong>자동화</strong>: 하이퍼파라미터 자동 튜닝</li>
+</ul>
+<p><strong>응용 분야 확장:</strong></p>
+<ul>
+<li><strong>IoT 보안</strong>: 스마트 디바이스 이상 탐지</li>
+<li><strong>의료 진단</strong>: 의료 영상 이상 탐지</li>
+<li><strong>자율 주행</strong>: 센서 데이터 이상 탐지</li>
+<li><strong>금융 리스크</strong>: 시장 이상 패턴 탐지</li>
+</ul>
 </div><div class="column" style="width:50%;">
-<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph TD
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-5">graph TD
     A[LOF 발전 방향] --&gt; B[성능 향상]
     A --&gt; C[적용 확장]
     A --&gt; D[기술 융합]
@@ -837,23 +1216,37 @@ O(n²) 시간 복잡도 - <i class="fas fa-times-circle text-red-500"></i> <stro
     D --&gt; I[딥러닝 결합]
     D --&gt; J[설명 가능 AI]
 </pre>
+<div id="mermaid-tooltip-5" class="mermaidTooltip">
+
 </div>
-<p></p></figure><p></p>
+<p></p>
 </div>
 </div>
 </div>
-</div></div>
+</div>
+</div>
 </section>
-<section id="마무리" class="slide level2 smaller scrollable">
+<section id="마무리" class="slide level2 smaller">
 <h2>마무리</h2>
 <div class="columns">
 <div class="column" style="width:60%;">
-<p><strong>LOF의 핵심 가치:</strong> - 지역적 밀도 기반 이상 탐지의 선구적 알고리즘 - 다양한 실제 문제에 성공적으로 적용 - 이상 탐지 연구의 중요한 기반 제공</p>
-<p><strong>실무 적용 시 고려사항:</strong> - 데이터 특성에 맞는 k 값 선택 - 전처리와 특성 엔지니어링의 중요성 - 도메인 전문가와의 협업 필수 - 지속적인 모니터링과 모델 업데이트</p>
+<p><strong>LOF의 핵심 가치:</strong></p>
+<ul>
+<li>지역적 밀도 기반 이상 탐지의 선구적 알고리즘</li>
+<li>다양한 실제 문제에 성공적으로 적용</li>
+<li>이상 탐지 연구의 중요한 기반 제공</li>
+</ul>
+<p><strong>실무 적용 시 고려사항:</strong></p>
+<ul>
+<li>데이터 특성에 맞는 k 값 선택</li>
+<li>전처리와 특성 엔지니어링의 중요성</li>
+<li>도메인 전문가와의 협업 필수</li>
+<li>지속적인 모니터링과 모델 업데이트</li>
+</ul>
 </div><div class="column" style="width:40%;">
-<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout callout-tip callout-captioned callout-style-default">
 <div class="callout-body">
-<div class="callout-title">
+<div class="callout-caption">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -870,7 +1263,8 @@ O(n²) 시간 복잡도 - <i class="fas fa-times-circle text-red-500"></i> <stro
 </div>
 </div>
 </div>
-</div></div>
+</div>
+</div>
 </section>
 <section id="감사합니다" class="slide level2 center">
 <h2>감사합니다</h2>
@@ -882,14 +1276,12 @@ O(n²) 시간 복잡도 - <i class="fas fa-times-circle text-red-500"></i> <stro
 <p><em>“데이터 속에 숨겨진 이상을 찾는 것은 바늘 찾기가 아니라,<br>
 패턴을 이해하는 것입니다.”</em></p>
 </div>
-
-</section></section>
-    </div>
-  <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
 <p>Anomaly Detection and LOF | 홍성학</p>
 </div>
-</div></div>
+</section></section>
+    </div>
+  </div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
   <script src="anomaly-detection-lof_files/libs/revealjs/dist/reveal.js"></script>
@@ -915,12 +1307,12 @@ O(n²) 시간 복잡도 - <i class="fas fa-times-circle text-red-500"></i> <stro
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
+'smaller': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
-'jumpToSlide': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'chalkboard': {"buttons":true},
 'smaller': false,
  
@@ -1075,7 +1467,7 @@ O(n²) 시간 복잡도 - <i class="fas fa-times-circle text-red-500"></i> <stro
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -1102,172 +1494,137 @@ O(n²) 시간 복잡도 - <i class="fas fa-times-circle text-red-500"></i> <stro
       });
     </script>
     <script id="quarto-html-after-body" type="application/javascript">
-      window.document.addEventListener("DOMContentLoaded", function (event) {
-        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
-        tabsets.forEach(function(tabset) {
-          const tabby = new Tabby('#' + tabset.id);
-        });
-        const isCodeAnnotation = (el) => {
-          for (const clz of el.classList) {
-            if (clz.startsWith('code-annotation-')) {                     
-              return true;
-            }
-          }
-          return false;
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
         }
-        const onCopySuccess = function(e) {
-          // button target
-          const button = e.trigger;
-          // don't keep focus
-          button.blur();
-          // flash "checked"
-          button.classList.add('code-copy-button-checked');
-          var currentTitle = button.getAttribute("title");
-          button.setAttribute("title", "Copied!");
-          let tooltip;
-          if (window.bootstrap) {
-            button.setAttribute("data-bs-toggle", "tooltip");
-            button.setAttribute("data-bs-placement", "left");
-            button.setAttribute("data-bs-title", "Copied!");
-            tooltip = new bootstrap.Tooltip(button, 
-              { trigger: "manual", 
-                customClass: "code-copy-button-tooltip",
-                offset: [0, -8]});
-            tooltip.show();    
-          }
-          setTimeout(function() {
-            if (tooltip) {
-              tooltip.hide();
-              button.removeAttribute("data-bs-title");
-              button.removeAttribute("data-bs-toggle");
-              button.removeAttribute("data-bs-placement");
-            }
-            button.setAttribute("title", currentTitle);
-            button.classList.remove('code-copy-button-checked');
-          }, 1000);
-          // clear code selection
-          e.clearSelection();
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
         }
-        const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
-            }
-            return codeEl.innerText;
-        }
-        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-          text: getTextToCopy
-        });
-        clipboard.on('success', onCopySuccess);
-        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-            text: getTextToCopy,
-            container: window.document.getElementById('quarto-embedded-source-code-modal')
-          });
-          clipboardModal.on('success', onCopySuccess);
-        }
-          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-          var mailtoRegex = new RegExp(/^mailto:/);
-            var filterRegex = new RegExp('/' + window.location.host + '/');
-          var isInternal = (href) => {
-              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-          }
-          // Inspect non-navigation links and adorn them if external
-         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-          for (var i=0; i<links.length; i++) {
-            const link = links[i];
-            if (!isInternal(link.href)) {
-              // undo the damage that might have been done by quarto-nav.js in the case of
-              // links that we want to consider external
-              if (link.dataset.originalHref !== undefined) {
-                link.href = link.dataset.originalHref;
-              }
-            }
-          }
-        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-          const config = {
-            allowHTML: true,
-            maxWidth: 500,
-            delay: 100,
-            arrow: false,
-            appendTo: function(el) {
-                return el.closest('section.slide') || el.parentElement;
-            },
-            interactive: true,
-            interactiveBorder: 10,
-            theme: 'light-border',
-            placement: 'bottom-start',
-          };
-          if (contentFn) {
-            config.content = contentFn;
-          }
-          if (onTriggerFn) {
-            config.onTrigger = onTriggerFn;
-          }
-          if (onUntriggerFn) {
-            config.onUntrigger = onUntriggerFn;
-          }
-            config['offset'] = [0,0];
-            config['maxWidth'] = 700;
-          window.tippy(el, config); 
-        }
-        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-        for (var i=0; i<noterefs.length; i++) {
-          const ref = noterefs[i];
-          tippyHover(ref, function() {
-            // use id or data attribute instead here
-            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-            try { href = new URL(href).hash; } catch {}
-            const id = href.replace(/^#\/?/, "");
-            const note = window.document.getElementById(id);
-            if (note) {
-              return note.innerHTML;
-            } else {
-              return "";
-            }
-          });
-        }
-        const findCites = (el) => {
-          const parentEl = el.parentElement;
-          if (parentEl) {
-            const cites = parentEl.dataset.cites;
-            if (cites) {
-              return {
-                el,
-                cites: cites.split(' ')
-              };
-            } else {
-              return findCites(el.parentElement)
-            }
-          } else {
-            return undefined;
-          }
-        };
-        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-        for (var i=0; i<bibliorefs.length; i++) {
-          const ref = bibliorefs[i];
-          const citeInfo = findCites(ref);
-          if (citeInfo) {
-            tippyHover(citeInfo.el, function() {
-              var popup = window.document.createElement('div');
-              citeInfo.cites.forEach(function(cite) {
-                var citeDiv = window.document.createElement('div');
-                citeDiv.classList.add('hanging-indent');
-                citeDiv.classList.add('csl-entry');
-                var biblioDiv = window.document.getElementById('ref-' + cite);
-                if (biblioDiv) {
-                  citeDiv.innerHTML = biblioDiv.innerHTML;
-                }
-                popup.appendChild(citeDiv);
-              });
-              return popup.innerHTML;
-            });
-          }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const clipboard = new window.ClipboardJS('.code-copy-button', {
+        target: function(trigger) {
+          return trigger.previousElementSibling;
         }
       });
-      </script>
+      clipboard.on('success', function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      });
+      function tippyHover(el, contentFn) {
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto-reveal',
+          placement: 'bottom-start'
+        };
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          return note.innerHTML;
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
     
 
 </body></html>
