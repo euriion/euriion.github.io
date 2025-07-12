@@ -1,0 +1,1992 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="data-engineering_files/libs/clipboard/clipboard.min.js"></script>
+<script src="data-engineering_files/libs/quarto-html/tabby.min.js"></script>
+<script src="data-engineering_files/libs/quarto-html/popper.min.js"></script>
+<script src="data-engineering_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="data-engineering_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="data-engineering_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="data-engineering_files/libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.2.335">
+
+  <meta name="author" content="Seonghak Hong">
+  <title>Data Engineering이란?</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="data-engineering_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="data-engineering_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #e1e4e8; background-color: #24292e; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #e1e4e8; } /* Normal */
+    code span.al { color: #ff5555; font-weight: bold; } /* Alert */
+    code span.an { color: #6a737d; } /* Annotation */
+    code span.at { color: #f97583; } /* Attribute */
+    code span.bn { color: #79b8ff; } /* BaseN */
+    code span.bu { color: #f97583; } /* BuiltIn */
+    code span.cf { color: #f97583; } /* ControlFlow */
+    code span.ch { color: #9ecbff; } /* Char */
+    code span.cn { color: #79b8ff; } /* Constant */
+    code span.co { color: #6a737d; } /* Comment */
+    code span.cv { color: #6a737d; } /* CommentVar */
+    code span.do { color: #6a737d; } /* Documentation */
+    code span.dt { color: #f97583; } /* DataType */
+    code span.dv { color: #79b8ff; } /* DecVal */
+    code span.er { color: #ff5555; text-decoration: underline; } /* Error */
+    code span.ex { color: #f97583; font-weight: bold; } /* Extension */
+    code span.fl { color: #79b8ff; } /* Float */
+    code span.fu { color: #b392f0; } /* Function */
+    code span.im { color: #9ecbff; } /* Import */
+    code span.in { color: #6a737d; } /* Information */
+    code span.kw { color: #f97583; } /* Keyword */
+    code span.op { color: #e1e4e8; } /* Operator */
+    code span.ot { color: #b392f0; } /* Other */
+    code span.pp { color: #f97583; } /* Preprocessor */
+    code span.re { color: #6a737d; } /* RegionMarker */
+    code span.sc { color: #79b8ff; } /* SpecialChar */
+    code span.ss { color: #9ecbff; } /* SpecialString */
+    code span.st { color: #9ecbff; } /* String */
+    code span.va { color: #ffab70; } /* Variable */
+    code span.vs { color: #9ecbff; } /* VerbatimString */
+    code span.wa { color: #ff5555; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="data-engineering_files/libs/revealjs/dist/theme/quarto.css" id="theme">
+  <link rel="stylesheet" href="custom.css">
+  <link href="data-engineering_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="data-engineering_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="data-engineering_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="data-engineering_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="data-engineering_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="data-engineering_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-captioned.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-captioned) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-captioned.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-captioned .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-captioned .callout-caption  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-captioned.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-captioned.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-caption {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-caption {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-caption {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-captioned .callout-body > .callout-content > :last-child {
+    margin-bottom: 0.5rem;
+  }
+
+  .callout.callout-captioned .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-captioned) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-caption {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-caption {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-caption {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-caption {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-caption {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <script src="data-engineering_files/libs/quarto-diagram/mermaid.min.js"></script>
+  <script src="data-engineering_files/libs/quarto-diagram/mermaid-init.js"></script>
+  <link href="data-engineering_files/libs/quarto-diagram/mermaid.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="quarto-dark">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Data Engineering이란?</h1>
+  <p class="subtitle">데이터 엔지니어링의 기초와 실무</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Seonghak Hong 
+</div>
+</div>
+</div>
+
+  <p class="date">1/15/24</p>
+</section>
+<section id="목차" class="slide level2 smaller">
+<h2>목차</h2>
+<div>
+<ol type="1">
+<li class="fragment"><strong>데이터 엔지니어링 개요</strong></li>
+<li class="fragment"><strong>데이터 파이프라인</strong></li>
+<li class="fragment"><strong>데이터 엔지니어링 도구</strong></li>
+<li class="fragment"><strong>데이터 아키텍처</strong></li>
+<li class="fragment"><strong>실제 적용 사례</strong></li>
+<li class="fragment"><strong>데이터 품질 관리</strong></li>
+<li class="fragment"><strong>미래 전망 및 트렌드</strong></li>
+</ol>
+</div>
+</section>
+<section>
+<section id="데이터-엔지니어링-개요" class="title-slide slide level1 center">
+<h1>데이터 엔지니어링 개요</h1>
+
+</section>
+<section id="데이터-엔지니어링이란" class="slide level2 smaller">
+<h2>데이터 엔지니어링이란?</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>데이터 엔지니어링 (Data Engineering)</strong>은<br>
+원시 데이터를 분석 가능한 형태로 변환하고 관리하는 분야</p>
+<ul>
+<li><i class="fas fa-database"></i> <strong>목적</strong>:<br>
+데이터 수집, 처리, 저장, 관리</li>
+<li><i class="fas fa-cogs"></i> <strong>역할</strong>:<br>
+데이터 파이프라인 구축 및 운영</li>
+<li><i class="fas fa-chart-bar"></i> <strong>가치</strong>:<br>
+분석 및 의사결정을 위한 데이터 기반 제공</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-1">graph TD
+    A[원시 데이터] --&gt; B[데이터 수집]
+    B --&gt; C[데이터 처리]
+    C --&gt; D[데이터 저장]
+    D --&gt; E[데이터 분석]
+    E --&gt; F[인사이트 도출]
+    F --&gt; G[의사결정]
+</pre>
+<div id="mermaid-tooltip-1" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="데이터-엔지니어-vs-데이터-사이언티스트" class="slide level2 smaller">
+<h2>데이터 엔지니어 vs 데이터 사이언티스트</h2>
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">데이터 엔지니어</a></li><li><a href="#tabset-1-2">데이터 사이언티스트</a></li><li><a href="#tabset-1-3">협업 관계</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
+<p><strong>주요 역할:</strong></p>
+<ul>
+<li>데이터 파이프라인 구축</li>
+<li>데이터 인프라 관리</li>
+<li>데이터 품질 보장</li>
+<li>시스템 최적화</li>
+</ul>
+<p><strong>필요 기술:</strong></p>
+<ul>
+<li>프로그래밍 (Python, Scala, Java)</li>
+<li>데이터베이스 (SQL, NoSQL)</li>
+<li>클라우드 플랫폼 (AWS, GCP, Azure)</li>
+<li>빅데이터 도구 (Spark, Kafka, Airflow)</li>
+</ul>
+</div>
+<div id="tabset-1-2">
+<p><strong>주요 역할:</strong></p>
+<ul>
+<li>데이터 분석 및 모델링</li>
+<li>머신러닝 모델 개발</li>
+<li>통계 분석</li>
+<li>비즈니스 인사이트 도출</li>
+</ul>
+<p><strong>필요 기술:</strong></p>
+<ul>
+<li>통계학 및 수학</li>
+<li>머신러닝 프레임워크</li>
+<li>데이터 시각화</li>
+<li>도메인 지식</li>
+</ul>
+</div>
+<div id="tabset-1-3">
+<p><strong>상호 의존성:</strong></p>
+<ul>
+<li>데이터 엔지니어 → 데이터 사이언티스트: 분석 가능한 데이터 제공</li>
+<li>데이터 사이언티스트 → 데이터 엔지니어: 모델 프로덕션 요구사항 전달</li>
+<li>공통 목표: 데이터 기반 의사결정 지원</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="데이터-엔지니어링의-중요성" class="slide level2 smaller">
+<h2>데이터 엔지니어링의 중요성</h2>
+<div>
+<ul>
+<li class="fragment"><i class="fas fa-rocket"></i> <strong>디지털 전환 가속화</strong>:<br>
+모든 기업이 데이터 기반 의사결정 추구</li>
+<li class="fragment"><i class="fas fa-explosion"></i> <strong>데이터 폭발적 증가</strong>:<br>
+매일 2.5엑사바이트의 데이터 생성</li>
+<li class="fragment"><i class="fas fa-clock"></i> <strong>실시간 처리 요구</strong>:<br>
+즉시 분석 가능한 데이터 필요</li>
+<li class="fragment"><i class="fas fa-shield-alt"></i> <strong>데이터 품질 보장</strong>:<br>
+정확하고 일관된 데이터 제공</li>
+<li class="fragment"><i class="fas fa-dollar-sign"></i> <strong>비즈니스 가치 창출</strong>:<br>
+데이터를 통한 경쟁 우위 확보</li>
+</ul>
+</div>
+<div class="callout callout-note callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>핵심 메시지</strong></p>
+</div>
+<div class="callout-content">
+<p>데이터 엔지니어링은 <strong>데이터 분석의 기초</strong>를 제공하며,<br>
+현대 기업의 디지털 전환에 필수적인 역할을 합니다.</p>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="데이터-파이프라인" class="title-slide slide level1 center">
+<h1>데이터 파이프라인</h1>
+
+</section>
+<section id="데이터-파이프라인-개념" class="slide level2 smaller">
+<h2>데이터 파이프라인 개념</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><strong>데이터 파이프라인</strong>은 데이터의 흐름을 자동화하고<br>
+체계적으로 관리하는 일련의 프로세스</p>
+<p><strong>주요 구성요소:</strong></p>
+<ul>
+<li><strong>Extract</strong>: 다양한 소스에서 데이터 추출</li>
+<li><strong>Transform</strong>: 데이터 정제, 변환, 통합</li>
+<li><strong>Load</strong>: 목적지 시스템에 데이터 적재</li>
+</ul>
+<p><strong>핵심 특징:</strong></p>
+<ul>
+<li>자동화된 워크플로우</li>
+<li>확장 가능한 아키텍처</li>
+<li>오류 처리 및 모니터링</li>
+<li>데이터 품질 보장</li>
+</ul>
+</div><div class="column" style="width:40%;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-2">graph TD
+    A[데이터 소스] --&gt; B[Extract]
+    B --&gt; C[Transform]
+    C --&gt; D[Load]
+    D --&gt; E[Data Warehouse]
+    E --&gt; F[Analytics]
+    
+    style A fill:#e1f5fe
+    style E fill:#e8f5e8
+    style F fill:#fff3e0
+</pre>
+<div id="mermaid-tooltip-2" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="etl-vs-elt-프로세스" class="slide level2 smaller">
+<h2>ETL vs ELT 프로세스</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>ETL (Extract, Transform, Load)</strong></p>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-3">graph LR
+    A[소스 데이터] --&gt; B[Extract]
+    B --&gt; C[Transform]
+    C --&gt; D[Load]
+    D --&gt; E[Data Warehouse]
+    
+    style C fill:#ffcdd2
+</pre>
+<div id="mermaid-tooltip-3" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+<p><strong>특징:</strong> - 데이터 변환 후 저장 - 구조화된 데이터에 적합 - 전통적인 데이터 웨어하우스 환경 - 스케마 정의 후 데이터 적재</p>
+</div><div class="column" style="width:50%;">
+<p><strong>ELT (Extract, Load, Transform)</strong></p>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-4">graph LR
+    A[소스 데이터] --&gt; B[Extract]
+    B --&gt; C[Load]
+    C --&gt; D[Transform]
+    C --&gt; E[Data Lake]
+    
+    style D fill:#c8e6c9
+</pre>
+<div id="mermaid-tooltip-4" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+<p><strong>특징:</strong> - 원시 데이터 저장 후 변환 - 빅데이터 환경에 적합 - 클라우드 데이터 웨어하우스 - 스케마 온 리드 (Schema on Read)</p>
+</div>
+</div>
+</section>
+<section id="데이터-파이프라인-종류" class="slide level2 smaller">
+<h2>데이터 파이프라인 종류</h2>
+<div class="panel-tabset">
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">배치 파이프라인</a></li><li><a href="#tabset-2-2">실시간 파이프라인</a></li><li><a href="#tabset-2-3">하이브리드 파이프라인</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1">
+<p><strong>Batch Processing Pipeline</strong></p>
+<ul>
+<li><strong>특징</strong>: 정해진 시간에 대량 데이터 처리</li>
+<li><strong>주기</strong>: 시간별, 일별, 주별 등</li>
+<li><strong>장점</strong>: 대용량 데이터 처리 효율적</li>
+<li><strong>단점</strong>: 실시간 처리 불가</li>
+</ul>
+<p><strong>사용 사례:</strong> - 일별 매출 보고서 - 월별 고객 세그먼테이션 - 연간 재무 분석</p>
+<p><strong>도구:</strong> Apache Airflow, Cron, Jenkins</p>
+</div>
+<div id="tabset-2-2">
+<p><strong>Real-time Processing Pipeline</strong></p>
+<ul>
+<li><strong>특징</strong>: 데이터 생성 즉시 처리</li>
+<li><strong>지연시간</strong>: 밀리초 ~ 초 단위</li>
+<li><strong>장점</strong>: 즉각적인 인사이트 제공</li>
+<li><strong>단점</strong>: 시스템 복잡도 증가</li>
+</ul>
+<p><strong>사용 사례:</strong> - 실시간 추천 시스템 - 사기 탐지 시스템 - 실시간 모니터링 대시보드</p>
+<p><strong>도구:</strong> Apache Kafka, Storm, Flink</p>
+</div>
+<div id="tabset-2-3">
+<p><strong>Lambda &amp; Kappa Architecture</strong></p>
+<ul>
+<li><strong>Lambda</strong>: 배치 + 실시간 처리 결합</li>
+<li><strong>Kappa</strong>: 실시간 처리 중심</li>
+<li><strong>장점</strong>: 유연성과 확장성</li>
+<li><strong>단점</strong>: 관리 복잡도</li>
+</ul>
+<p><strong>사용 사례:</strong> - 전자상거래 플랫폼 - 금융 거래 시스템 - IoT 데이터 플랫폼</p>
+</div>
+</div>
+</div>
+</section>
+<section id="데이터-파이프라인-설계-원칙" class="slide level2 smaller">
+<h2>데이터 파이프라인 설계 원칙</h2>
+<div>
+<p><strong>1. 확장성 (Scalability)</strong></p>
+<ul>
+<li class="fragment">데이터 볼륨 증가에 대응</li>
+<li class="fragment">수평/수직 확장 가능한 아키텍처</li>
+</ul>
+<p><strong>2. 신뢰성 (Reliability)</strong></p>
+<ul>
+<li class="fragment">장애 복구 메커니즘</li>
+<li class="fragment">데이터 무손실 보장</li>
+</ul>
+<p><strong>3. 모니터링 (Monitoring)</strong></p>
+<ul>
+<li class="fragment">실시간 상태 감시</li>
+<li class="fragment">성능 지표 추적</li>
+</ul>
+<p><strong>4. 재사용성 (Reusability)</strong></p>
+<ul>
+<li class="fragment">모듈화된 컴포넌트</li>
+<li class="fragment">표준화된 인터페이스</li>
+</ul>
+<p><strong>5. 보안 (Security)</strong></p>
+<ul>
+<li class="fragment">데이터 암호화</li>
+<li class="fragment">접근 권한 관리</li>
+</ul>
+</div>
+<div class="callout callout-tip callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>설계 팁</strong></p>
+</div>
+<div class="callout-content">
+<p>파이프라인 설계 시 <strong>“단순함”</strong>을 추구하고,<br>
+<strong>“모니터링 우선”</strong> 원칙을 따르세요.</p>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="데이터-엔지니어링-도구" class="title-slide slide level1 center">
+<h1>데이터 엔지니어링 도구</h1>
+
+</section>
+<section id="주요-도구-생태계" class="slide level2 smaller">
+<h2>주요 도구 생태계</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>데이터 처리 엔진</strong></p>
+<ul>
+<li><strong>Apache Spark</strong>: 대용량 데이터 처리</li>
+<li><strong>Apache Flink</strong>: 실시간 스트림 처리</li>
+<li><strong>Apache Beam</strong>: 통합 배치/스트림 처리</li>
+<li><strong>Pandas</strong>: Python 데이터 분석</li>
+</ul>
+<p><strong>워크플로우 관리</strong></p>
+<ul>
+<li><strong>Apache Airflow</strong>: 워크플로우 오케스트레이션</li>
+<li><strong>Prefect</strong>: 모던 워크플로우 엔진</li>
+<li><strong>Dagster</strong>: 데이터 파이프라인 관리</li>
+<li><strong>Luigi</strong>: Python 기반 워크플로우</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>데이터 저장소</strong></p>
+<ul>
+<li><strong>Apache Kafka</strong>: 실시간 데이터 스트리밍</li>
+<li><strong>Apache Cassandra</strong>: NoSQL 데이터베이스</li>
+<li><strong>Amazon S3</strong>: 클라우드 스토리지</li>
+<li><strong>Elasticsearch</strong>: 검색 및 분석 엔진</li>
+</ul>
+<p><strong>클라우드 플랫폼</strong></p>
+<ul>
+<li><strong>AWS</strong>: Redshift, Glue, EMR</li>
+<li><strong>Google Cloud</strong>: BigQuery, Dataflow</li>
+<li><strong>Azure</strong>: Synapse, Data Factory</li>
+<li><strong>Snowflake</strong>: 클라우드 데이터 웨어하우스</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="apache-spark-소개" class="slide level2 smaller">
+<h2>Apache Spark 소개</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><strong>Apache Spark의 특징:</strong></p>
+<ul>
+<li><strong>메모리 기반 처리</strong>: 디스크 I/O 최소화</li>
+<li><strong>다양한 워크로드 지원</strong>: 배치, 스트리밍, ML, 그래프</li>
+<li><strong>다중 언어 지원</strong>: Python, Scala, Java, R</li>
+<li><strong>클러스터 확장성</strong>: 수천 개 노드까지 확장</li>
+</ul>
+<p><strong>핵심 컴포넌트:</strong> - <strong>Spark Core</strong>: 기본 실행 엔진 - <strong>Spark SQL</strong>: 구조화된 데이터 처리 - <strong>Spark Streaming</strong>: 실시간 데이터 처리 - <strong>MLlib</strong>: 머신러닝 라이브러리 - <strong>GraphX</strong>: 그래프 처리</p>
+</div><div class="column" style="width:40%;">
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># PySpark 예제</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="im">from</span> pyspark.sql <span class="im">import</span> SparkSession</span>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a>spark <span class="op">=</span> SparkSession.builder <span class="op">\</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>    .appName(<span class="st">"DataEngineering"</span>) <span class="op">\</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a>    .getOrCreate()</span>
+<span id="cb1-7"><a href="#cb1-7"></a></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="co"># 데이터 읽기</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a>df <span class="op">=</span> spark.read.csv(<span class="st">"data.csv"</span>, header<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-10"><a href="#cb1-10"></a></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="co"># 데이터 변환</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a>result <span class="op">=</span> df.<span class="bu">filter</span>(df.age <span class="op">&gt;</span> <span class="dv">18</span>) <span class="op">\</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a>          .groupBy(<span class="st">"city"</span>) <span class="op">\</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a>          .count()</span>
+<span id="cb1-15"><a href="#cb1-15"></a></span>
+<span id="cb1-16"><a href="#cb1-16"></a><span class="co"># 결과 저장</span></span>
+<span id="cb1-17"><a href="#cb1-17"></a>result.write.parquet(<span class="st">"output"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="apache-airflow-워크플로우" class="slide level2 smaller">
+<h2>Apache Airflow 워크플로우</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Airflow의 핵심 개념:</strong></p>
+<ul>
+<li><strong>DAG (Directed Acyclic Graph)</strong>: 워크플로우 정의</li>
+<li><strong>Task</strong>: 개별 작업 단위</li>
+<li><strong>Operator</strong>: 작업 실행 방법</li>
+<li><strong>Scheduler</strong>: 작업 스케줄링</li>
+<li><strong>Executor</strong>: 작업 실행 엔진</li>
+</ul>
+<p><strong>주요 장점:</strong> - 시각적 워크플로우 관리 - 풍부한 모니터링 기능 - 확장 가능한 아키텍처 - 재시도 및 오류 처리</p>
+</div><div class="column" style="width:50%;">
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Airflow DAG 예제</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="im">from</span> airflow <span class="im">import</span> DAG</span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="im">from</span> airflow.operators.python <span class="im">import</span> PythonOperator</span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
+<span id="cb2-5"><a href="#cb2-5"></a></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="kw">def</span> extract_data():</span>
+<span id="cb2-7"><a href="#cb2-7"></a>    <span class="co"># 데이터 추출 로직</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>    <span class="cf">pass</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a></span>
+<span id="cb2-10"><a href="#cb2-10"></a><span class="kw">def</span> transform_data():</span>
+<span id="cb2-11"><a href="#cb2-11"></a>    <span class="co"># 데이터 변환 로직</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a>    <span class="cf">pass</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a></span>
+<span id="cb2-14"><a href="#cb2-14"></a>dag <span class="op">=</span> DAG(</span>
+<span id="cb2-15"><a href="#cb2-15"></a>    <span class="st">'data_pipeline'</span>,</span>
+<span id="cb2-16"><a href="#cb2-16"></a>    start_date<span class="op">=</span>datetime(<span class="dv">2024</span>, <span class="dv">1</span>, <span class="dv">1</span>),</span>
+<span id="cb2-17"><a href="#cb2-17"></a>    schedule_interval<span class="op">=</span><span class="st">'@daily'</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a>)</span>
+<span id="cb2-19"><a href="#cb2-19"></a></span>
+<span id="cb2-20"><a href="#cb2-20"></a>extract_task <span class="op">=</span> PythonOperator(</span>
+<span id="cb2-21"><a href="#cb2-21"></a>    task_id<span class="op">=</span><span class="st">'extract'</span>,</span>
+<span id="cb2-22"><a href="#cb2-22"></a>    python_callable<span class="op">=</span>extract_data,</span>
+<span id="cb2-23"><a href="#cb2-23"></a>    dag<span class="op">=</span>dag</span>
+<span id="cb2-24"><a href="#cb2-24"></a>)</span>
+<span id="cb2-25"><a href="#cb2-25"></a></span>
+<span id="cb2-26"><a href="#cb2-26"></a>transform_task <span class="op">=</span> PythonOperator(</span>
+<span id="cb2-27"><a href="#cb2-27"></a>    task_id<span class="op">=</span><span class="st">'transform'</span>,</span>
+<span id="cb2-28"><a href="#cb2-28"></a>    python_callable<span class="op">=</span>transform_data,</span>
+<span id="cb2-29"><a href="#cb2-29"></a>    dag<span class="op">=</span>dag</span>
+<span id="cb2-30"><a href="#cb2-30"></a>)</span>
+<span id="cb2-31"><a href="#cb2-31"></a></span>
+<span id="cb2-32"><a href="#cb2-32"></a>extract_task <span class="op">&gt;&gt;</span> transform_task</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="클라우드-서비스-비교" class="slide level2 smaller">
+<h2>클라우드 서비스 비교</h2>
+<table>
+<thead>
+<tr class="header">
+<th>서비스</th>
+<th>AWS</th>
+<th>Google Cloud</th>
+<th>Azure</th>
+<th>특징</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>데이터 웨어하우스</strong></td>
+<td>Redshift</td>
+<td>BigQuery</td>
+<td>Synapse</td>
+<td>대용량 분석</td>
+</tr>
+<tr class="even">
+<td><strong>데이터 파이프라인</strong></td>
+<td>Glue</td>
+<td>Dataflow</td>
+<td>Data Factory</td>
+<td>ETL 처리</td>
+</tr>
+<tr class="odd">
+<td><strong>스트리밍</strong></td>
+<td>Kinesis</td>
+<td>Pub/Sub</td>
+<td>Event Hubs</td>
+<td>실시간 처리</td>
+</tr>
+<tr class="even">
+<td><strong>스토리지</strong></td>
+<td>S3</td>
+<td>Cloud Storage</td>
+<td>Blob Storage</td>
+<td>객체 저장</td>
+</tr>
+<tr class="odd">
+<td><strong>컨테이너</strong></td>
+<td>ECS/EKS</td>
+<td>GKE</td>
+<td>AKS</td>
+<td>오케스트레이션</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-warning callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>선택 기준</strong></p>
+</div>
+<div class="callout-content">
+<p>클라우드 서비스 선택 시 <strong>기존 인프라</strong>, <strong>비용</strong>, <strong>팀 역량</strong>을<br>
+종합적으로 고려해야 합니다.</p>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="데이터-아키텍처" class="title-slide slide level1 center">
+<h1>데이터 아키텍처</h1>
+
+</section>
+<section id="데이터-아키텍처-패턴" class="slide level2 smaller">
+<h2>데이터 아키텍처 패턴</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>1. 데이터 웨어하우스 (DW)</strong></p>
+<ul>
+<li>구조화된 데이터 중심</li>
+<li>스키마 온 라이트</li>
+<li>높은 데이터 품질</li>
+<li>비즈니스 인텔리전스 최적화</li>
+</ul>
+<p><strong>2. 데이터 레이크 (DL)</strong></p>
+<ul>
+<li>원시 데이터 저장</li>
+<li>스키마 온 리드</li>
+<li>다양한 데이터 형식 지원</li>
+<li>비용 효율적</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>3. 데이터 레이크하우스</strong></p>
+<ul>
+<li>DW + DL 장점 결합</li>
+<li>통합된 메타데이터 관리</li>
+<li>ACID 트랜잭션 지원</li>
+<li>실시간 분석 가능</li>
+</ul>
+<p><strong>4. 데이터 메시 (Data Mesh)</strong></p>
+<ul>
+<li>도메인 중심 분산 아키텍처</li>
+<li>데이터 소유권 분산</li>
+<li>셀프 서비스 플랫폼</li>
+<li>연합 데이터 거버넌스</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="데이터-웨어하우스-vs-데이터-레이크" class="slide level2 smaller">
+<h2>데이터 웨어하우스 vs 데이터 레이크</h2>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-5">graph TD
+    subgraph "데이터 웨어하우스"
+        A[구조화된 데이터] --&gt; B[ETL]
+        B --&gt; C[스키마 정의]
+        C --&gt; D[데이터 웨어하우스]
+        D --&gt; E[BI 도구]
+    end
+    
+    subgraph "데이터 레이크"
+        F[모든 형태 데이터] --&gt; G[ELT]
+        G --&gt; H[원시 데이터 저장]
+        H --&gt; I[데이터 레이크]
+        I --&gt; J[분석 도구]
+    end
+    
+    style D fill:#e3f2fd
+    style I fill:#e8f5e8
+</pre>
+<div id="mermaid-tooltip-5" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="현대적-데이터-스택" class="slide level2 smaller">
+<h2>현대적 데이터 스택</h2>
+<div class="panel-tabset">
+<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">수집 계층</a></li><li><a href="#tabset-3-2">저장 계층</a></li><li><a href="#tabset-3-3">처리 계층</a></li><li><a href="#tabset-3-4">분석 계층</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1">
+<p><strong>Data Ingestion Layer</strong></p>
+<ul>
+<li><strong>배치 수집</strong>: Fivetran, Stitch, Airbyte</li>
+<li><strong>실시간 수집</strong>: Kafka, Kinesis, Pub/Sub</li>
+<li><strong>API 통합</strong>: REST/GraphQL APIs</li>
+<li><strong>웹 크롤링</strong>: Scrapy, Beautiful Soup</li>
+</ul>
+</div>
+<div id="tabset-3-2">
+<p><strong>Data Storage Layer</strong></p>
+<ul>
+<li><strong>데이터 웨어하우스</strong>: Snowflake, BigQuery, Redshift</li>
+<li><strong>데이터 레이크</strong>: S3, HDFS, Azure Data Lake</li>
+<li><strong>트랜잭션 DB</strong>: PostgreSQL, MySQL, MongoDB</li>
+<li><strong>캐시</strong>: Redis, Memcached</li>
+</ul>
+</div>
+<div id="tabset-3-3">
+<p><strong>Data Processing Layer</strong></p>
+<ul>
+<li><strong>배치 처리</strong>: Spark, Hadoop, Databricks</li>
+<li><strong>스트림 처리</strong>: Kafka Streams, Flink, Storm</li>
+<li><strong>워크플로우</strong>: Airflow, Prefect, Dagster</li>
+<li><strong>변환</strong>: dbt, Dataform, Matillion</li>
+</ul>
+</div>
+<div id="tabset-3-4">
+<p><strong>Analytics Layer</strong></p>
+<ul>
+<li><strong>BI 도구</strong>: Tableau, PowerBI, Looker</li>
+<li><strong>데이터 사이언스</strong>: Jupyter, Databricks, SageMaker</li>
+<li><strong>대시보드</strong>: Grafana, Metabase, Superset</li>
+<li><strong>API</strong>: GraphQL, REST APIs</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="데이터-거버넌스" class="slide level2 smaller">
+<h2>데이터 거버넌스</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><strong>데이터 거버넌스의 핵심 영역:</strong></p>
+<ul>
+<li><strong>데이터 품질</strong>: 정확성, 완전성, 일관성</li>
+<li><strong>데이터 보안</strong>: 암호화, 접근 제어, 감사</li>
+<li><strong>데이터 카탈로그</strong>: 메타데이터 관리</li>
+<li><strong>데이터 계보</strong>: 데이터 흐름 추적</li>
+<li><strong>규정 준수</strong>: GDPR, CCPA 등</li>
+</ul>
+<p><strong>거버넌스 도구:</strong> - <strong>Apache Atlas</strong>: 메타데이터 관리 - <strong>DataHub</strong>: 데이터 발견 플랫폼 - <strong>Great Expectations</strong>: 데이터 품질 테스트 - <strong>Apache Ranger</strong>: 보안 관리</p>
+</div><div class="column" style="width:40%;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-6">graph TD
+    A[데이터 거버넌스] --&gt; B[품질 관리]
+    A --&gt; C[보안 관리]
+    A --&gt; D[메타데이터 관리]
+    A --&gt; E[규정 준수]
+    
+    B --&gt; F[데이터 프로파일링]
+    B --&gt; G[품질 모니터링]
+    
+    C --&gt; H[접근 제어]
+    C --&gt; I[데이터 암호화]
+    
+    style A fill:#fff3e0
+    style B fill:#e8f5e8
+    style C fill:#ffebee
+</pre>
+<div id="mermaid-tooltip-6" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="실제-적용-사례" class="title-slide slide level1 center">
+<h1>실제 적용 사례</h1>
+
+</section>
+<section id="전자상거래-데이터-파이프라인" class="slide level2 smaller">
+<h2>전자상거래 데이터 파이프라인</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>비즈니스 요구사항:</strong></p>
+<ul>
+<li>실시간 추천 시스템</li>
+<li>고객 행동 분석</li>
+<li>재고 관리 최적화</li>
+<li>매출 성과 분석</li>
+</ul>
+<p><strong>데이터 소스:</strong></p>
+<ul>
+<li>웹사이트 클릭스트림</li>
+<li>주문 및 결제 데이터</li>
+<li>고객 프로필 정보</li>
+<li>상품 카탈로그</li>
+<li>외부 API (날씨, 트렌드)</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>기술 스택:</strong></p>
+<ul>
+<li><strong>수집</strong>: Kafka, Kinesis</li>
+<li><strong>처리</strong>: Spark, Flink</li>
+<li><strong>저장</strong>: S3, Redshift</li>
+<li><strong>오케스트레이션</strong>: Airflow</li>
+<li><strong>분석</strong>: Tableau, Python</li>
+</ul>
+<p><strong>성과:</strong></p>
+<ul>
+<li>추천 정확도 25% 향상</li>
+<li>데이터 처리 시간 80% 단축</li>
+<li>실시간 분석 대시보드 구축</li>
+<li>데이터 품질 95% 이상 유지</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="금융-서비스-데이터-플랫폼" class="slide level2 smaller">
+<h2>금융 서비스 데이터 플랫폼</h2>
+<div class="panel-tabset">
+<ul id="tabset-4" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-4-1">문제 상황</a></li><li><a href="#tabset-4-2">솔루션 아키텍처</a></li><li><a href="#tabset-4-3">구현 결과</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1">
+<p><strong>도전 과제:</strong></p>
+<ul>
+<li>규제 준수 요구사항 (Basel III, GDPR)</li>
+<li>실시간 사기 탐지 필요</li>
+<li>레거시 시스템 통합</li>
+<li>대용량 거래 데이터 처리</li>
+</ul>
+<p><strong>기존 시스템 문제:</strong> - 사일로화된 데이터 - 배치 처리 위주 - 데이터 품질 이슈 - 확장성 부족</p>
+</div>
+<div id="tabset-4-2">
+<p><strong>아키텍처 설계:</strong></p>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-7">graph LR
+    A[거래 시스템] --&gt; B[Kafka]
+    C[고객 시스템] --&gt; B
+    D[외부 데이터] --&gt; B
+    B --&gt; E[Spark Streaming]
+    E --&gt; F[Data Lake]
+    F --&gt; G[ML 모델]
+    G --&gt; H[실시간 알림]
+    F --&gt; I[Data Warehouse]
+    I --&gt; J[리포트]
+</pre>
+<div id="mermaid-tooltip-7" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+<p><strong>핵심 기술:</strong> - <strong>실시간 스트리밍</strong>: Kafka + Spark - <strong>데이터 레이크</strong>: S3 + Delta Lake - <strong>ML 플랫폼</strong>: MLflow + SageMaker - <strong>보안</strong>: Vault + Ranger</p>
+</div>
+<div id="tabset-4-3">
+<p><strong>성과 지표:</strong></p>
+<ul>
+<li>사기 탐지 정확도: 92% → 97%</li>
+<li>데이터 처리 지연시간: 1시간 → 30초</li>
+<li>규제 리포트 생성: 수동 → 자동화</li>
+<li>운영 비용: 40% 절감</li>
+</ul>
+<p><strong>교훈:</strong> - 점진적 마이그레이션 전략 - 데이터 품질 우선 투자 - 크로스 팀 협업의 중요성 - 모니터링 및 알림 체계</p>
+</div>
+</div>
+</div>
+</section>
+<section id="iot-센서-데이터-처리" class="slide level2 smaller">
+<h2>IoT 센서 데이터 처리</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><strong>시나리오:</strong></p>
+<ul>
+<li>제조업 스마트 팩토리</li>
+<li>10,000개 센서에서 초당 1M 데이터 포인트</li>
+<li>실시간 이상 탐지 및 예측 정비</li>
+<li>에너지 효율성 최적화</li>
+</ul>
+<p><strong>데이터 파이프라인:</strong></p>
+<ol type="1">
+<li><strong>수집</strong>: IoT Gateway → Kafka</li>
+<li><strong>전처리</strong>: Kafka Streams (필터링, 집계)</li>
+<li><strong>저장</strong>: InfluxDB (시계열), S3 (장기 보관)</li>
+<li><strong>분석</strong>: Spark (배치), Flink (실시간)</li>
+<li><strong>시각화</strong>: Grafana 대시보드</li>
+</ol>
+<p><strong>핵심 기술:</strong> - <strong>시계열 DB</strong>: InfluxDB, TimeScale - <strong>실시간 처리</strong>: Kafka Streams, Flink - <strong>모니터링</strong>: Prometheus, Grafana - <strong>ML</strong>: TensorFlow, scikit-learn</p>
+</div><div class="column" style="width:40%;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-8">graph TD
+    A[IoT 센서] --&gt; B[Gateway]
+    B --&gt; C[Kafka]
+    C --&gt; D[Stream Processing]
+    D --&gt; E[InfluxDB]
+    D --&gt; F[S3]
+    E --&gt; G[Grafana]
+    F --&gt; H[Spark ML]
+    H --&gt; I[예측 모델]
+    I --&gt; J[알림 시스템]
+    
+    style A fill:#e3f2fd
+    style E fill:#e8f5e8
+    style I fill:#fff3e0
+</pre>
+<div id="mermaid-tooltip-8" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+<p><strong>결과:</strong> - 장비 다운타임 35% 감소 - 에너지 비용 20% 절약 - 예측 정확도 88% - 실시간 모니터링 구현</p>
+</div>
+</div>
+</section></section>
+<section>
+<section id="데이터-품질-관리" class="title-slide slide level1 center">
+<h1>데이터 품질 관리</h1>
+
+</section>
+<section id="데이터-품질의-중요성" class="slide level2 smaller">
+<h2>데이터 품질의 중요성</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>데이터 품질 문제의 영향:</strong></p>
+<ul>
+<li><i class="fas fa-exclamation-triangle"></i> <strong>잘못된 의사결정</strong>: 부정확한 분석 결과</li>
+<li><i class="fas fa-dollar-sign"></i> <strong>비용 증가</strong>: 데이터 정정 및 재처리 비용</li>
+<li><i class="fas fa-users"></i> <strong>고객 불만</strong>: 서비스 품질 저하</li>
+<li><i class="fas fa-balance-scale"></i> <strong>규제 위반</strong>: 컴플라이언스 이슈</li>
+</ul>
+<p><strong>데이터 품질 측정 지표:</strong> - <strong>정확성 (Accuracy)</strong>: 실제 값과의 일치도 - <strong>완전성 (Completeness)</strong>: 누락된 데이터 비율 - <strong>일관성 (Consistency)</strong>: 데이터 간 모순 정도 - <strong>적시성 (Timeliness)</strong>: 데이터 최신성 - <strong>유효성 (Validity)</strong>: 비즈니스 룰 준수</p>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-9">graph TD
+    A[데이터 품질] --&gt; B[정확성]
+    A --&gt; C[완전성]
+    A --&gt; D[일관성]
+    A --&gt; E[적시성]
+    A --&gt; F[유효성]
+    
+    B --&gt; G[실제 값과 일치]
+    C --&gt; H[누락 데이터 최소화]
+    D --&gt; I[시스템 간 일관성]
+    E --&gt; J[데이터 최신성]
+    F --&gt; K[비즈니스 룰 준수]
+    
+    style A fill:#fff3e0
+    style B fill:#e8f5e8
+    style C fill:#e3f2fd
+</pre>
+<div id="mermaid-tooltip-9" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="데이터-품질-관리-프로세스" class="slide level2 smaller">
+<h2>데이터 품질 관리 프로세스</h2>
+<div class="panel-tabset">
+<ul id="tabset-5" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-5-1">1. 데이터 프로파일링</a></li><li><a href="#tabset-5-2">2. 품질 규칙 정의</a></li><li><a href="#tabset-5-3">3. 모니터링 구현</a></li><li><a href="#tabset-5-4">4. 품질 개선</a></li></ul>
+<div class="tab-content">
+<div id="tabset-5-1">
+<p><strong>Data Profiling</strong></p>
+<ul>
+<li><strong>목적</strong>: 데이터 특성 및 품질 상태 파악</li>
+<li><strong>방법</strong>: 통계 분석, 패턴 발견, 이상치 탐지</li>
+<li><strong>도구</strong>: Pandas Profiling, Great Expectations</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># 데이터 프로파일링 예제</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="im">from</span> pandas_profiling <span class="im">import</span> ProfileReport</span>
+<span id="cb3-4"><a href="#cb3-4"></a></span>
+<span id="cb3-5"><a href="#cb3-5"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'customer_data.csv'</span>)</span>
+<span id="cb3-6"><a href="#cb3-6"></a>profile <span class="op">=</span> ProfileReport(df, title<span class="op">=</span><span class="st">"Customer Data Profile"</span>)</span>
+<span id="cb3-7"><a href="#cb3-7"></a>profile.to_file(<span class="st">"data_profile.html"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-5-2">
+<p><strong>Quality Rules Definition</strong></p>
+<ul>
+<li><strong>비즈니스 룰</strong>: 도메인 지식 기반 규칙</li>
+<li><strong>기술적 룰</strong>: 데이터 타입, 형식, 범위</li>
+<li><strong>참조 무결성</strong>: 테이블 간 관계 검증</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Great Expectations 예제</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="im">import</span> great_expectations <span class="im">as</span> ge</span>
+<span id="cb4-3"><a href="#cb4-3"></a></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="co"># 데이터 검증 규칙</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>expectation_suite <span class="op">=</span> {</span>
+<span id="cb4-6"><a href="#cb4-6"></a>    <span class="st">"expectation_suite_name"</span>: <span class="st">"customer_suite"</span>,</span>
+<span id="cb4-7"><a href="#cb4-7"></a>    <span class="st">"expectations"</span>: [</span>
+<span id="cb4-8"><a href="#cb4-8"></a>        {</span>
+<span id="cb4-9"><a href="#cb4-9"></a>            <span class="st">"expectation_type"</span>: <span class="st">"expect_column_values_to_not_be_null"</span>,</span>
+<span id="cb4-10"><a href="#cb4-10"></a>            <span class="st">"kwargs"</span>: {<span class="st">"column"</span>: <span class="st">"customer_id"</span>}</span>
+<span id="cb4-11"><a href="#cb4-11"></a>        },</span>
+<span id="cb4-12"><a href="#cb4-12"></a>        {</span>
+<span id="cb4-13"><a href="#cb4-13"></a>            <span class="st">"expectation_type"</span>: <span class="st">"expect_column_values_to_match_regex"</span>,</span>
+<span id="cb4-14"><a href="#cb4-14"></a>            <span class="st">"kwargs"</span>: {<span class="st">"column"</span>: <span class="st">"email"</span>, <span class="st">"regex"</span>: <span class="vs">r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"</span>}</span>
+<span id="cb4-15"><a href="#cb4-15"></a>        }</span>
+<span id="cb4-16"><a href="#cb4-16"></a>    ]</span>
+<span id="cb4-17"><a href="#cb4-17"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-5-3">
+<p><strong>Quality Monitoring</strong></p>
+<ul>
+<li><strong>실시간 모니터링</strong>: 스트리밍 데이터 품질 체크</li>
+<li><strong>배치 검증</strong>: 정기적인 품질 검사</li>
+<li><strong>알림 시스템</strong>: 품질 이슈 발생 시 즉시 알림</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Airflow 품질 모니터링 예제</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="im">from</span> airflow <span class="im">import</span> DAG</span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="im">from</span> airflow.operators.python <span class="im">import</span> PythonOperator</span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="im">from</span> great_expectations_provider.operators.great_expectations <span class="im">import</span> GreatExpectationsOperator</span>
+<span id="cb5-5"><a href="#cb5-5"></a></span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="kw">def</span> data_quality_check():</span>
+<span id="cb5-7"><a href="#cb5-7"></a>    <span class="co"># 데이터 품질 체크 로직</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a>    <span class="cf">pass</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a></span>
+<span id="cb5-10"><a href="#cb5-10"></a>quality_check_task <span class="op">=</span> GreatExpectationsOperator(</span>
+<span id="cb5-11"><a href="#cb5-11"></a>    task_id<span class="op">=</span><span class="st">"quality_check"</span>,</span>
+<span id="cb5-12"><a href="#cb5-12"></a>    expectation_suite_name<span class="op">=</span><span class="st">"customer_suite"</span>,</span>
+<span id="cb5-13"><a href="#cb5-13"></a>    batch_request_file<span class="op">=</span><span class="st">"batch_request.json"</span>,</span>
+<span id="cb5-14"><a href="#cb5-14"></a>    dag<span class="op">=</span>dag</span>
+<span id="cb5-15"><a href="#cb5-15"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-5-4">
+<p><strong>Quality Improvement</strong></p>
+<ul>
+<li><strong>데이터 정제</strong>: 이상치 제거, 누락값 처리</li>
+<li><strong>표준화</strong>: 데이터 형식 통일</li>
+<li><strong>검증</strong>: 비즈니스 룰 적용</li>
+</ul>
+<p><strong>개선 전략:</strong> - 소스 시스템에서 품질 개선 - 파이프라인 내 자동 정제 - 사용자 피드백 반영 - 지속적인 품질 모니터링</p>
+</div>
+</div>
+</div>
+</section>
+<section id="데이터-품질-도구" class="slide level2 smaller">
+<h2>데이터 품질 도구</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>오픈소스 도구:</strong></p>
+<ul>
+<li><strong>Great Expectations</strong>: 데이터 검증 프레임워크</li>
+<li><strong>Apache Griffin</strong>: 데이터 품질 플랫폼</li>
+<li><strong>Deequ</strong>: Amazon의 데이터 품질 라이브러리</li>
+<li><strong>Monte Carlo</strong>: 데이터 관측성 플랫폼</li>
+</ul>
+<p><strong>상용 도구:</strong></p>
+<ul>
+<li><strong>Informatica</strong>: 데이터 품질 관리 스위트</li>
+<li><strong>Talend</strong>: 데이터 통합 및 품질 관리</li>
+<li><strong>IBM Watson</strong>: AI 기반 데이터 품질 관리</li>
+<li><strong>Dataiku</strong>: 데이터 품질 및 거버넌스</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># 데이터 품질 메트릭 계산</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="kw">def</span> calculate_quality_metrics(df):</span>
+<span id="cb6-3"><a href="#cb6-3"></a>    metrics <span class="op">=</span> {}</span>
+<span id="cb6-4"><a href="#cb6-4"></a>    </span>
+<span id="cb6-5"><a href="#cb6-5"></a>    <span class="co"># 완전성 (Completeness)</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a>    metrics[<span class="st">'completeness'</span>] <span class="op">=</span> (</span>
+<span id="cb6-7"><a href="#cb6-7"></a>        df.count() <span class="op">/</span> <span class="bu">len</span>(df) <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a>    ).mean()</span>
+<span id="cb6-9"><a href="#cb6-9"></a>    </span>
+<span id="cb6-10"><a href="#cb6-10"></a>    <span class="co"># 유일성 (Uniqueness)</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a>    metrics[<span class="st">'uniqueness'</span>] <span class="op">=</span> (</span>
+<span id="cb6-12"><a href="#cb6-12"></a>        df.nunique() <span class="op">/</span> <span class="bu">len</span>(df) <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb6-13"><a href="#cb6-13"></a>    ).mean()</span>
+<span id="cb6-14"><a href="#cb6-14"></a>    </span>
+<span id="cb6-15"><a href="#cb6-15"></a>    <span class="co"># 유효성 (Validity)</span></span>
+<span id="cb6-16"><a href="#cb6-16"></a>    valid_emails <span class="op">=</span> df[<span class="st">'email'</span>].<span class="bu">str</span>.contains(</span>
+<span id="cb6-17"><a href="#cb6-17"></a>        <span class="vs">r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'</span>,</span>
+<span id="cb6-18"><a href="#cb6-18"></a>        na<span class="op">=</span><span class="va">False</span></span>
+<span id="cb6-19"><a href="#cb6-19"></a>    ).<span class="bu">sum</span>()</span>
+<span id="cb6-20"><a href="#cb6-20"></a>    metrics[<span class="st">'email_validity'</span>] <span class="op">=</span> (</span>
+<span id="cb6-21"><a href="#cb6-21"></a>        valid_emails <span class="op">/</span> <span class="bu">len</span>(df) <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb6-22"><a href="#cb6-22"></a>    )</span>
+<span id="cb6-23"><a href="#cb6-23"></a>    </span>
+<span id="cb6-24"><a href="#cb6-24"></a>    <span class="cf">return</span> metrics</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="미래-전망-및-트렌드" class="title-slide slide level1 center">
+<h1>미래 전망 및 트렌드</h1>
+
+</section>
+<section id="데이터-엔지니어링-트렌드" class="slide level2 smaller">
+<h2>데이터 엔지니어링 트렌드</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>1. 실시간 데이터 처리 확산</strong></p>
+<ul>
+<li>스트리밍 우선 아키텍처</li>
+<li>마이크로초 단위 지연시간</li>
+<li>이벤트 기반 시스템</li>
+</ul>
+<p><strong>2. 클라우드 네이티브 전환</strong></p>
+<ul>
+<li>서버리스 컴퓨팅</li>
+<li>완전 관리형 서비스</li>
+<li>자동 확장 및 복구</li>
+</ul>
+<p><strong>3. 데이터 메시 아키텍처</strong></p>
+<ul>
+<li>분산 데이터 소유권</li>
+<li>도메인 중심 설계</li>
+<li>자율적 데이터 팀</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>4. AI/ML 통합 강화</strong></p>
+<ul>
+<li>MLOps 파이프라인</li>
+<li>자동 특성 엔지니어링</li>
+<li>모델 드리프트 탐지</li>
+</ul>
+<p><strong>5. 데이터 관측성 (Observability)</strong></p>
+<ul>
+<li>데이터 계보 추적</li>
+<li>실시간 품질 모니터링</li>
+<li>이상 탐지 자동화</li>
+</ul>
+<p><strong>6. 프라이버시 보호 기술</strong></p>
+<ul>
+<li>동형 암호화</li>
+<li>차등 프라이버시</li>
+<li>연합 학습</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="새로운-기술-동향" class="slide level2 smaller">
+<h2>새로운 기술 동향</h2>
+<div class="panel-tabset">
+<ul id="tabset-6" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-6-1">실시간 분석</a></li><li><a href="#tabset-6-2">데이터 레이크하우스</a></li><li><a href="#tabset-6-3">서버리스 컴퓨팅</a></li><li><a href="#tabset-6-4">데이터 관측성</a></li></ul>
+<div class="tab-content">
+<div id="tabset-6-1">
+<p><strong>Real-time Analytics</strong></p>
+<ul>
+<li><strong>Stream Processing</strong>: Kafka Streams, Flink, Pulsar</li>
+<li><strong>Time-series DB</strong>: InfluxDB, TimescaleDB, QuestDB</li>
+<li><strong>Real-time OLAP</strong>: Apache Druid, ClickHouse</li>
+<li><strong>Event Streaming</strong>: Apache Kafka, Amazon Kinesis</li>
+</ul>
+<p><strong>사용 사례:</strong> - 실시간 대시보드 - 이상 탐지 시스템 - 개인화 추천 - 실시간 A/B 테스트</p>
+</div>
+<div id="tabset-6-2">
+<p><strong>Data Lakehouse Architecture</strong></p>
+<ul>
+<li><strong>Open Table Formats</strong>: Delta Lake, Iceberg, Hudi</li>
+<li><strong>Query Engines</strong>: Spark SQL, Presto, Trino</li>
+<li><strong>Metadata Management</strong>: Unity Catalog, Hive Metastore</li>
+<li><strong>ACID Transactions</strong>: 데이터 일관성 보장</li>
+</ul>
+<p><strong>장점:</strong> - 구조화/비구조화 데이터 통합 - 실시간 배치 처리 지원 - 확장 가능한 아키텍처 - 비용 효율성</p>
+</div>
+<div id="tabset-6-3">
+<p><strong>Serverless Computing</strong></p>
+<ul>
+<li><strong>Functions</strong>: AWS Lambda, Google Cloud Functions</li>
+<li><strong>Containers</strong>: AWS Fargate, Google Cloud Run</li>
+<li><strong>Databases</strong>: Aurora Serverless, BigQuery</li>
+<li><strong>Analytics</strong>: Athena, BigQuery, Synapse</li>
+</ul>
+<p><strong>특징:</strong> - 자동 확장 - 사용량 기반 과금 - 운영 부담 최소화 - 빠른 개발 속도</p>
+</div>
+<div id="tabset-6-4">
+<p><strong>Data Observability</strong></p>
+<ul>
+<li><strong>Lineage Tracking</strong>: 데이터 흐름 추적</li>
+<li><strong>Quality Monitoring</strong>: 실시간 품질 감시</li>
+<li><strong>Anomaly Detection</strong>: 이상 패턴 자동 탐지</li>
+<li><strong>Impact Analysis</strong>: 변경 영향 분석</li>
+</ul>
+<p><strong>플랫폼:</strong> - Monte Carlo - DataDog - Bigeye - Anomalo</p>
+</div>
+</div>
+</div>
+</section>
+<section id="미래-데이터-엔지니어-역량" class="slide level2 smaller">
+<h2>미래 데이터 엔지니어 역량</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><strong>기술적 역량:</strong></p>
+<ul>
+<li><strong>클라우드 플랫폼 전문성</strong>: AWS, GCP, Azure</li>
+<li><strong>실시간 처리 기술</strong>: Kafka, Flink, Pulsar</li>
+<li><strong>컨테이너 기술</strong>: Docker, Kubernetes</li>
+<li><strong>IaC (Infrastructure as Code)</strong>: Terraform, CloudFormation</li>
+<li><strong>모니터링 및 관측성</strong>: Prometheus, Grafana, DataDog</li>
+</ul>
+<p><strong>비즈니스 역량:</strong></p>
+<ul>
+<li><strong>도메인 지식</strong>: 산업별 데이터 이해</li>
+<li><strong>데이터 거버넌스</strong>: 규제 준수 및 정책 수립</li>
+<li><strong>비즈니스 파트너십</strong>: 이해관계자와의 협업</li>
+<li><strong>프로젝트 관리</strong>: 아자일, 스크럼 방법론</li>
+<li><strong>커뮤니케이션</strong>: 기술-비즈니스 번역 능력</li>
+</ul>
+</div><div class="column" style="width:40%;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-10">graph TD
+    A[미래 데이터 엔지니어] --&gt; B[기술 역량]
+    A --&gt; C[비즈니스 역량]
+    A --&gt; D[소프트 스킬]
+    
+    B --&gt; E[클라우드 네이티브]
+    B --&gt; F[실시간 처리]
+    B --&gt; G[MLOps]
+    
+    C --&gt; H[도메인 지식]
+    C --&gt; I[데이터 거버넌스]
+    C --&gt; J[비즈니스 이해]
+    
+    D --&gt; K[문제 해결]
+    D --&gt; L[협업]
+    D --&gt; M[지속 학습]
+    
+    style A fill:#fff3e0
+    style B fill:#e8f5e8
+    style C fill:#e3f2fd
+</pre>
+<div id="mermaid-tooltip-10" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="데이터-엔지니어링-학습-로드맵" class="slide level2 smaller">
+<h2>데이터 엔지니어링 학습 로드맵</h2>
+<div>
+<p><strong>1단계: 기초 (3-6개월)</strong></p>
+<ul>
+<li class="fragment">프로그래밍 언어: Python, SQL</li>
+<li class="fragment">데이터베이스: PostgreSQL, MongoDB</li>
+<li class="fragment">리눅스 기본 명령어</li>
+<li class="fragment">Git 버전 관리</li>
+</ul>
+<p><strong>2단계: 중급 (6-12개월)</strong></p>
+<ul>
+<li class="fragment">빅데이터 도구: Spark, Kafka</li>
+<li class="fragment">클라우드 플랫폼: AWS/GCP 기초</li>
+<li class="fragment">워크플로우 관리: Airflow</li>
+<li class="fragment">컨테이너화: Docker</li>
+</ul>
+<p><strong>3단계: 고급 (12-24개월)</strong></p>
+<ul>
+<li class="fragment">분산 시스템 아키텍처</li>
+<li class="fragment">스트리밍 처리: Flink, Kafka Streams</li>
+<li class="fragment">인프라 자동화: Terraform, Kubernetes</li>
+<li class="fragment">데이터 거버넌스 및 보안</li>
+</ul>
+<p><strong>4단계: 전문가 (24개월+)</strong></p>
+<ul>
+<li class="fragment">시스템 설계 및 아키텍처</li>
+<li class="fragment">성능 최적화 및 튜닝</li>
+<li class="fragment">팀 리더십 및 멘토링</li>
+<li class="fragment">비즈니스 전략 수립</li>
+</ul>
+</div>
+</section>
+<section id="마무리" class="slide level2 smaller">
+<h2>마무리</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><strong>데이터 엔지니어링의 핵심 가치:</strong></p>
+<ul>
+<li>데이터 기반 의사결정의 <strong>기반 인프라</strong> 제공</li>
+<li>비즈니스 요구사항을 <strong>기술적 솔루션</strong>으로 구현</li>
+<li>확장 가능하고 신뢰할 수 있는 <strong>데이터 파이프라인</strong> 구축</li>
+<li>데이터 품질과 거버넌스를 통한 <strong>신뢰성</strong> 확보</li>
+</ul>
+<p><strong>성공적인 데이터 엔지니어링을 위한 핵심:</strong></p>
+<ul>
+<li><strong>비즈니스 이해</strong>: 기술보다 문제 해결이 우선</li>
+<li><strong>점진적 개선</strong>: 완벽한 시스템보다 작동하는 시스템</li>
+<li><strong>모니터링 우선</strong>: 문제를 빨리 발견하고 대응</li>
+<li><strong>협업의 중요성</strong>: 다양한 팀과의 소통과 협력</li>
+<li><strong>지속적 학습</strong>: 빠르게 변화하는 기술 환경 적응</li>
+</ul>
+</div><div class="column" style="width:40%;">
+<div class="callout callout-tip callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>데이터 엔지니어링 성공 전략</strong></p>
+</div>
+<div class="callout-content">
+<ol type="1">
+<li><strong>문제 중심 사고</strong>: 기술이 아닌 비즈니스 문제 해결</li>
+<li><strong>단순함 추구</strong>: 복잡한 아키텍처보다 이해하기 쉬운 설계</li>
+<li><strong>자동화 우선</strong>: 반복 작업은 자동화로 효율성 향상</li>
+<li><strong>문서화 습관</strong>: 시스템 이해와 유지보수를 위한 문서 작성</li>
+<li><strong>실험 정신</strong>: 새로운 기술을 적극적으로 학습하고 적용</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="감사합니다" class="slide level2 center">
+<h2>감사합니다</h2>
+<div class="center">
+<p><strong>질문과 토론</strong></p>
+<p><i class="fas fa-envelope"></i> seonghak.hong@email.com<br>
+<i class="fas fa-globe"></i> https://aidenhong.com<br>
+<i class="fab fa-github"></i> https://github.com/euriion</p>
+<p><em>“데이터 엔지니어링은 기술이 아닌 비즈니스 문제를 해결하는 것입니다.<br>
+올바른 데이터를 올바른 시간에 올바른 사람에게 전달하는 것이 우리의 사명입니다.”</em></p>
+</div>
+<div class="footer footer-default">
+<p>Data Engineering 기초 | 홍성학</p>
+</div>
+</section></section>
+    </div>
+  </div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="data-engineering_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="data-engineering_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="data-engineering_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="data-engineering_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="data-engineering_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="data-engineering_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="data-engineering_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="data-engineering_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="data-engineering_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="data-engineering_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="data-engineering_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'smaller': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const clipboard = new window.ClipboardJS('.code-copy-button', {
+        target: function(trigger) {
+          return trigger.previousElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      });
+      function tippyHover(el, contentFn) {
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto-reveal',
+          placement: 'bottom-start'
+        };
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          return note.innerHTML;
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>

@@ -1,0 +1,1144 @@
+---
+title: "Data Engineering이란?"
+subtitle: "데이터 엔지니어링의 기초와 실무"
+author: "Seonghak Hong"
+date: "2024-01-15"
+format: 
+  revealjs:
+    theme: night
+    transition: slide
+    background-transition: fade
+    highlight-style: github
+    code-fold: true
+    code-tools: true
+    slide-number: true
+    chalkboard: true
+    scrollable: true
+    incremental: false
+    footer: "Data Engineering 기초 | 홍성학"
+    css: custom.css
+    include-in-header:
+      - text: |
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+mermaid:
+  theme: dark
+editor: visual
+---
+
+## 목차 {.smaller}
+
+::: {.incremental}
+1. **데이터 엔지니어링 개요**
+2. **데이터 파이프라인**
+3. **데이터 엔지니어링 도구**
+4. **데이터 아키텍처**
+5. **실제 적용 사례**
+6. **데이터 품질 관리**
+7. **미래 전망 및 트렌드**
+:::
+
+# 데이터 엔지니어링 개요
+
+## 데이터 엔지니어링이란? {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**데이터 엔지니어링 (Data Engineering)**은  
+원시 데이터를 분석 가능한 형태로 변환하고 관리하는 분야
+
+- <i class="fas fa-database"></i> **목적**:  
+  데이터 수집, 처리, 저장, 관리
+- <i class="fas fa-cogs"></i> **역할**:  
+  데이터 파이프라인 구축 및 운영
+- <i class="fas fa-chart-bar"></i> **가치**:  
+  분석 및 의사결정을 위한 데이터 기반 제공
+:::
+
+::: {.column width="50%"}
+```{mermaid}
+graph TD
+    A[원시 데이터] --> B[데이터 수집]
+    B --> C[데이터 처리]
+    C --> D[데이터 저장]
+    D --> E[데이터 분석]
+    E --> F[인사이트 도출]
+    F --> G[의사결정]
+```
+:::
+:::
+
+## 데이터 엔지니어 vs 데이터 사이언티스트 {.smaller}
+
+::: {.panel-tabset}
+### 데이터 엔지니어
+**주요 역할:**
+
+- 데이터 파이프라인 구축
+- 데이터 인프라 관리
+- 데이터 품질 보장
+- 시스템 최적화
+
+**필요 기술:**
+
+- 프로그래밍 (Python, Scala, Java)
+- 데이터베이스 (SQL, NoSQL)
+- 클라우드 플랫폼 (AWS, GCP, Azure)
+- 빅데이터 도구 (Spark, Kafka, Airflow)
+
+### 데이터 사이언티스트
+**주요 역할:**
+
+- 데이터 분석 및 모델링
+- 머신러닝 모델 개발
+- 통계 분석
+- 비즈니스 인사이트 도출
+
+**필요 기술:**
+
+- 통계학 및 수학
+- 머신러닝 프레임워크
+- 데이터 시각화
+- 도메인 지식
+
+### 협업 관계
+**상호 의존성:**
+
+- 데이터 엔지니어 → 데이터 사이언티스트: 분석 가능한 데이터 제공
+- 데이터 사이언티스트 → 데이터 엔지니어: 모델 프로덕션 요구사항 전달
+- 공통 목표: 데이터 기반 의사결정 지원
+:::
+
+## 데이터 엔지니어링의 중요성 {.smaller}
+
+::: {.incremental}
+- <i class="fas fa-rocket"></i> **디지털 전환 가속화**:  
+  모든 기업이 데이터 기반 의사결정 추구
+- <i class="fas fa-explosion"></i> **데이터 폭발적 증가**:  
+  매일 2.5엑사바이트의 데이터 생성
+- <i class="fas fa-clock"></i> **실시간 처리 요구**:  
+  즉시 분석 가능한 데이터 필요
+- <i class="fas fa-shield-alt"></i> **데이터 품질 보장**:  
+  정확하고 일관된 데이터 제공
+- <i class="fas fa-dollar-sign"></i> **비즈니스 가치 창출**:  
+  데이터를 통한 경쟁 우위 확보
+:::
+
+::: {.callout-note}
+## 핵심 메시지
+
+데이터 엔지니어링은 **데이터 분석의 기초**를 제공하며,  
+현대 기업의 디지털 전환에 필수적인 역할을 합니다.
+:::
+
+# 데이터 파이프라인
+
+## 데이터 파이프라인 개념 {.smaller}
+
+::: {.columns}
+::: {.column width="60%"}
+**데이터 파이프라인**은 데이터의 흐름을 자동화하고  
+체계적으로 관리하는 일련의 프로세스
+
+**주요 구성요소:**
+
+- **Extract**: 다양한 소스에서 데이터 추출
+- **Transform**: 데이터 정제, 변환, 통합
+- **Load**: 목적지 시스템에 데이터 적재
+
+**핵심 특징:**
+
+- 자동화된 워크플로우
+- 확장 가능한 아키텍처
+- 오류 처리 및 모니터링
+- 데이터 품질 보장
+:::
+
+::: {.column width="40%"}
+```{mermaid}
+graph TD
+    A[데이터 소스] --> B[Extract]
+    B --> C[Transform]
+    C --> D[Load]
+    D --> E[Data Warehouse]
+    E --> F[Analytics]
+    
+    style A fill:#e1f5fe
+    style E fill:#e8f5e8
+    style F fill:#fff3e0
+```
+:::
+:::
+
+## ETL vs ELT 프로세스 {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**ETL (Extract, Transform, Load)**
+
+```{mermaid}
+graph LR
+    A[소스 데이터] --> B[Extract]
+    B --> C[Transform]
+    C --> D[Load]
+    D --> E[Data Warehouse]
+    
+    style C fill:#ffcdd2
+```
+
+**특징:**
+- 데이터 변환 후 저장
+- 구조화된 데이터에 적합
+- 전통적인 데이터 웨어하우스 환경
+- 스케마 정의 후 데이터 적재
+:::
+
+::: {.column width="50%"}
+**ELT (Extract, Load, Transform)**
+
+```{mermaid}
+graph LR
+    A[소스 데이터] --> B[Extract]
+    B --> C[Load]
+    C --> D[Transform]
+    C --> E[Data Lake]
+    
+    style D fill:#c8e6c9
+```
+
+**특징:**
+- 원시 데이터 저장 후 변환
+- 빅데이터 환경에 적합
+- 클라우드 데이터 웨어하우스
+- 스케마 온 리드 (Schema on Read)
+:::
+:::
+
+## 데이터 파이프라인 종류 {.smaller}
+
+::: {.panel-tabset}
+### 배치 파이프라인
+**Batch Processing Pipeline**
+
+- **특징**: 정해진 시간에 대량 데이터 처리
+- **주기**: 시간별, 일별, 주별 등
+- **장점**: 대용량 데이터 처리 효율적
+- **단점**: 실시간 처리 불가
+
+**사용 사례:**
+- 일별 매출 보고서
+- 월별 고객 세그먼테이션
+- 연간 재무 분석
+
+**도구:** Apache Airflow, Cron, Jenkins
+
+### 실시간 파이프라인
+**Real-time Processing Pipeline**
+
+- **특징**: 데이터 생성 즉시 처리
+- **지연시간**: 밀리초 ~ 초 단위
+- **장점**: 즉각적인 인사이트 제공
+- **단점**: 시스템 복잡도 증가
+
+**사용 사례:**
+- 실시간 추천 시스템
+- 사기 탐지 시스템
+- 실시간 모니터링 대시보드
+
+**도구:** Apache Kafka, Storm, Flink
+
+### 하이브리드 파이프라인
+**Lambda & Kappa Architecture**
+
+- **Lambda**: 배치 + 실시간 처리 결합
+- **Kappa**: 실시간 처리 중심
+- **장점**: 유연성과 확장성
+- **단점**: 관리 복잡도
+
+**사용 사례:**
+- 전자상거래 플랫폼
+- 금융 거래 시스템
+- IoT 데이터 플랫폼
+:::
+
+## 데이터 파이프라인 설계 원칙 {.smaller}
+
+::: {.incremental}
+**1. 확장성 (Scalability)**
+
+- 데이터 볼륨 증가에 대응
+- 수평/수직 확장 가능한 아키텍처
+
+**2. 신뢰성 (Reliability)**
+
+- 장애 복구 메커니즘
+- 데이터 무손실 보장
+
+**3. 모니터링 (Monitoring)**
+
+- 실시간 상태 감시
+- 성능 지표 추적
+
+**4. 재사용성 (Reusability)**
+
+- 모듈화된 컴포넌트
+- 표준화된 인터페이스
+
+**5. 보안 (Security)**
+
+- 데이터 암호화
+- 접근 권한 관리
+:::
+
+::: {.callout-tip}
+## 설계 팁
+
+파이프라인 설계 시 **"단순함"**을 추구하고,  
+**"모니터링 우선"** 원칙을 따르세요.
+:::
+
+# 데이터 엔지니어링 도구
+
+## 주요 도구 생태계 {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**데이터 처리 엔진**
+
+- **Apache Spark**: 대용량 데이터 처리
+- **Apache Flink**: 실시간 스트림 처리
+- **Apache Beam**: 통합 배치/스트림 처리
+- **Pandas**: Python 데이터 분석
+
+**워크플로우 관리**
+
+- **Apache Airflow**: 워크플로우 오케스트레이션
+- **Prefect**: 모던 워크플로우 엔진
+- **Dagster**: 데이터 파이프라인 관리
+- **Luigi**: Python 기반 워크플로우
+:::
+
+::: {.column width="50%"}
+**데이터 저장소**
+
+- **Apache Kafka**: 실시간 데이터 스트리밍
+- **Apache Cassandra**: NoSQL 데이터베이스
+- **Amazon S3**: 클라우드 스토리지
+- **Elasticsearch**: 검색 및 분석 엔진
+
+**클라우드 플랫폼**
+
+- **AWS**: Redshift, Glue, EMR
+- **Google Cloud**: BigQuery, Dataflow
+- **Azure**: Synapse, Data Factory
+- **Snowflake**: 클라우드 데이터 웨어하우스
+:::
+:::
+
+## Apache Spark 소개 {.smaller}
+
+::: {.columns}
+::: {.column width="60%"}
+**Apache Spark의 특징:**
+
+- **메모리 기반 처리**: 디스크 I/O 최소화
+- **다양한 워크로드 지원**: 배치, 스트리밍, ML, 그래프
+- **다중 언어 지원**: Python, Scala, Java, R
+- **클러스터 확장성**: 수천 개 노드까지 확장
+
+**핵심 컴포넌트:**
+- **Spark Core**: 기본 실행 엔진
+- **Spark SQL**: 구조화된 데이터 처리
+- **Spark Streaming**: 실시간 데이터 처리
+- **MLlib**: 머신러닝 라이브러리
+- **GraphX**: 그래프 처리
+:::
+
+::: {.column width="40%"}
+```python
+# PySpark 예제
+from pyspark.sql import SparkSession
+
+spark = SparkSession.builder \
+    .appName("DataEngineering") \
+    .getOrCreate()
+
+# 데이터 읽기
+df = spark.read.csv("data.csv", header=True)
+
+# 데이터 변환
+result = df.filter(df.age > 18) \
+          .groupBy("city") \
+          .count()
+
+# 결과 저장
+result.write.parquet("output")
+```
+:::
+:::
+
+## Apache Airflow 워크플로우 {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**Airflow의 핵심 개념:**
+
+- **DAG (Directed Acyclic Graph)**: 워크플로우 정의
+- **Task**: 개별 작업 단위
+- **Operator**: 작업 실행 방법
+- **Scheduler**: 작업 스케줄링
+- **Executor**: 작업 실행 엔진
+
+**주요 장점:**
+- 시각적 워크플로우 관리
+- 풍부한 모니터링 기능
+- 확장 가능한 아키텍처
+- 재시도 및 오류 처리
+:::
+
+::: {.column width="50%"}
+```python
+# Airflow DAG 예제
+from airflow import DAG
+from airflow.operators.python import PythonOperator
+from datetime import datetime
+
+def extract_data():
+    # 데이터 추출 로직
+    pass
+
+def transform_data():
+    # 데이터 변환 로직
+    pass
+
+dag = DAG(
+    'data_pipeline',
+    start_date=datetime(2024, 1, 1),
+    schedule_interval='@daily'
+)
+
+extract_task = PythonOperator(
+    task_id='extract',
+    python_callable=extract_data,
+    dag=dag
+)
+
+transform_task = PythonOperator(
+    task_id='transform',
+    python_callable=transform_data,
+    dag=dag
+)
+
+extract_task >> transform_task
+```
+:::
+:::
+
+## 클라우드 서비스 비교 {.smaller}
+
+| 서비스 | AWS | Google Cloud | Azure | 특징 |
+|--------|-----|-------------|-------|------|
+| **데이터 웨어하우스** | Redshift | BigQuery | Synapse | 대용량 분석 |
+| **데이터 파이프라인** | Glue | Dataflow | Data Factory | ETL 처리 |
+| **스트리밍** | Kinesis | Pub/Sub | Event Hubs | 실시간 처리 |
+| **스토리지** | S3 | Cloud Storage | Blob Storage | 객체 저장 |
+| **컨테이너** | ECS/EKS | GKE | AKS | 오케스트레이션 |
+
+::: {.callout-warning}
+## 선택 기준
+
+클라우드 서비스 선택 시 **기존 인프라**, **비용**, **팀 역량**을  
+종합적으로 고려해야 합니다.
+:::
+
+# 데이터 아키텍처
+
+## 데이터 아키텍처 패턴 {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**1. 데이터 웨어하우스 (DW)**
+
+- 구조화된 데이터 중심
+- 스키마 온 라이트
+- 높은 데이터 품질
+- 비즈니스 인텔리전스 최적화
+
+**2. 데이터 레이크 (DL)**
+
+- 원시 데이터 저장
+- 스키마 온 리드
+- 다양한 데이터 형식 지원
+- 비용 효율적
+:::
+
+::: {.column width="50%"}
+**3. 데이터 레이크하우스**
+
+- DW + DL 장점 결합
+- 통합된 메타데이터 관리
+- ACID 트랜잭션 지원
+- 실시간 분석 가능
+
+**4. 데이터 메시 (Data Mesh)**
+
+- 도메인 중심 분산 아키텍처
+- 데이터 소유권 분산
+- 셀프 서비스 플랫폼
+- 연합 데이터 거버넌스
+:::
+:::
+
+## 데이터 웨어하우스 vs 데이터 레이크 {.smaller}
+
+```{mermaid}
+graph TD
+    subgraph "데이터 웨어하우스"
+        A[구조화된 데이터] --> B[ETL]
+        B --> C[스키마 정의]
+        C --> D[데이터 웨어하우스]
+        D --> E[BI 도구]
+    end
+    
+    subgraph "데이터 레이크"
+        F[모든 형태 데이터] --> G[ELT]
+        G --> H[원시 데이터 저장]
+        H --> I[데이터 레이크]
+        I --> J[분석 도구]
+    end
+    
+    style D fill:#e3f2fd
+    style I fill:#e8f5e8
+```
+
+## 현대적 데이터 스택 {.smaller}
+
+::: {.panel-tabset}
+### 수집 계층
+**Data Ingestion Layer**
+
+- **배치 수집**: Fivetran, Stitch, Airbyte
+- **실시간 수집**: Kafka, Kinesis, Pub/Sub
+- **API 통합**: REST/GraphQL APIs
+- **웹 크롤링**: Scrapy, Beautiful Soup
+
+### 저장 계층
+**Data Storage Layer**
+
+- **데이터 웨어하우스**: Snowflake, BigQuery, Redshift
+- **데이터 레이크**: S3, HDFS, Azure Data Lake
+- **트랜잭션 DB**: PostgreSQL, MySQL, MongoDB
+- **캐시**: Redis, Memcached
+
+### 처리 계층
+**Data Processing Layer**
+
+- **배치 처리**: Spark, Hadoop, Databricks
+- **스트림 처리**: Kafka Streams, Flink, Storm
+- **워크플로우**: Airflow, Prefect, Dagster
+- **변환**: dbt, Dataform, Matillion
+
+### 분석 계층
+**Analytics Layer**
+
+- **BI 도구**: Tableau, PowerBI, Looker
+- **데이터 사이언스**: Jupyter, Databricks, SageMaker
+- **대시보드**: Grafana, Metabase, Superset
+- **API**: GraphQL, REST APIs
+:::
+
+## 데이터 거버넌스 {.smaller}
+
+::: {.columns}
+::: {.column width="60%"}
+**데이터 거버넌스의 핵심 영역:**
+
+- **데이터 품질**: 정확성, 완전성, 일관성
+- **데이터 보안**: 암호화, 접근 제어, 감사
+- **데이터 카탈로그**: 메타데이터 관리
+- **데이터 계보**: 데이터 흐름 추적
+- **규정 준수**: GDPR, CCPA 등
+
+**거버넌스 도구:**
+- **Apache Atlas**: 메타데이터 관리
+- **DataHub**: 데이터 발견 플랫폼
+- **Great Expectations**: 데이터 품질 테스트
+- **Apache Ranger**: 보안 관리
+:::
+
+::: {.column width="40%"}
+```{mermaid}
+graph TD
+    A[데이터 거버넌스] --> B[품질 관리]
+    A --> C[보안 관리]
+    A --> D[메타데이터 관리]
+    A --> E[규정 준수]
+    
+    B --> F[데이터 프로파일링]
+    B --> G[품질 모니터링]
+    
+    C --> H[접근 제어]
+    C --> I[데이터 암호화]
+    
+    style A fill:#fff3e0
+    style B fill:#e8f5e8
+    style C fill:#ffebee
+```
+:::
+:::
+
+# 실제 적용 사례
+
+## 전자상거래 데이터 파이프라인 {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**비즈니스 요구사항:**
+
+- 실시간 추천 시스템
+- 고객 행동 분석
+- 재고 관리 최적화
+- 매출 성과 분석
+
+**데이터 소스:**
+
+- 웹사이트 클릭스트림
+- 주문 및 결제 데이터
+- 고객 프로필 정보
+- 상품 카탈로그
+- 외부 API (날씨, 트렌드)
+:::
+
+::: {.column width="50%"}
+**기술 스택:**
+
+- **수집**: Kafka, Kinesis
+- **처리**: Spark, Flink
+- **저장**: S3, Redshift
+- **오케스트레이션**: Airflow
+- **분석**: Tableau, Python
+
+**성과:**
+
+- 추천 정확도 25% 향상
+- 데이터 처리 시간 80% 단축
+- 실시간 분석 대시보드 구축
+- 데이터 품질 95% 이상 유지
+:::
+:::
+
+## 금융 서비스 데이터 플랫폼 {.smaller}
+
+::: {.panel-tabset}
+### 문제 상황
+**도전 과제:**
+
+- 규제 준수 요구사항 (Basel III, GDPR)
+- 실시간 사기 탐지 필요
+- 레거시 시스템 통합
+- 대용량 거래 데이터 처리
+
+**기존 시스템 문제:**
+- 사일로화된 데이터
+- 배치 처리 위주
+- 데이터 품질 이슈
+- 확장성 부족
+
+### 솔루션 아키텍처
+**아키텍처 설계:**
+
+```{mermaid}
+graph LR
+    A[거래 시스템] --> B[Kafka]
+    C[고객 시스템] --> B
+    D[외부 데이터] --> B
+    B --> E[Spark Streaming]
+    E --> F[Data Lake]
+    F --> G[ML 모델]
+    G --> H[실시간 알림]
+    F --> I[Data Warehouse]
+    I --> J[리포트]
+```
+
+**핵심 기술:**
+- **실시간 스트리밍**: Kafka + Spark
+- **데이터 레이크**: S3 + Delta Lake
+- **ML 플랫폼**: MLflow + SageMaker
+- **보안**: Vault + Ranger
+
+### 구현 결과
+**성과 지표:**
+
+- 사기 탐지 정확도: 92% → 97%
+- 데이터 처리 지연시간: 1시간 → 30초
+- 규제 리포트 생성: 수동 → 자동화
+- 운영 비용: 40% 절감
+
+**교훈:**
+- 점진적 마이그레이션 전략
+- 데이터 품질 우선 투자
+- 크로스 팀 협업의 중요성
+- 모니터링 및 알림 체계
+:::
+
+## IoT 센서 데이터 처리 {.smaller}
+
+::: {.columns}
+::: {.column width="60%"}
+**시나리오:**
+
+- 제조업 스마트 팩토리
+- 10,000개 센서에서 초당 1M 데이터 포인트
+- 실시간 이상 탐지 및 예측 정비
+- 에너지 효율성 최적화
+
+**데이터 파이프라인:**
+
+1. **수집**: IoT Gateway → Kafka
+2. **전처리**: Kafka Streams (필터링, 집계)
+3. **저장**: InfluxDB (시계열), S3 (장기 보관)
+4. **분석**: Spark (배치), Flink (실시간)
+5. **시각화**: Grafana 대시보드
+
+**핵심 기술:**
+- **시계열 DB**: InfluxDB, TimeScale
+- **실시간 처리**: Kafka Streams, Flink
+- **모니터링**: Prometheus, Grafana
+- **ML**: TensorFlow, scikit-learn
+:::
+
+::: {.column width="40%"}
+```{mermaid}
+graph TD
+    A[IoT 센서] --> B[Gateway]
+    B --> C[Kafka]
+    C --> D[Stream Processing]
+    D --> E[InfluxDB]
+    D --> F[S3]
+    E --> G[Grafana]
+    F --> H[Spark ML]
+    H --> I[예측 모델]
+    I --> J[알림 시스템]
+    
+    style A fill:#e3f2fd
+    style E fill:#e8f5e8
+    style I fill:#fff3e0
+```
+
+**결과:**
+- 장비 다운타임 35% 감소
+- 에너지 비용 20% 절약
+- 예측 정확도 88%
+- 실시간 모니터링 구현
+:::
+:::
+
+# 데이터 품질 관리
+
+## 데이터 품질의 중요성 {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**데이터 품질 문제의 영향:**
+
+- <i class="fas fa-exclamation-triangle"></i> **잘못된 의사결정**: 부정확한 분석 결과
+- <i class="fas fa-dollar-sign"></i> **비용 증가**: 데이터 정정 및 재처리 비용
+- <i class="fas fa-users"></i> **고객 불만**: 서비스 품질 저하
+- <i class="fas fa-balance-scale"></i> **규제 위반**: 컴플라이언스 이슈
+
+**데이터 품질 측정 지표:**
+- **정확성 (Accuracy)**: 실제 값과의 일치도
+- **완전성 (Completeness)**: 누락된 데이터 비율
+- **일관성 (Consistency)**: 데이터 간 모순 정도
+- **적시성 (Timeliness)**: 데이터 최신성
+- **유효성 (Validity)**: 비즈니스 룰 준수
+:::
+
+::: {.column width="50%"}
+```{mermaid}
+graph TD
+    A[데이터 품질] --> B[정확성]
+    A --> C[완전성]
+    A --> D[일관성]
+    A --> E[적시성]
+    A --> F[유효성]
+    
+    B --> G[실제 값과 일치]
+    C --> H[누락 데이터 최소화]
+    D --> I[시스템 간 일관성]
+    E --> J[데이터 최신성]
+    F --> K[비즈니스 룰 준수]
+    
+    style A fill:#fff3e0
+    style B fill:#e8f5e8
+    style C fill:#e3f2fd
+```
+:::
+:::
+
+## 데이터 품질 관리 프로세스 {.smaller}
+
+::: {.panel-tabset}
+### 1. 데이터 프로파일링
+**Data Profiling**
+
+- **목적**: 데이터 특성 및 품질 상태 파악
+- **방법**: 통계 분석, 패턴 발견, 이상치 탐지
+- **도구**: Pandas Profiling, Great Expectations
+
+```python
+# 데이터 프로파일링 예제
+import pandas as pd
+from pandas_profiling import ProfileReport
+
+df = pd.read_csv('customer_data.csv')
+profile = ProfileReport(df, title="Customer Data Profile")
+profile.to_file("data_profile.html")
+```
+
+### 2. 품질 규칙 정의
+**Quality Rules Definition**
+
+- **비즈니스 룰**: 도메인 지식 기반 규칙
+- **기술적 룰**: 데이터 타입, 형식, 범위
+- **참조 무결성**: 테이블 간 관계 검증
+
+```python
+# Great Expectations 예제
+import great_expectations as ge
+
+# 데이터 검증 규칙
+expectation_suite = {
+    "expectation_suite_name": "customer_suite",
+    "expectations": [
+        {
+            "expectation_type": "expect_column_values_to_not_be_null",
+            "kwargs": {"column": "customer_id"}
+        },
+        {
+            "expectation_type": "expect_column_values_to_match_regex",
+            "kwargs": {"column": "email", "regex": r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"}
+        }
+    ]
+}
+```
+
+### 3. 모니터링 구현
+**Quality Monitoring**
+
+- **실시간 모니터링**: 스트리밍 데이터 품질 체크
+- **배치 검증**: 정기적인 품질 검사
+- **알림 시스템**: 품질 이슈 발생 시 즉시 알림
+
+```python
+# Airflow 품질 모니터링 예제
+from airflow import DAG
+from airflow.operators.python import PythonOperator
+from great_expectations_provider.operators.great_expectations import GreatExpectationsOperator
+
+def data_quality_check():
+    # 데이터 품질 체크 로직
+    pass
+
+quality_check_task = GreatExpectationsOperator(
+    task_id="quality_check",
+    expectation_suite_name="customer_suite",
+    batch_request_file="batch_request.json",
+    dag=dag
+)
+```
+
+### 4. 품질 개선
+**Quality Improvement**
+
+- **데이터 정제**: 이상치 제거, 누락값 처리
+- **표준화**: 데이터 형식 통일
+- **검증**: 비즈니스 룰 적용
+
+**개선 전략:**
+- 소스 시스템에서 품질 개선
+- 파이프라인 내 자동 정제
+- 사용자 피드백 반영
+- 지속적인 품질 모니터링
+:::
+
+## 데이터 품질 도구 {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**오픈소스 도구:**
+
+- **Great Expectations**: 데이터 검증 프레임워크
+- **Apache Griffin**: 데이터 품질 플랫폼
+- **Deequ**: Amazon의 데이터 품질 라이브러리
+- **Monte Carlo**: 데이터 관측성 플랫폼
+
+**상용 도구:**
+
+- **Informatica**: 데이터 품질 관리 스위트
+- **Talend**: 데이터 통합 및 품질 관리
+- **IBM Watson**: AI 기반 데이터 품질 관리
+- **Dataiku**: 데이터 품질 및 거버넌스
+:::
+
+::: {.column width="50%"}
+```python
+# 데이터 품질 메트릭 계산
+def calculate_quality_metrics(df):
+    metrics = {}
+    
+    # 완전성 (Completeness)
+    metrics['completeness'] = (
+        df.count() / len(df) * 100
+    ).mean()
+    
+    # 유일성 (Uniqueness)
+    metrics['uniqueness'] = (
+        df.nunique() / len(df) * 100
+    ).mean()
+    
+    # 유효성 (Validity)
+    valid_emails = df['email'].str.contains(
+        r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
+        na=False
+    ).sum()
+    metrics['email_validity'] = (
+        valid_emails / len(df) * 100
+    )
+    
+    return metrics
+```
+:::
+:::
+
+# 미래 전망 및 트렌드
+
+## 데이터 엔지니어링 트렌드 {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**1. 실시간 데이터 처리 확산**
+
+- 스트리밍 우선 아키텍처
+- 마이크로초 단위 지연시간
+- 이벤트 기반 시스템
+
+**2. 클라우드 네이티브 전환**
+
+- 서버리스 컴퓨팅
+- 완전 관리형 서비스
+- 자동 확장 및 복구
+
+**3. 데이터 메시 아키텍처**
+
+- 분산 데이터 소유권
+- 도메인 중심 설계
+- 자율적 데이터 팀
+:::
+
+::: {.column width="50%"}
+**4. AI/ML 통합 강화**
+
+- MLOps 파이프라인
+- 자동 특성 엔지니어링
+- 모델 드리프트 탐지
+
+**5. 데이터 관측성 (Observability)**
+
+- 데이터 계보 추적
+- 실시간 품질 모니터링
+- 이상 탐지 자동화
+
+**6. 프라이버시 보호 기술**
+
+- 동형 암호화
+- 차등 프라이버시
+- 연합 학습
+:::
+:::
+
+## 새로운 기술 동향 {.smaller}
+
+::: {.panel-tabset}
+### 실시간 분석
+**Real-time Analytics**
+
+- **Stream Processing**: Kafka Streams, Flink, Pulsar
+- **Time-series DB**: InfluxDB, TimescaleDB, QuestDB
+- **Real-time OLAP**: Apache Druid, ClickHouse
+- **Event Streaming**: Apache Kafka, Amazon Kinesis
+
+**사용 사례:**
+- 실시간 대시보드
+- 이상 탐지 시스템
+- 개인화 추천
+- 실시간 A/B 테스트
+
+### 데이터 레이크하우스
+**Data Lakehouse Architecture**
+
+- **Open Table Formats**: Delta Lake, Iceberg, Hudi
+- **Query Engines**: Spark SQL, Presto, Trino
+- **Metadata Management**: Unity Catalog, Hive Metastore
+- **ACID Transactions**: 데이터 일관성 보장
+
+**장점:**
+- 구조화/비구조화 데이터 통합
+- 실시간 배치 처리 지원
+- 확장 가능한 아키텍처
+- 비용 효율성
+
+### 서버리스 컴퓨팅
+**Serverless Computing**
+
+- **Functions**: AWS Lambda, Google Cloud Functions
+- **Containers**: AWS Fargate, Google Cloud Run
+- **Databases**: Aurora Serverless, BigQuery
+- **Analytics**: Athena, BigQuery, Synapse
+
+**특징:**
+- 자동 확장
+- 사용량 기반 과금
+- 운영 부담 최소화
+- 빠른 개발 속도
+
+### 데이터 관측성
+**Data Observability**
+
+- **Lineage Tracking**: 데이터 흐름 추적
+- **Quality Monitoring**: 실시간 품질 감시
+- **Anomaly Detection**: 이상 패턴 자동 탐지
+- **Impact Analysis**: 변경 영향 분석
+
+**플랫폼:**
+- Monte Carlo
+- DataDog
+- Bigeye
+- Anomalo
+:::
+
+## 미래 데이터 엔지니어 역량 {.smaller}
+
+::: {.columns}
+::: {.column width="60%"}
+**기술적 역량:**
+
+- **클라우드 플랫폼 전문성**: AWS, GCP, Azure
+- **실시간 처리 기술**: Kafka, Flink, Pulsar
+- **컨테이너 기술**: Docker, Kubernetes
+- **IaC (Infrastructure as Code)**: Terraform, CloudFormation
+- **모니터링 및 관측성**: Prometheus, Grafana, DataDog
+
+**비즈니스 역량:**
+
+- **도메인 지식**: 산업별 데이터 이해
+- **데이터 거버넌스**: 규제 준수 및 정책 수립
+- **비즈니스 파트너십**: 이해관계자와의 협업
+- **프로젝트 관리**: 아자일, 스크럼 방법론
+- **커뮤니케이션**: 기술-비즈니스 번역 능력
+:::
+
+::: {.column width="40%"}
+```{mermaid}
+graph TD
+    A[미래 데이터 엔지니어] --> B[기술 역량]
+    A --> C[비즈니스 역량]
+    A --> D[소프트 스킬]
+    
+    B --> E[클라우드 네이티브]
+    B --> F[실시간 처리]
+    B --> G[MLOps]
+    
+    C --> H[도메인 지식]
+    C --> I[데이터 거버넌스]
+    C --> J[비즈니스 이해]
+    
+    D --> K[문제 해결]
+    D --> L[협업]
+    D --> M[지속 학습]
+    
+    style A fill:#fff3e0
+    style B fill:#e8f5e8
+    style C fill:#e3f2fd
+```
+:::
+:::
+
+## 데이터 엔지니어링 학습 로드맵 {.smaller}
+
+::: {.incremental}
+**1단계: 기초 (3-6개월)**
+
+- 프로그래밍 언어: Python, SQL
+- 데이터베이스: PostgreSQL, MongoDB
+- 리눅스 기본 명령어
+- Git 버전 관리
+
+**2단계: 중급 (6-12개월)**
+
+- 빅데이터 도구: Spark, Kafka
+- 클라우드 플랫폼: AWS/GCP 기초
+- 워크플로우 관리: Airflow
+- 컨테이너화: Docker
+
+**3단계: 고급 (12-24개월)**
+
+- 분산 시스템 아키텍처
+- 스트리밍 처리: Flink, Kafka Streams
+- 인프라 자동화: Terraform, Kubernetes
+- 데이터 거버넌스 및 보안
+
+**4단계: 전문가 (24개월+)**
+
+- 시스템 설계 및 아키텍처
+- 성능 최적화 및 튜닝
+- 팀 리더십 및 멘토링
+- 비즈니스 전략 수립
+:::
+
+## 마무리 {.smaller}
+
+::: {.columns}
+::: {.column width="60%"}
+**데이터 엔지니어링의 핵심 가치:**
+
+- 데이터 기반 의사결정의 **기반 인프라** 제공
+- 비즈니스 요구사항을 **기술적 솔루션**으로 구현
+- 확장 가능하고 신뢰할 수 있는 **데이터 파이프라인** 구축
+- 데이터 품질과 거버넌스를 통한 **신뢰성** 확보
+
+**성공적인 데이터 엔지니어링을 위한 핵심:**
+
+- **비즈니스 이해**: 기술보다 문제 해결이 우선
+- **점진적 개선**: 완벽한 시스템보다 작동하는 시스템
+- **모니터링 우선**: 문제를 빨리 발견하고 대응
+- **협업의 중요성**: 다양한 팀과의 소통과 협력
+- **지속적 학습**: 빠르게 변화하는 기술 환경 적응
+:::
+
+::: {.column width="40%"}
+::: {.callout-tip}
+## 데이터 엔지니어링 성공 전략
+
+1. **문제 중심 사고**: 기술이 아닌 비즈니스 문제 해결
+2. **단순함 추구**: 복잡한 아키텍처보다 이해하기 쉬운 설계
+3. **자동화 우선**: 반복 작업은 자동화로 효율성 향상
+4. **문서화 습관**: 시스템 이해와 유지보수를 위한 문서 작성
+5. **실험 정신**: 새로운 기술을 적극적으로 학습하고 적용
+:::
+:::
+:::
+
+---
+
+## 감사합니다 {.center}
+
+::: {.center}
+**질문과 토론**
+
+<i class="fas fa-envelope"></i> seonghak.hong@email.com  
+<i class="fas fa-globe"></i> https://aidenhong.com  
+<i class="fab fa-github"></i> https://github.com/euriion
+
+*"데이터 엔지니어링은 기술이 아닌 비즈니스 문제를 해결하는 것입니다.  
+올바른 데이터를 올바른 시간에 올바른 사람에게 전달하는 것이 우리의 사명입니다."*
+:::
