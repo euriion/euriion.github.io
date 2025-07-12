@@ -191,6 +191,7 @@
                     <li><a href="#profile" class="block py-2 px-3 rounded hover:bg-gray-800 transition-colors text-xs">프로필</a></li>
                     <li><a href="#achievements" class="block py-2 px-3 rounded hover:bg-gray-800 transition-colors text-xs">활동</a></li>
                     <li><a href="#publications" class="block py-2 px-3 rounded hover:bg-gray-800 transition-colors text-xs">발표 자료</a></li>
+                    <li><a href="#books" class="block py-2 px-3 rounded hover:bg-gray-800 transition-colors text-xs">저서</a></li>
                     <li><a href="#tools" class="block py-2 px-3 rounded hover:bg-gray-800 transition-colors text-xs">도구 모음</a></li>
                     <li><a href="#contact" class="block py-2 px-3 rounded hover:bg-gray-800 transition-colors text-xs">소셜네트워크 & 이메일</a></li>
                 </ul>
@@ -406,278 +407,288 @@
         <section id="publications" class="py-12">
             <div class="container mx-auto px-6">
                 <div class="fade-in">
-                    <h2 class="text-2xl font-bold mb-8 text-center">발표 자료와 저서</h2>
+                    <h2 class="text-2xl font-bold mb-8 text-center">발표 자료</h2>
                     
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-                        <div class="bg-white border-2 border-black hover-lift">
-                            <a href="presentations/data-visualization-with-r/data-visualization-with-r.html" target="_blank" class="block">
-                                <div class="bg-black text-white p-4 text-center">
-                                    <i class="fas fa-palette text-2xl mb-2"></i>
-                                    <h3 class="text-sm font-bold">R을 활용한 실전 데이터 시각화</h3>
-                                </div>
-                                <div class="p-4">
-                                    <div class="text-xs text-gray-600 mb-2">2024-08-15</div>
-                                    <p class="text-xs text-gray-700 mb-3 leading-relaxed">
-                                        R과 ggplot2를 중심으로, 실무에 바로 적용할 수 있는 데이터 시각화 기법과 그래픽스 문법의 원리를 소개합니다.
-                                    </p>
-                                    <div class="inline-flex items-center gap-1 text-black font-medium hover:underline text-xs">
-                                        <i class="fas fa-external-link-alt"></i>
-                                        발표 자료 보기
+                    <div class="bg-white border border-gray-200 rounded-lg overflow-hidden">
+                        <div class="space-y-0 divide-y divide-gray-200">
+                            <div class="p-4 hover:bg-gray-50 transition-colors">
+                                <div class="flex items-start gap-3">
+                                    <i class="fas fa-palette text-gray-600 text-sm mt-1"></i>
+                                    <div class="flex-1">
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <a href="presentations/data-visualization-with-r/data-visualization-with-r.html" 
+                                               target="_blank" 
+                                               class="font-bold text-sm text-black hover:text-gray-700 hover:underline">
+                                                R을 활용한 실전 데이터 시각화
+                                            </a>
+                                            <span class="text-xs text-gray-500">2024-08-15</span>
+                                        </div>
+                                        <p class="text-xs text-gray-600 leading-relaxed">
+                                            R과 ggplot2를 중심으로, 실무에 바로 적용할 수 있는 데이터 시각화 기법과 그래픽스 문법의 원리를 소개합니다.
+                                        </p>
                                     </div>
                                 </div>
-                            </a>
-                        </div>
+                            </div>
 
-                        <div class="bg-white border-2 border-black hover-lift">
-                            <a href="presentations/data-literacy/data-literacy.html" target="_blank" class="block">
-                                <div class="bg-black text-white p-4 text-center">
-                                    <i class="fas fa-book-reader text-2xl mb-2"></i>
-                                    <h3 class="text-sm font-bold">데이터 문해력</h3>
-                                </div>
-                                <div class="p-4">
-                                    <div class="text-xs text-gray-600 mb-2">2024-07-26</div>
-                                    <p class="text-xs text-gray-700 mb-3 leading-relaxed">
-                                        데이터를 읽고, 이해하고, 분석하여 합리적인 의사결정을 내리는 데이터 문해력의 중요성과 핵심 요소를 소개합니다.
-                                    </p>
-                                    <div class="inline-flex items-center gap-1 text-black font-medium hover:underline text-xs">
-                                        <i class="fas fa-external-link-alt"></i>
-                                        발표 자료 보기
+                            <div class="p-4 hover:bg-gray-50 transition-colors">
+                                <div class="flex items-start gap-3">
+                                    <i class="fas fa-book-reader text-gray-600 text-sm mt-1"></i>
+                                    <div class="flex-1">
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <a href="presentations/data-literacy/data-literacy.html" 
+                                               target="_blank" 
+                                               class="font-bold text-sm text-black hover:text-gray-700 hover:underline">
+                                                데이터 문해력
+                                            </a>
+                                            <span class="text-xs text-gray-500">2024-07-26</span>
+                                        </div>
+                                        <p class="text-xs text-gray-600 leading-relaxed">
+                                            데이터를 읽고, 이해하고, 분석하여 합리적인 의사결정을 내리는 데이터 문해력의 중요성과 핵심 요소를 소개합니다.
+                                        </p>
                                     </div>
                                 </div>
-                            </a>
-                        </div>
-                        
-                        <div class="bg-white border-2 border-black hover-lift">
-                            <a href="presentations/korean-embedding-with-r/korean-embedding-with-r.html" target="_blank" class="block">
-                                <div class="bg-black text-white p-4 text-center">
-                                    <i class="fas fa-language text-2xl mb-2"></i>
-                                    <h3 class="text-sm font-bold">한국어 임베딩과 R</h3>
-                                </div>
-                                <div class="p-4">
-                                    <div class="text-xs text-gray-600 mb-2">2022-09-24</div>
-                                    <p class="text-xs text-gray-700 mb-3 leading-relaxed">
-                                        한국어 텍스트 분석을 위한 Word2Vec, FastText, BERT 등 다양한 임베딩 기법을 R로 구현하는 방법을 소개
-                                    </p>
-                                    <div class="inline-flex items-center gap-1 text-black font-medium hover:underline text-xs">
-                                        <i class="fas fa-external-link-alt"></i>
-                                        발표 자료 보기
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        
-                        <div class="bg-white border-2 border-black hover-lift">
-                            <a href="presentations/setup-github-for-making-a-static-website/setup-github-for-making-a-static-website.html" target="_blank" class="block">
-                                <div class="bg-black text-white p-4 text-center">
-                                    <i class="fab fa-github text-2xl mb-2"></i>
-                                    <h3 class="text-sm font-bold">GitHub에 도메인 연결해서 웹사이트 만들기</h3>
-                                </div>
-                                <div class="p-4">
-                                    <div class="text-xs text-gray-600 mb-2">2021-07-02</div>
-                                    <p class="text-xs text-gray-700 mb-3 leading-relaxed">
-                                        GitHub Pages를 사용해 정적 웹사이트를 만들고 커스텀 도메인을 연결하는 전체 과정을 단계별로 설명
-                                    </p>
-                                    <div class="inline-flex items-center gap-1 text-black font-medium hover:underline text-xs">
-                                        <i class="fas fa-external-link-alt"></i>
-                                        발표 자료 보기
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        
-                        <div class="bg-white border-2 border-black hover-lift">
-                            <a href="presentations/shiny-introduction/shiny-introduction.html" target="_blank" class="block">
-                                <div class="bg-black text-white p-4 text-center">
-                                    <i class="fas fa-chart-line text-2xl mb-2"></i>
-                                    <h3 class="text-sm font-bold">Shiny 소개</h3>
-                                </div>
-                                <div class="p-4">
-                                    <div class="text-xs text-gray-600 mb-2">2021-08-11</div>
-                                    <p class="text-xs text-gray-700 mb-3 leading-relaxed">
-                                        R Shiny를 이용한 인터랙티브 웹 애플리케이션 개발 기초부터 실무 중심의 활용법 설명
-                                    </p>
-                                    <div class="inline-flex items-center gap-1 text-black font-medium hover:underline text-xs">
-                                        <i class="fas fa-external-link-alt"></i>
-                                        발표 자료 보기
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
+                            </div>
 
-                        <div class="bg-white border-2 border-black hover-lift">
-                            <a href="presentations/making-slides-with-quarto/making-slides-with-quarto.html" target="_blank" class="block">
-                                <div class="bg-black text-white p-4 text-center">
-                                    <i class="fas fa-file-powerpoint text-2xl mb-2"></i>
-                                    <h3 class="text-sm font-bold">Quarto로 슬라이드 만들기</h3>
-                                </div>
-                                <div class="p-4">
-                                    <div class="text-xs text-gray-600 mb-2">2025-07-10</div>
-                                    <p class="text-xs text-gray-700 mb-3 leading-relaxed">
-                                        <i class="fas fa-magic"></i> Quarto를 활용한 프레젠테이션 슬라이드 제작 방법과 고급 기능들을 소개
-                                    </p>
-                                    <div class="inline-flex items-center gap-1 text-black font-medium hover:underline text-xs">
-                                        <i class="fas fa-external-link-alt"></i>
-                                        발표 자료 보기
+                            <div class="p-4 hover:bg-gray-50 transition-colors">
+                                <div class="flex items-start gap-3">
+                                    <i class="fas fa-shopping-cart text-gray-600 text-sm mt-1"></i>
+                                    <div class="flex-1">
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <a href="presentations/ecommerce-recommendation-system/ecommerce-recommendation-system.html" 
+                                               target="_blank" 
+                                               class="font-bold text-sm text-black hover:text-gray-700 hover:underline">
+                                                E-commerce 상품추천 시스템
+                                            </a>
+                                            <span class="text-xs text-gray-500">2024-12-21</span>
+                                        </div>
+                                        <p class="text-xs text-gray-600 leading-relaxed">
+                                            개인화된 쇼핑 경험을 위한 AI 기반 추천 시스템 구축 방법과 실무 적용 사례를 소개합니다.
+                                        </p>
                                     </div>
                                 </div>
-                            </a>
-                        </div>
+                            </div>
 
-                        <div class="bg-white border-2 border-black hover-lift">
-                            <a href="presentations/ecommerce-recommendation-system/ecommerce-recommendation-system.html" target="_blank" class="block">
-                                <div class="bg-black text-white p-4 text-center">
-                                    <i class="fas fa-shopping-cart text-2xl mb-2"></i>
-                                    <h3 class="text-sm font-bold">E-commerce 상품추천 시스템</h3>
-                                </div>
-                                <div class="p-4">
-                                    <div class="text-xs text-gray-600 mb-2">2024-12-21</div>
-                                    <p class="text-xs text-gray-700 mb-3 leading-relaxed">
-                                        개인화된 쇼핑 경험을 위한 AI 기반 추천 시스템 구축 방법과 실무 적용 사례를 소개합니다.
-                                    </p>
-                                    <div class="inline-flex items-center gap-1 text-black font-medium hover:underline text-xs">
-                                        <i class="fas fa-external-link-alt"></i>
-                                        발표 자료 보기
+                            <div class="p-4 hover:bg-gray-50 transition-colors">
+                                <div class="flex items-start gap-3">
+                                    <i class="fas fa-bullhorn text-gray-600 text-sm mt-1"></i>
+                                    <div class="flex-1">
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <a href="presentations/ad-tech-fundamentals/ad-tech-fundamentals.html" 
+                                               target="_blank" 
+                                               class="font-bold text-sm text-black hover:text-gray-700 hover:underline">
+                                                애드테크 기초와 실무
+                                            </a>
+                                            <span class="text-xs text-gray-500">2024-12-21</span>
+                                        </div>
+                                        <p class="text-xs text-gray-600 leading-relaxed">
+                                            디지털 광고 기술의 이해와 활용, 프로그래매틱 광고, 개인정보보호 시대의 마케팅 전략
+                                        </p>
                                     </div>
                                 </div>
-                            </a>
-                        </div>
+                            </div>
 
-                        <div class="bg-white border-2 border-black hover-lift">
-                            <a href="presentations/ad-tech-fundamentals/ad-tech-fundamentals.html" target="_blank" class="block">
-                                <div class="bg-black text-white p-4 text-center">
-                                    <i class="fas fa-bullhorn text-2xl mb-2"></i>
-                                    <h3 class="text-sm font-bold">애드테크 기초와 실무</h3>
-                                </div>
-                                <div class="p-4">
-                                    <div class="text-xs text-gray-600 mb-2">2024-12-21</div>
-                                    <p class="text-xs text-gray-700 mb-3 leading-relaxed">
-                                        디지털 광고 기술의 이해와 활용, 프로그래매틱 광고, 개인정보보호 시대의 마케팅 전략
-                                    </p>
-                                    <div class="inline-flex items-center gap-1 text-black font-medium hover:underline text-xs">
-                                        <i class="fas fa-external-link-alt"></i>
-                                        발표 자료 보기
+                            <div class="p-4 hover:bg-gray-50 transition-colors">
+                                <div class="flex items-start gap-3">
+                                    <i class="fas fa-file-powerpoint text-gray-600 text-sm mt-1"></i>
+                                    <div class="flex-1">
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <a href="presentations/making-slides-with-quarto/making-slides-with-quarto.html" 
+                                               target="_blank" 
+                                               class="font-bold text-sm text-black hover:text-gray-700 hover:underline">
+                                                Quarto로 슬라이드 만들기
+                                            </a>
+                                            <span class="text-xs text-gray-500">2025-07-10</span>
+                                        </div>
+                                        <p class="text-xs text-gray-600 leading-relaxed">
+                                            Quarto를 활용한 프레젠테이션 슬라이드 제작 방법과 고급 기능들을 소개
+                                        </p>
                                     </div>
                                 </div>
-                            </a>
-                        </div>
+                            </div>
 
-                        <div class="bg-white border-2 border-black hover-lift">
-                            <a href="presentations/iot-bigdata-with-r/iot-bigdata-with-r.html" target="_blank" class="block">
-                                <div class="bg-black text-white p-4 text-center">
-                                    <i class="fas fa-wifi text-2xl mb-2"></i>
-                                    <h3 class="text-sm font-bold">IoT-BigData with R</h3>
-                                </div>
-                                <div class="p-4">
-                                    <div class="text-xs text-gray-600 mb-2">2025-01-11</div>
-                                    <p class="text-xs text-gray-700 mb-3 leading-relaxed">
-                                        R을 활용한 IoT 빅데이터 분석, 실시간 데이터 처리, 시각화 및 대시보드 구축 방법을 소개합니다.
-                                    </p>
-                                    <div class="inline-flex items-center gap-1 text-black font-medium hover:underline text-xs">
-                                        <i class="fas fa-external-link-alt"></i>
-                                        발표 자료 보기
+                            <div class="p-4 hover:bg-gray-50 transition-colors">
+                                <div class="flex items-start gap-3">
+                                    <i class="fas fa-wifi text-gray-600 text-sm mt-1"></i>
+                                    <div class="flex-1">
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <a href="presentations/iot-bigdata-with-r/iot-bigdata-with-r.html" 
+                                               target="_blank" 
+                                               class="font-bold text-sm text-black hover:text-gray-700 hover:underline">
+                                                IoT-BigData with R
+                                            </a>
+                                            <span class="text-xs text-gray-500">2025-01-11</span>
+                                        </div>
+                                        <p class="text-xs text-gray-600 leading-relaxed">
+                                            R을 활용한 IoT 빅데이터 분석, 실시간 데이터 처리, 시각화 및 대시보드 구축 방법을 소개합니다.
+                                        </p>
                                     </div>
                                 </div>
-                            </a>
-                        </div>
+                            </div>
 
-                        <div class="bg-white border-2 border-black hover-lift">
-                            <a href="presentations/reproducible-research-with-jekyll/reproducible-research-with-jekyll.html" target="_blank" class="block">
-                                <div class="bg-black text-white p-4 text-center">
-                                    <i class="fab fa-github text-2xl mb-2"></i>
-                                    <h3 class="text-sm font-bold">Reproducible Research with Jekyll</h3>
-                                </div>
-                                <div class="p-4">
-                                    <div class="text-xs text-gray-600 mb-2">2025-01-16</div>
-                                    <p class="text-xs text-gray-700 mb-3 leading-relaxed">
-                                        Jekyll을 활용한 재현 가능한 연구 워크플로우 구축, GitHub Pages를 통한 연구 결과 공유 및 협업 방법을 소개합니다.
-                                    </p>
-                                    <div class="inline-flex items-center gap-1 text-black font-medium hover:underline text-xs">
-                                        <i class="fas fa-external-link-alt"></i>
-                                        발표 자료 보기
+                            <div class="p-4 hover:bg-gray-50 transition-colors">
+                                <div class="flex items-start gap-3">
+                                    <i class="fab fa-github text-gray-600 text-sm mt-1"></i>
+                                    <div class="flex-1">
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <a href="presentations/reproducible-research-with-jekyll/reproducible-research-with-jekyll.html" 
+                                               target="_blank" 
+                                               class="font-bold text-sm text-black hover:text-gray-700 hover:underline">
+                                                Reproducible Research with Jekyll
+                                            </a>
+                                            <span class="text-xs text-gray-500">2025-01-16</span>
+                                        </div>
+                                        <p class="text-xs text-gray-600 leading-relaxed">
+                                            Jekyll을 활용한 재현 가능한 연구 워크플로우 구축, GitHub Pages를 통한 연구 결과 공유 및 협업 방법을 소개합니다.
+                                        </p>
                                     </div>
                                 </div>
-                            </a>
-                        </div>
+                            </div>
 
-                        <div class="bg-white border-2 border-black hover-lift">
-                            <a href="presentations/anomaly-detection-lof/anomaly-detection-lof.html" target="_blank" class="block">
-                                <div class="bg-black text-white p-4 text-center">
-                                    <i class="fas fa-search text-2xl mb-2"></i>
-                                    <h3 class="text-sm font-bold">Anomaly Detection and LOF</h3>
-                                </div>
-                                <div class="p-4">
-                                    <div class="text-xs text-gray-600 mb-2">2015-06-05</div>
-                                    <p class="text-xs text-gray-700 mb-3 leading-relaxed">
-                                        Local Outlier Factor를 이용한 이상 탐지 기법의 원리와 실제 적용 사례를 소개합니다.
-                                    </p>
-                                    <div class="inline-flex items-center gap-1 text-black font-medium hover:underline text-xs">
-                                        <i class="fas fa-external-link-alt"></i>
-                                        발표 자료 보기
+                            <div class="p-4 hover:bg-gray-50 transition-colors">
+                                <div class="flex items-start gap-3">
+                                    <i class="fas fa-map-marked-alt text-gray-600 text-sm mt-1"></i>
+                                    <div class="flex-1">
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <a href="presentations/kriging-interpolation/kriging-interpolation.html" 
+                                               target="_blank" 
+                                               class="font-bold text-sm text-black hover:text-gray-700 hover:underline">
+                                                크리깅(Kriging) 보간법
+                                            </a>
+                                            <span class="text-xs text-gray-500">2025-01-16</span>
+                                        </div>
+                                        <p class="text-xs text-gray-600 leading-relaxed">
+                                            공간 데이터 분석을 위한 지구통계학적 접근법, 크리깅 보간법의 원리와 실무 적용 방법을 소개합니다.
+                                        </p>
                                     </div>
                                 </div>
-                            </a>
-                        </div>
+                            </div>
 
-                        <div class="bg-white border-2 border-black hover-lift">
-                            <a href="presentations/kriging-interpolation/kriging-interpolation.html" target="_blank" class="block">
-                                <div class="bg-black text-white p-4 text-center">
-                                    <i class="fas fa-map-marked-alt text-2xl mb-2"></i>
-                                    <h3 class="text-sm font-bold">크리깅(Kriging) 보간법</h3>
-                                </div>
-                                <div class="p-4">
-                                    <div class="text-xs text-gray-600 mb-2">2025-01-16</div>
-                                    <p class="text-xs text-gray-700 mb-3 leading-relaxed">
-                                        공간 데이터 분석을 위한 지구통계학적 접근법, 크리깅 보간법의 원리와 실무 적용 방법을 소개합니다.
-                                    </p>
-                                    <div class="inline-flex items-center gap-1 text-black font-medium hover:underline text-xs">
-                                        <i class="fas fa-external-link-alt"></i>
-                                        발표 자료 보기
+                            <div class="p-4 hover:bg-gray-50 transition-colors">
+                                <div class="flex items-start gap-3">
+                                    <i class="fas fa-file-alt text-gray-600 text-sm mt-1"></i>
+                                    <div class="flex-1">
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <a href="presentations/text-mining-introduction/text-mining-introduction.html" 
+                                               target="_blank" 
+                                               class="font-bold text-sm text-black hover:text-gray-700 hover:underline">
+                                                텍스트 마이닝 소개
+                                            </a>
+                                            <span class="text-xs text-gray-500">2025-01-16</span>
+                                        </div>
+                                        <p class="text-xs text-gray-600 leading-relaxed">
+                                            비정형 텍스트 데이터에서 가치 있는 정보를 추출하는 텍스트 마이닝의 기본 개념부터 실무 활용까지 포괄적으로 소개합니다.
+                                        </p>
                                     </div>
                                 </div>
-                            </a>
-                        </div>
+                            </div>
 
-                        <div class="bg-white border-2 border-black hover-lift">
-                            <a href="presentations/text-mining-introduction/text-mining-introduction.html" target="_blank" class="block">
-                                <div class="bg-black text-white p-4 text-center">
-                                    <i class="fas fa-file-alt text-2xl mb-2"></i>
-                                    <h3 class="text-sm font-bold">텍스트 마이닝 소개</h3>
-                                </div>
-                                <div class="p-4">
-                                    <div class="text-xs text-gray-600 mb-2">2025-01-16</div>
-                                    <p class="text-xs text-gray-700 mb-3 leading-relaxed">
-                                        비정형 텍스트 데이터에서 가치 있는 정보를 추출하는 텍스트 마이닝의 기본 개념부터 실무 활용까지 포괄적으로 소개합니다.
-                                    </p>
-                                    <div class="inline-flex items-center gap-1 text-black font-medium hover:underline text-xs">
-                                        <i class="fas fa-external-link-alt"></i>
-                                        발표 자료 보기
+                            <div class="p-4 hover:bg-gray-50 transition-colors">
+                                <div class="flex items-start gap-3">
+                                    <i class="fas fa-vector-square text-gray-600 text-sm mt-1"></i>
+                                    <div class="flex-1">
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <a href="presentations/cosine-similarity/cosine-similarity.html" 
+                                               target="_blank" 
+                                               class="font-bold text-sm text-black hover:text-gray-700 hover:underline">
+                                                코사인 유사도 (Cosine Similarity)
+                                            </a>
+                                            <span class="text-xs text-gray-500">2025-01-16</span>
+                                        </div>
+                                        <p class="text-xs text-gray-600 leading-relaxed">
+                                            벡터 간 유사성 측정의 핵심 개념, 코사인 유사도의 원리와 텍스트 마이닝, 추천 시스템 등 실무 활용 방법을 소개합니다.
+                                        </p>
                                     </div>
                                 </div>
-                            </a>
-                        </div>
+                            </div>
 
-                        <div class="bg-white border-2 border-black hover-lift">
-                            <a href="presentations/cosine-similarity/cosine-similarity.html" target="_blank" class="block">
-                                <div class="bg-black text-white p-4 text-center">
-                                    <i class="fas fa-vector-square text-2xl mb-2"></i>
-                                    <h3 class="text-sm font-bold">코사인 유사도 (Cosine Similarity)</h3>
-                                </div>
-                                <div class="p-4">
-                                    <div class="text-xs text-gray-600 mb-2">2025-01-16</div>
-                                    <p class="text-xs text-gray-700 mb-3 leading-relaxed">
-                                        벡터 간 유사성 측정의 핵심 개념, 코사인 유사도의 원리와 텍스트 마이닝, 추천 시스템 등 실무 활용 방법을 소개합니다.
-                                    </p>
-                                    <div class="inline-flex items-center gap-1 text-black font-medium hover:underline text-xs">
-                                        <i class="fas fa-external-link-alt"></i>
-                                        발표 자료 보기
+                            <div class="p-4 hover:bg-gray-50 transition-colors">
+                                <div class="flex items-start gap-3">
+                                    <i class="fas fa-language text-gray-600 text-sm mt-1"></i>
+                                    <div class="flex-1">
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <a href="presentations/korean-embedding-with-r/korean-embedding-with-r.html" 
+                                               target="_blank" 
+                                               class="font-bold text-sm text-black hover:text-gray-700 hover:underline">
+                                                한국어 임베딩과 R
+                                            </a>
+                                            <span class="text-xs text-gray-500">2022-09-24</span>
+                                        </div>
+                                        <p class="text-xs text-gray-600 leading-relaxed">
+                                            한국어 텍스트 분석을 위한 Word2Vec, FastText, BERT 등 다양한 임베딩 기법을 R로 구현하는 방법을 소개
+                                        </p>
                                     </div>
                                 </div>
-                            </a>
+                            </div>
+
+                            <div class="p-4 hover:bg-gray-50 transition-colors">
+                                <div class="flex items-start gap-3">
+                                    <i class="fas fa-chart-line text-gray-600 text-sm mt-1"></i>
+                                    <div class="flex-1">
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <a href="presentations/shiny-introduction/shiny-introduction.html" 
+                                               target="_blank" 
+                                               class="font-bold text-sm text-black hover:text-gray-700 hover:underline">
+                                                Shiny 소개
+                                            </a>
+                                            <span class="text-xs text-gray-500">2021-08-11</span>
+                                        </div>
+                                        <p class="text-xs text-gray-600 leading-relaxed">
+                                            R Shiny를 이용한 인터랙티브 웹 애플리케이션 개발 기초부터 실무 중심의 활용법 설명
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="p-4 hover:bg-gray-50 transition-colors">
+                                <div class="flex items-start gap-3">
+                                    <i class="fab fa-github text-gray-600 text-sm mt-1"></i>
+                                    <div class="flex-1">
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <a href="presentations/setup-github-for-making-a-static-website/setup-github-for-making-a-static-website.html" 
+                                               target="_blank" 
+                                               class="font-bold text-sm text-black hover:text-gray-700 hover:underline">
+                                                GitHub에 도메인 연결해서 웹사이트 만들기
+                                            </a>
+                                            <span class="text-xs text-gray-500">2021-07-02</span>
+                                        </div>
+                                        <p class="text-xs text-gray-600 leading-relaxed">
+                                            GitHub Pages를 사용해 정적 웹사이트를 만들고 커스텀 도메인을 연결하는 전체 과정을 단계별로 설명
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="p-4 hover:bg-gray-50 transition-colors">
+                                <div class="flex items-start gap-3">
+                                    <i class="fas fa-search text-gray-600 text-sm mt-1"></i>
+                                    <div class="flex-1">
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <a href="presentations/anomaly-detection-lof/anomaly-detection-lof.html" 
+                                               target="_blank" 
+                                               class="font-bold text-sm text-black hover:text-gray-700 hover:underline">
+                                                Anomaly Detection and LOF
+                                            </a>
+                                            <span class="text-xs text-gray-500">2015-06-05</span>
+                                        </div>
+                                        <p class="text-xs text-gray-600 leading-relaxed">
+                                            Local Outlier Factor를 이용한 이상 탐지 기법의 원리와 실제 적용 사례를 소개합니다.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Books Section -->
+        <section id="books" class="py-12 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="fade-in">
+                    <h2 class="text-2xl font-bold mb-8 text-center">저서</h2>
                     
-                    <!-- Book Section -->
-                    <div class="bg-gray-50 p-6 border-l-4 border-black hover-lift">
+                    <div class="bg-white p-6 border-l-4 border-black hover-lift">
                         <div class="flex items-start gap-4">
                             <div class="w-10 h-10 bg-black rounded-full flex items-center justify-center flex-shrink-0">
                                 <i class="fas fa-book text-white text-sm"></i>
@@ -733,18 +744,18 @@
             <div class="container mx-auto px-6">
                 <div class="fade-in">
                     <div class="bg-black text-white p-8 text-center">
-                        <h2 class="text-2xl font-bold mb-4">소셜네트워크 & 이메일</h2>
+                        <h2 class="text-2xl font-bold mb-4">소셜네트워크, 이메일</h2>
                         <p class="text-sm mb-6 opacity-90">
-                            협업 제안, 기술 자문, 강연 요청 등 언제든지 연락해 주세요.
+                            기술 자문, 강연 요청, 협업, 제안 등 언제든지 연락해 주세요.
                         </p>
                         
                         <div class="flex flex-wrap justify-center gap-4">
                             <a href="mailto:euriion@gmail.com" 
                                class="flex items-center gap-2 px-4 py-2 border border-white rounded-full hover:bg-white hover:text-black transition-all duration-300 text-sm">
                                 <i class="fas fa-envelope"></i>
-                                <span>euriion@gmail.com</span>
+                                <span>aiden@r2bit.com</span>
                             </a>
-                            <a href="https://linkedin.com/in/euriion" 
+                            <a href="https://www.linkedin.com/in/seonghak-hong-5b751527/" 
                                target="_blank" 
                                class="flex items-center gap-2 px-4 py-2 border border-white rounded-full hover:bg-white hover:text-black transition-all duration-300 text-sm">
                                 <i class="fab fa-linkedin"></i>
