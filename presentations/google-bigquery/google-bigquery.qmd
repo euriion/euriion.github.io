@@ -26,7 +26,7 @@ editor: visual
 
 ## 목차 {.smaller}
 
-:::
+::: { }
 1. **BigQuery 개요**
 2. **주요 기능**
 3. **아키텍처**
@@ -64,7 +64,7 @@ flowchart TD
 
 ## BigQuery의 발전 과정 {.smaller}
 
-:::
+::: { }
 - <i class="fas fa-birthday-cake"></i> **2010년**: BigQuery 베타 출시
 - <i class="fas fa-globe"></i> **2011년**: 공식 런칭
 - <i class="fas fa-database"></i> **2016년**: 표준 SQL 지원
@@ -192,7 +192,7 @@ graph TD
 
 ## 비용 모델 {.smaller}
 
-:::
+::: { }
 - <i class="fas fa-hdd"></i> **스토리지 비용**: 저장된 데이터량 기반
 - <i class="fas fa-search"></i> **쿼리 비용**: 처리된 바이트 수 기반
 - <i class="fas fa-cogs"></i> **슬롯 모델**: 고정 용량 예약
@@ -267,7 +267,7 @@ PARTITION BY DATE(timestamp)
 
 ## 성능 최적화 {.smaller}
 
-:::
+::: { }
 - <i class="fas fa-columns"></i> **클러스터링 사용**: 자주 필터링되는 컬럼
 - <i class="fas fa-calendar"></i> **파티셔닝**: 시간 기반 데이터
 - <i class="fas fa-search"></i> **캐싱**: 반복 쿼리 활용
@@ -299,7 +299,7 @@ PARTITION BY DATE(timestamp)
 
 ## BigQuery 로드맵 {.smaller}
 
-:::
+::: { }
 - <i class="fas fa-brain"></i> **AI/ML 강화**: Gemini 통합
 - <i class="fas fa-globe"></i> **글로벌 확장**: 더 많은 리전
 - <i class="fas fa-lock"></i> **보안 강화**: 프라이빗 컴퓨팅

@@ -1536,6 +1536,133 @@ Seonghak Hong
 </div>
 </div>
 </div>
+</section></section>
+<section>
+<section id="ai를-활용한-보고서-오탈자-교정" class="title-slide slide level1 center">
+<h1>AI를 활용한 보고서 오탈자 교정</h1>
+
+</section>
+<section id="왜-ai-교정이-필요한가" class="slide level2 smaller">
+<h2>왜 AI 교정이 필요한가?</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>설문조사 리포트의 신뢰도</strong></p>
+<ul>
+<li><i class="fas fa-check-circle"></i> <strong>전문성</strong>: 오탈자는 보고서의 전문성을 저해하는 주요 요인입니다.</li>
+<li><i class="fas fa-book-reader"></i> <strong>가독성</strong>: 정확한 문장은 내용의 이해도를 높입니다.</li>
+<li><i class="fas fa-shield-alt"></i> <strong>신뢰도</strong>: 잘 다듬어진 문서는 결과의 신뢰도를 높입니다.</li>
+</ul>
+<p><strong>전통적인 교정의 어려움</strong></p>
+<ul>
+<li><strong>시간 소모</strong>: 수십, 수백 페이지의 문서를 사람이 직접 검토하는 데는 많은 시간이 걸립니다.</li>
+<li><strong>인적 오류</strong>: 반복적인 작업으로 인해 실수가 발생하기 쉽습니다.</li>
+<li><strong>비용 문제</strong>: 전문 교정/교열 서비스는 비용이 많이 듭니다.</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-13">graph LR
+    A[초안] --&gt; B{전통적 교정};
+    B --&gt; C[시간 소모];
+    B --&gt; D[인적 오류];
+    B --&gt; E[높은 비용];
+    C --&gt; F[품질 저하];
+    D --&gt; F;
+    E --&gt; F;
+</pre>
+<div id="mermaid-tooltip-13" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+<p><strong>AI는 이러한 문제의 효과적인 해결책이 될 수 있습니다.</strong></p>
+</div>
+</div>
+</section>
+<section id="생성형-ai를-활용한-교정" class="slide level2 smaller">
+<h2>생성형 AI를 활용한 교정</h2>
+<div class="panel-tabset">
+<ul id="tabset-6" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-6-1">ChatGPT / Gemini / Claude</a></li><li><a href="#tabset-6-2">NotebookLM</a></li></ul>
+<div class="tab-content">
+<div id="tabset-6-1">
+<p><strong>대화형 AI를 활용한 손쉬운 교정</strong></p>
+<ul>
+<li><strong>방법</strong>: 교정을 원하는 텍스트를 복사하여 AI에게 요청합니다.</li>
+<li><strong>장점</strong>: 뛰어난 문맥 이해 능력, 자연스러운 문장 제안, 다양한 스타일로 수정 가능.</li>
+<li><strong>단점</strong>: 입력 텍스트 길이 제한, 때때로 사실과 다른 정보 생성(환각) 가능성.</li>
+</ul>
+<p><strong>프롬프트 예시:</strong></p>
+<pre><code>너는 전문적인 교정 전문가야. 다음 텍스트는 한국어로 된 설문조사 보고서의 일부야. 맞춤법, 띄어쓰기, 문법 오류를 찾아서 수정하고, 더 자연스러운 문장으로 다듬어줘. 수정된 내용은 원문과 비교할 수 있도록 목록으로 보여줘.
+
+[보고서 텍스트 붙여넣기]</code></pre>
+</div>
+<div id="tabset-6-2">
+<p><strong>긴 문서 교정에 특화된 도구</strong></p>
+<ul>
+<li><strong>방법</strong>: PDF, Google Docs 등 보고서 파일을 소스로 업로드하고 질문합니다.</li>
+<li><strong>장점</strong>:
+<ul>
+<li>문서 전체의 맥락과 일관성을 유지하며 교정.</li>
+<li>소스 자료에 근거하여 답변하므로 환각 현상이 적음.</li>
+<li>긴 보고서나 여러 문서를 한 번에 처리하기 용이.</li>
+</ul></li>
+</ul>
+<p><strong>프롬프트 예시:</strong></p>
+<pre><code>업로드된 문서 전체에서 어색한 문장이나 오탈자를 찾아서 수정해줘. 특히 전문 용어의 일관성을 확인해줘.</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="전문-맞춤법-검사-도구" class="slide level2 smaller">
+<h2>전문 맞춤법 검사 도구</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>생성형 AI의 보완재</strong></p>
+<p>생성형 AI로 1차 교정을 마친 후, 전문 맞춤법 검사 도구를 사용하면 완성도를 더욱 높일 수 있습니다.</p>
+<ul>
+<li><strong><a href="https://speller.cs.pusan.ac.kr/">부산대 맞춤법 검사기</a></strong>:
+<ul>
+<li>한국어 교정의 표준. 높은 정확도와 상세한 문법 설명 제공.</li>
+</ul></li>
+<li><strong><a href="https://www.saramin.co.kr/zf_user/tools/spell-check">사람인 맞춤법 검사기</a></strong>:
+<ul>
+<li>자기소개서 등 비즈니스 문서에 특화. 실무적인 표현 검사에 유용.</li>
+</ul></li>
+<li><strong><a href="https://search.naver.com/search.naver?where=nexearch&amp;sm=top_hty&amp;fbm=0&amp;ie=utf8&amp;query=네이버+맞춤법+검사기">네이버 맞춤법 검사기</a></strong>:
+<ul>
+<li>간편하고 빠른 사용성. 일상적인 글쓰기에 적합.</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>활용 전략</strong></p>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-14">graph TD
+    A[초고] --&gt; B[1차: 생성형 AI];
+    B -- 문맥, 흐름 교정 --&gt; C[2차: 전문 검사기];
+    C -- 맞춤법, 띄어쓰기 --&gt; D[최종 검수];
+    D -- 뉘앙스, 고유명사 --&gt; E[완성본];
+</pre>
+<div id="mermaid-tooltip-14" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+<ul>
+<li><strong>1단계 (생성형 AI)</strong>: 전체적인 문맥과 흐름을 자연스럽게 다듬습니다.</li>
+<li><strong>2단계 (전문 도구)</strong>: 기계적인 맞춤법, 띄어쓰기 오류를 정확하게 잡아냅니다.</li>
+<li><strong>3단계 (사람)</strong>: AI가 놓칠 수 있는 미묘한 뉘앙스나 고유명사를 최종 확인합니다.</li>
+</ul>
+</div>
+</div>
 </section>
 <section id="감사합니다" class="slide level2 center">
 <h2>감사합니다</h2>

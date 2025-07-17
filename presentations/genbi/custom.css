@@ -159,6 +159,7 @@
 /* Mermaid diagrams */
 .mermaid {
     background-color: transparent !important;
+    overflow: auto;
 }
 
 /* Links */

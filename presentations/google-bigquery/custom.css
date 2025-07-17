@@ -261,6 +261,7 @@
 /* 메르마이드 다이어그램 스타일 */
 .reveal .mermaid {
   background-color: transparent;
+  overflow: auto;
 }
 
 /* 탭 패널 스타일 */
