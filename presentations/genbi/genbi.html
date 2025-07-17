@@ -1,0 +1,1901 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="genbi_files/libs/clipboard/clipboard.min.js"></script>
+<script src="genbi_files/libs/quarto-html/tabby.min.js"></script>
+<script src="genbi_files/libs/quarto-html/popper.min.js"></script>
+<script src="genbi_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="genbi_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="genbi_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="genbi_files/libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.2.335">
+
+  <meta name="author" content="Seonghak Hong">
+  <title>GenBI: Generative Business Intelligence</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="genbi_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="genbi_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #e1e4e8; background-color: #24292e; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #e1e4e8; } /* Normal */
+    code span.al { color: #ff5555; font-weight: bold; } /* Alert */
+    code span.an { color: #6a737d; } /* Annotation */
+    code span.at { color: #f97583; } /* Attribute */
+    code span.bn { color: #79b8ff; } /* BaseN */
+    code span.bu { color: #f97583; } /* BuiltIn */
+    code span.cf { color: #f97583; } /* ControlFlow */
+    code span.ch { color: #9ecbff; } /* Char */
+    code span.cn { color: #79b8ff; } /* Constant */
+    code span.co { color: #6a737d; } /* Comment */
+    code span.cv { color: #6a737d; } /* CommentVar */
+    code span.do { color: #6a737d; } /* Documentation */
+    code span.dt { color: #f97583; } /* DataType */
+    code span.dv { color: #79b8ff; } /* DecVal */
+    code span.er { color: #ff5555; text-decoration: underline; } /* Error */
+    code span.ex { color: #f97583; font-weight: bold; } /* Extension */
+    code span.fl { color: #79b8ff; } /* Float */
+    code span.fu { color: #b392f0; } /* Function */
+    code span.im { color: #9ecbff; } /* Import */
+    code span.in { color: #6a737d; } /* Information */
+    code span.kw { color: #f97583; } /* Keyword */
+    code span.op { color: #e1e4e8; } /* Operator */
+    code span.ot { color: #b392f0; } /* Other */
+    code span.pp { color: #f97583; } /* Preprocessor */
+    code span.re { color: #6a737d; } /* RegionMarker */
+    code span.sc { color: #79b8ff; } /* SpecialChar */
+    code span.ss { color: #9ecbff; } /* SpecialString */
+    code span.st { color: #9ecbff; } /* String */
+    code span.va { color: #ffab70; } /* Variable */
+    code span.vs { color: #9ecbff; } /* VerbatimString */
+    code span.wa { color: #ff5555; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="genbi_files/libs/revealjs/dist/theme/quarto.css" id="theme">
+  <link rel="stylesheet" href="custom.css">
+  <link href="genbi_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="genbi_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="genbi_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="genbi_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="genbi_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="genbi_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-captioned.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-captioned) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-captioned.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-captioned .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-captioned .callout-caption  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-captioned.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-captioned.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-caption {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-caption {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-caption {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-captioned .callout-body > .callout-content > :last-child {
+    margin-bottom: 0.5rem;
+  }
+
+  .callout.callout-captioned .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-captioned) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-caption {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-caption {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-caption {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-caption {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-caption {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <script src="genbi_files/libs/quarto-diagram/mermaid.min.js"></script>
+  <script src="genbi_files/libs/quarto-diagram/mermaid-init.js"></script>
+  <link href="genbi_files/libs/quarto-diagram/mermaid.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="quarto-dark">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">GenBI: Generative Business Intelligence</h1>
+  <p class="subtitle">생성형 AI를 활용한 비즈니스 인텔리전스</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Seonghak Hong 
+</div>
+</div>
+</div>
+
+  <p class="date">5/15/25</p>
+</section>
+<section id="목차" class="slide level2 smaller">
+<h2>목차</h2>
+<ol type="1">
+<li><strong>GenBI 개요</strong></li>
+<li><strong>전통적 BI vs GenBI</strong></li>
+<li><strong>GenBI 핵심 기술</strong></li>
+<li><strong>GenBI 아키텍처</strong></li>
+<li><strong>실제 적용 사례</strong></li>
+<li><strong>성능 및 평가</strong></li>
+<li><strong>미래 전망</strong></li>
+</ol>
+</section>
+<section>
+<section id="genbi-개요" class="title-slide slide level1 center">
+<h1>GenBI 개요</h1>
+
+</section>
+<section id="genbi란" class="slide level2 smaller">
+<h2>GenBI란?</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>GenBI (Generative Business Intelligence)</strong>는<br>
+생성형 AI를 활용하여 비즈니스 인사이트를 자동으로 생성하는 시스템</p>
+<ul>
+<li><i class="fas fa-brain"></i> <strong>목적</strong>:<br>
+자연어로 데이터 질의 및 분석</li>
+<li><i class="fas fa-chart-bar"></i> <strong>핵심 기능</strong>:<br>
+자동 리포트 생성, 인사이트 발견</li>
+<li><i class="fas fa-rocket"></i> <strong>혁신성</strong>:<br>
+비전문가도 쉽게 사용 가능</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-1">graph TD
+    A[자연어 질의] --&gt; B[AI 처리]
+    B --&gt; C[SQL 생성]
+    C --&gt; D[데이터 추출]
+    D --&gt; E[시각화 생성]
+    E --&gt; F[인사이트 제공]
+    F --&gt; G[리포트 자동 생성]
+</pre>
+<div id="mermaid-tooltip-1" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="genbi의-주요-특징" class="slide level2 smaller">
+<h2>GenBI의 주요 특징</h2>
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">자연어 인터페이스</a></li><li><a href="#tabset-1-2">자동 코드 생성</a></li><li><a href="#tabset-1-3">지능형 시각화</a></li><li><a href="#tabset-1-4">인사이트 발견</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
+<p><strong>사용자 친화적 접근</strong></p>
+<ul>
+<li>“지난 3개월 매출 추이는 어떻게 되나요?”</li>
+<li>“가장 성과가 좋은 상품 카테고리는?”</li>
+<li>“고객 이탈률이 높은 지역을 찾아주세요”</li>
+</ul>
+</div>
+<div id="tabset-1-2">
+<p><strong>SQL 및 분석 코드 자동 생성</strong></p>
+<ul>
+<li>복잡한 SQL 쿼리 자동 작성</li>
+<li>데이터 전처리 코드 생성</li>
+<li>통계 분석 스크립트 자동화</li>
+</ul>
+</div>
+<div id="tabset-1-3">
+<p><strong>맥락에 맞는 차트 자동 선택</strong></p>
+<ul>
+<li>데이터 유형에 따른 최적 차트 선택</li>
+<li>인터랙티브 대시보드 생성</li>
+<li>트렌드 분석 및 예측 시각화</li>
+</ul>
+</div>
+<div id="tabset-1-4">
+<p><strong>자동 패턴 탐지 및 해석</strong></p>
+<ul>
+<li>이상 패턴 자동 탐지</li>
+<li>상관관계 분석</li>
+<li>예측 모델링 및 해석</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="genbi의-핵심-가치" class="slide level2 smaller">
+<h2>GenBI의 핵심 가치</h2>
+<ul>
+<li><i class="fas fa-clock"></i> <strong>시간 절약</strong>:<br>
+분석 시간 80% 단축</li>
+<li><i class="fas fa-users"></i> <strong>접근성 향상</strong>:<br>
+비전문가도 데이터 분석 가능</li>
+<li><i class="fas fa-eye"></i> <strong>인사이트 품질</strong>:<br>
+놓치기 쉬운 패턴 자동 발견</li>
+<li><i class="fas fa-sync"></i> <strong>실시간 분석</strong>:<br>
+즉시 답변 제공</li>
+<li><i class="fas fa-cogs"></i> <strong>일관성</strong>:<br>
+표준화된 분석 프로세스</li>
+</ul>
+<div class="callout callout-note callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>핵심 혁신</strong></p>
+</div>
+<div class="callout-content">
+<p>GenBI의 가장 큰 혁신은 <strong>자연어와 데이터 간의 장벽 제거</strong>로<br>
+누구나 쉽게 데이터 기반 의사결정을 할 수 있게 만드는 것</p>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="전통적-bi-vs-genbi" class="title-slide slide level1 center">
+<h1>전통적 BI vs GenBI</h1>
+
+</section>
+<section id="전통적-bi의-한계" class="slide level2 smaller">
+<h2>전통적 BI의 한계</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>기술적 한계</strong></p>
+<ul>
+<li>SQL 지식 필요</li>
+<li>복잡한 툴 사용법 학습 필요</li>
+<li>사전 정의된 대시보드 의존</li>
+<li>시간이 오래 걸리는 분석 과정</li>
+</ul>
+<p><strong>비즈니스 한계</strong></p>
+<ul>
+<li>데이터 팀에 의존</li>
+<li>실시간 분석 어려움</li>
+<li>새로운 질문에 대한 느린 대응</li>
+<li>인사이트 발견의 한계</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-2">graph TD
+    A[비즈니스 질문] --&gt; B[데이터 팀 요청]
+    B --&gt; C[요구사항 분석]
+    C --&gt; D[SQL 쿼리 작성]
+    D --&gt; E[데이터 추출]
+    E --&gt; F[시각화 생성]
+    F --&gt; G[리포트 작성]
+    G --&gt; H[결과 전달]
+    
+    style A fill:#ff9999
+    style H fill:#99ff99
+</pre>
+<div id="mermaid-tooltip-2" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+<p><strong>문제점</strong>: 느린 프로세스, 높은 비용, 제한된 접근성</p>
+</div>
+</div>
+</section>
+<section id="genbi의-혁신" class="slide level2 smaller">
+<h2>GenBI의 혁신</h2>
+<table>
+<thead>
+<tr class="header">
+<th>항목</th>
+<th>전통적 BI</th>
+<th>GenBI</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>인터페이스</strong></td>
+<td>SQL, 대시보드</td>
+<td>자연어 대화</td>
+</tr>
+<tr class="even">
+<td><strong>사용자</strong></td>
+<td>데이터 전문가</td>
+<td>모든 비즈니스 사용자</td>
+</tr>
+<tr class="odd">
+<td><strong>응답 시간</strong></td>
+<td>시간~일</td>
+<td>초~분</td>
+</tr>
+<tr class="even">
+<td><strong>분석 범위</strong></td>
+<td>사전 정의된 KPI</td>
+<td>자유로운 탐색</td>
+</tr>
+<tr class="odd">
+<td><strong>인사이트</strong></td>
+<td>수동 발견</td>
+<td>자동 생성</td>
+</tr>
+<tr class="even">
+<td><strong>학습 곡선</strong></td>
+<td>높음</td>
+<td>낮음</td>
+</tr>
+<tr class="odd">
+<td><strong>비용</strong></td>
+<td>높음</td>
+<td>중간</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-tip callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>GenBI의 우위</strong></p>
+</div>
+<div class="callout-content">
+<p>GenBI는 <strong>민주화된 데이터 분석</strong>을 통해<br>
+조직 전체의 데이터 활용도를 획기적으로 향상시킵니다.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="사용-사례-비교" class="slide level2 smaller">
+<h2>사용 사례 비교</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>전통적 BI 시나리오</strong></p>
+<ol type="1">
+<li>마케팅 팀: “ROI 분석 리포트 필요”</li>
+<li>데이터 팀: 요구사항 분석 (2-3일)</li>
+<li>SQL 쿼리 작성 및 검증 (1-2일)</li>
+<li>시각화 및 리포트 생성 (1일)</li>
+<li>결과 전달 및 피드백 (1일)</li>
+</ol>
+<p><strong>총 소요 시간</strong>: 5-7일</p>
+</div><div class="column" style="width:50%;">
+<p><strong>GenBI 시나리오</strong></p>
+<ol type="1">
+<li>마케팅 팀: “지난 3개월 캠페인 ROI는?”</li>
+<li>GenBI: 자연어 이해 및 분석 (30초)</li>
+<li>자동 시각화 및 인사이트 생성 (10초)</li>
+<li>결과 제공 및 후속 질문 대응 (즉시)</li>
+</ol>
+<p><strong>총 소요 시간</strong>: 1분 이내</p>
+</div>
+</div>
+</section></section>
+<section>
+<section id="genbi-핵심-기술" class="title-slide slide level1 center">
+<h1>GenBI 핵심 기술</h1>
+
+</section>
+<section id="기술-스택-아키텍처" class="slide level2 smaller">
+<h2>기술 스택 아키텍처</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><strong>핵심 기술 구성요소:</strong></p>
+<ul>
+<li><strong>대화형 AI</strong>: LLM 기반 자연어 처리</li>
+<li><strong>Text-to-SQL</strong>: 자연어를 SQL로 변환</li>
+<li><strong>자동 시각화</strong>: 데이터 특성 기반 차트 생성</li>
+<li><strong>인사이트 생성</strong>: 패턴 분석 및 해석</li>
+<li><strong>메타데이터 관리</strong>: 스키마 및 비즈니스 컨텍스트</li>
+</ul>
+<p><strong>지원 기술:</strong></p>
+<ul>
+<li>벡터 데이터베이스 (임베딩 검색)</li>
+<li>실시간 스트리밍 처리</li>
+<li>분산 컴퓨팅 (Spark, Dask)</li>
+</ul>
+</div><div class="column" style="width:40%;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-3">graph TD
+    A[자연어 입력] --&gt; B[NLP 처리]
+    B --&gt; C[의도 분석]
+    C --&gt; D[메타데이터 조회]
+    D --&gt; E[SQL 생성]
+    E --&gt; F[쿼리 실행]
+    F --&gt; G[결과 분석]
+    G --&gt; H[시각화 생성]
+    H --&gt; I[인사이트 추출]
+    I --&gt; J[자연어 답변]
+</pre>
+<div id="mermaid-tooltip-3" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="자연어-처리-nlp" class="slide level2 smaller">
+<h2>자연어 처리 (NLP)</h2>
+<div class="panel-tabset">
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">의도 분석</a></li><li><a href="#tabset-2-2">엔티티 추출</a></li><li><a href="#tabset-2-3">컨텍스트 관리</a></li><li><a href="#tabset-2-4">자연어 생성</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1">
+<p><strong>사용자 질문의 의도 파악</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># 예시 질문 분석</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>question <span class="op">=</span> <span class="st">"지난 분기 매출이 가장 높은 지역은?"</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a>intent <span class="op">=</span> {</span>
+<span id="cb1-5"><a href="#cb1-5"></a>    <span class="st">"metric"</span>: <span class="st">"매출"</span>,</span>
+<span id="cb1-6"><a href="#cb1-6"></a>    <span class="st">"dimension"</span>: <span class="st">"지역"</span>,</span>
+<span id="cb1-7"><a href="#cb1-7"></a>    <span class="st">"time_period"</span>: <span class="st">"지난 분기"</span>,</span>
+<span id="cb1-8"><a href="#cb1-8"></a>    <span class="st">"aggregation"</span>: <span class="st">"MAX"</span>,</span>
+<span id="cb1-9"><a href="#cb1-9"></a>    <span class="st">"question_type"</span>: <span class="st">"ranking"</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-2-2">
+<p><strong>비즈니스 객체 및 속성 식별</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>entities <span class="op">=</span> {</span>
+<span id="cb2-2"><a href="#cb2-2"></a>    <span class="st">"time_entities"</span>: [<span class="st">"지난 분기"</span>, <span class="st">"2023년 Q4"</span>],</span>
+<span id="cb2-3"><a href="#cb2-3"></a>    <span class="st">"metric_entities"</span>: [<span class="st">"매출"</span>, <span class="st">"revenue"</span>, <span class="st">"sales"</span>],</span>
+<span id="cb2-4"><a href="#cb2-4"></a>    <span class="st">"dimension_entities"</span>: [<span class="st">"지역"</span>, <span class="st">"region"</span>, <span class="st">"location"</span>],</span>
+<span id="cb2-5"><a href="#cb2-5"></a>    <span class="st">"filter_entities"</span>: [<span class="st">"상품 카테고리"</span>, <span class="st">"고객 등급"</span>]</span>
+<span id="cb2-6"><a href="#cb2-6"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-2-3">
+<p><strong>대화 히스토리 및 세션 관리</strong></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>context <span class="op">=</span> {</span>
+<span id="cb3-2"><a href="#cb3-2"></a>    <span class="st">"previous_queries"</span>: [<span class="st">"매출 추이"</span>, <span class="st">"지역별 분석"</span>],</span>
+<span id="cb3-3"><a href="#cb3-3"></a>    <span class="st">"current_filters"</span>: {<span class="st">"period"</span>: <span class="st">"2023-Q4"</span>},</span>
+<span id="cb3-4"><a href="#cb3-4"></a>    <span class="st">"user_preferences"</span>: {<span class="st">"chart_type"</span>: <span class="st">"bar"</span>},</span>
+<span id="cb3-5"><a href="#cb3-5"></a>    <span class="st">"session_variables"</span>: {<span class="st">"selected_region"</span>: <span class="st">"서울"</span>}</span>
+<span id="cb3-6"><a href="#cb3-6"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-2-4">
+<p><strong>분석 결과의 자연어 설명</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>insight <span class="op">=</span> {</span>
+<span id="cb4-2"><a href="#cb4-2"></a>    <span class="st">"key_finding"</span>: <span class="st">"서울 지역이 가장 높은 매출을 기록"</span>,</span>
+<span id="cb4-3"><a href="#cb4-3"></a>    <span class="st">"supporting_data"</span>: <span class="st">"15억원 (전체의 32%)"</span>,</span>
+<span id="cb4-4"><a href="#cb4-4"></a>    <span class="st">"comparison"</span>: <span class="st">"부산 대비 40% 높음"</span>,</span>
+<span id="cb4-5"><a href="#cb4-5"></a>    <span class="st">"trend"</span>: <span class="st">"전 분기 대비 15% 증가"</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="text-to-sql-엔진" class="slide level2 smaller">
+<h2>Text-to-SQL 엔진</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>변환 과정:</strong></p>
+<ol type="1">
+<li><strong>스키마 매핑</strong>: 자연어 → 데이터베이스 테이블/컬럼</li>
+<li><strong>쿼리 구조 생성</strong>: SELECT, FROM, WHERE, GROUP BY</li>
+<li><strong>조건 변환</strong>: 시간, 필터 조건 SQL 변환</li>
+<li><strong>최적화</strong>: 실행 계획 최적화</li>
+</ol>
+<p><strong>예시 변환:</strong></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">-- 자연어: "지난 3개월 매출 추이"</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="kw">SELECT</span> </span>
+<span id="cb5-3"><a href="#cb5-3"></a>    DATE_TRUNC(<span class="st">'month'</span>, order_date) <span class="kw">as</span> <span class="dt">month</span>,</span>
+<span id="cb5-4"><a href="#cb5-4"></a>    <span class="fu">SUM</span>(amount) <span class="kw">as</span> revenue</span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="kw">FROM</span> orders </span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="kw">WHERE</span> order_date <span class="op">&gt;=</span> <span class="fu">CURRENT_DATE</span> <span class="op">-</span> <span class="dt">INTERVAL</span> <span class="st">'3 months'</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="kw">GROUP</span> <span class="kw">BY</span> <span class="dt">month</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="kw">ORDER</span> <span class="kw">BY</span> <span class="dt">month</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-4">graph TD
+    A[자연어 질의] --&gt; B[토큰화]
+    B --&gt; C[엔티티 인식]
+    C --&gt; D[스키마 매핑]
+    D --&gt; E[쿼리 템플릿 선택]
+    E --&gt; F[조건 생성]
+    F --&gt; G[SQL 구문 생성]
+    G --&gt; H[문법 검증]
+    H --&gt; I[실행 계획 최적화]
+    I --&gt; J[최종 SQL]
+</pre>
+<div id="mermaid-tooltip-4" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+<p><strong>정확도 향상 기법:</strong> - 스키마 임베딩 - 예제 기반 학습 - 쿼리 검증 및 수정</p>
+</div>
+</div>
+</section>
+<section id="자동-시각화-엔진" class="slide level2 smaller">
+<h2>자동 시각화 엔진</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><strong>시각화 선택 로직:</strong></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">def</span> select_visualization(data_info):</span>
+<span id="cb6-2"><a href="#cb6-2"></a>    <span class="cf">if</span> data_info.has_time_series:</span>
+<span id="cb6-3"><a href="#cb6-3"></a>        <span class="cf">return</span> <span class="st">"line_chart"</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a>    <span class="cf">elif</span> data_info.categorical_count <span class="op">&lt;=</span> <span class="dv">10</span>:</span>
+<span id="cb6-5"><a href="#cb6-5"></a>        <span class="cf">return</span> <span class="st">"bar_chart"</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a>    <span class="cf">elif</span> data_info.has_geographic:</span>
+<span id="cb6-7"><a href="#cb6-7"></a>        <span class="cf">return</span> <span class="st">"map"</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a>    <span class="cf">elif</span> data_info.correlation_analysis:</span>
+<span id="cb6-9"><a href="#cb6-9"></a>        <span class="cf">return</span> <span class="st">"scatter_plot"</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a>    <span class="cf">else</span>:</span>
+<span id="cb6-11"><a href="#cb6-11"></a>        <span class="cf">return</span> <span class="st">"table"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>지원 차트 유형:</strong> - 시계열: Line, Area 차트 - 범주형: Bar, Pie, Donut 차트 - 지리적: Map, Choropleth - 관계형: Scatter, Bubble 차트 - 분포: Histogram, Box plot</p>
+</div><div class="column" style="width:40%;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-5">graph TD
+    A[분석 결과] --&gt; B[데이터 타입 분석]
+    B --&gt; C[시각화 규칙 적용]
+    C --&gt; D[차트 유형 선택]
+    D --&gt; E[스타일 적용]
+    E --&gt; F[인터랙티브 기능]
+    F --&gt; G[최종 시각화]
+</pre>
+<div id="mermaid-tooltip-5" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+<p><strong>자동 최적화:</strong> - 색상 팔레트 선택 - 레이아웃 조정 - 범례 및 레이블 최적화 - 반응형 디자인</p>
+</div>
+</div>
+</section></section>
+<section>
+<section id="genbi-아키텍처" class="title-slide slide level1 center">
+<h1>GenBI 아키텍처</h1>
+
+</section>
+<section id="전체-시스템-아키텍처" class="slide level2 smaller">
+<h2>전체 시스템 아키텍처</h2>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-6">graph TB
+    subgraph "프론트엔드 레이어"
+        A[웹 인터페이스]
+        B[모바일 앱]
+        C[API Gateway]
+    end
+    
+    subgraph "AI 처리 레이어"
+        D[자연어 처리]
+        E[Text-to-SQL]
+        F[인사이트 생성]
+        G[시각화 엔진]
+    end
+    
+    subgraph "데이터 레이어"
+        H[메타데이터 저장소]
+        I[캐시 레이어]
+        J[데이터 웨어하우스]
+        K[실시간 스트림]
+    end
+    
+    subgraph "인프라 레이어"
+        L[컨테이너 오케스트레이션]
+        M[모니터링]
+        N[보안]
+    end
+    
+    A --&gt; C
+    B --&gt; C
+    C --&gt; D
+    D --&gt; E
+    E --&gt; F
+    F --&gt; G
+    
+    E --&gt; H
+    F --&gt; I
+    G --&gt; J
+    F --&gt; K
+    
+    D --&gt; L
+    E --&gt; L
+    F --&gt; L
+    G --&gt; L
+    
+    L --&gt; M
+    L --&gt; N
+</pre>
+<div id="mermaid-tooltip-6" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="핵심-구성-요소" class="slide level2 smaller">
+<h2>핵심 구성 요소</h2>
+<div class="panel-tabset">
+<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">대화 관리자</a></li><li><a href="#tabset-3-2">쿼리 최적화기</a></li><li><a href="#tabset-3-3">캐시 관리자</a></li><li><a href="#tabset-3-4">보안 관리자</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1">
+<p><strong>사용자 대화 세션 관리</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">class</span> ConversationManager:</span>
+<span id="cb7-2"><a href="#cb7-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb7-3"><a href="#cb7-3"></a>        <span class="va">self</span>.session_store <span class="op">=</span> SessionStore()</span>
+<span id="cb7-4"><a href="#cb7-4"></a>        <span class="va">self</span>.context_manager <span class="op">=</span> ContextManager()</span>
+<span id="cb7-5"><a href="#cb7-5"></a>    </span>
+<span id="cb7-6"><a href="#cb7-6"></a>    <span class="kw">def</span> process_message(<span class="va">self</span>, user_id, message):</span>
+<span id="cb7-7"><a href="#cb7-7"></a>        session <span class="op">=</span> <span class="va">self</span>.session_store.get_session(user_id)</span>
+<span id="cb7-8"><a href="#cb7-8"></a>        context <span class="op">=</span> <span class="va">self</span>.context_manager.get_context(session)</span>
+<span id="cb7-9"><a href="#cb7-9"></a>        </span>
+<span id="cb7-10"><a href="#cb7-10"></a>        <span class="co"># 의도 분석</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a>        intent <span class="op">=</span> <span class="va">self</span>.analyze_intent(message, context)</span>
+<span id="cb7-12"><a href="#cb7-12"></a>        </span>
+<span id="cb7-13"><a href="#cb7-13"></a>        <span class="co"># 쿼리 생성 및 실행</span></span>
+<span id="cb7-14"><a href="#cb7-14"></a>        result <span class="op">=</span> <span class="va">self</span>.execute_query(intent)</span>
+<span id="cb7-15"><a href="#cb7-15"></a>        </span>
+<span id="cb7-16"><a href="#cb7-16"></a>        <span class="co"># 컨텍스트 업데이트</span></span>
+<span id="cb7-17"><a href="#cb7-17"></a>        <span class="va">self</span>.context_manager.update_context(session, intent, result)</span>
+<span id="cb7-18"><a href="#cb7-18"></a>        </span>
+<span id="cb7-19"><a href="#cb7-19"></a>        <span class="cf">return</span> <span class="va">self</span>.generate_response(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-3-2">
+<p><strong>SQL 쿼리 성능 최적화</strong></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">class</span> QueryOptimizer:</span>
+<span id="cb8-2"><a href="#cb8-2"></a>    <span class="kw">def</span> optimize_query(<span class="va">self</span>, sql_query, schema_info):</span>
+<span id="cb8-3"><a href="#cb8-3"></a>        <span class="co"># 인덱스 힌트 추가</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>        optimized_query <span class="op">=</span> <span class="va">self</span>.add_index_hints(sql_query, schema_info)</span>
+<span id="cb8-5"><a href="#cb8-5"></a>        </span>
+<span id="cb8-6"><a href="#cb8-6"></a>        <span class="co"># 조인 순서 최적화</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a>        optimized_query <span class="op">=</span> <span class="va">self</span>.optimize_joins(optimized_query)</span>
+<span id="cb8-8"><a href="#cb8-8"></a>        </span>
+<span id="cb8-9"><a href="#cb8-9"></a>        <span class="co"># 서브쿼리 최적화</span></span>
+<span id="cb8-10"><a href="#cb8-10"></a>        optimized_query <span class="op">=</span> <span class="va">self</span>.optimize_subqueries(optimized_query)</span>
+<span id="cb8-11"><a href="#cb8-11"></a>        </span>
+<span id="cb8-12"><a href="#cb8-12"></a>        <span class="cf">return</span> optimized_query</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-3-3">
+<p><strong>빠른 응답을 위한 캐시 전략</strong></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">class</span> CacheManager:</span>
+<span id="cb9-2"><a href="#cb9-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb9-3"><a href="#cb9-3"></a>        <span class="va">self</span>.redis_client <span class="op">=</span> Redis()</span>
+<span id="cb9-4"><a href="#cb9-4"></a>        <span class="va">self</span>.cache_strategies <span class="op">=</span> {</span>
+<span id="cb9-5"><a href="#cb9-5"></a>            <span class="st">'frequent_queries'</span>: TTLCache(maxsize<span class="op">=</span><span class="dv">1000</span>, ttl<span class="op">=</span><span class="dv">300</span>),</span>
+<span id="cb9-6"><a href="#cb9-6"></a>            <span class="st">'static_data'</span>: LRUCache(maxsize<span class="op">=</span><span class="dv">500</span>),</span>
+<span id="cb9-7"><a href="#cb9-7"></a>            <span class="st">'user_sessions'</span>: TTLCache(maxsize<span class="op">=</span><span class="dv">10000</span>, ttl<span class="op">=</span><span class="dv">3600</span>)</span>
+<span id="cb9-8"><a href="#cb9-8"></a>        }</span>
+<span id="cb9-9"><a href="#cb9-9"></a>    </span>
+<span id="cb9-10"><a href="#cb9-10"></a>    <span class="kw">def</span> get_cached_result(<span class="va">self</span>, query_hash):</span>
+<span id="cb9-11"><a href="#cb9-11"></a>        <span class="cf">return</span> <span class="va">self</span>.redis_client.get(query_hash)</span>
+<span id="cb9-12"><a href="#cb9-12"></a>    </span>
+<span id="cb9-13"><a href="#cb9-13"></a>    <span class="kw">def</span> cache_result(<span class="va">self</span>, query_hash, result, ttl<span class="op">=</span><span class="dv">300</span>):</span>
+<span id="cb9-14"><a href="#cb9-14"></a>        <span class="va">self</span>.redis_client.setex(query_hash, ttl, result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-3-4">
+<p><strong>데이터 접근 제어 및 보안</strong></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">class</span> SecurityManager:</span>
+<span id="cb10-2"><a href="#cb10-2"></a>    <span class="kw">def</span> check_permissions(<span class="va">self</span>, user_id, table_name):</span>
+<span id="cb10-3"><a href="#cb10-3"></a>        user_role <span class="op">=</span> <span class="va">self</span>.get_user_role(user_id)</span>
+<span id="cb10-4"><a href="#cb10-4"></a>        table_permissions <span class="op">=</span> <span class="va">self</span>.get_table_permissions(table_name)</span>
+<span id="cb10-5"><a href="#cb10-5"></a>        </span>
+<span id="cb10-6"><a href="#cb10-6"></a>        <span class="cf">return</span> user_role <span class="kw">in</span> table_permissions[<span class="st">'allowed_roles'</span>]</span>
+<span id="cb10-7"><a href="#cb10-7"></a>    </span>
+<span id="cb10-8"><a href="#cb10-8"></a>    <span class="kw">def</span> apply_row_level_security(<span class="va">self</span>, sql_query, user_id):</span>
+<span id="cb10-9"><a href="#cb10-9"></a>        <span class="co"># 사용자별 데이터 접근 제한 적용</span></span>
+<span id="cb10-10"><a href="#cb10-10"></a>        user_filter <span class="op">=</span> <span class="va">self</span>.get_user_filter(user_id)</span>
+<span id="cb10-11"><a href="#cb10-11"></a>        <span class="cf">return</span> <span class="va">self</span>.add_where_clause(sql_query, user_filter)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="확장성과-성능" class="slide level2 smaller">
+<h2>확장성과 성능</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>수평 확장 전략:</strong></p>
+<ul>
+<li><strong>마이크로서비스 아키텍처</strong>: 각 기능별 독립적 확장</li>
+<li><strong>로드 밸런싱</strong>: 트래픽 분산 처리</li>
+<li><strong>auto-scaling</strong>: 수요에 따른 자동 스케일링</li>
+<li><strong>분산 캐싱</strong>: Redis Cluster 활용</li>
+</ul>
+<p><strong>성능 최적화:</strong></p>
+<ul>
+<li><strong>쿼리 캐싱</strong>: 중복 쿼리 결과 재사용</li>
+<li><strong>결과 압축</strong>: 네트워크 전송 최적화</li>
+<li><strong>인덱스 최적화</strong>: 데이터베이스 성능 향상</li>
+<li><strong>병렬 처리</strong>: 복잡한 분석 작업 분산</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-7">graph TD
+    A[로드 밸런서] --&gt; B[API Gateway 1]
+    A --&gt; C[API Gateway 2]
+    A --&gt; D[API Gateway 3]
+    
+    B --&gt; E[NLP 서비스 1]
+    B --&gt; F[NLP 서비스 2]
+    
+    C --&gt; G[SQL 생성 서비스 1]
+    C --&gt; H[SQL 생성 서비스 2]
+    
+    D --&gt; I[시각화 서비스 1]
+    D --&gt; J[시각화 서비스 2]
+    
+    E --&gt; K[Redis Cluster]
+    F --&gt; K
+    G --&gt; K
+    H --&gt; K
+    
+    I --&gt; L[DB Pool]
+    J --&gt; L
+</pre>
+<div id="mermaid-tooltip-7" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="실제-적용-사례" class="title-slide slide level1 center">
+<h1>실제 적용 사례</h1>
+
+</section>
+<section id="전자상거래-분석" class="slide level2 smaller">
+<h2>전자상거래 분석</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>도입 배경:</strong></p>
+<ul>
+<li>다양한 이해관계자의 데이터 요구</li>
+<li>복잡한 비즈니스 질문 증가</li>
+<li>실시간 의사결정 필요성</li>
+<li>데이터 팀의 업무 과부하</li>
+</ul>
+<p><strong>주요 질문 유형:</strong></p>
+<ul>
+<li>“어떤 상품이 가장 잘 팔리고 있나요?”</li>
+<li>“고객 이탈률이 높은 지역은?”</li>
+<li>“프로모션 효과는 어떻게 되나요?”</li>
+<li>“재고 부족 예상 상품은?”</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>성과 지표:</strong></p>
+<ul>
+<li>분석 요청 처리 시간: 3일 → 1분</li>
+<li>데이터 활용 사용자 수: 5명 → 50명</li>
+<li>일일 분석 건수: 10건 → 200건</li>
+<li>데이터 팀 업무 효율: 70% 향상</li>
+</ul>
+<p><strong>비즈니스 임팩트:</strong></p>
+<ul>
+<li>매출 증가: 15% (빠른 의사결정)</li>
+<li>비용 절감: 30% (인력 효율화)</li>
+<li>고객 만족도: 20% 향상</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="금융-서비스-리스크-관리" class="slide level2 smaller">
+<h2>금융 서비스 리스크 관리</h2>
+<div class="panel-tabset">
+<ul id="tabset-4" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-4-1">도입 과정</a></li><li><a href="#tabset-4-2">주요 기능</a></li><li><a href="#tabset-4-3">성과 측정</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1">
+<p><strong>1단계: 파일럿 프로젝트</strong> - 신용 리스크 분석 자동화 - 소규모 팀 대상 테스트 - 기존 시스템과 통합</p>
+<p><strong>2단계: 점진적 확장</strong> - 운영 리스크 모니터링 추가 - 규제 보고서 자동 생성 - 전사 롤아웃 준비</p>
+<p><strong>3단계: 전면 도입</strong> - 모든 리스크 관리 영역 커버 - 실시간 모니터링 시스템 - 임원진 대시보드 제공</p>
+</div>
+<div id="tabset-4-2">
+<p><strong>리스크 모니터링</strong> - “VaR 한도 초과 포트폴리오는?” - “신용등급 하락 고객 현황” - “집중 리스크 상위 10개 기업”</p>
+<p><strong>규제 보고</strong> - 자동 규제 보고서 생성 - 실시간 규제 준수 모니터링 - 이상 패턴 자동 알림</p>
+<p><strong>스트레스 테스트</strong> - 시나리오 기반 분석 - 민감도 분석 자동화 - 결과 해석 및 권고사항 제공</p>
+</div>
+<div id="tabset-4-3">
+<p><strong>운영 효율성</strong> - 보고서 생성 시간: 5일 → 30분 - 리스크 분석 정확도: 95% 향상 - 규제 준수 완벽도: 100% 달성</p>
+<p><strong>비즈니스 가치</strong> - 리스크 관리 비용: 40% 절감 - 의사결정 속도: 10배 향상 - 규제 위반 사고: 0건 달성</p>
+</div>
+</div>
+</div>
+</section>
+<section id="제조업-품질-관리" class="slide level2 smaller">
+<h2>제조업 품질 관리</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><strong>적용 영역:</strong></p>
+<ul>
+<li><strong>실시간 품질 모니터링</strong>: 센서 데이터 분석</li>
+<li><strong>불량 예측</strong>: 품질 지표 예측 모델</li>
+<li><strong>근본원인 분석</strong>: 불량 발생 원인 탐지</li>
+<li><strong>공정 최적화</strong>: 최적 운영 조건 제안</li>
+</ul>
+<p><strong>주요 질문 사례:</strong></p>
+<ul>
+<li>“불량률이 높은 생산 라인은?”</li>
+<li>“온도 변화가 품질에 미치는 영향은?”</li>
+<li>“예측 정비가 필요한 장비는?”</li>
+<li>“최적 생산 조건은 무엇인가요?”</li>
+</ul>
+<p><strong>도입 효과:</strong></p>
+<ul>
+<li>불량률 감소: 35%</li>
+<li>생산성 향상: 25%</li>
+<li>다운타임 감소: 50%</li>
+<li>품질 관리 인력 효율화: 60%</li>
+</ul>
+</div><div class="column" style="width:40%;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-8">graph TD
+    A[센서 데이터] --&gt; B[실시간 모니터링]
+    B --&gt; C[GenBI 분석]
+    C --&gt; D[품질 이상 감지]
+    D --&gt; E[자동 알림]
+    
+    C --&gt; F[원인 분석]
+    F --&gt; G[개선 방안 제안]
+    
+    C --&gt; H[예측 모델]
+    H --&gt; I[예방 조치]
+    
+    style D fill:#ff9999
+    style E fill:#ff9999
+    style G fill:#99ff99
+    style I fill:#99ff99
+</pre>
+<div id="mermaid-tooltip-8" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+<p><strong>핵심 성공 요인:</strong></p>
+<ul>
+<li>도메인 지식 통합</li>
+<li>실시간 데이터 처리</li>
+<li>시각화 최적화</li>
+<li>운영진 참여</li>
+</ul>
+</div>
+</div>
+</section></section>
+<section>
+<section id="성능-및-평가" class="title-slide slide level1 center">
+<h1>성능 및 평가</h1>
+
+</section>
+<section id="성능-지표" class="slide level2 smaller">
+<h2>성능 지표</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>응답 시간 성능:</strong></p>
+<ul>
+<li><strong>단순 쿼리</strong>: 평균 2.3초</li>
+<li><strong>복잡 분석</strong>: 평균 15.7초</li>
+<li><strong>대용량 데이터</strong>: 평균 45.2초</li>
+<li><strong>실시간 스트림</strong>: 평균 0.8초</li>
+</ul>
+<p><strong>정확도 지표:</strong></p>
+<ul>
+<li><strong>SQL 생성 정확도</strong>: 94.2%</li>
+<li><strong>인사이트 정확도</strong>: 87.6%</li>
+<li><strong>시각화 적합도</strong>: 91.8%</li>
+<li><strong>사용자 만족도</strong>: 88.3%</li>
+</ul>
+<p><strong>시스템 안정성:</strong></p>
+<ul>
+<li><strong>가용성</strong>: 99.7%</li>
+<li><strong>오류율</strong>: 0.3%</li>
+<li><strong>동시 사용자</strong>: 1,000명</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-9">graph TD
+    A[성능 모니터링] --&gt; B[응답 시간]
+    A --&gt; C[정확도]
+    A --&gt; D[시스템 안정성]
+    A --&gt; E[사용자 경험]
+    
+    B --&gt; F[쿼리 복잡도별 측정]
+    C --&gt; G[결과 검증]
+    D --&gt; H[SLA 준수]
+    E --&gt; I[만족도 조사]
+    
+    F --&gt; J[최적화 포인트]
+    G --&gt; J
+    H --&gt; J
+    I --&gt; J
+</pre>
+<div id="mermaid-tooltip-9" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+<p><strong>벤치마크 기준:</strong> - 업계 표준 대비 3배 빠른 응답 - 기존 BI 도구 대비 90% 정확도 향상</p>
+</div>
+</div>
+</section>
+<section id="비용-효율성-분석" class="slide level2 smaller">
+<h2>비용 효율성 분석</h2>
+<table>
+<thead>
+<tr class="header">
+<th>항목</th>
+<th>전통적 BI</th>
+<th>GenBI</th>
+<th>절감 효과</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>인력 비용</strong></td>
+<td>$120,000/년</td>
+<td>$40,000/년</td>
+<td>67% 절감</td>
+</tr>
+<tr class="even">
+<td><strong>라이선스 비용</strong></td>
+<td>$50,000/년</td>
+<td>$30,000/년</td>
+<td>40% 절감</td>
+</tr>
+<tr class="odd">
+<td><strong>인프라 비용</strong></td>
+<td>$30,000/년</td>
+<td>$45,000/년</td>
+<td>50% 증가</td>
+</tr>
+<tr class="even">
+<td><strong>교육 비용</strong></td>
+<td>$20,000/년</td>
+<td>$5,000/년</td>
+<td>75% 절감</td>
+</tr>
+<tr class="odd">
+<td><strong>총 비용</strong></td>
+<td>$220,000/년</td>
+<td>$120,000/년</td>
+<td><strong>45% 절감</strong></td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-note callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>ROI 계산</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>투자 회수 기간</strong>: 8개월<br>
+<strong>3년 누적 절감액</strong>: $300,000<br>
+<strong>ROI</strong>: 250%</p>
+</div>
+</div>
+</div>
+</section>
+<section id="사용자-피드백" class="slide level2 smaller">
+<h2>사용자 피드백</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>긍정적 피드백:</strong></p>
+<ul>
+<li><i class="fas fa-thumbs-up"></i> <strong>사용 편의성</strong>: “SQL 몰라도 분석 가능”</li>
+<li><i class="fas fa-clock"></i> <strong>빠른 응답</strong>: “즉시 답변 받을 수 있어서 좋음”</li>
+<li><i class="fas fa-lightbulb"></i> <strong>인사이트 품질</strong>: “놓친 패턴을 발견해줌”</li>
+<li><i class="fas fa-chart-bar"></i> <strong>시각화</strong>: “자동으로 적절한 차트 생성”</li>
+</ul>
+<p><strong>개선 요청사항:</strong></p>
+<ul>
+<li>더 복잡한 통계 분석 지원</li>
+<li>예측 모델링 기능 강화</li>
+<li>더 많은 데이터 소스 연동</li>
+<li>모바일 앱 기능 개선</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>만족도 조사 결과:</strong></p>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-10">pie title 사용자 만족도
+    "매우 만족" : 45
+    "만족" : 35
+    "보통" : 15
+    "불만족" : 4
+    "매우 불만족" : 1
+</pre>
+<div id="mermaid-tooltip-10" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+<p><strong>부서별 활용도:</strong></p>
+<ul>
+<li>마케팅: 95%</li>
+<li>영업: 87%</li>
+<li>재무: 92%</li>
+<li>운영: 78%</li>
+<li>HR: 65%</li>
+</ul>
+</div>
+</div>
+</section></section>
+<section>
+<section id="미래-전망" class="title-slide slide level1 center">
+<h1>미래 전망</h1>
+
+</section>
+<section id="기술-발전-방향" class="slide level2 smaller">
+<h2>기술 발전 방향</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>AI 기술 고도화</strong></p>
+<ul>
+<li><strong>멀티모달 AI</strong>: 텍스트, 음성, 이미지 통합 분석</li>
+<li><strong>강화학습</strong>: 사용자 피드백 기반 성능 개선</li>
+<li><strong>연합학습</strong>: 프라이버시 보호 학습</li>
+<li><strong>설명 가능한 AI</strong>: 분석 과정 투명화</li>
+</ul>
+<p><strong>플랫폼 확장</strong></p>
+<ul>
+<li><strong>클라우드 네이티브</strong>: 완전 클라우드 기반 서비스</li>
+<li><strong>엣지 컴퓨팅</strong>: 지연 시간 최소화</li>
+<li><strong>API 생태계</strong>: 다양한 시스템 통합</li>
+<li><strong>오픈소스</strong>: 커뮤니티 기반 발전</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-11">graph TD
+    A[현재 GenBI] --&gt; B[차세대 GenBI]
+    
+    B --&gt; C[멀티모달 AI]
+    B --&gt; D[자율 분석]
+    B --&gt; E[예측 인사이트]
+    B --&gt; F[협업 AI]
+    
+    C --&gt; G[음성 질의]
+    C --&gt; H[이미지 분석]
+    
+    D --&gt; I[자동 탐지]
+    D --&gt; J[능동적 제안]
+    
+    E --&gt; K[트렌드 예측]
+    E --&gt; L[리스크 조기 경보]
+    
+    F --&gt; M[팀 협업]
+    F --&gt; N[지식 공유]
+</pre>
+<div id="mermaid-tooltip-11" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="산업별-전망" class="slide level2 smaller">
+<h2>산업별 전망</h2>
+<div class="panel-tabset">
+<ul id="tabset-5" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-5-1">금융 서비스</a></li><li><a href="#tabset-5-2">제조업</a></li><li><a href="#tabset-5-3">헬스케어</a></li><li><a href="#tabset-5-4">리테일</a></li></ul>
+<div class="tab-content">
+<div id="tabset-5-1">
+<p><strong>규제 준수 자동화</strong> - 실시간 규제 변화 모니터링 - 자동 보고서 생성 및 제출 - 컴플라이언스 리스크 예측</p>
+<p><strong>고객 경험 개선</strong> - 개인화된 금융 상품 추천 - 실시간 리스크 평가 - 사기 탐지 고도화</p>
+<p><strong>운영 효율성</strong> - 백오피스 프로세스 자동화 - 의사결정 시간 단축 - 비용 구조 최적화</p>
+</div>
+<div id="tabset-5-2">
+<p><strong>스마트 팩토리</strong> - IoT 센서 데이터 실시간 분석 - 예측 정비 고도화 - 품질 관리 자동화</p>
+<p><strong>공급망 최적화</strong> - 수요 예측 정확도 향상 - 재고 최적화 - 공급업체 성과 관리</p>
+<p><strong>지속가능성</strong> - 에너지 효율성 모니터링 - 탄소 배출 추적 - 환경 영향 평가</p>
+</div>
+<div id="tabset-5-3">
+<p><strong>임상 의사결정 지원</strong> - 환자 데이터 종합 분석 - 치료 효과 예측 - 부작용 모니터링</p>
+<p><strong>운영 최적화</strong> - 병원 자원 배분 최적화 - 환자 흐름 관리 - 비용 효율성 개선</p>
+<p><strong>연구 지원</strong> - 임상시험 데이터 분석 - 신약 개발 지원 - 역학 연구 자동화</p>
+</div>
+<div id="tabset-5-4">
+<p><strong>고객 인사이트</strong> - 구매 패턴 분석 - 개인화 마케팅 - 고객 생애가치 예측</p>
+<p><strong>운영 최적화</strong> - 재고 관리 자동화 - 가격 최적화 - 매장 성과 분석</p>
+<p><strong>옴니채널 전략</strong> - 채널별 성과 분석 - 고객 여정 최적화 - 통합 경험 제공</p>
+</div>
+</div>
+</div>
+</section>
+<section id="사회적-영향" class="slide level2 smaller">
+<h2>사회적 영향</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>긍정적 영향:</strong></p>
+<ul>
+<li><i class="fas fa-users"></i> <strong>데이터 민주화</strong>: 모든 사람이 데이터 활용 가능</li>
+<li><i class="fas fa-rocket"></i> <strong>생산성 향상</strong>: 업무 효율성 대폭 증가</li>
+<li><i class="fas fa-chart-line"></i> <strong>의사결정 품질</strong>: 데이터 기반 합리적 결정</li>
+<li><i class="fas fa-graduation-cap"></i> <strong>교육 혁신</strong>: 데이터 리터러시 향상</li>
+</ul>
+<p><strong>주의 사항:</strong></p>
+<ul>
+<li><strong>일자리 변화</strong>: 전통적 분석 역할 변화 필요</li>
+<li><strong>데이터 편향</strong>: AI 모델의 편향성 주의</li>
+<li><strong>프라이버시</strong>: 개인정보 보호 강화 필요</li>
+<li><strong>보안</strong>: 사이버 보안 위협 증가</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-12">graph TD
+    A[GenBI 확산] --&gt; B[긍정적 영향]
+    A --&gt; C[도전 과제]
+    
+    B --&gt; D[데이터 민주화]
+    B --&gt; E[생산성 향상]
+    B --&gt; F[혁신 가속화]
+    
+    C --&gt; G[일자리 변화]
+    C --&gt; H[편향성 문제]
+    C --&gt; I[프라이버시 우려]
+    
+    D --&gt; J[사회적 혜택]
+    E --&gt; J
+    F --&gt; J
+    
+    G --&gt; K[대응 방안]
+    H --&gt; K
+    I --&gt; K
+</pre>
+<div id="mermaid-tooltip-12" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+<p><strong>대응 전략:</strong> - 재교육 프로그램 강화 - 윤리적 AI 개발 - 규제 프레임워크 구축</p>
+</div>
+</div>
+</section>
+<section id="마무리" class="slide level2 smaller">
+<h2>마무리</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><strong>GenBI의 핵심 가치:</strong></p>
+<ul>
+<li>자연어 기반 직관적 데이터 분석</li>
+<li>실시간 인사이트 생성 및 제공</li>
+<li>조직 전체의 데이터 활용도 향상</li>
+<li>의사결정 속도 및 품질 개선</li>
+</ul>
+<p><strong>성공적인 도입을 위한 조건:</strong></p>
+<ul>
+<li>명확한 비즈니스 목표 설정</li>
+<li>데이터 품질 확보</li>
+<li>조직 문화 변화 관리</li>
+<li>지속적인 학습 및 개선</li>
+</ul>
+<p><strong>미래 전망:</strong></p>
+<ul>
+<li>AI 기술 발전에 따른 성능 향상</li>
+<li>다양한 산업군으로 확산</li>
+<li>새로운 비즈니스 모델 창출</li>
+</ul>
+</div><div class="column" style="width:40%;">
+<div class="callout callout-tip callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>성공적인 GenBI 도입 체크리스트</strong></p>
+</div>
+<div class="callout-content">
+<ol type="1">
+<li><strong>전략 수립</strong>: 명확한 목표와 KPI 설정</li>
+<li><strong>데이터 준비</strong>: 품질 높은 데이터 확보</li>
+<li><strong>인프라 구축</strong>: 안정적인 기술 기반</li>
+<li><strong>교육 훈련</strong>: 사용자 역량 강화</li>
+<li><strong>점진적 확산</strong>: 파일럿 → 전사 도입</li>
+<li><strong>지속적 개선</strong>: 피드백 기반 발전</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="감사합니다" class="slide level2 center">
+<h2>감사합니다</h2>
+<div class="center">
+<p><strong>질문과 토론</strong></p>
+<p><i class="fas fa-envelope"></i> seonghak.hong@email.com<br>
+<i class="fas fa-globe"></i> https://aidenhong.com<br>
+<i class="fab fa-github"></i> https://github.com/euriion</p>
+<p><em>“GenBI는 데이터와 인간 사이의 언어 장벽을 허물어<br>
+누구나 데이터의 힘을 활용할 수 있게 만드는 혁신입니다.”</em></p>
+</div>
+<div class="footer footer-default">
+<p>GenBI | 홍성학</p>
+</div>
+</section></section>
+    </div>
+  </div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="genbi_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="genbi_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="genbi_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="genbi_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="genbi_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="genbi_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="genbi_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="genbi_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="genbi_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="genbi_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="genbi_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'smaller': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const clipboard = new window.ClipboardJS('.code-copy-button', {
+        target: function(trigger) {
+          return trigger.previousElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      });
+      function tippyHover(el, contentFn) {
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto-reveal',
+          placement: 'bottom-start'
+        };
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          return note.innerHTML;
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>

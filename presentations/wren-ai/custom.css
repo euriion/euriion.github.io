@@ -1,0 +1,388 @@
+/* Custom CSS for Wren AI presentation */
+
+/* Main theme overrides */
+.reveal {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Title slide customization */
+.reveal .title {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #00d4aa;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.reveal .subtitle {
+    font-size: 1.3em;
+    color: #a0a0a0;
+    margin-top: 0.5em;
+}
+
+.reveal .author {
+    font-size: 1.1em;
+    color: #ffffff;
+    margin-top: 1em;
+}
+
+.reveal .date {
+    font-size: 0.9em;
+    color: #888888;
+}
+
+/* Section headers */
+.reveal h1 {
+    color: #00d4aa;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    border-bottom: 3px solid #00d4aa;
+    padding-bottom: 0.3em;
+}
+
+.reveal h2 {
+    color: #26e5c7;
+    border-bottom: 2px solid #26e5c7;
+    padding-bottom: 0.2em;
+}
+
+.reveal h3 {
+    color: #4df0d4;
+}
+
+/* Code blocks */
+.reveal pre {
+    background-color: #1e1e1e;
+    border: 1px solid #444;
+    border-radius: 8px;
+    padding: 1em;
+    margin: 1em 0;
+}
+
+.reveal code {
+    background-color: #2d2d2d;
+    color: #f8f8f2;
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+}
+
+/* Tables */
+.reveal table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1em 0;
+}
+
+.reveal th {
+    background-color: #00d4aa;
+    color: white;
+    font-weight: bold;
+    padding: 0.8em;
+    text-align: left;
+}
+
+.reveal td {
+    padding: 0.6em;
+    border-bottom: 1px solid #444;
+}
+
+.reveal tr:nth-child(even) {
+    background-color: rgba(0, 212, 170, 0.1);
+}
+
+/* Callout boxes */
+.callout-note {
+    background-color: rgba(0, 212, 170, 0.1);
+    border-left: 4px solid #00d4aa;
+    padding: 1em;
+    margin: 1em 0;
+    border-radius: 4px;
+}
+
+.callout-tip {
+    background-color: rgba(40, 167, 69, 0.1);
+    border-left: 4px solid #28a745;
+    padding: 1em;
+    margin: 1em 0;
+    border-radius: 4px;
+}
+
+.callout-warning {
+    background-color: rgba(255, 193, 7, 0.1);
+    border-left: 4px solid #ffc107;
+    padding: 1em;
+    margin: 1em 0;
+    border-radius: 4px;
+}
+
+/* Panel tabs */
+.panel-tabset .nav-tabs {
+    border-bottom: 2px solid #00d4aa;
+    margin-bottom: 1em;
+}
+
+.panel-tabset .nav-tabs .nav-link {
+    color: #00d4aa;
+    border: none;
+    padding: 0.5em 1em;
+}
+
+.panel-tabset .nav-tabs .nav-link.active {
+    background-color: #00d4aa;
+    color: white;
+    border-radius: 4px 4px 0 0;
+}
+
+/* Incremental lists */
+.reveal .incremental > * {
+    opacity: 0.5;
+}
+
+.reveal .incremental > *.current-fragment {
+    opacity: 1;
+}
+
+/* Columns */
+.columns {
+    display: flex;
+    gap: 2em;
+}
+
+.column {
+    flex: 1;
+}
+
+/* Icons */
+.fas, .fab {
+    color: #00d4aa;
+    margin-right: 0.5em;
+}
+
+/* Mermaid diagrams */
+.mermaid {
+    background-color: transparent !important;
+}
+
+/* Links */
+.reveal a {
+    color: #00d4aa;
+    text-decoration: none;
+}
+
+.reveal a:hover {
+    color: #26e5c7;
+    text-decoration: underline;
+}
+
+/* Footer */
+.reveal .footer {
+    color: #888888;
+    font-size: 0.8em;
+}
+
+/* Slide numbers */
+.reveal .slide-number {
+    color: #00d4aa;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 0.2em 0.5em;
+    border-radius: 4px;
+}
+
+/* Center alignment utility */
+.center {
+    text-align: center;
+}
+
+/* Smaller text utility */
+.smaller {
+    font-size: 0.9em;
+}
+
+/* Highlight colors */
+.text-green-500 {
+    color: #28a745;
+}
+
+.text-red-500 {
+    color: #dc3545;
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal .slides section.present {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Progress bar */
+.reveal .progress {
+    height: 4px;
+    background-color: #00d4aa;
+}
+
+/* Gantt chart styling */
+.mermaid .section0 {
+    fill: #00d4aa;
+}
+
+.mermaid .section1 {
+    fill: #26e5c7;
+}
+
+.mermaid .section2 {
+    fill: #4df0d4;
+}
+
+.mermaid .section3 {
+    fill: #73f5e1;
+}
+
+/* Performance indicator colors */
+.fill-green {
+    background-color: #4caf50;
+    color: white;
+    padding: 0.2em 0.5em;
+    border-radius: 4px;
+}
+
+.fill-yellow {
+    background-color: #ffc107;
+    color: black;
+    padding: 0.2em 0.5em;
+    border-radius: 4px;
+}
+
+.fill-orange {
+    background-color: #ff9800;
+    color: white;
+    padding: 0.2em 0.5em;
+    border-radius: 4px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .columns {
+        flex-direction: column;
+        gap: 1em;
+    }
+    
+    .reveal .title {
+        font-size: 2em;
+    }
+    
+    .reveal .subtitle {
+        font-size: 1.1em;
+    }
+}
+
+/* Special styling for code examples */
+.reveal pre code {
+    font-size: 0.85em;
+    line-height: 1.4;
+}
+
+/* Emphasis for important text */
+.highlight {
+    background-color: rgba(0, 212, 170, 0.2);
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+}
+
+/* Status indicators */
+.status-done {
+    color: #4caf50;
+}
+
+.status-active {
+    color: #ff9800;
+}
+
+.status-pending {
+    color: #9e9e9e;
+}
+
+/* Architecture diagram styling */
+.mermaid .node rect {
+    fill: #2d2d2d;
+    stroke: #00d4aa;
+    stroke-width: 2px;
+}
+
+.mermaid .node text {
+    fill: #ffffff;
+}
+
+.mermaid .edgePath .path {
+    stroke: #00d4aa;
+    stroke-width: 2px;
+}
+
+/* Comparison table styling */
+.reveal table.comparison th {
+    background-color: #00d4aa;
+    text-align: center;
+}
+
+.reveal table.comparison td {
+    text-align: center;
+}
+
+.reveal table.comparison .winner {
+    background-color: rgba(0, 212, 170, 0.2);
+    font-weight: bold;
+}
+
+/* Timeline styling */
+.timeline {
+    position: relative;
+    padding: 1em 0;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 2em;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: #00d4aa;
+}
+
+.timeline-item {
+    position: relative;
+    padding-left: 4em;
+    margin-bottom: 1em;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 1.5em;
+    top: 0.5em;
+    width: 1em;
+    height: 1em;
+    background-color: #00d4aa;
+    border-radius: 50%;
+}
+
+/* Success metrics styling */
+.metric-card {
+    background-color: rgba(0, 212, 170, 0.1);
+    border: 1px solid #00d4aa;
+    border-radius: 8px;
+    padding: 1em;
+    margin: 0.5em 0;
+    text-align: center;
+}
+
+.metric-value {
+    font-size: 2em;
+    font-weight: bold;
+    color: #00d4aa;
+}
+
+.metric-label {
+    font-size: 0.9em;
+    color: #a0a0a0;
+}

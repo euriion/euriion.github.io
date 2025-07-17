@@ -2,7 +2,7 @@
 title: "애드테크 기초와 실무"
 subtitle: "디지털 광고 기술의 이해와 활용"
 author: "Seonghak Hong"
-date: today
+date: 2025-06-23
 format: 
   revealjs:
     theme: night

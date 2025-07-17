@@ -1,0 +1,238 @@
+/* Custom CSS for GenBI presentation */
+
+/* Main theme overrides */
+.reveal {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Title slide customization */
+.reveal .title {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #4a9eff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.reveal .subtitle {
+    font-size: 1.3em;
+    color: #a0a0a0;
+    margin-top: 0.5em;
+}
+
+.reveal .author {
+    font-size: 1.1em;
+    color: #ffffff;
+    margin-top: 1em;
+}
+
+.reveal .date {
+    font-size: 0.9em;
+    color: #888888;
+}
+
+/* Section headers */
+.reveal h1 {
+    color: #4a9eff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    border-bottom: 3px solid #4a9eff;
+    padding-bottom: 0.3em;
+}
+
+.reveal h2 {
+    color: #6bb6ff;
+    border-bottom: 2px solid #6bb6ff;
+    padding-bottom: 0.2em;
+}
+
+.reveal h3 {
+    color: #88ccff;
+}
+
+/* Code blocks */
+.reveal pre {
+    background-color: #1e1e1e;
+    border: 1px solid #444;
+    border-radius: 8px;
+    padding: 1em;
+    margin: 1em 0;
+}
+
+.reveal code {
+    background-color: #2d2d2d;
+    color: #f8f8f2;
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+}
+
+/* Tables */
+.reveal table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1em 0;
+}
+
+.reveal th {
+    background-color: #4a9eff;
+    color: white;
+    font-weight: bold;
+    padding: 0.8em;
+    text-align: left;
+}
+
+.reveal td {
+    padding: 0.6em;
+    border-bottom: 1px solid #444;
+}
+
+.reveal tr:nth-child(even) {
+    background-color: rgba(74, 158, 255, 0.1);
+}
+
+/* Callout boxes */
+.callout-note {
+    background-color: rgba(74, 158, 255, 0.1);
+    border-left: 4px solid #4a9eff;
+    padding: 1em;
+    margin: 1em 0;
+    border-radius: 4px;
+}
+
+.callout-tip {
+    background-color: rgba(40, 167, 69, 0.1);
+    border-left: 4px solid #28a745;
+    padding: 1em;
+    margin: 1em 0;
+    border-radius: 4px;
+}
+
+.callout-warning {
+    background-color: rgba(255, 193, 7, 0.1);
+    border-left: 4px solid #ffc107;
+    padding: 1em;
+    margin: 1em 0;
+    border-radius: 4px;
+}
+
+/* Panel tabs */
+.panel-tabset .nav-tabs {
+    border-bottom: 2px solid #4a9eff;
+    margin-bottom: 1em;
+}
+
+.panel-tabset .nav-tabs .nav-link {
+    color: #4a9eff;
+    border: none;
+    padding: 0.5em 1em;
+}
+
+.panel-tabset .nav-tabs .nav-link.active {
+    background-color: #4a9eff;
+    color: white;
+    border-radius: 4px 4px 0 0;
+}
+
+/* Incremental lists */
+.reveal .incremental > * {
+    opacity: 0.5;
+}
+
+.reveal .incremental > *.current-fragment {
+    opacity: 1;
+}
+
+/* Columns */
+.columns {
+    display: flex;
+    gap: 2em;
+}
+
+.column {
+    flex: 1;
+}
+
+/* Icons */
+.fas, .fab {
+    color: #4a9eff;
+    margin-right: 0.5em;
+}
+
+/* Mermaid diagrams */
+.mermaid {
+    background-color: transparent !important;
+}
+
+/* Links */
+.reveal a {
+    color: #4a9eff;
+    text-decoration: none;
+}
+
+.reveal a:hover {
+    color: #6bb6ff;
+    text-decoration: underline;
+}
+
+/* Footer */
+.reveal .footer {
+    color: #888888;
+    font-size: 0.8em;
+}
+
+/* Slide numbers */
+.reveal .slide-number {
+    color: #4a9eff;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 0.2em 0.5em;
+    border-radius: 4px;
+}
+
+/* Center alignment utility */
+.center {
+    text-align: center;
+}
+
+/* Smaller text utility */
+.smaller {
+    font-size: 0.9em;
+}
+
+/* Highlight colors */
+.text-green-500 {
+    color: #28a745;
+}
+
+.text-red-500 {
+    color: #dc3545;
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal .slides section.present {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Progress bar */
+.reveal .progress {
+    height: 4px;
+    background-color: #4a9eff;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .columns {
+        flex-direction: column;
+        gap: 1em;
+    }
+    
+    .reveal .title {
+        font-size: 2em;
+    }
+    
+    .reveal .subtitle {
+        font-size: 1.1em;
+    }
+}
