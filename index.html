@@ -1013,21 +1013,31 @@
                 const response = await fetch("useful_tools_data.csv");
                 const csvText = await response.text();
                 
-                // CSV 데이터를 수동으로 파싱
-                const lines = csvText.trim().split('\n'); // 줄바꿈으로 분리
-                const headers = lines[0].split(','); // 첫 번째 줄은 헤더
-                const data = [];
-                
-                // 각 데이터 행을 객체로 변환
-                for (let i = 1; i < lines.length; i++) {
-                    const values = lines[i].split(',');
-                    const row = {};
-                    headers.forEach((header, index) => {
-                        row[header] = values[index];
-                    });
-                    data.push(row);
+                // 더 견고한 CSV 파싱 함수
+                function parseCSV(csvText) {
+                    const lines = csvText.trim().split('\n');
+                    const headers = lines[0].split(',').map(h => h.trim());
+                    const data = [];
+                    
+                    for (let i = 1; i < lines.length; i++) {
+                        const line = lines[i].trim();
+                        if (line) { // 빈 줄 제외
+                            // 쉼표로 분리하되, 정확히 3개 필드(category, name, link)가 되도록 처리
+                            const parts = line.split(',');
+                            if (parts.length >= 3) {
+                                const row = {
+                                    category: parts[0].trim(),
+                                    name: parts[1].trim(),
+                                    link: parts.slice(2).join(',').trim() // 나머지 부분을 모두 링크로 처리
+                                };
+                                data.push(row);
+                            }
+                        }
+                    }
+                    return data;
                 }
                 
+                const data = parseCSV(csvText);
                 console.log("CSV data loaded:", data); // 디버그용 로그
                 
                 // 도구 그리드 컨테이너 가져오기
@@ -1037,16 +1047,27 @@
                 // 데이터가 있으면 카드 생성
                 if (data && data.length > 0) {
                     data.forEach(tool => {
+                        // 필수 필드 확인
+                        if (!tool.name || !tool.category || !tool.link) {
+                            console.warn("도구 데이터가 불완전합니다:", tool);
+                            return; // 불완전한 데이터는 건너뛰기
+                        }
+                        
                         // 각 도구에 대한 카드 요소 생성
                         const card = document.createElement('div');
                         card.className = 'tool-card bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow duration-200 hover-lift';
                         
+                        // 안전한 텍스트 처리 (HTML 이스케이프)
+                        const safeName = tool.name.replace(/</g, '&lt').replace(/>/g, '&gt');
+                        const safeCategory = tool.category.replace(/</g, '&lt').replace(/>/g, '&gt');
+                        const safeLink = tool.link.trim();
+                        
                         // 카드 내용 HTML 생성
                         card.innerHTML = `
-                            <h4 class="font-bold text-sm mb-2 text-gray-800">${tool.name}</h4>
-                            <span class="inline-block px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full mb-2">${tool.category}</span>
+                            <h4 class="font-bold text-sm mb-2 text-gray-800">${safeName}</h4>
+                            <span class="inline-block px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full mb-2">${safeCategory}</span>
                             <div class="mt-2">
-                                <a href="${tool.link}" target="_blank" class="inline-flex items-center gap-1 text-black hover:text-gray-700 text-xs font-medium">
+                                <a href="${safeLink}" target="_blank" class="inline-flex items-center gap-1 text-black hover:text-gray-700 text-xs font-medium">
                                     <i class="fas fa-external-link-alt"></i> 도구 보기
                                 </a>
                             </div>
