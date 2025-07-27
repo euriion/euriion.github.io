@@ -192,6 +192,7 @@
                     <li><a href="#achievements" class="block py-2 px-3 rounded hover:bg-gray-800 transition-colors text-xs">활동</a></li>
                     <li><a href="#publications" class="block py-2 px-3 rounded hover:bg-gray-800 transition-colors text-xs">발표 자료</a></li>
                     <li><a href="#books" class="block py-2 px-3 rounded hover:bg-gray-800 transition-colors text-xs">저서</a></li>
+                    <li><a href="#freebooks" class="block py-2 px-3 rounded hover:bg-gray-800 transition-colors text-xs">무료 도서</a></li>
                     <li><a href="#tools" class="block py-2 px-3 rounded hover:bg-gray-800 transition-colors text-xs">도구 모음</a></li>
                     <li><a href="#contact" class="block py-2 px-3 rounded hover:bg-gray-800 transition-colors text-xs">소셜네트워크 & 이메일</a></li>
                 </ul>
@@ -921,6 +922,24 @@
             </div>
         </section>
 
+        <!-- Free Books Section -->
+        <section id="freebooks" class="py-12">
+            <div class="container mx-auto px-6">
+                <div class="fade-in">
+                    <h2 class="text-2xl font-bold mb-8 text-center">무료 도서</h2>
+                    
+                    <div class="bg-white border border-gray-200 rounded-lg overflow-hidden">
+                        <div id="freebooks-list" class="space-y-0 divide-y divide-gray-200">
+                            <!-- Free books will be populated here by JavaScript -->
+                            <div class="p-4 text-center text-gray-500">
+                                무료 도서를 불러오는 중입니다...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Tools Section -->
         <section id="tools" class="py-12 bg-gray-50">
             <div class="container mx-auto px-6">
@@ -1017,6 +1036,78 @@
     <!-- No external dependencies needed for CSV loading -->
     
     <script>
+        // JSON 데이터를 로드하여 무료 도서 목록을 생성하는 함수
+        async function loadFreebooksData() {
+            try {
+                // JSON 파일을 fetch API로 가져오기
+                const response = await fetch("freebooks.json");
+                const data = await response.json();
+                
+                console.log("Freebooks data loaded:", data); // 디버그용 로그
+                
+                // 무료 도서 리스트 컨테이너 가져오기
+                const freebooksList = document.getElementById('freebooks-list');
+                freebooksList.innerHTML = ''; // 기존 내용 초기화
+                
+                // 데이터가 있으면 항목 생성
+                if (data && data.length > 0) {
+                    data.forEach(book => {
+                        // 필수 필드 확인 (JSON 파일 구조에 맞게 수정)
+                        if (!book.title || !book.authors || !book.publisher || !book.publishDate || !book.description || !book.url) {
+                            console.warn("무료 도서 데이터가 불완전합니다:", book);
+                            return; // 불완전한 데이터는 건너뛰기
+                        }
+                        
+                        // 각 도서에 대한 항목 요소 생성
+                        const item = document.createElement('div');
+                        item.className = 'p-4 hover:bg-gray-50 transition-colors';
+                        
+                        // 안전한 텍스트 처리 (HTML 이스케이프)
+                        const safeTitle = book.title.replace(/</g, '&lt').replace(/>/g, '&gt');
+                        const safeAuthors = book.authors.replace(/</g, '&lt').replace(/>/g, '&gt');
+                        const safePublisher = book.publisher.replace(/</g, '&lt').replace(/>/g, '&gt');
+                        const safeDescription = book.description.replace(/</g, '&lt').replace(/>/g, '&gt');
+                        const safeLink = book.url.trim();
+                        const safeIcon = book.icon || 'fas fa-book';
+                        
+                        // 항목 내용 HTML 생성
+                        item.innerHTML = `
+                            <div class="flex items-start gap-3">
+                                <i class="${safeIcon} text-gray-600 text-sm mt-1"></i>
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <a href="${safeLink}" 
+                                           target="_blank" 
+                                           class="font-bold text-sm text-black hover:text-gray-700 hover:underline">
+                                            ${safeTitle}
+                                        </a>
+                                        <span class="text-xs text-gray-500">${book.publishDate}</span>
+                                    </div>
+                                    <div class="text-xs text-gray-600 mb-1">
+                                        저자: ${safeAuthors} • 출판사: ${safePublisher}
+                                    </div>
+                                    <p class="text-xs text-gray-600 leading-relaxed">
+                                        ${safeDescription}
+                                    </p>
+                                </div>
+                            </div>
+                        `;
+                        
+                        // 리스트에 항목 추가
+                        freebooksList.appendChild(item);
+                    });
+                } else {
+                    // 데이터가 없을 때 메시지 표시
+                    freebooksList.innerHTML = '<div class="text-center text-gray-500 py-8">무료 도서 데이터가 없습니다.</div>';
+                }
+            } catch (error) {
+                // 에러 발생 시 에러 메시지 표시
+                console.error("Error loading freebooks JSON:", error);
+                const freebooksList = document.getElementById('freebooks-list');
+                freebooksList.innerHTML = '<div class="text-center text-red-500 py-8">무료 도서 데이터를 불러오는데 실패했습니다.</div>';
+            }
+        }
+
         // CSV 데이터를 로드하고 카드 형태로 표시하는 함수
         async function loadToolsData() {
             try {
@@ -1099,8 +1190,9 @@
             }
         }
         
-        // 페이지 로드 시 도구 데이터 불러오기
+        // 페이지 로드 시 데이터 불러오기
         loadToolsData();
+        loadFreebooksData();
         
         // 저작권 연도를 현재 연도로 업데이트
         document.getElementById('currentYear').textContent = new Date().getFullYear();
