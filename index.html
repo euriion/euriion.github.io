@@ -1068,7 +1068,7 @@
                         const safePublisher = book.publisher.replace(/</g, '&lt').replace(/>/g, '&gt');
                         const safeDescription = book.description.replace(/</g, '&lt').replace(/>/g, '&gt');
                         const safeLink = book.url.trim();
-                        const safeIcon = book.icon || 'fas fa-book';
+                        const safeIcon = book.icon ? `fas fa-${book.icon}` : 'fas fa-book';
                         
                         // 항목 내용 HTML 생성
                         item.innerHTML = `
