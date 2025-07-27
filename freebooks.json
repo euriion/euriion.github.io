@@ -5,4 +5,136 @@
   "publishDate": "2016",
   "authors": "Bradley Efron, TTrevor Hastie",
   "description": "이 책은 현대 시대의 통계적 추론에 대한 포괄적인 소개를 제공하며, 머신러닝, 데이터 사이언스, 그리고 통계적 추론을 위한 알고리즘 사용과 같은 주제들을 다룹니다. 통계학 및 관련 분야의 학생들과 연구자들에게 귀중한 자료입니다."
-}]
+},
+{
+  "url": "https://motherduck.com/duckdb-book-brief/",
+  "title": "DuckDB in Action",
+  "publisher": "MotherDuck",
+  "publishDate": "2024",
+  "authors": "MotherDuck",
+  "description": "DuckDB는 빠르고 가벼우며 사용하기 쉽도록 설계된 현대적인 오픈소스 데이터베이스 관리 시스템입니다. 데이터 분석 및 데이터 사이언스 작업에 탁월한 선택입니다."
+},
+
+{
+  "url": "https://jakevdp.github.io/PythonDataScienceHandbook/",
+  "title": "Python Data Science Handbook",
+  "publisher": "O'Reilly Media",
+  "publishDate": "2016",
+  "authors": "Jake VanderPlas",
+  "description": "Python을 활용한 데이터 과학의 기초와 고급 주제를 다루며, NumPy, Pandas, Matplotlib, Scikit-Learn 등의 라이브러리를 통해 데이터 분석과 머신러닝을 실습적으로 설명합니다. 데이터 과학 입문자에게 추천됩니다."
+},
+{
+  "url": "https://r4ds.had.co.nz/",
+  "title": "R for Data Science",
+  "publisher": "O'Reilly Media",
+  "publishDate": "2023",
+  "authors": "Hadley Wickham, Mine Çetinkaya-Rundel, Garrett Grolemund",
+  "description": "R 언어를 사용한 데이터 과학 워크플로를 소개하며, 데이터 가져오기, 변환, 시각화, 모델링을 단계적으로 가르칩니다. 통계적 분석에 초점을 맞춘 실용적인 가이드입니다."
+},
+{
+  "url": "https://greenteapress.com/thinkstats2/thinkstats2.pdf",
+  "title": "Think Stats (3rd Edition)",
+  "publisher": "Green Tea Press",
+  "publishDate": "2023",
+  "authors": "Allen B. Downey",
+  "description": "Python을 통해 통계와 확률을 실습적으로 배우며, 데이터 분석의 기초 개념을 탐구합니다. 실제 데이터셋을 사용한 예제로 통계 모델링을 설명합니다."
+},
+{
+  "url": "https://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning/understanding-machine-learning-theory-algorithms.pdf",
+  "title": "Understanding Machine Learning: From Theory to Algorithms",
+  "publisher": "Cambridge University Press",
+  "publishDate": "2014",
+  "authors": "Shai Shalev-Shwartz, Shai Ben-David",
+  "description": "머신러닝의 이론적 기초를 다루며, 알고리즘과 수학적 원리를 체계적으로 설명합니다. PAC 학습 모델과 고급 주제를 포함해 연구자들에게 유용합니다."
+},
+{
+  "url": "https://jcer.in/jcer-docs/E-Learning/Digital%20Library%20/E-Books/Data%20Science%20from%20Scratch%20by%20Joel%20Grus.pdf",
+  "title": "Data Science from Scratch",
+  "publisher": "O'Reilly Media",
+  "publishDate": "2015",
+  "authors": "Joel Grus",
+  "description": "데이터 과학 도구와 알고리즘을 처음부터 구현하며 배우는 책으로, Python을 통해 통계, 머신러닝, 데이터 시각화를 다룹니다. 실무적 접근이 강점입니다."
+},
+{
+  "url": "https://freecomputerbooks.com/Practical-Data-Analysis.html",
+  "title": "Practical Data Analysis",
+  "publisher": "Packt Publishing",
+  "publishDate": "2016",
+  "authors": "Hector Cuesta",
+  "description": "오픈소스 도구를 사용한 데이터 분석 프로젝트를 통해 데이터 변환, 모델링, 시각화를 실습합니다. 텍스트, 이미지, 소셜 네트워크 데이터 등 다양한 유형을 다룹니다."
+},
+{
+  "url": "https://greenteapress.com/thinkbayes/thinkbayes.pdf",
+  "title": "Think Bayes (2nd Edition)",
+  "publisher": "Green Tea Press",
+  "publishDate": "2021",
+  "authors": "Allen B. Downey",
+  "description": "Python 코드를 통해 베이지안 통계를 배우며, 확률 모델링과 추론을 실습합니다. 실생활 예제로 베이지안 사고를 강조합니다."
+},
+{
+  "url": "https://freecomputerbooks.com/Data-Visualization-for-All.html",
+  "title": "Data Visualization for All",
+  "publisher": "GitBooks",
+  "publishDate": "2018",
+  "authors": "Jack Dougherty et al.",
+  "description": "Google Sheets, Tableau Public 등의 도구로 인터랙티브 차트와 지도를 만드는 방법을 가르칩니다. 초보자 친화적인 튜토리얼과 예제가 포함됩니다."
+},
+{
+  "url": "https://files.eric.ed.gov/fulltext/ED536788.pdf",
+  "title": "Introduction to Data Analysis Handbook",
+  "publisher": "Academy for Educational Development",
+  "publishDate": "2006",
+  "authors": "Migrant and Seasonal Head Start Technical Assistance Center",
+  "description": "데이터 분석의 기본 절차와 방법을 설명하며, 결과를 식별하는 실용적인 접근을 제시합니다. 교육 및 사회 데이터에 초점을 맞춥니다."
+},
+{
+  "url": "https://assets.openstax.org/oscms-prodcms/media/documents/Principles-of-Data-Science-WEB.pdf",
+  "title": "Principles of Data Science",
+  "publisher": "OpenStax (Rice University)",
+  "publishDate": "2020",
+  "authors": "OpenStax",
+  "description": "데이터 과학의 기초 원리를 다루며, 통계, 컴퓨팅, 윤리적 측면을 포괄합니다. 대학 교재로 적합한 체계적 내용입니다."
+},
+{
+  "url": "https://www.temida.si/~bojan/MPS/materials/Data%20Analysis%20Using%20SQL%20and%20Excel.pdf",
+  "title": "Data Analysis Using SQL and Excel",
+  "publisher": "Wiley Publishing",
+  "publishDate": "2007",
+  "authors": "Gordon S. Linoff",
+  "description": "SQL과 Excel을 활용한 데이터 분석 기법을 설명하며, 마케팅과 비즈니스 문제 해결에 초점을 맞춥니다. 실무 사례가 풍부합니다."
+},
+{
+  "url": "https://dokumen.pub/big-data-analytics-a-hands-on-approach-9781949978001.html",
+  "title": "Big Data Analytics: A Hands-On Approach",
+  "publisher": "Self-published",
+  "publishDate": "2019",
+  "authors": "Arshdeep Bahga, Vijay Madisetti",
+  "description": "빅데이터 스택 설정부터 NoSQL, 실시간 분석까지 실습적으로 다루며, Spark와 MongoDB를 사용한 프로젝트를 안내합니다."
+},
+
+{
+  "url": "https://eloquentjavascript.net/Eloquent_JavaScript.pdf",
+  "title": "Eloquent JavaScript, 3rd Edition",
+  "publisher": "No Starch Press",
+  "publishDate": "2018",
+  "authors": "Marijn Haverbeke",
+  "description": "JavaScript를 통해 프로그래밍의 기본 개념을 소개하는 책으로, 실습 예제와 프로젝트를 통해 현대적인 웹 개발 기술을 배울 수 있습니다. 초보자가 쉽게 접근할 수 있도록 설계되었으며, 디지털 세계의 원리를 탐구합니다."
+},
+{
+  "url": "https://modernc.gforge.inria.fr/ModernC.pdf",
+  "title": "Modern C",
+  "publisher": "Manning Publications",
+  "publishDate": "2019",
+  "authors": "Jens Gustedt",
+  "description": "C 프로그래밍 언어의 최신 표준(C11)을 중심으로 한 입문서로, 기본부터 고급 주제까지 다루며 안전하고 효율적인 코드 작성 방법을 가르칩니다. 실무자들에게 추천되는 실용적인 가이드입니다."
+},
+{
+  "url": "https://www.py4e.com/lessons/book.pdf",
+  "title": "Python for Everybody: Exploring Data in Python 3",
+  "publisher": "Self-published (오픈 소스)",
+  "publishDate": "2016",
+  "authors": "Charles R. Severance",
+  "description": "Python을 사용한 데이터 탐색과 프로그래밍 기초를 다루는 책으로, 컴퓨터 과학이 아닌 정보학 관점에서 접근합니다. 데이터 분석 문제를 해결하는 데 초점을 맞춰 비전공자도 쉽게 배울 수 있습니다."
+}
+
+]
