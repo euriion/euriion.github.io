@@ -1,0 +1,1630 @@
+---
+title: "AI 윤리"
+subtitle: "일반인을 위한 AI 윤리 완전 가이드"
+author: "Aiden Hong"
+date: "2025-07-28"
+format: 
+  revealjs:
+    theme: night
+    transition: slide
+    background-transition: fade
+    highlight-style: github
+    code-fold: true
+    code-tools: true
+    slide-number: true
+    chalkboard: true
+    scrollable: true
+    incremental: false
+    footer: "AI Ethics for Everyone | Aiden Hong"
+    css: custom.css
+    include-in-header:
+      - text: |
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+mermaid:
+  theme: dark
+editor: visual
+
+---
+
+## 오늘의 학습 여정 <i class="fas fa-rocket"></i>
+
+:::: {.columns}
+::: {.column width="50%"}
+**1부 - AI 이해하기 (60분)**
+
+- AI가 무엇인지 알아보기
+- 일상 속 AI 찾아보기
+- AI의 장점과 위험성
+- 개인정보와 프라이버시
+
+**휴식 (10분)** <i class="fas fa-coffee"></i>
+:::
+
+::: {.column width="50%"}
+**2부 - AI 윤리 실천하기 (50분)**
+
+- 편향과 차별 문제
+- AI와 일자리 변화
+- 개인이 할 수 있는 실천
+- 미래 사회 준비하기
+
+**마무리 및 Q&A (20분)** <i class="fas fa-comments"></i>
+:::
+::::
+
+> **"AI 시대를 살아가는 지혜로운 사람이 되기 위해"**
+
+---
+
+## 강사 소개 <i class="fas fa-user-tie"></i>
+
+:::: {.columns}
+::: {.column width="60%"}
+**Seonghak Hong (홍성학)**
+
+- <i class="fas fa-building"></i> 한국R사용자회
+- <i class="fas fa-envelope"></i> [aiden@r2bit.com](mailto:aiden@r2bit.com)
+- <i class="fas fa-briefcase"></i> 데이터 사이언티스트
+:::
+
+::: {.column width="40%"}
+**오늘의 약속**
+
+<i class="fas fa-check"></i> 어려운 용어 없이 쉽게 설명
+<i class="fas fa-check"></i> 실생활 예시 중심으로  
+<i class="fas fa-check"></i> 언제든 질문 환영  
+<i class="fas fa-check"></i> 실용적인 팁 제공  
+
+**참여 방법**
+
+- 궁금한 것은 바로 질문하세요!
+- 휴대폰 설정을 함께 체크해봐요
+- 경험담을 공유해주세요
+:::
+::::
+
+---
+
+## 퀴즈로 시작하기! <i class="fas fa-question-circle"></i>
+
+### 다음 중 AI가 **아닌** 것은?
+
+A. 넷플릭스 영화 추천 <i class="fas fa-tv"></i>  
+B. 네비게이션 최단경로 찾기 <i class="fas fa-map"></i>  
+C. 은행 ATM 기계 <i class="fas fa-credit-card"></i>  
+D. 스마트폰 사진 자동 분류 <i class="fas fa-mobile-alt"></i>  
+
+**생각해보세요...**
+
+---
+
+## 정답 공개! <i class="fas fa-star"></i>
+
+### 정답: **C. 은행 ATM 기계** <i class="fas fa-credit-card"></i>
+
+:::: {.columns}
+::: {.column width="50%"}
+**AI인 것들:**
+
+- **넷플릭스**: 취향을 학습해서 추천
+- **네비게이션**: 실시간 교통정보로 경로 최적화  
+- **사진 분류**: 얼굴/장소를 자동 인식
+
+**공통점:** 스스로 학습하고 판단!
+:::
+
+::: {.column width="50%"}
+**ATM이 AI가 아닌 이유:**
+
+- 미리 정해진 규칙대로만 작동
+- 학습하지 않음
+- 단순한 입출금 처리만
+
+**즉, 똑똑하지만 AI는 아님!**
+:::
+::::
+
+> **AI의 핵심: 데이터를 보고 스스로 학습하여 판단하는 능력** <i class="fas fa-brain"></i>
+
+---
+
+## 1부: AI 이해하기
+
+# AI가 무엇인지 알아보기 <i class="fas fa-robot"></i>
+
+---
+
+## AI를 쉽게 이해하기
+
+### 3살 아이에게 설명한다면?
+
+:::: {.columns}
+::: {.column width="50%"}
+**전통적인 컴퓨터** <i class="fas fa-laptop"></i>
+
+- 사람: "1+1을 계산해"
+- 컴퓨터: "2입니다"
+- 사람: "2+2를 계산해"  
+- 컴퓨터: "4입니다"
+
+**→ 명령을 받아서 처리**
+:::
+
+::: {.column width="50%"}
+**AI 컴퓨터** <i class="fas fa-brain"></i>
+
+- 사람: "고양이 사진 1만장을 보여줌"
+- AI: "아, 이런 게 고양이구나!"
+- 사람: "이 사진에 뭐가 있어?"
+- AI: "고양이가 있어요!"
+
+**→ 스스로 배워서 판단**
+:::
+::::
+
+### 쉬운 비유: AI는 매우 빠른 학습을 하는 학생 <i class="fas fa-graduation-cap"></i>
+
+- 수백만 개의 예시를 보고 패턴을 찾음
+- 새로운 상황에서도 학습한 것을 적용
+- 사람보다 빠르게 학습하지만, 사람처럼 창의적이지는 않음
+
+---
+
+## 일상 속 AI 찾아보기 <i class="fas fa-search"></i>
+
+### 아침부터 저녁까지 AI와 함께
+
+```{mermaid}
+%%{init: {'theme':'dark', 'themeVariables': {'primaryColor': 'transparent', 'primaryTextColor': '#ffffff', 'primaryBorderColor': '#ffffff', 'lineColor': '#ffffff', 'arrowheadColor': '#ffffff', 'background': 'transparent', 'mainBkg': 'transparent', 'secondaryColor': 'transparent', 'tertiaryColor': 'transparent', 'nodeBkg': 'transparent', 'clusterBkg': 'transparent'}}}%%
+flowchart TD
+    A[아침 7시] --> B[스마트폰 알람] --> C[음성 비서 - 날씨 묻기] --> D[출근길 네비게이션] --> E[지하철 앱 - 최단경로] --> F[회사 - 이메일 스팸 필터] --> G[점심 - 배달 앱 추천] --> H[오후 - 온라인 쇼핑 추천] --> I[저녁 - 넷플릭스 시청] --> J[밤 - 은행 보이스피싱 탐지] --> K[취침 - 수면 패턴 분석] --> L[새벽 - 스마트 알람 설정]
+    
+    classDef default fill:#333333,stroke:#ffffff,color:#ffffff
+    classDef subgraphStyle fill:transparent,stroke:transparent,color:transparent
+    class A,B,C,D,E,F,G,H,I,J,K,L default
+    
+    
+    linkStyle 0 stroke:#ffffff
+    linkStyle 1 stroke:#ffffff
+    linkStyle 2 stroke:#ffffff
+    linkStyle 3 stroke:#ffffff
+    linkStyle 4 stroke:#ffffff
+    linkStyle 5 stroke:#ffffff
+    linkStyle 6 stroke:#ffffff
+    linkStyle 7 stroke:#ffffff
+    linkStyle 8 stroke:#ffffff
+    linkStyle 9 stroke:#ffffff
+    linkStyle 10 stroke:#ffffff
+```
+
+### 하루에 AI를 몇 번 만날까요? <i class="fas fa-surprise"></i>
+
+**예상보다 훨씬 많습니다!** 
+
+평균적으로 일반인은 하루에 **50-100번** AI 서비스를 이용합니다.
+
+---
+
+## 우리가 모르는 사이에 사용하는 AI들
+
+### 숨어있는 AI 서비스들 <i class="fas fa-ghost"></i>
+
+:::: {.columns}
+::: {.column width="50%"}
+**스마트폰에서**
+
+- 사진 촬영 시 자동 보정
+- 키보드 자동완성
+- 앱 추천 및 정리
+- 배터리 사용량 최적화
+- 얼굴 인식 잠금해제
+
+**인터넷에서**
+
+- 구글 검색 결과 순서
+- 유튜브 영상 추천
+- 페이스북 피드 순서
+- 인스타그램 광고 선택
+- 온라인 번역 서비스
+:::
+
+::: {.column width="50%"}
+**생활 서비스에서**
+
+- 은행 대출 심사
+- 보험료 계산
+- 신용카드 부정 사용 탐지
+- 택시 요금 및 경로 계산
+- 온라인 쇼핑몰 가격 책정
+
+**공공 서비스에서**
+
+- 교통 신호 최적화
+- 응급실 환자 우선순위
+- 범죄 예측 시스템
+- 세금 신고 이상 탐지
+- 코로나 확산 예측
+:::
+::::
+
+---
+
+## 실습: 내 스마트폰의 AI 찾기 <i class="fas fa-mobile-alt"></i>
+
+### 함께 해봅시다! (5분)
+
+**1단계: 사진 앱 확인**
+
+- 사진 → 앨범 → "사람" 또는 "얼굴" 확인
+- 같은 사람끼리 자동 분류되어 있나요?
+
+**2단계: 키보드 확인**  
+
+- 메시지 앱에서 문장 입력 시작
+- 다음 단어 추천이 나오나요?
+
+**3단계: 음성비서 확인**
+
+- "시리야" 또는 "빅스비야" 또는 "OK 구글"
+- "오늘 날씨 어때?" 물어보기
+
+**4단계: 설정에서 확인**
+
+- 설정 → "디지털 웰빙" 또는 "스크린 타임"
+- AI가 분석한 앱 사용 패턴 확인
+
+**발견한 것을 옆 사람과 공유해보세요!** <i class="fas fa-users"></i>
+
+---
+
+## AI의 놀라운 장점들 <i class="fas fa-star"></i>
+
+### 인간보다 뛰어난 영역들
+
+:::: {.columns}
+::: {.column width="50%"}
+**속도와 정확성** <i class="fas fa-bolt"></i>
+
+- 1초에 수백만 건의 데이터 처리
+- 24시간 지치지 않고 작업
+- 계산 실수가 거의 없음
+
+**패턴 인식** <i class="fas fa-bullseye"></i>
+
+- 사람이 놓치는 미세한 패턴 발견
+- 의료 영상에서 암세포 조기 발견
+- 주식 시장의 복잡한 변화 예측
+
+**일관성** <i class="fas fa-ruler"></i>
+
+- 감정에 좌우되지 않는 판단
+- 피로나 스트레스 없이 동일한 품질
+- 편견 없는 객관적 분석 (이론상)
+:::
+
+::: {.column width="50%"}
+**접근성** <i class="fas fa-globe"></i>
+
+- 언어 번역으로 소통 장벽 해소
+- 시각/청각 장애인을 위한 보조 기술
+- 원격지에도 전문가급 서비스 제공
+
+**비용 절약** <i class="fas fa-dollar-sign"></i>
+
+- 반복 작업의 자동화
+- 인력 비용 절감
+- 효율성 극대화
+
+**24/7 서비스** <i class="fas fa-clock"></i>
+
+- 언제든지 이용 가능
+- 응급상황 즉시 대응
+- 전 세계 동시 서비스
+:::
+::::
+
+### 성공 사례: AI가 구한 생명들 <i class="fas fa-heart"></i>
+
+- **의료 AI**: 구글 AI가 당뇨망막병증을 90% 정확도로 조기 진단
+- **재난 예측**: AI가 지진, 홍수를 미리 예측하여 대피 시간 확보
+- **교통 안전**: 자율주행 기술로 교통사고 90% 이상 감소 가능
+
+---
+
+## 하지만 AI에도 위험이 있습니다 <i class="fas fa-exclamation-triangle"></i>
+
+### 주요 위험 요소들
+
+:::: {.columns}
+::: {.column width="50%"}
+**편향과 차별** <i class="fas fa-frown"></i>
+
+- AI가 과거 데이터를 학습하면서 기존 편견 흡수
+- 성별, 인종, 나이 등으로 불공정 대우
+- 예: 채용 AI가 여성 지원자 차별
+
+**프라이버시 침해** <i class="fas fa-user-secret"></i>
+
+- 개인정보 무분별 수집 및 분석
+- 동의 없는 얼굴 인식 및 추적
+- 개인의 행동 패턴 예측 및 조작
+
+**경제적 불평등** <i class="fas fa-money-bill-wave"></i>
+
+- AI 기술 접근 격차 확대
+- 일자리 대체로 인한 실업 증가
+- 부자는 더 부자로, 가난한 자는 더 소외
+:::
+
+::: {.column width="50%"}
+**오작동과 오남용** <i class="fas fa-bomb"></i>
+
+- AI 시스템 해킹 및 악용
+- 딥페이크로 가짜 뉴스 생산
+- 자율무기 시스템의 윤리적 문제
+
+**인간 소외** <i class="fas fa-sad-tear"></i>
+
+- 과도한 AI 의존으로 인간 능력 퇴화
+- 사회적 소통 능력 감소
+- 감정적 유대감 결여
+
+**예측 불가능성** <i class="fas fa-dice"></i>
+
+- AI 결정 과정을 인간이 이해하기 어려움
+- 예상치 못한 상황에서 이상 행동
+- 책임 소재 불분명
+:::
+::::
+
+### 실제 발생한 AI 사고들 <i class="fas fa-surprise"></i>
+
+- **마이크로소프트 챗봇 Tay**: 24시간 만에 인종차별적 발언 학습
+- **우버 자율주행차**: 보행자 사망사고 발생 (2018년)
+- **아마존 채용 AI**: 10년간 남성 위주 채용으로 여성 차별
+
+---
+
+## 토론 시간: 여러분의 경험 <i class="fas fa-comments"></i>
+
+### 질문 1: AI로 인한 불편함이나 걱정 (5분)
+
+**경험 공유해주세요:**
+
+- 스마트폰이 너무 많이 알고 있어서 무서웠던 적이 있나요?
+- AI 추천이 잘못되어서 곤란했던 경험이 있나요?
+- AI 때문에 일자리를 잃을까 봐 걱정된 적이 있나요?
+
+### 질문 2: AI의 도움을 받았던 경험 (5분)
+
+**좋았던 경험도 공유해주세요:**
+
+- AI 덕분에 편리해진 일상은 무엇인가요?
+- AI가 정말 도움이 되었던 순간이 있나요?
+- 앞으로 AI에게 더 바라는 것이 있다면?
+
+**서로의 이야기를 들어보고, 공통점과 차이점을 찾아봅시다!** <i class="fas fa-ear-listen"></i>
+
+---
+
+## AI 발전의 역사 <i class="fas fa-book"></i>
+
+### 간단한 AI 역사 여행
+
+```{mermaid}
+timeline
+    title AI 발전사
+    1950년대 : AI 개념 탄생
+             : 앨런 튜링의 "튜링 테스트"
+    1980년대 : 전문가 시스템
+             : 의료 진단 AI 등장
+    1990년대 : 기계학습 발전
+             : 체스 AI가 세계 챔피언 승리
+    2000년대 : 인터넷과 빅데이터
+             : 구글 검색, 추천 시스템
+    2010년대 : 딥러닝 혁명
+             : 이미지 인식, 음성 인식 발전
+    2020년대 : 생성형 AI 시대
+             : ChatGPT, 이미지 생성 AI
+```
+
+### 각 시대별 특징
+
+- **1950-1980년**: 학자들의 연구실에서만
+- **1990-2000년**: 전문가들만 사용
+- **2010년대**: 일반인도 스마트폰으로 체험
+- **현재**: 누구나 쉽게 AI와 대화 가능
+
+**변화 속도가 점점 빨라지고 있습니다!** <i class="fas fa-rocket"></i>
+
+---
+
+## 생성형 AI의 등장 <i class="fas fa-palette"></i>
+
+### ChatGPT가 바꾼 세상
+
+:::: {.columns}
+::: {.column width="50%"}
+**2022년 11월 이전** <i class="fas fa-sleep"></i>
+
+- AI는 전문가들만의 영역
+- 복잡한 설정과 학습 필요
+- 일반인에게는 먼 이야기
+
+**2022년 11월 이후** <i class="fas fa-rocket"></i>
+
+- 누구나 AI와 자연어로 대화
+- 글쓰기, 번역, 코딩까지 도움
+- 전 세계적으로 AI 열풍
+:::
+
+::: {.column width="50%"}
+**ChatGPT의 놀라운 기록** <i class="fas fa-chart-bar"></i>
+
+- 출시 2개월 만에 1억 사용자
+- 인류 역사상 가장 빠른 확산
+- 모든 산업 분야에 영향
+
+**이후 등장한 AI들**
+
+- 클로드, 바드, GPT-4
+- 미드저니 (이미지 생성)
+- 소라 (동영상 생성)
+:::
+::::
+
+### 실습: ChatGPT 체험하기 (10분)
+
+**함께 해봅시다!**
+
+1. chat.openai.com 접속 (또는 앱 설치)
+2. 간단한 질문해보기: "오늘 저녁 메뉴 추천해줘"
+3. 복잡한 요청해보기: "친구 생일파티 계획을 도와줘"
+4. 창의적 요청: "우리 강의실을 배경으로 시 한 편 써줘"
+
+**놀라운 점과 아쉬운 점을 찾아보세요!**
+
+---
+
+## 개인정보와 프라이버시 <i class="fas fa-lock"></i>
+
+### 데이터는 새로운 석유 <i class="fas fa-oil-can"></i>
+
+:::: {.columns}
+::: {.column width="50%"}
+**AI가 수집하는 개인정보**
+
+<i class="fas fa-mobile-alt"></i> **기본 정보**
+
+- 이름, 나이, 성별, 직업
+- 전화번호, 이메일, 주소
+- 사진, 음성, 지문
+
+<i class="fas fa-walking"></i> **행동 정보**
+
+- 웹 검색 기록
+- 앱 사용 패턴
+- 위치 이동 경로
+- 구매 내역
+
+<i class="fas fa-cloud"></i> **분석된 정보**
+
+- 성격, 취향, 관심사
+- 정치적 성향
+- 건강 상태 추정
+- 경제적 수준
+:::
+
+::: {.column width="50%"}
+**왜 이렇게 많이 수집할까?** <i class="fas fa-question-circle"></i>
+
+<i class="fas fa-dollar-sign"></i> **경제적 가치**
+
+- 개인 맞춤 광고로 수익 창출
+- 더 정확한 추천으로 매출 증대
+- 데이터 판매 및 분석 서비스
+
+<i class="fas fa-bullseye"></i> **서비스 개선**
+
+- 더 나은 사용자 경험 제공
+- 버그 및 오류 개선
+- 새로운 기능 개발
+
+<i class="fas fa-balance-scale"></i> **하지만 문제는...**
+
+- 동의 없는 과도한 수집
+- 목적 외 사용
+- 해킹 위험
+- 개인의 통제권 상실
+:::
+::::
+
+---
+
+## 실습: 내 개인정보 점검하기 <i class="fas fa-search"></i>
+
+### 스마트폰 개인정보 설정 체크 (10분)
+
+**1단계: 위치 서비스 확인**
+
+- 설정 → 개인정보 보호 → 위치 서비스
+- 어떤 앱들이 내 위치를 추적하고 있나요?
+
+**2단계: 앱 권한 확인**  
+
+- 설정 → 앱 → 권한 관리
+- 카메라, 마이크, 연락처 접근 앱들 확인
+
+**3단계: 광고 추적 확인**
+
+- 설정 → 개인정보 보호 → 광고
+- 개인화된 광고가 켜져 있나요?
+
+**4단계: 구글/애플 계정 확인**
+
+- 구글: myaccount.google.com
+- 애플: appleid.apple.com
+- 내 활동 기록을 확인해보세요
+
+**놀라운 발견이 있었나요?** <i class="fas fa-surprise"></i>
+
+---
+
+## 개인정보 보호 실천법 <i class="fas fa-shield-alt"></i>
+
+### 지금 당장 할 수 있는 것들
+
+:::: {.columns}
+::: {.column width="50%"}
+**스마트폰 설정**
+
+<i class="fas fa-wrench"></i> **권한 관리**
+
+- 불필요한 앱 권한 제거
+- 위치 서비스 "항상 허용" → "앱 사용 중에만"
+- 마이크, 카메라 권한 최소화
+
+<i class="fas fa-map-marker-alt"></i> **위치 추적 줄이기**
+
+- 구글 타임라인 끄기
+- 위치 기록 삭제
+- 사진 위치 정보 저장 끄기
+
+<i class="fas fa-bullseye"></i> **광고 추적 방지**
+
+- 개인화 광고 끄기
+- 앱 추적 투명성 설정
+- 쿠키 차단 설정
+:::
+
+::: {.column width="50%"}
+**일상 생활에서**
+
+<i class="fas fa-credit-card"></i> **결제 시 주의**
+
+- 멤버십 카드 남발 금지
+- 온라인 쇼핑몰 개인정보 최소 제공
+- 할인 혜택과 개인정보 제공 신중 고려
+
+<i class="fas fa-envelope"></i> **이메일과 메시지**
+
+- 스팸 메일 신고하기
+- 의심스러운 링크 클릭 금지
+- 개인정보 요구 메시지 무시
+
+<i class="fas fa-globe"></i> **인터넷 사용**
+
+- VPN 사용 고려
+- 시크릿 모드 활용
+- 정기적으로 검색 기록 삭제
+:::
+::::
+
+### 개인정보 보호의 핵심 원칙 <i class="fas fa-lightbulb"></i>
+
+1. **최소 제공**: 꼭 필요한 정보만 제공
+2. **정기 점검**: 3개월마다 설정 확인  
+3. **의심하기**: "이 정보가 왜 필요한가?" 항상 질문
+4. **교육하기**: 가족과 지인들에게도 알려주기
+
+---
+
+## 편향과 차별 문제 <i class="fas fa-balance-scale"></i>
+
+### AI도 편견을 가질 수 있습니다
+
+:::: {.columns}
+::: {.column width="50%"}
+**AI 편향이 생기는 이유** <i class="fas fa-question-circle"></i>
+
+<i class="fas fa-chart-bar"></i> **데이터 문제**
+
+- 과거 차별이 담긴 데이터 학습
+- 특정 집단의 데이터 부족
+- 잘못된 레이블링
+
+<i class="fas fa-user-tie"></i> **만든 사람의 편견**
+
+- 개발팀의 다양성 부족
+- 무의식적 편견 반영
+- 특정 문화권 중심 사고
+
+<i class="fas fa-bullseye"></i> **목표 설정의 문제**
+
+- 효율성만 추구
+- 공정성 고려 부족
+- 단기적 성과 중심
+:::
+
+::: {.column width="50%"}
+**실제 발생한 편향 사례** <i class="fas fa-frown"></i>
+
+<i class="fas fa-briefcase"></i> **채용 분야**
+
+- 아마존 AI: 여성 이력서에 낮은 점수
+- 구글 광고: 남성에게 고연봉 일자리 더 많이 노출
+
+<i class="fas fa-hospital"></i> **의료 분야**
+
+- 피부암 진단 AI: 백인 피부에만 정확
+- 심장병 예측: 여성 환자 위험 과소평가
+
+<i class="fas fa-shield-alt"></i> **법 집행**
+
+- 얼굴 인식: 흑인과 아시아인 오인식률 높음
+- 범죄 예측: 특정 지역 과도한 경찰력 투입
+
+<i class="fas fa-credit-card"></i> **금융 서비스**
+
+- 대출 심사: 여성과 소수민족 불리
+- 보험료 책정: 지역과 직업에 따른 차별
+:::
+::::
+
+---
+
+## 편향의 심각성 이해하기
+
+### 생각해볼 질문들 <i class="fas fa-cloud"></i>
+
+**상황 1: AI 채용 시스템** <i class="fas fa-briefcase"></i>
+> 한 회사의 AI가 "컴퓨터과학 전공자"를 선호하도록 학습되었습니다. 그런데 과거 10년간 이 전공의 90%가 남성이었습니다. 이 AI가 여성 지원자를 차별할 가능성이 있을까요?
+
+**상황 2: 의료 AI 진단** <i class="fas fa-hospital"></i>  
+> 폐암 진단 AI가 주로 남성 흡연자 데이터로 학습되었습니다. 비흡연 여성이 폐암에 걸렸을 때, 이 AI가 정확하게 진단할 수 있을까요?
+
+**상황 3: 대출 심사 AI** <i class="fas fa-dollar-sign"></i>
+> AI가 "안정적인 직업"을 가진 사람에게 대출을 승인하도록 학습되었습니다. 프리랜서나 새로운 형태의 일을 하는 사람들은 어떻게 될까요?
+
+### 여러분의 생각을 들어보고 싶습니다! <i class="fas fa-microphone"></i>
+
+**5분간 옆 사람과 토론해보세요:**
+
+- 이런 상황들이 공정한가요?
+- 해결 방법이 있을까요?
+- 비슷한 경험이 있나요?
+
+---
+
+## AI 편향 해결 방법 <i class="fas fa-wrench"></i>
+
+### 기술적 해결책
+
+:::: {.columns}
+::: {.column width="50%"}
+**데이터 개선** <i class="fas fa-chart-bar"></i>
+
+- 다양한 집단의 데이터 충분히 수집
+- 편향된 데이터 필터링
+- 공정성 지표 측정 및 모니터링
+
+**알고리즘 개선** <i class="fas fa-cogs"></i>
+
+- 공정성을 고려한 AI 설계
+- 편향 탐지 및 보정 시스템
+- 설명 가능한 AI 개발
+
+**다양한 개발팀** <i class="fas fa-users"></i>
+
+- 성별, 인종, 연령 다양성 확보
+- 다양한 전공 배경의 전문가 참여
+- 윤리 전문가 포함
+:::
+
+::: {.column width="50%"}
+**사회적 해결책** <i class="fas fa-globe"></i>
+
+**법적 규제** <i class="fas fa-balance-scale"></i>
+- AI 차별 금지법 제정
+- 정기적인 공정성 감사 의무화
+- 피해 구제 제도 마련
+
+**교육과 인식 개선** <i class="fas fa-book"></i>
+- AI 개발자 윤리 교육
+- 일반인 AI 리터러시 향상
+- 미디어의 균형 잡힌 보도
+
+**투명성 확보** <i class="fas fa-search"></i>
+- AI 결정 과정 공개
+- 사용 데이터 출처 명시
+- 성능 지표 투명 공개
+:::
+::::
+
+### 개인이 할 수 있는 것들 <i class="fas fa-dumbbell"></i>
+
+1. **의식적으로 다양성 추구**: 다양한 관점의 콘텐츠 소비
+2. **AI 결과 비판적 수용**: 맹신하지 말고 검증하기
+3. **차별 경험 시 신고**: 문제 상황 적극 신고
+4. **지속적 학습**: AI 윤리에 대한 관심 유지
+
+---
+
+## 휴식 시간 <i class="fas fa-coffee"></i>
+
+### 10분 휴식 후 2부로 이어집니다!
+
+**휴식 시간 동안 해볼 것들:**
+
+- 옆 사람과 지금까지 내용 정리
+- 궁금한 점들 메모해두기  
+- 스마트폰 개인정보 설정 더 확인해보기
+- SNS에 오늘 배운 내용 한 줄 공유해보기
+
+**2부 예고** <i class="fas fa-film"></i>
+
+- AI와 일자리 변화 (현실적 전망)
+- 개인이 할 수 있는 실천 방법
+- 미래 사회 변화와 대비책
+- 정책과 규제 동향
+
+**잠깐! 질문이나 궁금한 점 있으시면 지금 말씀해주세요!** <i class="fas fa-hand-paper"></i>
+
+---
+
+## 2부: AI 윤리 실천하기
+
+# AI와 일자리 변화 <i class="fas fa-briefcase"></i>
+
+---
+
+## AI가 바꾸는 일자리 지형도
+
+### 솔직한 현실 이야기 <i class="fas fa-chart-bar"></i>
+
+:::: {.columns}
+::: {.column width="50%"}
+**사라질 가능성이 높은 일자리** <i class="fas fa-frown"></i>
+
+<i class="fas fa-phone"></i> **반복적 업무**
+
+- 콜센터 상담원
+- 데이터 입력 직원  
+- 계산원, 은행 창구 직원
+- 단순 제조업 작업자
+
+<i class="fas fa-edit"></i> **패턴이 있는 업무**
+
+- 번역가 (단순 번역)
+- 회계사 (단순 장부 정리)
+- 법무팀 (계약서 검토)
+- 방사선과 의사 (일부)
+
+<i class="fas fa-truck"></i> **운전 관련**
+
+- 택시, 버스, 트럭 운전사
+- 배달원 (일부)
+- 주차 관리원
+:::
+
+::: {.column width="50%"}
+**새로 생기거나 중요해질 일자리** <i class="fas fa-smile"></i>
+
+<i class="fas fa-robot"></i> **AI 관련 직업**
+
+- AI 트레이너 (AI 교육 전문가)
+- AI 윤리 심사관
+- 데이터 분석가
+- 디지털 전환 컨설턴트
+
+<i class="fas fa-heart"></i> **인간적 가치가 중요한 직업**
+
+- 간병인, 상담사
+- 창의적 디자이너
+- 교육자 (개인 맞춤 지도)
+- 치료사, 코치
+
+<i class="fas fa-wrench"></i> **AI와 협업하는 직업**
+
+- AI 보조 의사
+- 스마트팜 관리자
+- 디지털 마케터
+- 고객 경험 설계자
+:::
+::::
+
+### 중요한 포인트! <i class="fas fa-exclamation-triangle"></i>
+**"직업이 없어지는 것"이 아니라 "일하는 방식이 바뀌는 것"**
+
+---
+
+## 업종별 AI 영향 분석
+
+### 구체적으로 어떻게 바뀔까요?
+
+```{mermaid}
+graph TD
+    A[AI 영향도] --> B[고위험군]
+    A --> C[중위험군]  
+    A --> D[저위험군]
+    
+    B --> E[제조업 단순작업]
+    B --> F[금융 창구업무]
+    B --> G[운송업]
+    
+    C --> H[사무직 일반]
+    C --> I[서비스업 일반]
+    C --> J[판매직]
+    
+    D --> K[의료진]
+    D --> L[교육자]
+    D --> M[예술가]
+    D --> N[관리직]
+    
+    linkStyle 0 stroke:#ffffff
+    linkStyle 1 stroke:#ffffff
+    linkStyle 2 stroke:#ffffff
+    linkStyle 3 stroke:#ffffff
+    linkStyle 4 stroke:#ffffff
+    linkStyle 5 stroke:#ffffff
+    linkStyle 6 stroke:#ffffff
+    linkStyle 7 stroke:#ffffff
+    linkStyle 8 stroke:#ffffff
+    linkStyle 9 stroke:#ffffff
+    linkStyle 10 stroke:#ffffff
+    linkStyle 11 stroke:#ffffff
+    linkStyle 12 stroke:#ffffff
+```
+
+### 시기별 예상 변화 <i class="fas fa-calendar"></i>
+
+**2025-2027년 (단기)**
+
+- 챗봇이 고객 상담 80% 대체
+- 자동 번역이 단순 번역 90% 대체
+- 회계 소프트웨어가 장부 정리 완전 자동화
+
+**2028-2032년 (중기)**  
+
+- 자율주행차 상용화로 운전직 50% 감소
+- AI 의료진단이 방사선과 업무 70% 지원
+- 개인 맞춤 교육 AI가 강의 보조
+
+**2033년 이후 (장기)**
+
+- 로봇이 제조업 현장 작업 80% 담당
+- AI 변호사가 법무 업무 50% 지원
+- 완전 자동화 상점 확산
+
+---
+
+## 실제 사례: 이미 시작된 변화 <i class="fas fa-running"></i>
+
+### 현재 진행 중인 AI 도입 사례
+
+:::: {.columns}
+::: {.column width="50%"}
+**은행업계** <i class="fas fa-university"></i>
+
+- **신한은행**: AI 대출 심사관 도입
+- **국민은행**: 챗봇 상담 비율 70% 달성
+- **하나은행**: 보이스피싱 실시간 탐지
+
+**결과**: 창구 직원 30% 감소, 하지만 디지털 전문가 채용 증가
+
+**의료업계** <i class="fas fa-hospital"></i>
+
+- **서울대병원**: AI 영상 진단 도입
+- **삼성서울병원**: 수술 로봇 확대
+- **연세세브란스**: AI 응급실 트리아지
+
+**결과**: 진단 정확도 향상, 의료진은 환자 케어에 집중
+:::
+
+::: {.column width="50%"}
+**제조업계** <i class="fas fa-industry"></i>
+
+- **현대자동차**: 스마트 팩토리 구축
+- **삼성전자**: AI 품질 검사 시스템
+- **LG화학**: 예측 정비 시스템
+
+**결과**: 단순 작업자 감소, 기술자와 관리자 수요 증가
+
+**유통업계** <i class="fas fa-shopping-cart"></i>
+
+- **아마존**: 완전 자동화 창고
+- **이마트**: 무인 매장 확산
+- **쿠팡**: AI 물류 최적화
+
+**결과**: 물리적 매장 직원 감소, 온라인 전문가 증가
+:::
+::::
+
+### 성공적 전환 사례 <i class="fas fa-star"></i>
+
+**맥도날드 직원 → 디지털 전문가**
+
+- 키오스크 도입 후 주문 받는 직원이 줄었지만
+- 디지털 주문 관리자, 배달 전문가로 전환
+- 더 높은 급여, 새로운 기술 습득
+
+---
+
+## 일자리 변화에 대비하는 방법 <i class="fas fa-shield-alt"></i>
+
+### 개인 차원의 대비책
+
+:::: {.columns}
+::: {.column width="50%"}
+**지금 당장 할 수 있는 것** <i class="fas fa-running"></i>
+
+<i class="fas fa-book"></i> **평생 학습 습관**
+
+- 온라인 강의 플랫폼 활용
+- 유튜브 교육 채널 구독
+- 도서관 무료 교육 프로그램 참여
+
+<i class="fas fa-laptop"></i> **디지털 리터러시 향상**
+
+- 기본적인 컴퓨터 스킬 습득
+- 스마트폰 활용 능력 극대화
+- AI 도구들 미리 체험해보기
+
+<i class="fas fa-handshake"></i> **인간적 스킬 강화**
+
+- 소통 능력 개발
+- 감정 지능 향상
+- 창의적 사고 훈련
+- 문제 해결 능력 기르기
+:::
+
+::: {.column width="50%"}
+**전략적 준비** <i class="fas fa-bullseye"></i>
+
+<i class="fas fa-sync"></i> **직업 전환 준비**
+
+- 현재 직업의 AI 영향도 분석
+- 연관 분야의 새로운 기술 학습
+- 네트워킹 활동 강화
+
+<i class="fas fa-briefcase"></i> **경력 다각화**
+
+- 부업이나 사이드 프로젝트 시작
+- 다양한 분야 경험 쌓기
+- 포트폴리오 커리어 구축
+
+<i class="fas fa-graduation-cap"></i> **전문성 심화**
+
+- 현재 분야의 고급 기술 습득
+- 업계 전문가로 성장
+- 멘토링, 컨설팅 역량 개발
+:::
+::::
+
+### 연령대별 맞춤 전략 <i class="fas fa-users"></i>
+
+**20-30대**: 새로운 기술 적극 학습, 경력 전환 유연성 활용
+**40-50대**: 경험과 AI 기술 결합, 전문성 기반 차별화
+**50대 이상**: 멘토링, 상담, 관리 역할로 전환, 인생 경험 활용
+
+---
+
+## 토론: 내 직업의 미래 <i class="fas fa-crystal-ball"></i>
+
+### 그룹 토론 활동 (15분)
+
+**1단계: 개인 분석 (5분)**
+
+- 내 직업이 AI의 영향을 얼마나 받을까?
+- 어떤 부분이 자동화될 가능성이 높을까?
+- 어떤 부분은 인간만 할 수 있을까?
+
+**2단계: 그룹 토론 (10분)**
+
+- 4-5명씩 그룹을 만들어주세요
+- 각자의 직업과 고민을 공유해보세요
+- 서로 조언과 아이디어를 나눠보세요
+
+**토론 가이드 질문들** <i class="fas fa-cloud"></i>
+
+1. AI가 내 업무를 완전히 대체할 수 있을까?
+2. AI와 협업할 수 있는 방법은 무엇일까?
+3. 10년 후 내 직업은 어떻게 변해있을까?
+4. 지금부터 무엇을 준비해야 할까?
+
+**토론 결과를 간단히 발표해주세요!** <i class="fas fa-microphone"></i>
+
+---
+
+## 정부와 기업의 역할 <i class="fas fa-landmark"></i>
+
+### 사회적 차원의 대응
+
+:::: {.columns}
+::: {.column width="50%"}
+**정부의 역할** <i class="fas fa-landmark"></i>
+
+<i class="fas fa-clipboard-list"></i> **정책 제도**
+
+- 전 국민 AI 교육 프로그램
+- 실업자 재교육 지원 확대
+- 기본소득 제도 검토
+- AI 세금(로봇세) 도입 논의
+
+<i class="fas fa-dollar-sign"></i> **경제적 지원**
+
+- 직업 전환 지원금
+- 창업 지원 프로그램  
+- 평생교육 바우처
+- 디지털 격차 해소 사업
+
+<i class="fas fa-balance-scale"></i> **규제와 보호**
+
+- 급작스러운 해고 방지
+- AI 도입 시 노동자 보호
+- 공정한 AI 사용 기준
+:::
+
+::: {.column width="50%"}
+**기업의 책임** <i class="fas fa-building"></i>
+
+<i class="fas fa-users"></i> **직원 재교육**
+
+- 사내 AI 교육 프로그램
+- 직무 전환 교육 지원
+- 새로운 역할 창조
+- 점진적 변화 관리
+
+<i class="fas fa-handshake"></i> **상생 방안**
+
+- AI 도입 시 직원과 충분한 협의
+- 새로운 일자리 창출 노력
+- 인간-AI 협업 모델 개발
+- 사회적 책임 경영
+
+<i class="fas fa-lightbulb"></i> **혁신적 접근**
+
+- AI로 만든 부가가치의 일부를 직원과 공유
+- 더 의미 있는 업무로 직원 역할 재정의
+- 창의성과 혁신을 중시하는 문화
+:::
+::::
+
+### 선진국의 대응 사례 <i class="fas fa-globe"></i>
+
+**핀란드**: 전 국민 AI 기초 교육 무료 제공
+**싱가포르**: 40세 이상 직장인 재교육 프로그램
+**에스토니아**: 디지털 정부로 새로운 일자리 창출
+
+---
+
+## 개인이 실천할 수 있는 AI 윤리 <i class="fas fa-seedling"></i>
+
+### 일상에서의 작은 실천들
+
+:::: {.columns}
+::: {.column width="50%"}
+**의식적 사용** <i class="fas fa-brain"></i>
+
+<i class="fas fa-question-circle"></i> **비판적 사고**
+
+- AI 추천을 맹신하지 않기
+- 다양한 정보원 확인하기
+- 편향된 결과 의심하기
+- 인간의 최종 판단 중시
+
+<i class="fas fa-search"></i> **투명성 요구**
+
+- AI 서비스 이용약관 읽기
+- 개인정보 사용 목적 확인
+- 알고리즘 작동 원리 질문
+- 의사결정 과정 공개 요구
+
+<i class="fas fa-ban"></i> **거부할 권리**
+
+- 불필요한 개인정보 제공 거부
+- 동의하지 않는 서비스 이용 중단
+- 차별적 대우 받을 시 문제 제기
+- 대안 서비스 찾아 이용
+:::
+
+::: {.column width="50%"}
+**능동적 참여** <i class="fas fa-dumbbell"></i>
+
+<i class="fas fa-bullhorn"></i> **목소리 내기**
+
+- AI 관련 정책에 의견 제시
+- 부당한 AI 사용 신고
+- 소비자 권익 보호 활동 참여
+- SNS에서 올바른 정보 공유  
+
+<i class="fas fa-graduation-cap"></i> **지속적 학습**
+
+- AI 윤리 관련 뉴스 관심
+- 온라인 강의 수강
+- 관련 도서 읽기
+- 전문가 강연 참석
+
+<i class="fas fa-users"></i> **공동체 활동**
+
+- 가족, 친구들에게 교육하기
+- 지역 사회 AI 윤리 모임 참여
+- 시민 단체 활동 지원
+- 윤리적 기업 제품 선택
+:::
+::::
+
+### 실천 체크리스트 <i class="fas fa-check"></i>
+
+**매일 할 수 있는 것**
+
+- <i class="fas fa-square"></i> AI 추천 결과를 다른 정보와 비교 확인
+- <i class="fas fa-square"></i> 개인정보 설정 한 번씩 점검
+- <i class="fas fa-square"></i> 편향 가능성 염두에 두고 AI 서비스 이용
+
+**매주 할 수 있는 것**  
+
+- <i class="fas fa-square"></i> AI 윤리 관련 뉴스나 아티클 하나 읽기
+- <i class="fas fa-square"></i> 가족이나 지인과 AI 윤리에 대해 대화하기
+- <i class="fas fa-square"></i> 새로운 AI 서비스 체험 후 윤리적 평가해보기
+
+**매월 할 수 있는 것**
+
+- <i class="fas fa-square"></i> 개인정보 수집 현황 전면 점검
+- <i class="fas fa-square"></i> AI 윤리 관련 교육이나 세미나 찾아보기
+- <i class="fas fa-square"></i> 윤리적으로 운영되는 기업 제품 의식적 선택
+
+---
+
+## 미래 사회 변화와 대비 <i class="fas fa-rocket"></i>
+
+### 10년 후 우리가 살 세상
+
+```{mermaid}
+graph TD
+    A[2035년 AI 사회] --> B[일상 생활]
+    A --> C[교육 시스템]
+    A --> D[의료 서비스]
+    A --> E[도시 환경]
+    
+    B --> F[AI 비서가 모든 일정 관리]
+    B --> G[완전 자율주행 교통]
+    B --> H[맞춤형 뉴스와 콘텐츠]
+    
+    C --> I[개인 맞춤 학습 경로]
+    C --> J[AI 교사와 인간 교사 협업]
+    C --> K[실시간 학습 성과 분석]
+    
+    D --> L[예측 의료와 예방]
+    D --> M[로봇 수술의 일반화]
+    D --> N[유전자 맞춤 치료]
+    
+    E --> O[스마트 시티 인프라]
+    E --> P[에너지 자동 최적화]
+    E --> Q[범죄 예측 시스템]
+    
+    linkStyle 0 stroke:#ffffff
+    linkStyle 1 stroke:#ffffff
+    linkStyle 2 stroke:#ffffff
+    linkStyle 3 stroke:#ffffff
+    linkStyle 4 stroke:#ffffff
+    linkStyle 5 stroke:#ffffff
+    linkStyle 6 stroke:#ffffff
+    linkStyle 7 stroke:#ffffff
+    linkStyle 8 stroke:#ffffff
+    linkStyle 9 stroke:#ffffff
+    linkStyle 10 stroke:#ffffff
+    linkStyle 11 stroke:#ffffff
+    linkStyle 12 stroke:#ffffff
+    linkStyle 13 stroke:#ffffff
+    linkStyle 14 stroke:#ffffff
+    linkStyle 15 stroke:#ffffff
+```
+
+### 긍정적 변화 전망 <i class="fas fa-star"></i>
+
+**편리함의 극대화**
+
+- 모든 반복 업무 자동화
+- 개인 맞춤형 서비스 확산
+- 실시간 최적화된 생활
+
+**인간 잠재력 해방**
+
+- 창의적 활동에 더 많은 시간
+- 의미 있는 관계에 집중
+- 자아실현 기회 확대
+
+---
+
+## 준비해야 할 도전과제 <i class="fas fa-exclamation-triangle"></i>
+
+### 해결해야 할 문제들
+
+:::: {.columns}
+::: {.column width="50%"}
+**기술적 도전** <i class="fas fa-wrench"></i>
+
+<i class="fas fa-robot"></i> **AI의 한계**
+
+- 완벽하지 않은 판단
+- 예상치 못한 오류 발생
+- 해킹과 악용 위험
+- 시스템 의존도 증가
+
+<i class="fas fa-lock"></i> **보안과 프라이버시**
+
+- 개인정보 완전 노출 위험
+- 국가간 데이터 경쟁
+- 사이버 공격 증가
+- 감시 사회 우려
+
+<i class="fas fa-bolt"></i> **인프라 부족**
+
+- 전력 소비 급증
+- 데이터 센터 포화
+- 네트워크 과부하
+- 디지털 격차 심화
+:::
+
+::: {.column width="50%"}
+**사회적 도전** <i class="fas fa-globe"></i>
+
+<i class="fas fa-users"></i> **사회 분열**
+
+- AI 접근성에 따른 계층 분화
+- 세대 간 디지털 격차
+- 지역 간 발전 불균형
+- 글로벌 기술 패권 경쟁
+
+<i class="fas fa-briefcase"></i> **경제 구조 변화**
+
+- 대량 실업 가능성
+- 새로운 형태의 노동
+- 기본소득 제도 필요성
+- 부의 재분배 문제
+
+<i class="fas fa-brain"></i> **인간성 상실**
+
+- AI 의존증 증가
+- 사회적 소통 능력 퇴화
+- 판단력과 창의성 감소
+- 인간 관계의 피상화
+:::
+::::
+
+### 우리가 준비해야 할 것들 <i class="fas fa-dumbbell"></i>
+
+1. **적응력**: 변화에 유연하게 대응하는 능력
+2. **비판적 사고**: AI 결과를 검증하는 능력  
+3. **인간적 가치**: AI가 대체할 수 없는 고유 영역
+4. **사회적 연대**: 함께 문제를 해결하는 협력
+
+---
+
+## 정책과 규제 동향 <i class="fas fa-balance-scale"></i>
+
+### 전 세계 AI 규제 현황
+
+:::: {.columns}
+::: {.column width="50%"}
+**유럽연합 (EU)** <i class="fas fa-flag"></i>
+
+<i class="fas fa-clipboard-list"></i> **AI Act (2024년 시행)**
+
+- 위험도에 따른 4단계 분류
+- 고위험 AI에 대한 엄격한 규제
+- 금지 AI 목록 명시
+- 투명성 의무 강화
+
+<i class="fas fa-balance-scale"></i> **주요 내용**
+
+- 얼굴 인식 기술 제한
+- AI 시스템 품질 관리 의무
+- 사용자 알 권리 보장
+- 고액 벌금 (매출액의 6%)
+
+<i class="fas fa-shield-alt"></i> **GDPR 연계**
+
+- 개인정보 보호 강화
+- 동의 절차 엄격화
+- 잊혀질 권리 확대
+:::
+
+::: {.column width="50%"}
+**미국** <i class="fas fa-flag"></i>
+
+<i class="fas fa-landmark"></i> **연방 정부 정책**
+
+- AI 권리 헌장 발표
+- 정부 기관 AI 사용 가이드라인
+- 국방 분야 AI 투자 확대
+
+<i class="fas fa-building"></i> **주 정부별 규제**
+
+- 캘리포니아: 얼굴 인식 금지법
+- 뉴욕: 채용 AI 규제
+- 일리노이: 생체정보 보호법
+
+<i class="fas fa-briefcase"></i> **산업 자율 규제**
+
+- 빅테크 자율 윤리 기준
+- 업계 공동 가이드라인
+- 시민사회와 협력
+:::
+::::
+
+### 한국의 AI 정책 <i class="fas fa-flag"></i>
+
+**정부 정책 방향**
+
+- 「디지털 권리법안」 추진
+- AI 윤리기준 마련
+- K-디지털 뉴딜 프로젝트
+- 전 국민 디지털 역량 강화
+
+**주요 내용**
+
+- AI 개발·이용 윤리기준
+- 알고리즘 투명성 확보
+- 개인정보보호법 강화
+- AI 전문인력 양성
+
+---
+
+## 시민으로서 참여하기 <i class="fas fa-vote-yea"></i>
+
+### 우리의 목소리가 중요합니다
+
+:::: {.columns}
+::: {.column width="50%"}
+**정책 참여 방법** <i class="fas fa-bullhorn"></i>
+
+<i class="fas fa-vote-yea"></i> **제도적 참여**
+
+- 공청회, 간담회 참석
+- 정책 의견 수렴에 참여
+- 국민신문고 의견 제출
+- 선거에서 AI 정책 고려
+
+<i class="fas fa-comments"></i> **일상적 참여**
+
+- SNS에서 올바른 정보 공유
+- 지역 사회 토론 참여
+- 시민 단체 활동 지원
+- 가족, 친구들과 대화
+
+<i class="fas fa-edit"></i> **개인적 실천**
+
+- AI 윤리 관련 뉴스 관심
+- 부당한 AI 서비스 신고
+- 윤리적 기업 제품 선택
+- 지속적인 자기 교육
+:::
+
+::: {.column width="50%"}
+**참여할 수 있는 단체들** <i class="fas fa-landmark"></i>
+
+<i class="fas fa-building"></i> **시민 사회**
+
+- 소비자시민모임
+- 개인정보보호 시민단체
+- 디지털 권리 단체
+- 노동 단체
+
+<i class="fas fa-graduation-cap"></i> **교육 기관**
+
+- 시민 대학 AI 강좌
+- 도서관 디지털 교육
+- 평생교육원 프로그램
+- 온라인 시민 교육
+
+<i class="fas fa-globe"></i> **온라인 커뮤니티**
+
+- AI 윤리 토론 포럼
+- 기술 정책 관심 그룹
+- 지역별 시민 모임
+- 전문가와 시민 네트워크
+:::
+::::
+
+### 실천 프로젝트: 우리 동네 AI 지도 만들기 <i class="fas fa-map"></i>
+
+**활동 방법**
+
+1. 우리 동네에서 사용되는 AI 서비스 조사
+2. 각 서비스의 윤리적 문제점 평가
+3. 개선 방안 토론 및 제안
+4. 지역 정부나 기업에 의견 전달
+
+**예시 조사 항목**
+
+- 지하철역 얼굴 인식 CCTV
+- 마트의 무인 계산대
+- 병원의 AI 진단 시스템
+- 학교의 AI 학습 프로그램
+
+---
+
+## 마무리: 지혜로운 AI 시민되기 <i class="fas fa-star"></i>
+
+### 오늘 배운 핵심 내용 정리
+
+:::: {.columns}
+::: {.column width="50%"}
+**AI 이해하기** <i class="fas fa-brain"></i>
+
+- AI는 학습하는 컴퓨터 프로그램
+- 일상에서 이미 널리 사용 중
+- 편리함과 위험이 공존
+- 완벽하지 않으므로 비판적 사용 필요
+
+**개인정보 보호하기** <i class="fas fa-lock"></i>
+
+- 내 정보가 어떻게 사용되는지 확인
+- 불필요한 권한 제거하기
+- 정기적인 설정 점검
+- 의식적인 정보 제공
+:::
+
+::: {.column width="50%"}
+**편향과 차별 경계하기** <i class="fas fa-balance-scale"></i>
+
+- AI도 편견을 가질 수 있음
+- 다양성과 공정성 중요
+- 의심스러운 결과는 검증하기
+- 차별 경험 시 적극 신고
+
+**미래 변화 준비하기** <i class="fas fa-rocket"></i>
+
+- 평생 학습 습관 기르기
+- 인간만의 고유 가치 개발
+- 사회적 참여 의식 갖기
+- 적응력과 유연성 기르기
+:::
+::::
+
+### 행동 계획 세우기 <i class="fas fa-clipboard-list"></i>
+
+**내일부터 할 수 있는 것 (3가지 선택)**
+
+- <i class="fas fa-square"></i> 스마트폰 개인정보 설정 점검하기
+- <i class="fas fa-square"></i> AI 추천 결과를 다른 정보와 비교하기  
+- <i class="fas fa-square"></i> 가족에게 오늘 배운 내용 한 가지 공유하기
+- <i class="fas fa-square"></i> AI 윤리 관련 뉴스 하나 읽고 생각해보기
+- <i class="fas fa-square"></i> 내 직업의 AI 영향도 분석해보기
+
+**이번 달 안에 할 것 (2가지 선택)**
+
+- <i class="fas fa-square"></i> AI 관련 온라인 강의 하나 수강하기
+- <i class="fas fa-square"></i> 지역 AI 윤리 모임 찾아보기
+- <i class="fas fa-square"></i> 윤리적 기업 제품으로 하나 바꿔보기
+- <i class="fas fa-square"></i> AI 정책에 대한 의견 정부에 제출하기
+- <i class="fas fa-square"></i> 친구들과 AI 윤리 토론 시간 갖기
+
+---
+
+## 질의응답 및 토론 <i class="fas fa-comments"></i>
+
+### 자유로운 질문 시간 (15분)
+
+**어떤 질문이든 환영합니다!** <i class="fas fa-hand-paper"></i>
+
+- 오늘 내용 중 이해가 어려웠던 부분
+- 개인적인 경험이나 궁금한 점  
+- 실제 상황에서의 적용 방법
+- 더 자세히 알고 싶은 주제
+- 미래에 대한 걱정이나 기대
+
+### 함께 나누고 싶은 이야기 <i class="fas fa-cloud"></i>
+
+**마지막 한 마디씩 들려주세요:**
+
+- 오늘 가장 인상 깊었던 내용
+- 앞으로 실천하고 싶은 것
+- 다른 사람들에게 전하고 싶은 메시지
+
+---
+
+## 감사합니다! <i class="fas fa-praying-hands"></i>
+
+### 연락처 및 추가 정보
+
+:::: {.columns}
+::: {.column width="50%"}
+**강사 연락처** <i class="fas fa-phone"></i>
+
+- **이메일**: aiden@r2bit.com
+- **조직**: 한국R사용자회
+- **블로그**: aidenhong.com
+
+**추가 학습 자료** <i class="fas fa-book"></i>
+
+- AI 윤리 관련 도서 목록
+- 온라인 강의 추천
+- 정부 정책 자료 링크
+- 시민 참여 플랫폼 안내
+:::
+
+::: {.column width="50%"}
+**오늘의 약속을 기억해주세요** <i class="fas fa-star"></i>
+
+<i class="fas fa-brain"></i> **지혜로운 사용자**
+
+- AI를 맹신하지 않고 비판적으로 사용
+
+<i class="fas fa-shield-alt"></i> **적극적인 보호자**  
+
+- 내 개인정보와 권리를 스스로 지키기
+
+<i class="fas fa-handshake"></i> **참여하는 시민**
+
+- 더 나은 AI 사회를 만들기 위해 목소리 내기
+
+<i class="fas fa-dumbbell"></i> **평생 학습자**
+
+- 변화하는 기술에 계속 관심 갖고 배우기
+:::
+::::
+
+> **"AI 시대의 주인공은 기술이 아니라 그것을 지혜롭게 사용하는 우리 모두입니다!"** 
+
+**여러분이 바로 AI 윤리의 주인공입니다!** <i class="fas fa-star"></i>
+
+---
+
+## 참고 자료 <i class="fas fa-book"></i>
+
+### 추천 도서 (난이도별)
+
+**입문서** <i class="fas fa-book"></i>
+
+- 『AI 윤리』 - 루치아노 플로리디
+- 『알고리즘의 편견』 - 캐시 오닐
+- 『AI 시대 인간의 조건』 - 구본권
+- 『로봇이 인간을 대체할 때』 - 제리 카플란
+
+**심화서** <i class="fas fa-book"></i>
+
+- 『인공지능과 법』 - 김현경
+- 『디지털 전환 시대의 노동』 - 김종진
+- 『플랫폼 사회와 디지털 권리』 - 홍성수
+
+### 유용한 웹사이트 <i class="fas fa-globe"></i>
+
+**정부 기관**
+
+- 개인정보보호위원회: privacy.go.kr
+- 과학기술정보통신부: msit.go.kr
+- 한국지능정보사회진흥원: nia.or.kr
+
+**시민 단체**
+
+- 진보네트워크센터: jinbo.net
+- 소비자시민모임: consumerskorea.org
+- 참여연대: peoplepower21.org
+
+**교육 플랫폼**
+
+- 코세라 AI 윤리 강좌
+- edX MIT AI 과정
+- K-MOOC 인공지능 교육
+
+### 정기적으로 확인하면 좋은 뉴스 <i class="fas fa-newspaper"></i>
+
+- AI 타임스, 테크42, 지디넷코리아
+- MIT Technology Review 한국어판
+- AI 정책 관련 정부 브리핑
+
+**오늘 하루가 여러분의 AI 시민 여정의 시작점이 되기를 바랍니다!** <i class="fas fa-rocket"></i> 

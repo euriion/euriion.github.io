@@ -5,6 +5,7 @@
 /* 기본 폰트 설정 */
 .reveal {
   font-family: 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+  font-size: 1.8em;
 }
 
 /* 제목 스타일 */

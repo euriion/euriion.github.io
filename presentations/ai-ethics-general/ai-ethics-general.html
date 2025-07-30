@@ -1,0 +1,2177 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="ai-ethics-general_files/libs/clipboard/clipboard.min.js"></script>
+<script src="ai-ethics-general_files/libs/quarto-html/tabby.min.js"></script>
+<script src="ai-ethics-general_files/libs/quarto-html/popper.min.js"></script>
+<script src="ai-ethics-general_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="ai-ethics-general_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="ai-ethics-general_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="ai-ethics-general_files/libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.2.335">
+
+  <meta name="author" content="Aiden Hong">
+  <title>AI 윤리</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="ai-ethics-general_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="ai-ethics-general_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="ai-ethics-general_files/libs/revealjs/dist/theme/quarto.css" id="theme">
+  <link rel="stylesheet" href="custom.css">
+  <link href="ai-ethics-general_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="ai-ethics-general_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="ai-ethics-general_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="ai-ethics-general_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="ai-ethics-general_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="ai-ethics-general_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-captioned.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-captioned) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-captioned.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-captioned .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-captioned .callout-caption  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-captioned.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-captioned.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-caption {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-caption {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-caption {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-captioned .callout-body > .callout-content > :last-child {
+    margin-bottom: 0.5rem;
+  }
+
+  .callout.callout-captioned .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-captioned) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-caption {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-caption {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-caption {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-caption {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-caption {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <script src="ai-ethics-general_files/libs/quarto-diagram/mermaid.min.js"></script>
+  <script src="ai-ethics-general_files/libs/quarto-diagram/mermaid-init.js"></script>
+  <link href="ai-ethics-general_files/libs/quarto-diagram/mermaid.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="quarto-dark">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">AI 윤리</h1>
+  <p class="subtitle">일반인을 위한 AI 윤리 완전 가이드</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Aiden Hong 
+</div>
+</div>
+</div>
+
+  <p class="date">7/28/25</p>
+</section>
+<section id="오늘의-학습-여정" class="slide level2">
+<h2>오늘의 학습 여정 <i class="fas fa-rocket"></i></h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>1부 - AI 이해하기 (60분)</strong></p>
+<ul>
+<li>AI가 무엇인지 알아보기</li>
+<li>일상 속 AI 찾아보기</li>
+<li>AI의 장점과 위험성</li>
+<li>개인정보와 프라이버시</li>
+</ul>
+<p><strong>휴식 (10분)</strong> <i class="fas fa-coffee"></i></p>
+</div><div class="column" style="width:50%;">
+<p><strong>2부 - AI 윤리 실천하기 (50분)</strong></p>
+<ul>
+<li>편향과 차별 문제</li>
+<li>AI와 일자리 변화</li>
+<li>개인이 할 수 있는 실천</li>
+<li>미래 사회 준비하기</li>
+</ul>
+<p><strong>마무리 및 Q&amp;A (20분)</strong> <i class="fas fa-comments"></i></p>
+</div>
+</div>
+<blockquote>
+<p><strong>“AI 시대를 살아가는 지혜로운 사람이 되기 위해”</strong></p>
+</blockquote>
+</section>
+<section id="강사-소개" class="slide level2">
+<h2>강사 소개 <i class="fas fa-user-tie"></i></h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><strong>Seonghak Hong (홍성학)</strong></p>
+<ul>
+<li><i class="fas fa-building"></i> 한국R사용자회</li>
+<li><i class="fas fa-envelope"></i> <a href="mailto:aiden@r2bit.com">aiden@r2bit.com</a></li>
+<li><i class="fas fa-briefcase"></i> 데이터 사이언티스트</li>
+</ul>
+</div><div class="column" style="width:40%;">
+<p><strong>오늘의 약속</strong></p>
+<p><i class="fas fa-check"></i> 어려운 용어 없이 쉽게 설명 <i class="fas fa-check"></i> 실생활 예시 중심으로<br>
+<i class="fas fa-check"></i> 언제든 질문 환영<br>
+<i class="fas fa-check"></i> 실용적인 팁 제공</p>
+<p><strong>참여 방법</strong></p>
+<ul>
+<li>궁금한 것은 바로 질문하세요!</li>
+<li>휴대폰 설정을 함께 체크해봐요</li>
+<li>경험담을 공유해주세요</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="퀴즈로-시작하기" class="slide level2">
+<h2>퀴즈로 시작하기! <i class="fas fa-question-circle"></i></h2>
+<h3 id="다음-중-ai가-아닌-것은">다음 중 AI가 <strong>아닌</strong> 것은?</h3>
+<p>A. 넷플릭스 영화 추천 <i class="fas fa-tv"></i><br>
+B. 네비게이션 최단경로 찾기 <i class="fas fa-map"></i><br>
+C. 은행 ATM 기계 <i class="fas fa-credit-card"></i><br>
+D. 스마트폰 사진 자동 분류 <i class="fas fa-mobile-alt"></i></p>
+<p><strong>생각해보세요…</strong></p>
+</section>
+<section id="정답-공개" class="slide level2">
+<h2>정답 공개! <i class="fas fa-star"></i></h2>
+<h3 id="정답-c.-은행-atm-기계">정답: <strong>C. 은행 ATM 기계</strong> <i class="fas fa-credit-card"></i></h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>AI인 것들:</strong></p>
+<ul>
+<li><strong>넷플릭스</strong>: 취향을 학습해서 추천</li>
+<li><strong>네비게이션</strong>: 실시간 교통정보로 경로 최적화<br>
+</li>
+<li><strong>사진 분류</strong>: 얼굴/장소를 자동 인식</li>
+</ul>
+<p><strong>공통점:</strong> 스스로 학습하고 판단!</p>
+</div><div class="column" style="width:50%;">
+<p><strong>ATM이 AI가 아닌 이유:</strong></p>
+<ul>
+<li>미리 정해진 규칙대로만 작동</li>
+<li>학습하지 않음</li>
+<li>단순한 입출금 처리만</li>
+</ul>
+<p><strong>즉, 똑똑하지만 AI는 아님!</strong></p>
+</div>
+</div>
+<blockquote>
+<p><strong>AI의 핵심: 데이터를 보고 스스로 학습하여 판단하는 능력</strong> <i class="fas fa-brain"></i></p>
+</blockquote>
+</section>
+<section id="부-ai-이해하기" class="slide level2">
+<h2>1부: AI 이해하기</h2>
+</section>
+<section>
+<section id="ai가-무엇인지-알아보기" class="title-slide slide level1 center">
+<h1>AI가 무엇인지 알아보기 <i class="fas fa-robot"></i></h1>
+
+</section>
+<section id="ai를-쉽게-이해하기" class="slide level2">
+<h2>AI를 쉽게 이해하기</h2>
+<h3 id="살-아이에게-설명한다면">3살 아이에게 설명한다면?</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>전통적인 컴퓨터</strong> <i class="fas fa-laptop"></i></p>
+<ul>
+<li>사람: “1+1을 계산해”</li>
+<li>컴퓨터: “2입니다”</li>
+<li>사람: “2+2를 계산해”<br>
+</li>
+<li>컴퓨터: “4입니다”</li>
+</ul>
+<p><strong>→ 명령을 받아서 처리</strong></p>
+</div><div class="column" style="width:50%;">
+<p><strong>AI 컴퓨터</strong> <i class="fas fa-brain"></i></p>
+<ul>
+<li>사람: “고양이 사진 1만장을 보여줌”</li>
+<li>AI: “아, 이런 게 고양이구나!”</li>
+<li>사람: “이 사진에 뭐가 있어?”</li>
+<li>AI: “고양이가 있어요!”</li>
+</ul>
+<p><strong>→ 스스로 배워서 판단</strong></p>
+</div>
+</div>
+<h3 id="쉬운-비유-ai는-매우-빠른-학습을-하는-학생">쉬운 비유: AI는 매우 빠른 학습을 하는 학생 <i class="fas fa-graduation-cap"></i></h3>
+<ul>
+<li>수백만 개의 예시를 보고 패턴을 찾음</li>
+<li>새로운 상황에서도 학습한 것을 적용</li>
+<li>사람보다 빠르게 학습하지만, 사람처럼 창의적이지는 않음</li>
+</ul>
+</section>
+<section id="일상-속-ai-찾아보기" class="slide level2">
+<h2>일상 속 AI 찾아보기 <i class="fas fa-search"></i></h2>
+<h3 id="아침부터-저녁까지-ai와-함께">아침부터 저녁까지 AI와 함께</h3>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-1">%%{init: {'theme':'dark', 'themeVariables': {'primaryColor': 'transparent', 'primaryTextColor': '#ffffff', 'primaryBorderColor': '#ffffff', 'lineColor': '#ffffff', 'arrowheadColor': '#ffffff', 'background': 'transparent', 'mainBkg': 'transparent', 'secondaryColor': 'transparent', 'tertiaryColor': 'transparent', 'nodeBkg': 'transparent', 'clusterBkg': 'transparent'}}}%%
+flowchart TD
+    A[아침 7시] --&gt; B[스마트폰 알람] --&gt; C[음성 비서 - 날씨 묻기] --&gt; D[출근길 네비게이션] --&gt; E[지하철 앱 - 최단경로] --&gt; F[회사 - 이메일 스팸 필터] --&gt; G[점심 - 배달 앱 추천] --&gt; H[오후 - 온라인 쇼핑 추천] --&gt; I[저녁 - 넷플릭스 시청] --&gt; J[밤 - 은행 보이스피싱 탐지] --&gt; K[취침 - 수면 패턴 분석] --&gt; L[새벽 - 스마트 알람 설정]
+    
+    classDef default fill:#333333,stroke:#ffffff,color:#ffffff
+    classDef subgraphStyle fill:transparent,stroke:transparent,color:transparent
+    class A,B,C,D,E,F,G,H,I,J,K,L default
+    
+    
+    linkStyle 0 stroke:#ffffff
+    linkStyle 1 stroke:#ffffff
+    linkStyle 2 stroke:#ffffff
+    linkStyle 3 stroke:#ffffff
+    linkStyle 4 stroke:#ffffff
+    linkStyle 5 stroke:#ffffff
+    linkStyle 6 stroke:#ffffff
+    linkStyle 7 stroke:#ffffff
+    linkStyle 8 stroke:#ffffff
+    linkStyle 9 stroke:#ffffff
+    linkStyle 10 stroke:#ffffff
+</pre>
+<div id="mermaid-tooltip-1" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+<h3 id="하루에-ai를-몇-번-만날까요">하루에 AI를 몇 번 만날까요? <i class="fas fa-surprise"></i></h3>
+<p><strong>예상보다 훨씬 많습니다!</strong></p>
+<p>평균적으로 일반인은 하루에 <strong>50-100번</strong> AI 서비스를 이용합니다.</p>
+</section>
+<section id="우리가-모르는-사이에-사용하는-ai들" class="slide level2">
+<h2>우리가 모르는 사이에 사용하는 AI들</h2>
+<h3 id="숨어있는-ai-서비스들">숨어있는 AI 서비스들 <i class="fas fa-ghost"></i></h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>스마트폰에서</strong></p>
+<ul>
+<li>사진 촬영 시 자동 보정</li>
+<li>키보드 자동완성</li>
+<li>앱 추천 및 정리</li>
+<li>배터리 사용량 최적화</li>
+<li>얼굴 인식 잠금해제</li>
+</ul>
+<p><strong>인터넷에서</strong></p>
+<ul>
+<li>구글 검색 결과 순서</li>
+<li>유튜브 영상 추천</li>
+<li>페이스북 피드 순서</li>
+<li>인스타그램 광고 선택</li>
+<li>온라인 번역 서비스</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>생활 서비스에서</strong></p>
+<ul>
+<li>은행 대출 심사</li>
+<li>보험료 계산</li>
+<li>신용카드 부정 사용 탐지</li>
+<li>택시 요금 및 경로 계산</li>
+<li>온라인 쇼핑몰 가격 책정</li>
+</ul>
+<p><strong>공공 서비스에서</strong></p>
+<ul>
+<li>교통 신호 최적화</li>
+<li>응급실 환자 우선순위</li>
+<li>범죄 예측 시스템</li>
+<li>세금 신고 이상 탐지</li>
+<li>코로나 확산 예측</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="실습-내-스마트폰의-ai-찾기" class="slide level2">
+<h2>실습: 내 스마트폰의 AI 찾기 <i class="fas fa-mobile-alt"></i></h2>
+<h3 id="함께-해봅시다-5분">함께 해봅시다! (5분)</h3>
+<p><strong>1단계: 사진 앱 확인</strong></p>
+<ul>
+<li>사진 → 앨범 → “사람” 또는 “얼굴” 확인</li>
+<li>같은 사람끼리 자동 분류되어 있나요?</li>
+</ul>
+<p><strong>2단계: 키보드 확인</strong></p>
+<ul>
+<li>메시지 앱에서 문장 입력 시작</li>
+<li>다음 단어 추천이 나오나요?</li>
+</ul>
+<p><strong>3단계: 음성비서 확인</strong></p>
+<ul>
+<li>“시리야” 또는 “빅스비야” 또는 “OK 구글”</li>
+<li>“오늘 날씨 어때?” 물어보기</li>
+</ul>
+<p><strong>4단계: 설정에서 확인</strong></p>
+<ul>
+<li>설정 → “디지털 웰빙” 또는 “스크린 타임”</li>
+<li>AI가 분석한 앱 사용 패턴 확인</li>
+</ul>
+<p><strong>발견한 것을 옆 사람과 공유해보세요!</strong> <i class="fas fa-users"></i></p>
+</section>
+<section id="ai의-놀라운-장점들" class="slide level2">
+<h2>AI의 놀라운 장점들 <i class="fas fa-star"></i></h2>
+<h3 id="인간보다-뛰어난-영역들">인간보다 뛰어난 영역들</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>속도와 정확성</strong> <i class="fas fa-bolt"></i></p>
+<ul>
+<li>1초에 수백만 건의 데이터 처리</li>
+<li>24시간 지치지 않고 작업</li>
+<li>계산 실수가 거의 없음</li>
+</ul>
+<p><strong>패턴 인식</strong> <i class="fas fa-bullseye"></i></p>
+<ul>
+<li>사람이 놓치는 미세한 패턴 발견</li>
+<li>의료 영상에서 암세포 조기 발견</li>
+<li>주식 시장의 복잡한 변화 예측</li>
+</ul>
+<p><strong>일관성</strong> <i class="fas fa-ruler"></i></p>
+<ul>
+<li>감정에 좌우되지 않는 판단</li>
+<li>피로나 스트레스 없이 동일한 품질</li>
+<li>편견 없는 객관적 분석 (이론상)</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>접근성</strong> <i class="fas fa-globe"></i></p>
+<ul>
+<li>언어 번역으로 소통 장벽 해소</li>
+<li>시각/청각 장애인을 위한 보조 기술</li>
+<li>원격지에도 전문가급 서비스 제공</li>
+</ul>
+<p><strong>비용 절약</strong> <i class="fas fa-dollar-sign"></i></p>
+<ul>
+<li>반복 작업의 자동화</li>
+<li>인력 비용 절감</li>
+<li>효율성 극대화</li>
+</ul>
+<p><strong>24/7 서비스</strong> <i class="fas fa-clock"></i></p>
+<ul>
+<li>언제든지 이용 가능</li>
+<li>응급상황 즉시 대응</li>
+<li>전 세계 동시 서비스</li>
+</ul>
+</div>
+</div>
+<h3 id="성공-사례-ai가-구한-생명들">성공 사례: AI가 구한 생명들 <i class="fas fa-heart"></i></h3>
+<ul>
+<li><strong>의료 AI</strong>: 구글 AI가 당뇨망막병증을 90% 정확도로 조기 진단</li>
+<li><strong>재난 예측</strong>: AI가 지진, 홍수를 미리 예측하여 대피 시간 확보</li>
+<li><strong>교통 안전</strong>: 자율주행 기술로 교통사고 90% 이상 감소 가능</li>
+</ul>
+</section>
+<section id="하지만-ai에도-위험이-있습니다" class="slide level2">
+<h2>하지만 AI에도 위험이 있습니다 <i class="fas fa-exclamation-triangle"></i></h2>
+<h3 id="주요-위험-요소들">주요 위험 요소들</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>편향과 차별</strong> <i class="fas fa-frown"></i></p>
+<ul>
+<li>AI가 과거 데이터를 학습하면서 기존 편견 흡수</li>
+<li>성별, 인종, 나이 등으로 불공정 대우</li>
+<li>예: 채용 AI가 여성 지원자 차별</li>
+</ul>
+<p><strong>프라이버시 침해</strong> <i class="fas fa-user-secret"></i></p>
+<ul>
+<li>개인정보 무분별 수집 및 분석</li>
+<li>동의 없는 얼굴 인식 및 추적</li>
+<li>개인의 행동 패턴 예측 및 조작</li>
+</ul>
+<p><strong>경제적 불평등</strong> <i class="fas fa-money-bill-wave"></i></p>
+<ul>
+<li>AI 기술 접근 격차 확대</li>
+<li>일자리 대체로 인한 실업 증가</li>
+<li>부자는 더 부자로, 가난한 자는 더 소외</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>오작동과 오남용</strong> <i class="fas fa-bomb"></i></p>
+<ul>
+<li>AI 시스템 해킹 및 악용</li>
+<li>딥페이크로 가짜 뉴스 생산</li>
+<li>자율무기 시스템의 윤리적 문제</li>
+</ul>
+<p><strong>인간 소외</strong> <i class="fas fa-sad-tear"></i></p>
+<ul>
+<li>과도한 AI 의존으로 인간 능력 퇴화</li>
+<li>사회적 소통 능력 감소</li>
+<li>감정적 유대감 결여</li>
+</ul>
+<p><strong>예측 불가능성</strong> <i class="fas fa-dice"></i></p>
+<ul>
+<li>AI 결정 과정을 인간이 이해하기 어려움</li>
+<li>예상치 못한 상황에서 이상 행동</li>
+<li>책임 소재 불분명</li>
+</ul>
+</div>
+</div>
+<h3 id="실제-발생한-ai-사고들">실제 발생한 AI 사고들 <i class="fas fa-surprise"></i></h3>
+<ul>
+<li><strong>마이크로소프트 챗봇 Tay</strong>: 24시간 만에 인종차별적 발언 학습</li>
+<li><strong>우버 자율주행차</strong>: 보행자 사망사고 발생 (2018년)</li>
+<li><strong>아마존 채용 AI</strong>: 10년간 남성 위주 채용으로 여성 차별</li>
+</ul>
+</section>
+<section id="토론-시간-여러분의-경험" class="slide level2">
+<h2>토론 시간: 여러분의 경험 <i class="fas fa-comments"></i></h2>
+<h3 id="질문-1-ai로-인한-불편함이나-걱정-5분">질문 1: AI로 인한 불편함이나 걱정 (5분)</h3>
+<p><strong>경험 공유해주세요:</strong></p>
+<ul>
+<li>스마트폰이 너무 많이 알고 있어서 무서웠던 적이 있나요?</li>
+<li>AI 추천이 잘못되어서 곤란했던 경험이 있나요?</li>
+<li>AI 때문에 일자리를 잃을까 봐 걱정된 적이 있나요?</li>
+</ul>
+<h3 id="질문-2-ai의-도움을-받았던-경험-5분">질문 2: AI의 도움을 받았던 경험 (5분)</h3>
+<p><strong>좋았던 경험도 공유해주세요:</strong></p>
+<ul>
+<li>AI 덕분에 편리해진 일상은 무엇인가요?</li>
+<li>AI가 정말 도움이 되었던 순간이 있나요?</li>
+<li>앞으로 AI에게 더 바라는 것이 있다면?</li>
+</ul>
+<p><strong>서로의 이야기를 들어보고, 공통점과 차이점을 찾아봅시다!</strong> <i class="fas fa-ear-listen"></i></p>
+</section>
+<section id="ai-발전의-역사" class="slide level2">
+<h2>AI 발전의 역사 <i class="fas fa-book"></i></h2>
+<h3 id="간단한-ai-역사-여행">간단한 AI 역사 여행</h3>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-2">timeline
+    title AI 발전사
+    1950년대 : AI 개념 탄생
+             : 앨런 튜링의 "튜링 테스트"
+    1980년대 : 전문가 시스템
+             : 의료 진단 AI 등장
+    1990년대 : 기계학습 발전
+             : 체스 AI가 세계 챔피언 승리
+    2000년대 : 인터넷과 빅데이터
+             : 구글 검색, 추천 시스템
+    2010년대 : 딥러닝 혁명
+             : 이미지 인식, 음성 인식 발전
+    2020년대 : 생성형 AI 시대
+             : ChatGPT, 이미지 생성 AI
+</pre>
+<div id="mermaid-tooltip-2" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+<h3 id="각-시대별-특징">각 시대별 특징</h3>
+<ul>
+<li><strong>1950-1980년</strong>: 학자들의 연구실에서만</li>
+<li><strong>1990-2000년</strong>: 전문가들만 사용</li>
+<li><strong>2010년대</strong>: 일반인도 스마트폰으로 체험</li>
+<li><strong>현재</strong>: 누구나 쉽게 AI와 대화 가능</li>
+</ul>
+<p><strong>변화 속도가 점점 빨라지고 있습니다!</strong> <i class="fas fa-rocket"></i></p>
+</section>
+<section id="생성형-ai의-등장" class="slide level2">
+<h2>생성형 AI의 등장 <i class="fas fa-palette"></i></h2>
+<h3 id="chatgpt가-바꾼-세상">ChatGPT가 바꾼 세상</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>2022년 11월 이전</strong> <i class="fas fa-sleep"></i></p>
+<ul>
+<li>AI는 전문가들만의 영역</li>
+<li>복잡한 설정과 학습 필요</li>
+<li>일반인에게는 먼 이야기</li>
+</ul>
+<p><strong>2022년 11월 이후</strong> <i class="fas fa-rocket"></i></p>
+<ul>
+<li>누구나 AI와 자연어로 대화</li>
+<li>글쓰기, 번역, 코딩까지 도움</li>
+<li>전 세계적으로 AI 열풍</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>ChatGPT의 놀라운 기록</strong> <i class="fas fa-chart-bar"></i></p>
+<ul>
+<li>출시 2개월 만에 1억 사용자</li>
+<li>인류 역사상 가장 빠른 확산</li>
+<li>모든 산업 분야에 영향</li>
+</ul>
+<p><strong>이후 등장한 AI들</strong></p>
+<ul>
+<li>클로드, 바드, GPT-4</li>
+<li>미드저니 (이미지 생성)</li>
+<li>소라 (동영상 생성)</li>
+</ul>
+</div>
+</div>
+<h3 id="실습-chatgpt-체험하기-10분">실습: ChatGPT 체험하기 (10분)</h3>
+<p><strong>함께 해봅시다!</strong></p>
+<ol type="1">
+<li>chat.openai.com 접속 (또는 앱 설치)</li>
+<li>간단한 질문해보기: “오늘 저녁 메뉴 추천해줘”</li>
+<li>복잡한 요청해보기: “친구 생일파티 계획을 도와줘”</li>
+<li>창의적 요청: “우리 강의실을 배경으로 시 한 편 써줘”</li>
+</ol>
+<p><strong>놀라운 점과 아쉬운 점을 찾아보세요!</strong></p>
+</section>
+<section id="개인정보와-프라이버시" class="slide level2">
+<h2>개인정보와 프라이버시 <i class="fas fa-lock"></i></h2>
+<h3 id="데이터는-새로운-석유">데이터는 새로운 석유 <i class="fas fa-oil-can"></i></h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>AI가 수집하는 개인정보</strong></p>
+<p><i class="fas fa-mobile-alt"></i> <strong>기본 정보</strong></p>
+<ul>
+<li>이름, 나이, 성별, 직업</li>
+<li>전화번호, 이메일, 주소</li>
+<li>사진, 음성, 지문</li>
+</ul>
+<p><i class="fas fa-walking"></i> <strong>행동 정보</strong></p>
+<ul>
+<li>웹 검색 기록</li>
+<li>앱 사용 패턴</li>
+<li>위치 이동 경로</li>
+<li>구매 내역</li>
+</ul>
+<p><i class="fas fa-cloud"></i> <strong>분석된 정보</strong></p>
+<ul>
+<li>성격, 취향, 관심사</li>
+<li>정치적 성향</li>
+<li>건강 상태 추정</li>
+<li>경제적 수준</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>왜 이렇게 많이 수집할까?</strong> <i class="fas fa-question-circle"></i></p>
+<p><i class="fas fa-dollar-sign"></i> <strong>경제적 가치</strong></p>
+<ul>
+<li>개인 맞춤 광고로 수익 창출</li>
+<li>더 정확한 추천으로 매출 증대</li>
+<li>데이터 판매 및 분석 서비스</li>
+</ul>
+<p><i class="fas fa-bullseye"></i> <strong>서비스 개선</strong></p>
+<ul>
+<li>더 나은 사용자 경험 제공</li>
+<li>버그 및 오류 개선</li>
+<li>새로운 기능 개발</li>
+</ul>
+<p><i class="fas fa-balance-scale"></i> <strong>하지만 문제는…</strong></p>
+<ul>
+<li>동의 없는 과도한 수집</li>
+<li>목적 외 사용</li>
+<li>해킹 위험</li>
+<li>개인의 통제권 상실</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="실습-내-개인정보-점검하기" class="slide level2">
+<h2>실습: 내 개인정보 점검하기 <i class="fas fa-search"></i></h2>
+<h3 id="스마트폰-개인정보-설정-체크-10분">스마트폰 개인정보 설정 체크 (10분)</h3>
+<p><strong>1단계: 위치 서비스 확인</strong></p>
+<ul>
+<li>설정 → 개인정보 보호 → 위치 서비스</li>
+<li>어떤 앱들이 내 위치를 추적하고 있나요?</li>
+</ul>
+<p><strong>2단계: 앱 권한 확인</strong></p>
+<ul>
+<li>설정 → 앱 → 권한 관리</li>
+<li>카메라, 마이크, 연락처 접근 앱들 확인</li>
+</ul>
+<p><strong>3단계: 광고 추적 확인</strong></p>
+<ul>
+<li>설정 → 개인정보 보호 → 광고</li>
+<li>개인화된 광고가 켜져 있나요?</li>
+</ul>
+<p><strong>4단계: 구글/애플 계정 확인</strong></p>
+<ul>
+<li>구글: myaccount.google.com</li>
+<li>애플: appleid.apple.com</li>
+<li>내 활동 기록을 확인해보세요</li>
+</ul>
+<p><strong>놀라운 발견이 있었나요?</strong> <i class="fas fa-surprise"></i></p>
+</section>
+<section id="개인정보-보호-실천법" class="slide level2">
+<h2>개인정보 보호 실천법 <i class="fas fa-shield-alt"></i></h2>
+<h3 id="지금-당장-할-수-있는-것들">지금 당장 할 수 있는 것들</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>스마트폰 설정</strong></p>
+<p><i class="fas fa-wrench"></i> <strong>권한 관리</strong></p>
+<ul>
+<li>불필요한 앱 권한 제거</li>
+<li>위치 서비스 “항상 허용” → “앱 사용 중에만”</li>
+<li>마이크, 카메라 권한 최소화</li>
+</ul>
+<p><i class="fas fa-map-marker-alt"></i> <strong>위치 추적 줄이기</strong></p>
+<ul>
+<li>구글 타임라인 끄기</li>
+<li>위치 기록 삭제</li>
+<li>사진 위치 정보 저장 끄기</li>
+</ul>
+<p><i class="fas fa-bullseye"></i> <strong>광고 추적 방지</strong></p>
+<ul>
+<li>개인화 광고 끄기</li>
+<li>앱 추적 투명성 설정</li>
+<li>쿠키 차단 설정</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>일상 생활에서</strong></p>
+<p><i class="fas fa-credit-card"></i> <strong>결제 시 주의</strong></p>
+<ul>
+<li>멤버십 카드 남발 금지</li>
+<li>온라인 쇼핑몰 개인정보 최소 제공</li>
+<li>할인 혜택과 개인정보 제공 신중 고려</li>
+</ul>
+<p><i class="fas fa-envelope"></i> <strong>이메일과 메시지</strong></p>
+<ul>
+<li>스팸 메일 신고하기</li>
+<li>의심스러운 링크 클릭 금지</li>
+<li>개인정보 요구 메시지 무시</li>
+</ul>
+<p><i class="fas fa-globe"></i> <strong>인터넷 사용</strong></p>
+<ul>
+<li>VPN 사용 고려</li>
+<li>시크릿 모드 활용</li>
+<li>정기적으로 검색 기록 삭제</li>
+</ul>
+</div>
+</div>
+<h3 id="개인정보-보호의-핵심-원칙">개인정보 보호의 핵심 원칙 <i class="fas fa-lightbulb"></i></h3>
+<ol type="1">
+<li><strong>최소 제공</strong>: 꼭 필요한 정보만 제공</li>
+<li><strong>정기 점검</strong>: 3개월마다 설정 확인<br>
+</li>
+<li><strong>의심하기</strong>: “이 정보가 왜 필요한가?” 항상 질문</li>
+<li><strong>교육하기</strong>: 가족과 지인들에게도 알려주기</li>
+</ol>
+</section>
+<section id="편향과-차별-문제" class="slide level2">
+<h2>편향과 차별 문제 <i class="fas fa-balance-scale"></i></h2>
+<h3 id="ai도-편견을-가질-수-있습니다">AI도 편견을 가질 수 있습니다</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>AI 편향이 생기는 이유</strong> <i class="fas fa-question-circle"></i></p>
+<p><i class="fas fa-chart-bar"></i> <strong>데이터 문제</strong></p>
+<ul>
+<li>과거 차별이 담긴 데이터 학습</li>
+<li>특정 집단의 데이터 부족</li>
+<li>잘못된 레이블링</li>
+</ul>
+<p><i class="fas fa-user-tie"></i> <strong>만든 사람의 편견</strong></p>
+<ul>
+<li>개발팀의 다양성 부족</li>
+<li>무의식적 편견 반영</li>
+<li>특정 문화권 중심 사고</li>
+</ul>
+<p><i class="fas fa-bullseye"></i> <strong>목표 설정의 문제</strong></p>
+<ul>
+<li>효율성만 추구</li>
+<li>공정성 고려 부족</li>
+<li>단기적 성과 중심</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>실제 발생한 편향 사례</strong> <i class="fas fa-frown"></i></p>
+<p><i class="fas fa-briefcase"></i> <strong>채용 분야</strong></p>
+<ul>
+<li>아마존 AI: 여성 이력서에 낮은 점수</li>
+<li>구글 광고: 남성에게 고연봉 일자리 더 많이 노출</li>
+</ul>
+<p><i class="fas fa-hospital"></i> <strong>의료 분야</strong></p>
+<ul>
+<li>피부암 진단 AI: 백인 피부에만 정확</li>
+<li>심장병 예측: 여성 환자 위험 과소평가</li>
+</ul>
+<p><i class="fas fa-shield-alt"></i> <strong>법 집행</strong></p>
+<ul>
+<li>얼굴 인식: 흑인과 아시아인 오인식률 높음</li>
+<li>범죄 예측: 특정 지역 과도한 경찰력 투입</li>
+</ul>
+<p><i class="fas fa-credit-card"></i> <strong>금융 서비스</strong></p>
+<ul>
+<li>대출 심사: 여성과 소수민족 불리</li>
+<li>보험료 책정: 지역과 직업에 따른 차별</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="편향의-심각성-이해하기" class="slide level2">
+<h2>편향의 심각성 이해하기</h2>
+<h3 id="생각해볼-질문들">생각해볼 질문들 <i class="fas fa-cloud"></i></h3>
+<p><strong>상황 1: AI 채용 시스템</strong> <i class="fas fa-briefcase"></i> &gt; 한 회사의 AI가 “컴퓨터과학 전공자”를 선호하도록 학습되었습니다. 그런데 과거 10년간 이 전공의 90%가 남성이었습니다. 이 AI가 여성 지원자를 차별할 가능성이 있을까요?</p>
+<p><strong>상황 2: 의료 AI 진단</strong> <i class="fas fa-hospital"></i><br>
+&gt; 폐암 진단 AI가 주로 남성 흡연자 데이터로 학습되었습니다. 비흡연 여성이 폐암에 걸렸을 때, 이 AI가 정확하게 진단할 수 있을까요?</p>
+<p><strong>상황 3: 대출 심사 AI</strong> <i class="fas fa-dollar-sign"></i> &gt; AI가 “안정적인 직업”을 가진 사람에게 대출을 승인하도록 학습되었습니다. 프리랜서나 새로운 형태의 일을 하는 사람들은 어떻게 될까요?</p>
+<h3 id="여러분의-생각을-들어보고-싶습니다">여러분의 생각을 들어보고 싶습니다! <i class="fas fa-microphone"></i></h3>
+<p><strong>5분간 옆 사람과 토론해보세요:</strong></p>
+<ul>
+<li>이런 상황들이 공정한가요?</li>
+<li>해결 방법이 있을까요?</li>
+<li>비슷한 경험이 있나요?</li>
+</ul>
+</section>
+<section id="ai-편향-해결-방법" class="slide level2">
+<h2>AI 편향 해결 방법 <i class="fas fa-wrench"></i></h2>
+<h3 id="기술적-해결책">기술적 해결책</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>데이터 개선</strong> <i class="fas fa-chart-bar"></i></p>
+<ul>
+<li>다양한 집단의 데이터 충분히 수집</li>
+<li>편향된 데이터 필터링</li>
+<li>공정성 지표 측정 및 모니터링</li>
+</ul>
+<p><strong>알고리즘 개선</strong> <i class="fas fa-cogs"></i></p>
+<ul>
+<li>공정성을 고려한 AI 설계</li>
+<li>편향 탐지 및 보정 시스템</li>
+<li>설명 가능한 AI 개발</li>
+</ul>
+<p><strong>다양한 개발팀</strong> <i class="fas fa-users"></i></p>
+<ul>
+<li>성별, 인종, 연령 다양성 확보</li>
+<li>다양한 전공 배경의 전문가 참여</li>
+<li>윤리 전문가 포함</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>사회적 해결책</strong> <i class="fas fa-globe"></i></p>
+<p><strong>법적 규제</strong> <i class="fas fa-balance-scale"></i> - AI 차별 금지법 제정 - 정기적인 공정성 감사 의무화 - 피해 구제 제도 마련</p>
+<p><strong>교육과 인식 개선</strong> <i class="fas fa-book"></i> - AI 개발자 윤리 교육 - 일반인 AI 리터러시 향상 - 미디어의 균형 잡힌 보도</p>
+<p><strong>투명성 확보</strong> <i class="fas fa-search"></i> - AI 결정 과정 공개 - 사용 데이터 출처 명시 - 성능 지표 투명 공개</p>
+</div>
+</div>
+<h3 id="개인이-할-수-있는-것들">개인이 할 수 있는 것들 <i class="fas fa-dumbbell"></i></h3>
+<ol type="1">
+<li><strong>의식적으로 다양성 추구</strong>: 다양한 관점의 콘텐츠 소비</li>
+<li><strong>AI 결과 비판적 수용</strong>: 맹신하지 말고 검증하기</li>
+<li><strong>차별 경험 시 신고</strong>: 문제 상황 적극 신고</li>
+<li><strong>지속적 학습</strong>: AI 윤리에 대한 관심 유지</li>
+</ol>
+</section>
+<section id="휴식-시간" class="slide level2">
+<h2>휴식 시간 <i class="fas fa-coffee"></i></h2>
+<h3 id="분-휴식-후-2부로-이어집니다">10분 휴식 후 2부로 이어집니다!</h3>
+<p><strong>휴식 시간 동안 해볼 것들:</strong></p>
+<ul>
+<li>옆 사람과 지금까지 내용 정리</li>
+<li>궁금한 점들 메모해두기<br>
+</li>
+<li>스마트폰 개인정보 설정 더 확인해보기</li>
+<li>SNS에 오늘 배운 내용 한 줄 공유해보기</li>
+</ul>
+<p><strong>2부 예고</strong> <i class="fas fa-film"></i></p>
+<ul>
+<li>AI와 일자리 변화 (현실적 전망)</li>
+<li>개인이 할 수 있는 실천 방법</li>
+<li>미래 사회 변화와 대비책</li>
+<li>정책과 규제 동향</li>
+</ul>
+<p><strong>잠깐! 질문이나 궁금한 점 있으시면 지금 말씀해주세요!</strong> <i class="fas fa-hand-paper"></i></p>
+</section>
+<section id="부-ai-윤리-실천하기" class="slide level2">
+<h2>2부: AI 윤리 실천하기</h2>
+</section></section>
+<section>
+<section id="ai와-일자리-변화" class="title-slide slide level1 center">
+<h1>AI와 일자리 변화 <i class="fas fa-briefcase"></i></h1>
+
+</section>
+<section id="ai가-바꾸는-일자리-지형도" class="slide level2">
+<h2>AI가 바꾸는 일자리 지형도</h2>
+<h3 id="솔직한-현실-이야기">솔직한 현실 이야기 <i class="fas fa-chart-bar"></i></h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>사라질 가능성이 높은 일자리</strong> <i class="fas fa-frown"></i></p>
+<p><i class="fas fa-phone"></i> <strong>반복적 업무</strong></p>
+<ul>
+<li>콜센터 상담원</li>
+<li>데이터 입력 직원<br>
+</li>
+<li>계산원, 은행 창구 직원</li>
+<li>단순 제조업 작업자</li>
+</ul>
+<p><i class="fas fa-edit"></i> <strong>패턴이 있는 업무</strong></p>
+<ul>
+<li>번역가 (단순 번역)</li>
+<li>회계사 (단순 장부 정리)</li>
+<li>법무팀 (계약서 검토)</li>
+<li>방사선과 의사 (일부)</li>
+</ul>
+<p><i class="fas fa-truck"></i> <strong>운전 관련</strong></p>
+<ul>
+<li>택시, 버스, 트럭 운전사</li>
+<li>배달원 (일부)</li>
+<li>주차 관리원</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>새로 생기거나 중요해질 일자리</strong> <i class="fas fa-smile"></i></p>
+<p><i class="fas fa-robot"></i> <strong>AI 관련 직업</strong></p>
+<ul>
+<li>AI 트레이너 (AI 교육 전문가)</li>
+<li>AI 윤리 심사관</li>
+<li>데이터 분석가</li>
+<li>디지털 전환 컨설턴트</li>
+</ul>
+<p><i class="fas fa-heart"></i> <strong>인간적 가치가 중요한 직업</strong></p>
+<ul>
+<li>간병인, 상담사</li>
+<li>창의적 디자이너</li>
+<li>교육자 (개인 맞춤 지도)</li>
+<li>치료사, 코치</li>
+</ul>
+<p><i class="fas fa-wrench"></i> <strong>AI와 협업하는 직업</strong></p>
+<ul>
+<li>AI 보조 의사</li>
+<li>스마트팜 관리자</li>
+<li>디지털 마케터</li>
+<li>고객 경험 설계자</li>
+</ul>
+</div>
+</div>
+<h3 id="중요한-포인트">중요한 포인트! <i class="fas fa-exclamation-triangle"></i></h3>
+<p><strong>“직업이 없어지는 것”이 아니라 “일하는 방식이 바뀌는 것”</strong></p>
+</section>
+<section id="업종별-ai-영향-분석" class="slide level2">
+<h2>업종별 AI 영향 분석</h2>
+<h3 id="구체적으로-어떻게-바뀔까요">구체적으로 어떻게 바뀔까요?</h3>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-3">graph TD
+    A[AI 영향도] --&gt; B[고위험군]
+    A --&gt; C[중위험군]  
+    A --&gt; D[저위험군]
+    
+    B --&gt; E[제조업 단순작업]
+    B --&gt; F[금융 창구업무]
+    B --&gt; G[운송업]
+    
+    C --&gt; H[사무직 일반]
+    C --&gt; I[서비스업 일반]
+    C --&gt; J[판매직]
+    
+    D --&gt; K[의료진]
+    D --&gt; L[교육자]
+    D --&gt; M[예술가]
+    D --&gt; N[관리직]
+    
+    linkStyle 0 stroke:#ffffff
+    linkStyle 1 stroke:#ffffff
+    linkStyle 2 stroke:#ffffff
+    linkStyle 3 stroke:#ffffff
+    linkStyle 4 stroke:#ffffff
+    linkStyle 5 stroke:#ffffff
+    linkStyle 6 stroke:#ffffff
+    linkStyle 7 stroke:#ffffff
+    linkStyle 8 stroke:#ffffff
+    linkStyle 9 stroke:#ffffff
+    linkStyle 10 stroke:#ffffff
+    linkStyle 11 stroke:#ffffff
+    linkStyle 12 stroke:#ffffff
+</pre>
+<div id="mermaid-tooltip-3" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+<h3 id="시기별-예상-변화">시기별 예상 변화 <i class="fas fa-calendar"></i></h3>
+<p><strong>2025-2027년 (단기)</strong></p>
+<ul>
+<li>챗봇이 고객 상담 80% 대체</li>
+<li>자동 번역이 단순 번역 90% 대체</li>
+<li>회계 소프트웨어가 장부 정리 완전 자동화</li>
+</ul>
+<p><strong>2028-2032년 (중기)</strong></p>
+<ul>
+<li>자율주행차 상용화로 운전직 50% 감소</li>
+<li>AI 의료진단이 방사선과 업무 70% 지원</li>
+<li>개인 맞춤 교육 AI가 강의 보조</li>
+</ul>
+<p><strong>2033년 이후 (장기)</strong></p>
+<ul>
+<li>로봇이 제조업 현장 작업 80% 담당</li>
+<li>AI 변호사가 법무 업무 50% 지원</li>
+<li>완전 자동화 상점 확산</li>
+</ul>
+</section>
+<section id="실제-사례-이미-시작된-변화" class="slide level2">
+<h2>실제 사례: 이미 시작된 변화 <i class="fas fa-running"></i></h2>
+<h3 id="현재-진행-중인-ai-도입-사례">현재 진행 중인 AI 도입 사례</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>은행업계</strong> <i class="fas fa-university"></i></p>
+<ul>
+<li><strong>신한은행</strong>: AI 대출 심사관 도입</li>
+<li><strong>국민은행</strong>: 챗봇 상담 비율 70% 달성</li>
+<li><strong>하나은행</strong>: 보이스피싱 실시간 탐지</li>
+</ul>
+<p><strong>결과</strong>: 창구 직원 30% 감소, 하지만 디지털 전문가 채용 증가</p>
+<p><strong>의료업계</strong> <i class="fas fa-hospital"></i></p>
+<ul>
+<li><strong>서울대병원</strong>: AI 영상 진단 도입</li>
+<li><strong>삼성서울병원</strong>: 수술 로봇 확대</li>
+<li><strong>연세세브란스</strong>: AI 응급실 트리아지</li>
+</ul>
+<p><strong>결과</strong>: 진단 정확도 향상, 의료진은 환자 케어에 집중</p>
+</div><div class="column" style="width:50%;">
+<p><strong>제조업계</strong> <i class="fas fa-industry"></i></p>
+<ul>
+<li><strong>현대자동차</strong>: 스마트 팩토리 구축</li>
+<li><strong>삼성전자</strong>: AI 품질 검사 시스템</li>
+<li><strong>LG화학</strong>: 예측 정비 시스템</li>
+</ul>
+<p><strong>결과</strong>: 단순 작업자 감소, 기술자와 관리자 수요 증가</p>
+<p><strong>유통업계</strong> <i class="fas fa-shopping-cart"></i></p>
+<ul>
+<li><strong>아마존</strong>: 완전 자동화 창고</li>
+<li><strong>이마트</strong>: 무인 매장 확산</li>
+<li><strong>쿠팡</strong>: AI 물류 최적화</li>
+</ul>
+<p><strong>결과</strong>: 물리적 매장 직원 감소, 온라인 전문가 증가</p>
+</div>
+</div>
+<h3 id="성공적-전환-사례">성공적 전환 사례 <i class="fas fa-star"></i></h3>
+<p><strong>맥도날드 직원 → 디지털 전문가</strong></p>
+<ul>
+<li>키오스크 도입 후 주문 받는 직원이 줄었지만</li>
+<li>디지털 주문 관리자, 배달 전문가로 전환</li>
+<li>더 높은 급여, 새로운 기술 습득</li>
+</ul>
+</section>
+<section id="일자리-변화에-대비하는-방법" class="slide level2">
+<h2>일자리 변화에 대비하는 방법 <i class="fas fa-shield-alt"></i></h2>
+<h3 id="개인-차원의-대비책">개인 차원의 대비책</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>지금 당장 할 수 있는 것</strong> <i class="fas fa-running"></i></p>
+<p><i class="fas fa-book"></i> <strong>평생 학습 습관</strong></p>
+<ul>
+<li>온라인 강의 플랫폼 활용</li>
+<li>유튜브 교육 채널 구독</li>
+<li>도서관 무료 교육 프로그램 참여</li>
+</ul>
+<p><i class="fas fa-laptop"></i> <strong>디지털 리터러시 향상</strong></p>
+<ul>
+<li>기본적인 컴퓨터 스킬 습득</li>
+<li>스마트폰 활용 능력 극대화</li>
+<li>AI 도구들 미리 체험해보기</li>
+</ul>
+<p><i class="fas fa-handshake"></i> <strong>인간적 스킬 강화</strong></p>
+<ul>
+<li>소통 능력 개발</li>
+<li>감정 지능 향상</li>
+<li>창의적 사고 훈련</li>
+<li>문제 해결 능력 기르기</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>전략적 준비</strong> <i class="fas fa-bullseye"></i></p>
+<p><i class="fas fa-sync"></i> <strong>직업 전환 준비</strong></p>
+<ul>
+<li>현재 직업의 AI 영향도 분석</li>
+<li>연관 분야의 새로운 기술 학습</li>
+<li>네트워킹 활동 강화</li>
+</ul>
+<p><i class="fas fa-briefcase"></i> <strong>경력 다각화</strong></p>
+<ul>
+<li>부업이나 사이드 프로젝트 시작</li>
+<li>다양한 분야 경험 쌓기</li>
+<li>포트폴리오 커리어 구축</li>
+</ul>
+<p><i class="fas fa-graduation-cap"></i> <strong>전문성 심화</strong></p>
+<ul>
+<li>현재 분야의 고급 기술 습득</li>
+<li>업계 전문가로 성장</li>
+<li>멘토링, 컨설팅 역량 개발</li>
+</ul>
+</div>
+</div>
+<h3 id="연령대별-맞춤-전략">연령대별 맞춤 전략 <i class="fas fa-users"></i></h3>
+<p><strong>20-30대</strong>: 새로운 기술 적극 학습, 경력 전환 유연성 활용 <strong>40-50대</strong>: 경험과 AI 기술 결합, 전문성 기반 차별화 <strong>50대 이상</strong>: 멘토링, 상담, 관리 역할로 전환, 인생 경험 활용</p>
+</section>
+<section id="토론-내-직업의-미래" class="slide level2">
+<h2>토론: 내 직업의 미래 <i class="fas fa-crystal-ball"></i></h2>
+<h3 id="그룹-토론-활동-15분">그룹 토론 활동 (15분)</h3>
+<p><strong>1단계: 개인 분석 (5분)</strong></p>
+<ul>
+<li>내 직업이 AI의 영향을 얼마나 받을까?</li>
+<li>어떤 부분이 자동화될 가능성이 높을까?</li>
+<li>어떤 부분은 인간만 할 수 있을까?</li>
+</ul>
+<p><strong>2단계: 그룹 토론 (10분)</strong></p>
+<ul>
+<li>4-5명씩 그룹을 만들어주세요</li>
+<li>각자의 직업과 고민을 공유해보세요</li>
+<li>서로 조언과 아이디어를 나눠보세요</li>
+</ul>
+<p><strong>토론 가이드 질문들</strong> <i class="fas fa-cloud"></i></p>
+<ol type="1">
+<li>AI가 내 업무를 완전히 대체할 수 있을까?</li>
+<li>AI와 협업할 수 있는 방법은 무엇일까?</li>
+<li>10년 후 내 직업은 어떻게 변해있을까?</li>
+<li>지금부터 무엇을 준비해야 할까?</li>
+</ol>
+<p><strong>토론 결과를 간단히 발표해주세요!</strong> <i class="fas fa-microphone"></i></p>
+</section>
+<section id="정부와-기업의-역할" class="slide level2">
+<h2>정부와 기업의 역할 <i class="fas fa-landmark"></i></h2>
+<h3 id="사회적-차원의-대응">사회적 차원의 대응</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>정부의 역할</strong> <i class="fas fa-landmark"></i></p>
+<p><i class="fas fa-clipboard-list"></i> <strong>정책 제도</strong></p>
+<ul>
+<li>전 국민 AI 교육 프로그램</li>
+<li>실업자 재교육 지원 확대</li>
+<li>기본소득 제도 검토</li>
+<li>AI 세금(로봇세) 도입 논의</li>
+</ul>
+<p><i class="fas fa-dollar-sign"></i> <strong>경제적 지원</strong></p>
+<ul>
+<li>직업 전환 지원금</li>
+<li>창업 지원 프로그램<br>
+</li>
+<li>평생교육 바우처</li>
+<li>디지털 격차 해소 사업</li>
+</ul>
+<p><i class="fas fa-balance-scale"></i> <strong>규제와 보호</strong></p>
+<ul>
+<li>급작스러운 해고 방지</li>
+<li>AI 도입 시 노동자 보호</li>
+<li>공정한 AI 사용 기준</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>기업의 책임</strong> <i class="fas fa-building"></i></p>
+<p><i class="fas fa-users"></i> <strong>직원 재교육</strong></p>
+<ul>
+<li>사내 AI 교육 프로그램</li>
+<li>직무 전환 교육 지원</li>
+<li>새로운 역할 창조</li>
+<li>점진적 변화 관리</li>
+</ul>
+<p><i class="fas fa-handshake"></i> <strong>상생 방안</strong></p>
+<ul>
+<li>AI 도입 시 직원과 충분한 협의</li>
+<li>새로운 일자리 창출 노력</li>
+<li>인간-AI 협업 모델 개발</li>
+<li>사회적 책임 경영</li>
+</ul>
+<p><i class="fas fa-lightbulb"></i> <strong>혁신적 접근</strong></p>
+<ul>
+<li>AI로 만든 부가가치의 일부를 직원과 공유</li>
+<li>더 의미 있는 업무로 직원 역할 재정의</li>
+<li>창의성과 혁신을 중시하는 문화</li>
+</ul>
+</div>
+</div>
+<h3 id="선진국의-대응-사례">선진국의 대응 사례 <i class="fas fa-globe"></i></h3>
+<p><strong>핀란드</strong>: 전 국민 AI 기초 교육 무료 제공 <strong>싱가포르</strong>: 40세 이상 직장인 재교육 프로그램 <strong>에스토니아</strong>: 디지털 정부로 새로운 일자리 창출</p>
+</section>
+<section id="개인이-실천할-수-있는-ai-윤리" class="slide level2">
+<h2>개인이 실천할 수 있는 AI 윤리 <i class="fas fa-seedling"></i></h2>
+<h3 id="일상에서의-작은-실천들">일상에서의 작은 실천들</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>의식적 사용</strong> <i class="fas fa-brain"></i></p>
+<p><i class="fas fa-question-circle"></i> <strong>비판적 사고</strong></p>
+<ul>
+<li>AI 추천을 맹신하지 않기</li>
+<li>다양한 정보원 확인하기</li>
+<li>편향된 결과 의심하기</li>
+<li>인간의 최종 판단 중시</li>
+</ul>
+<p><i class="fas fa-search"></i> <strong>투명성 요구</strong></p>
+<ul>
+<li>AI 서비스 이용약관 읽기</li>
+<li>개인정보 사용 목적 확인</li>
+<li>알고리즘 작동 원리 질문</li>
+<li>의사결정 과정 공개 요구</li>
+</ul>
+<p><i class="fas fa-ban"></i> <strong>거부할 권리</strong></p>
+<ul>
+<li>불필요한 개인정보 제공 거부</li>
+<li>동의하지 않는 서비스 이용 중단</li>
+<li>차별적 대우 받을 시 문제 제기</li>
+<li>대안 서비스 찾아 이용</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>능동적 참여</strong> <i class="fas fa-dumbbell"></i></p>
+<p><i class="fas fa-bullhorn"></i> <strong>목소리 내기</strong></p>
+<ul>
+<li>AI 관련 정책에 의견 제시</li>
+<li>부당한 AI 사용 신고</li>
+<li>소비자 권익 보호 활동 참여</li>
+<li>SNS에서 올바른 정보 공유</li>
+</ul>
+<p><i class="fas fa-graduation-cap"></i> <strong>지속적 학습</strong></p>
+<ul>
+<li>AI 윤리 관련 뉴스 관심</li>
+<li>온라인 강의 수강</li>
+<li>관련 도서 읽기</li>
+<li>전문가 강연 참석</li>
+</ul>
+<p><i class="fas fa-users"></i> <strong>공동체 활동</strong></p>
+<ul>
+<li>가족, 친구들에게 교육하기</li>
+<li>지역 사회 AI 윤리 모임 참여</li>
+<li>시민 단체 활동 지원</li>
+<li>윤리적 기업 제품 선택</li>
+</ul>
+</div>
+</div>
+<h3 id="실천-체크리스트">실천 체크리스트 <i class="fas fa-check"></i></h3>
+<p><strong>매일 할 수 있는 것</strong></p>
+<ul>
+<li><i class="fas fa-square"></i> AI 추천 결과를 다른 정보와 비교 확인</li>
+<li><i class="fas fa-square"></i> 개인정보 설정 한 번씩 점검</li>
+<li><i class="fas fa-square"></i> 편향 가능성 염두에 두고 AI 서비스 이용</li>
+</ul>
+<p><strong>매주 할 수 있는 것</strong></p>
+<ul>
+<li><i class="fas fa-square"></i> AI 윤리 관련 뉴스나 아티클 하나 읽기</li>
+<li><i class="fas fa-square"></i> 가족이나 지인과 AI 윤리에 대해 대화하기</li>
+<li><i class="fas fa-square"></i> 새로운 AI 서비스 체험 후 윤리적 평가해보기</li>
+</ul>
+<p><strong>매월 할 수 있는 것</strong></p>
+<ul>
+<li><i class="fas fa-square"></i> 개인정보 수집 현황 전면 점검</li>
+<li><i class="fas fa-square"></i> AI 윤리 관련 교육이나 세미나 찾아보기</li>
+<li><i class="fas fa-square"></i> 윤리적으로 운영되는 기업 제품 의식적 선택</li>
+</ul>
+</section>
+<section id="미래-사회-변화와-대비" class="slide level2">
+<h2>미래 사회 변화와 대비 <i class="fas fa-rocket"></i></h2>
+<h3 id="년-후-우리가-살-세상">10년 후 우리가 살 세상</h3>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-4">graph TD
+    A[2035년 AI 사회] --&gt; B[일상 생활]
+    A --&gt; C[교육 시스템]
+    A --&gt; D[의료 서비스]
+    A --&gt; E[도시 환경]
+    
+    B --&gt; F[AI 비서가 모든 일정 관리]
+    B --&gt; G[완전 자율주행 교통]
+    B --&gt; H[맞춤형 뉴스와 콘텐츠]
+    
+    C --&gt; I[개인 맞춤 학습 경로]
+    C --&gt; J[AI 교사와 인간 교사 협업]
+    C --&gt; K[실시간 학습 성과 분석]
+    
+    D --&gt; L[예측 의료와 예방]
+    D --&gt; M[로봇 수술의 일반화]
+    D --&gt; N[유전자 맞춤 치료]
+    
+    E --&gt; O[스마트 시티 인프라]
+    E --&gt; P[에너지 자동 최적화]
+    E --&gt; Q[범죄 예측 시스템]
+    
+    linkStyle 0 stroke:#ffffff
+    linkStyle 1 stroke:#ffffff
+    linkStyle 2 stroke:#ffffff
+    linkStyle 3 stroke:#ffffff
+    linkStyle 4 stroke:#ffffff
+    linkStyle 5 stroke:#ffffff
+    linkStyle 6 stroke:#ffffff
+    linkStyle 7 stroke:#ffffff
+    linkStyle 8 stroke:#ffffff
+    linkStyle 9 stroke:#ffffff
+    linkStyle 10 stroke:#ffffff
+    linkStyle 11 stroke:#ffffff
+    linkStyle 12 stroke:#ffffff
+    linkStyle 13 stroke:#ffffff
+    linkStyle 14 stroke:#ffffff
+    linkStyle 15 stroke:#ffffff
+</pre>
+<div id="mermaid-tooltip-4" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+<h3 id="긍정적-변화-전망">긍정적 변화 전망 <i class="fas fa-star"></i></h3>
+<p><strong>편리함의 극대화</strong></p>
+<ul>
+<li>모든 반복 업무 자동화</li>
+<li>개인 맞춤형 서비스 확산</li>
+<li>실시간 최적화된 생활</li>
+</ul>
+<p><strong>인간 잠재력 해방</strong></p>
+<ul>
+<li>창의적 활동에 더 많은 시간</li>
+<li>의미 있는 관계에 집중</li>
+<li>자아실현 기회 확대</li>
+</ul>
+</section>
+<section id="준비해야-할-도전과제" class="slide level2">
+<h2>준비해야 할 도전과제 <i class="fas fa-exclamation-triangle"></i></h2>
+<h3 id="해결해야-할-문제들">해결해야 할 문제들</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>기술적 도전</strong> <i class="fas fa-wrench"></i></p>
+<p><i class="fas fa-robot"></i> <strong>AI의 한계</strong></p>
+<ul>
+<li>완벽하지 않은 판단</li>
+<li>예상치 못한 오류 발생</li>
+<li>해킹과 악용 위험</li>
+<li>시스템 의존도 증가</li>
+</ul>
+<p><i class="fas fa-lock"></i> <strong>보안과 프라이버시</strong></p>
+<ul>
+<li>개인정보 완전 노출 위험</li>
+<li>국가간 데이터 경쟁</li>
+<li>사이버 공격 증가</li>
+<li>감시 사회 우려</li>
+</ul>
+<p><i class="fas fa-bolt"></i> <strong>인프라 부족</strong></p>
+<ul>
+<li>전력 소비 급증</li>
+<li>데이터 센터 포화</li>
+<li>네트워크 과부하</li>
+<li>디지털 격차 심화</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>사회적 도전</strong> <i class="fas fa-globe"></i></p>
+<p><i class="fas fa-users"></i> <strong>사회 분열</strong></p>
+<ul>
+<li>AI 접근성에 따른 계층 분화</li>
+<li>세대 간 디지털 격차</li>
+<li>지역 간 발전 불균형</li>
+<li>글로벌 기술 패권 경쟁</li>
+</ul>
+<p><i class="fas fa-briefcase"></i> <strong>경제 구조 변화</strong></p>
+<ul>
+<li>대량 실업 가능성</li>
+<li>새로운 형태의 노동</li>
+<li>기본소득 제도 필요성</li>
+<li>부의 재분배 문제</li>
+</ul>
+<p><i class="fas fa-brain"></i> <strong>인간성 상실</strong></p>
+<ul>
+<li>AI 의존증 증가</li>
+<li>사회적 소통 능력 퇴화</li>
+<li>판단력과 창의성 감소</li>
+<li>인간 관계의 피상화</li>
+</ul>
+</div>
+</div>
+<h3 id="우리가-준비해야-할-것들">우리가 준비해야 할 것들 <i class="fas fa-dumbbell"></i></h3>
+<ol type="1">
+<li><strong>적응력</strong>: 변화에 유연하게 대응하는 능력</li>
+<li><strong>비판적 사고</strong>: AI 결과를 검증하는 능력<br>
+</li>
+<li><strong>인간적 가치</strong>: AI가 대체할 수 없는 고유 영역</li>
+<li><strong>사회적 연대</strong>: 함께 문제를 해결하는 협력</li>
+</ol>
+</section>
+<section id="정책과-규제-동향" class="slide level2">
+<h2>정책과 규제 동향 <i class="fas fa-balance-scale"></i></h2>
+<h3 id="전-세계-ai-규제-현황">전 세계 AI 규제 현황</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>유럽연합 (EU)</strong> <i class="fas fa-flag"></i></p>
+<p><i class="fas fa-clipboard-list"></i> <strong>AI Act (2024년 시행)</strong></p>
+<ul>
+<li>위험도에 따른 4단계 분류</li>
+<li>고위험 AI에 대한 엄격한 규제</li>
+<li>금지 AI 목록 명시</li>
+<li>투명성 의무 강화</li>
+</ul>
+<p><i class="fas fa-balance-scale"></i> <strong>주요 내용</strong></p>
+<ul>
+<li>얼굴 인식 기술 제한</li>
+<li>AI 시스템 품질 관리 의무</li>
+<li>사용자 알 권리 보장</li>
+<li>고액 벌금 (매출액의 6%)</li>
+</ul>
+<p><i class="fas fa-shield-alt"></i> <strong>GDPR 연계</strong></p>
+<ul>
+<li>개인정보 보호 강화</li>
+<li>동의 절차 엄격화</li>
+<li>잊혀질 권리 확대</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>미국</strong> <i class="fas fa-flag"></i></p>
+<p><i class="fas fa-landmark"></i> <strong>연방 정부 정책</strong></p>
+<ul>
+<li>AI 권리 헌장 발표</li>
+<li>정부 기관 AI 사용 가이드라인</li>
+<li>국방 분야 AI 투자 확대</li>
+</ul>
+<p><i class="fas fa-building"></i> <strong>주 정부별 규제</strong></p>
+<ul>
+<li>캘리포니아: 얼굴 인식 금지법</li>
+<li>뉴욕: 채용 AI 규제</li>
+<li>일리노이: 생체정보 보호법</li>
+</ul>
+<p><i class="fas fa-briefcase"></i> <strong>산업 자율 규제</strong></p>
+<ul>
+<li>빅테크 자율 윤리 기준</li>
+<li>업계 공동 가이드라인</li>
+<li>시민사회와 협력</li>
+</ul>
+</div>
+</div>
+<h3 id="한국의-ai-정책">한국의 AI 정책 <i class="fas fa-flag"></i></h3>
+<p><strong>정부 정책 방향</strong></p>
+<ul>
+<li>「디지털 권리법안」 추진</li>
+<li>AI 윤리기준 마련</li>
+<li>K-디지털 뉴딜 프로젝트</li>
+<li>전 국민 디지털 역량 강화</li>
+</ul>
+<p><strong>주요 내용</strong></p>
+<ul>
+<li>AI 개발·이용 윤리기준</li>
+<li>알고리즘 투명성 확보</li>
+<li>개인정보보호법 강화</li>
+<li>AI 전문인력 양성</li>
+</ul>
+</section>
+<section id="시민으로서-참여하기" class="slide level2">
+<h2>시민으로서 참여하기 <i class="fas fa-vote-yea"></i></h2>
+<h3 id="우리의-목소리가-중요합니다">우리의 목소리가 중요합니다</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>정책 참여 방법</strong> <i class="fas fa-bullhorn"></i></p>
+<p><i class="fas fa-vote-yea"></i> <strong>제도적 참여</strong></p>
+<ul>
+<li>공청회, 간담회 참석</li>
+<li>정책 의견 수렴에 참여</li>
+<li>국민신문고 의견 제출</li>
+<li>선거에서 AI 정책 고려</li>
+</ul>
+<p><i class="fas fa-comments"></i> <strong>일상적 참여</strong></p>
+<ul>
+<li>SNS에서 올바른 정보 공유</li>
+<li>지역 사회 토론 참여</li>
+<li>시민 단체 활동 지원</li>
+<li>가족, 친구들과 대화</li>
+</ul>
+<p><i class="fas fa-edit"></i> <strong>개인적 실천</strong></p>
+<ul>
+<li>AI 윤리 관련 뉴스 관심</li>
+<li>부당한 AI 서비스 신고</li>
+<li>윤리적 기업 제품 선택</li>
+<li>지속적인 자기 교육</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>참여할 수 있는 단체들</strong> <i class="fas fa-landmark"></i></p>
+<p><i class="fas fa-building"></i> <strong>시민 사회</strong></p>
+<ul>
+<li>소비자시민모임</li>
+<li>개인정보보호 시민단체</li>
+<li>디지털 권리 단체</li>
+<li>노동 단체</li>
+</ul>
+<p><i class="fas fa-graduation-cap"></i> <strong>교육 기관</strong></p>
+<ul>
+<li>시민 대학 AI 강좌</li>
+<li>도서관 디지털 교육</li>
+<li>평생교육원 프로그램</li>
+<li>온라인 시민 교육</li>
+</ul>
+<p><i class="fas fa-globe"></i> <strong>온라인 커뮤니티</strong></p>
+<ul>
+<li>AI 윤리 토론 포럼</li>
+<li>기술 정책 관심 그룹</li>
+<li>지역별 시민 모임</li>
+<li>전문가와 시민 네트워크</li>
+</ul>
+</div>
+</div>
+<h3 id="실천-프로젝트-우리-동네-ai-지도-만들기">실천 프로젝트: 우리 동네 AI 지도 만들기 <i class="fas fa-map"></i></h3>
+<p><strong>활동 방법</strong></p>
+<ol type="1">
+<li>우리 동네에서 사용되는 AI 서비스 조사</li>
+<li>각 서비스의 윤리적 문제점 평가</li>
+<li>개선 방안 토론 및 제안</li>
+<li>지역 정부나 기업에 의견 전달</li>
+</ol>
+<p><strong>예시 조사 항목</strong></p>
+<ul>
+<li>지하철역 얼굴 인식 CCTV</li>
+<li>마트의 무인 계산대</li>
+<li>병원의 AI 진단 시스템</li>
+<li>학교의 AI 학습 프로그램</li>
+</ul>
+</section>
+<section id="마무리-지혜로운-ai-시민되기" class="slide level2">
+<h2>마무리: 지혜로운 AI 시민되기 <i class="fas fa-star"></i></h2>
+<h3 id="오늘-배운-핵심-내용-정리">오늘 배운 핵심 내용 정리</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>AI 이해하기</strong> <i class="fas fa-brain"></i></p>
+<ul>
+<li>AI는 학습하는 컴퓨터 프로그램</li>
+<li>일상에서 이미 널리 사용 중</li>
+<li>편리함과 위험이 공존</li>
+<li>완벽하지 않으므로 비판적 사용 필요</li>
+</ul>
+<p><strong>개인정보 보호하기</strong> <i class="fas fa-lock"></i></p>
+<ul>
+<li>내 정보가 어떻게 사용되는지 확인</li>
+<li>불필요한 권한 제거하기</li>
+<li>정기적인 설정 점검</li>
+<li>의식적인 정보 제공</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>편향과 차별 경계하기</strong> <i class="fas fa-balance-scale"></i></p>
+<ul>
+<li>AI도 편견을 가질 수 있음</li>
+<li>다양성과 공정성 중요</li>
+<li>의심스러운 결과는 검증하기</li>
+<li>차별 경험 시 적극 신고</li>
+</ul>
+<p><strong>미래 변화 준비하기</strong> <i class="fas fa-rocket"></i></p>
+<ul>
+<li>평생 학습 습관 기르기</li>
+<li>인간만의 고유 가치 개발</li>
+<li>사회적 참여 의식 갖기</li>
+<li>적응력과 유연성 기르기</li>
+</ul>
+</div>
+</div>
+<h3 id="행동-계획-세우기">행동 계획 세우기 <i class="fas fa-clipboard-list"></i></h3>
+<p><strong>내일부터 할 수 있는 것 (3가지 선택)</strong></p>
+<ul>
+<li><i class="fas fa-square"></i> 스마트폰 개인정보 설정 점검하기</li>
+<li><i class="fas fa-square"></i> AI 추천 결과를 다른 정보와 비교하기<br>
+</li>
+<li><i class="fas fa-square"></i> 가족에게 오늘 배운 내용 한 가지 공유하기</li>
+<li><i class="fas fa-square"></i> AI 윤리 관련 뉴스 하나 읽고 생각해보기</li>
+<li><i class="fas fa-square"></i> 내 직업의 AI 영향도 분석해보기</li>
+</ul>
+<p><strong>이번 달 안에 할 것 (2가지 선택)</strong></p>
+<ul>
+<li><i class="fas fa-square"></i> AI 관련 온라인 강의 하나 수강하기</li>
+<li><i class="fas fa-square"></i> 지역 AI 윤리 모임 찾아보기</li>
+<li><i class="fas fa-square"></i> 윤리적 기업 제품으로 하나 바꿔보기</li>
+<li><i class="fas fa-square"></i> AI 정책에 대한 의견 정부에 제출하기</li>
+<li><i class="fas fa-square"></i> 친구들과 AI 윤리 토론 시간 갖기</li>
+</ul>
+</section>
+<section id="질의응답-및-토론" class="slide level2">
+<h2>질의응답 및 토론 <i class="fas fa-comments"></i></h2>
+<h3 id="자유로운-질문-시간-15분">자유로운 질문 시간 (15분)</h3>
+<p><strong>어떤 질문이든 환영합니다!</strong> <i class="fas fa-hand-paper"></i></p>
+<ul>
+<li>오늘 내용 중 이해가 어려웠던 부분</li>
+<li>개인적인 경험이나 궁금한 점<br>
+</li>
+<li>실제 상황에서의 적용 방법</li>
+<li>더 자세히 알고 싶은 주제</li>
+<li>미래에 대한 걱정이나 기대</li>
+</ul>
+<h3 id="함께-나누고-싶은-이야기">함께 나누고 싶은 이야기 <i class="fas fa-cloud"></i></h3>
+<p><strong>마지막 한 마디씩 들려주세요:</strong></p>
+<ul>
+<li>오늘 가장 인상 깊었던 내용</li>
+<li>앞으로 실천하고 싶은 것</li>
+<li>다른 사람들에게 전하고 싶은 메시지</li>
+</ul>
+</section>
+<section id="감사합니다" class="slide level2">
+<h2>감사합니다! <i class="fas fa-praying-hands"></i></h2>
+<h3 id="연락처-및-추가-정보">연락처 및 추가 정보</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>강사 연락처</strong> <i class="fas fa-phone"></i></p>
+<ul>
+<li><strong>이메일</strong>: aiden@r2bit.com</li>
+<li><strong>조직</strong>: 한국R사용자회</li>
+<li><strong>블로그</strong>: aidenhong.com</li>
+</ul>
+<p><strong>추가 학습 자료</strong> <i class="fas fa-book"></i></p>
+<ul>
+<li>AI 윤리 관련 도서 목록</li>
+<li>온라인 강의 추천</li>
+<li>정부 정책 자료 링크</li>
+<li>시민 참여 플랫폼 안내</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>오늘의 약속을 기억해주세요</strong> <i class="fas fa-star"></i></p>
+<p><i class="fas fa-brain"></i> <strong>지혜로운 사용자</strong></p>
+<ul>
+<li>AI를 맹신하지 않고 비판적으로 사용</li>
+</ul>
+<p><i class="fas fa-shield-alt"></i> <strong>적극적인 보호자</strong></p>
+<ul>
+<li>내 개인정보와 권리를 스스로 지키기</li>
+</ul>
+<p><i class="fas fa-handshake"></i> <strong>참여하는 시민</strong></p>
+<ul>
+<li>더 나은 AI 사회를 만들기 위해 목소리 내기</li>
+</ul>
+<p><i class="fas fa-dumbbell"></i> <strong>평생 학습자</strong></p>
+<ul>
+<li>변화하는 기술에 계속 관심 갖고 배우기</li>
+</ul>
+</div>
+</div>
+<blockquote>
+<p><strong>“AI 시대의 주인공은 기술이 아니라 그것을 지혜롭게 사용하는 우리 모두입니다!”</strong></p>
+</blockquote>
+<p><strong>여러분이 바로 AI 윤리의 주인공입니다!</strong> <i class="fas fa-star"></i></p>
+</section>
+<section id="참고-자료" class="slide level2">
+<h2>참고 자료 <i class="fas fa-book"></i></h2>
+<h3 id="추천-도서-난이도별">추천 도서 (난이도별)</h3>
+<p><strong>입문서</strong> <i class="fas fa-book"></i></p>
+<ul>
+<li>『AI 윤리』 - 루치아노 플로리디</li>
+<li>『알고리즘의 편견』 - 캐시 오닐</li>
+<li>『AI 시대 인간의 조건』 - 구본권</li>
+<li>『로봇이 인간을 대체할 때』 - 제리 카플란</li>
+</ul>
+<p><strong>심화서</strong> <i class="fas fa-book"></i></p>
+<ul>
+<li>『인공지능과 법』 - 김현경</li>
+<li>『디지털 전환 시대의 노동』 - 김종진</li>
+<li>『플랫폼 사회와 디지털 권리』 - 홍성수</li>
+</ul>
+<h3 id="유용한-웹사이트">유용한 웹사이트 <i class="fas fa-globe"></i></h3>
+<p><strong>정부 기관</strong></p>
+<ul>
+<li>개인정보보호위원회: privacy.go.kr</li>
+<li>과학기술정보통신부: msit.go.kr</li>
+<li>한국지능정보사회진흥원: nia.or.kr</li>
+</ul>
+<p><strong>시민 단체</strong></p>
+<ul>
+<li>진보네트워크센터: jinbo.net</li>
+<li>소비자시민모임: consumerskorea.org</li>
+<li>참여연대: peoplepower21.org</li>
+</ul>
+<p><strong>교육 플랫폼</strong></p>
+<ul>
+<li>코세라 AI 윤리 강좌</li>
+<li>edX MIT AI 과정</li>
+<li>K-MOOC 인공지능 교육</li>
+</ul>
+<h3 id="정기적으로-확인하면-좋은-뉴스">정기적으로 확인하면 좋은 뉴스 <i class="fas fa-newspaper"></i></h3>
+<ul>
+<li>AI 타임스, 테크42, 지디넷코리아</li>
+<li>MIT Technology Review 한국어판</li>
+<li>AI 정책 관련 정부 브리핑</li>
+</ul>
+<p><strong>오늘 하루가 여러분의 AI 시민 여정의 시작점이 되기를 바랍니다!</strong> <i class="fas fa-rocket"></i></p>
+<div class="footer footer-default">
+<p>AI Ethics for Everyone | Aiden Hong</p>
+</div>
+</section></section>
+    </div>
+  </div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="ai-ethics-general_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="ai-ethics-general_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="ai-ethics-general_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="ai-ethics-general_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="ai-ethics-general_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="ai-ethics-general_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="ai-ethics-general_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="ai-ethics-general_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="ai-ethics-general_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="ai-ethics-general_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="ai-ethics-general_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'smaller': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const clipboard = new window.ClipboardJS('.code-copy-button', {
+        target: function(trigger) {
+          return trigger.previousElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      });
+      function tippyHover(el, contentFn) {
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto-reveal',
+          placement: 'bottom-start'
+        };
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          return note.innerHTML;
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>

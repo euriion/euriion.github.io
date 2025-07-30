@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="data-literacy_files/libs/clipboard/clipboard.min.js"></script>
-<script src="data-literacy_files/libs/quarto-html/tabby.min.js"></script>
-<script src="data-literacy_files/libs/quarto-html/popper.min.js"></script>
-<script src="data-literacy_files/libs/quarto-html/tippy.umd.min.js"></script>
-<link href="data-literacy_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="data-literacy_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="data-literacy_files/libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<script src="ai-ethics-for-survey_files/libs/clipboard/clipboard.min.js"></script>
+<script src="ai-ethics-for-survey_files/libs/quarto-html/tabby.min.js"></script>
+<script src="ai-ethics-for-survey_files/libs/quarto-html/popper.min.js"></script>
+<script src="ai-ethics-for-survey_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="ai-ethics-for-survey_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="ai-ethics-for-survey_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="ai-ethics-for-survey_files/libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.2.335">
 
-  <meta name="author" content="홍성학">
-  <title>데이터 문해력</title>
+  <meta name="author" content="Seonghak Hong">
+  <meta name="dcterms.date" content="2025-07-28">
+  <title>AI 윤리 - 설문조사 업무에서 알아야 할 것들</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="data-literacy_files/libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="data-literacy_files/libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="ai-ethics-for-survey_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="ai-ethics-for-survey_files/libs/revealjs/dist/reveal.css">
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -29,14 +30,14 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="data-literacy_files/libs/revealjs/dist/theme/quarto.css" id="theme">
+  <link rel="stylesheet" href="ai-ethics-for-survey_files/libs/revealjs/dist/theme/quarto.css" id="theme">
   <link rel="stylesheet" href="custom.css">
-  <link href="data-literacy_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="data-literacy_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="data-literacy_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="data-literacy_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
-  <link href="data-literacy_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
-  <link href="data-literacy_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <link href="ai-ethics-for-survey_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="ai-ethics-for-survey_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="ai-ethics-for-survey_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="ai-ethics-for-survey_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="ai-ethics-for-survey_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="ai-ethics-for-survey_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
   .callout {
@@ -322,6 +323,9 @@
       margin-right: 0; 
     }
   </style>
+  <script src="ai-ethics-for-survey_files/libs/quarto-diagram/mermaid.min.js"></script>
+  <script src="ai-ethics-for-survey_files/libs/quarto-diagram/mermaid-init.js"></script>
+  <link href="ai-ethics-for-survey_files/libs/quarto-diagram/mermaid.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body class="quarto-dark">
@@ -329,351 +333,478 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">데이터 문해력</h1>
-  <p class="subtitle">데이터 기반 의사결정의 핵심 역량</p>
+  <h1 class="title">AI 윤리 - 설문조사 업무에서 알아야 할 것들</h1>
+  <p class="subtitle">설문조사 업무에서 알아야 할 AI 윤리 기본 가이드</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-홍성학 
+Seonghak Hong 
 </div>
 </div>
 </div>
 
-  <p class="date">7/28/25</p>
+  <p class="date">2025-07-28</p>
 </section>
-<section id="데이터-문해력이란" class="slide level2 smaller">
-<h2>데이터 문해력이란?</h2>
-<div>
-<ul>
-<li class="fragment"><i class="fas fa-chart-line"></i> 데이터를 <strong>읽고, 이해하고, 분석하고, 시각화</strong>하여 의미 있는 정보를 도출하는 능력</li>
-<li class="fragment"><i class="fas fa-brain"></i> 데이터를 바탕으로 <strong>합리적인 의사결정</strong>을 내릴 수 있는 능력</li>
-<li class="fragment"><i class="fas fa-search"></i> 데이터의 <strong>한계와 편향</strong>을 인식하고 비판적으로 사고하는 능력</li>
-</ul>
-</div>
-<aside class="notes">
-<p>데이터 문해력은 단순히 숫자를 읽는 것을 넘어서, 데이터 뒤에 숨겨진 의미를 파악하고 실제 의사결정에 활용할 수 있는 종합적인 능력입니다.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="현대-사회에서-데이터의-중요성" class="slide level2 smaller">
-<h2>현대 사회에서 데이터의 중요성</h2>
+<section id="ai-윤리-왜-우리에게-중요한가" class="slide level2">
+<h2><i class="fas fa-robot"></i> AI 윤리, 왜 우리에게 중요한가?</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<h3 id="데이터-폭발-시대">데이터 폭발 시대</h3>
+<p><strong>AI가 우리 업무에 미치는 영향</strong></p>
 <ul>
-<li><i class="fas fa-database"></i> 매일 2.5퀸틸리언 바이트의 데이터 생성</li>
-<li><i class="fas fa-calendar-alt"></i> 2020년 이후 전 세계 데이터의 90%가 생성됨</li>
-<li><i class="fas fa-network-wired"></i> IoT, 소셜미디어, 모바일 기기 등의 확산</li>
+<li>설문 응답 자동 분석 시스템</li>
+<li>고객 맞춤형 설문 추천</li>
+<li>응답 패턴 분석 및 예측</li>
+<li>가짜 응답 탐지 시스템</li>
 </ul>
 </div><div class="column" style="width:50%;">
-<h3 id="비즈니스-환경의-변화">비즈니스 환경의 변화</h3>
+<p><strong>예상되는 문제들</strong></p>
 <ul>
-<li><i class="fas fa-chart-bar"></i> 데이터 기반 의사결정이 표준화</li>
-<li><i class="fas fa-trophy"></i> 경쟁력의 핵심 요소로 부상</li>
-<li><i class="fas fa-users"></i> 모든 직무에서 데이터 활용 능력 요구</li>
+<li>특정 계층 응답자 차별 우려</li>
+<li>개인정보 오남용 위험</li>
+<li>편향된 분석 결과 도출</li>
+<li>응답자 신뢰도 하락</li>
 </ul>
 </div>
 </div>
+<blockquote>
+<p><strong><i class="fas fa-quote-left"></i> “AI는 이제 설문조사 업계에서도 필수가 되고 있습니다” <i class="fas fa-quote-right"></i></strong></p>
+</blockquote>
 </section>
-<section id="왜-데이터-문해력이-중요한가" class="slide level2 smaller">
-<h2>왜 데이터 문해력이 중요한가?</h2>
-<h3 id="더-나은-의사결정">1. 더 나은 의사결정</h3>
+<section id="설문조사에서-발생하는-ai-편향-문제" class="slide level2">
+<h2><i class="fas fa-balance-scale"></i> 설문조사에서 발생하는 AI 편향 문제</h2>
+<h3 id="편향이-나타나는-과정"><i class="fas fa-route"></i> 편향이 나타나는 과정</h3>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-1">graph LR
+    A[응답자 모집] --&gt; B[설문 설계]
+    B --&gt; C[데이터 수집]
+    C --&gt; D[AI 분석]
+    D --&gt; E[결과 해석]
+    
+    A -.-&gt; F[특정 집단 과대표집]
+    B -.-&gt; G[질문 설계의 편향]
+    C -.-&gt; H[응답 누락 패턴]
+    D -.-&gt; I[알고리즘 편향]
+    E -.-&gt; J[해석상의 편향]
+</pre>
+<div id="mermaid-tooltip-1" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+<h3 id="실제-사례들"><i class="fas fa-clipboard-list"></i> 실제 사례들</h3>
 <ul>
-<li><i class="fas fa-bullseye"></i> <strong>객관적 근거</strong> 기반의 판단</li>
-<li><i class="fas fa-shield-alt"></i> <strong>리스크 최소화</strong>와 성공 확률 증대</li>
-<li><i class="fas fa-ban"></i> <strong>편향과 직관의 오류</strong> 방지</li>
-</ul>
-<h3 id="업무-효율성-증대">2. 업무 효율성 증대</h3>
-<ul>
-<li><i class="fas fa-robot"></i> <strong>자동화</strong>를 통한 반복 작업 감소</li>
-<li><i class="fas fa-search-plus"></i> <strong>패턴 인식</strong>으로 문제 해결 속도 향상</li>
-<li><i class="fas fa-crystal-ball"></i> <strong>예측 분석</strong>으로 선제적 대응</li>
-</ul>
-<h3 id="새로운-기회-창출">3. 새로운 기회 창출</h3>
-<ul>
-<li><i class="fas fa-lightbulb"></i> <strong>숨겨진 인사이트</strong> 발견</li>
-<li><i class="fas fa-chart-line"></i> <strong>시장 트렌드</strong> 조기 포착</li>
-<li><i class="fas fa-rocket"></i> <strong>혁신적 아이디어</strong> 도출</li>
+<li><strong>연령대 편향</strong>: 젊은 층 응답자 위주의 온라인 설문</li>
+<li><strong>지역 편향</strong>: 수도권 중심의 데이터 수집</li>
+<li><strong>소득 편향</strong>: 특정 소득 계층의 의견만 반영</li>
+<li><strong>성별 편향</strong>: 남녀 응답 패턴의 차이를 간과</li>
 </ul>
 </section>
-<section id="데이터-문해력의-핵심-요소" class="slide level2 smaller">
-<h2>데이터 문해력의 핵심 요소</h2>
-<h3 id="비판적-사고">1. 비판적 사고</h3>
-<div>
-<ul>
-<li class="fragment"><i class="fas fa-search"></i> <strong>데이터의 출처</strong>와 수집 방법 검증</li>
-<li class="fragment"><i class="fas fa-exclamation-triangle"></i> <strong>편향과 오류</strong> 가능성 인식</li>
-<li class="fragment"><i class="fas fa-arrows-alt-h"></i> <strong>상관관계 vs 인과관계</strong> 구분</li>
-<li class="fragment"><i class="fas fa-book-open"></i> <strong>맥락적 해석</strong>의 중요성</li>
-</ul>
-</div>
-<h3 id="통계적-지식">2. 통계적 지식</h3>
-<div>
-<ul>
-<li class="fragment"><i class="fas fa-calculator"></i> <strong>기술통계</strong>: 평균, 중앙값, 표준편차</li>
-<li class="fragment"><i class="fas fa-chart-bar"></i> <strong>추론통계</strong>: 가설검정, 신뢰구간</li>
-<li class="fragment"><i class="fas fa-dice"></i> <strong>확률과 분포</strong> 이해</li>
-<li class="fragment"><i class="fas fa-users"></i> <strong>표본과 모집단</strong>의 관계</li>
-</ul>
-</div>
-</section>
-<section id="데이터-문해력의-핵심-요소-계속" class="slide level2 smaller">
-<h2>데이터 문해력의 핵심 요소 (계속)</h2>
-<h3 id="데이터-시각화">3. 데이터 시각화</h3>
-<div>
-<ul>
-<li class="fragment"><i class="fas fa-chart-pie"></i> <strong>적절한 차트 선택</strong>: 막대그래프, 선그래프, 산점도 등</li>
-<li class="fragment"><i class="fas fa-palette"></i> <strong>색상과 디자인</strong> 원칙</li>
-<li class="fragment"><i class="fas fa-book"></i> <strong>스토리텔링</strong>과 내러티브 구성</li>
-<li class="fragment"><i class="fas fa-eye-slash"></i> <strong>오해를 불러일으키는 시각화</strong> 피하기</li>
-</ul>
-</div>
-<h3 id="도구-활용-능력">4. 도구 활용 능력</h3>
-<div>
-<ul>
-<li class="fragment"><i class="fas fa-table"></i> <strong>Excel/Google Sheets</strong>: 기본 분석 도구</li>
-<li class="fragment"><i class="fas fa-database"></i> <strong>SQL</strong>: 데이터베이스 쿼리</li>
-<li class="fragment"><i class="fas fa-code"></i> <strong>Python/R</strong>: 고급 분석 및 모델링</li>
-<li class="fragment"><i class="fas fa-chart-area"></i> <strong>Tableau/Power BI</strong>: 시각화 도구</li>
-</ul>
-</div>
-</section>
-<section id="데이터-문해력-발전-단계" class="slide level2 smaller">
-<h2>데이터 문해력 발전 단계</h2>
+<section id="ai-분석-결과를-어떻게-이해해야-할까" class="slide level2">
+<h2><i class="fas fa-brain"></i> AI 분석 결과를 어떻게 이해해야 할까?</h2>
 <div class="columns">
-<div class="column" style="width:30%;">
-<h3 id="초급-단계">초급 단계</h3>
+<div class="column" style="width:60%;">
+<h3 id="ai-분석의-한계-인식"><i class="fas fa-exclamation-circle"></i> AI 분석의 한계 인식</h3>
+<p><strong><i class="fas fa-cube"></i> 블랙박스 문제</strong></p>
+<p>AI가 어떻게 결론을 내렸는지 알기 어려움</p>
+<p><strong><i class="fas fa-chart-line"></i> 과적합 위험</strong></p>
+<p>특정 데이터에만 잘 맞는 결과일 수 있음</p>
+<p><strong><i class="fas fa-link"></i> 상관관계 vs 인과관계</strong></p>
+<p>AI는 원인을 찾는 것이 아님</p>
+<h3 id="우리가-확인해야-할-것들"><i class="fas fa-tasks"></i> 우리가 확인해야 할 것들</h3>
 <ul>
-<li><i class="fas fa-chart-bar"></i> 기본 통계 이해</li>
-<li><i class="fas fa-chart-pie"></i> 간단한 차트 해석</li>
-<li><i class="fas fa-table"></i> Excel 활용</li>
-<li><i class="fas fa-broom"></i> 데이터 정리</li>
+<li>분석에 사용된 데이터가 충분히 다양한가?</li>
+<li>결과가 상식적으로 타당한가?</li>
+<li>특정 집단이 불공정하게 평가되지 않았나?</li>
+<li>결과 해석에 추가 검토가 필요한가?</li>
 </ul>
-</div><div class="column" style="width:30%;">
-<h3 id="중급-단계">중급 단계</h3>
+</div><div class="column" style="width:40%;">
+<p><strong>설문조사 AI 분석 예시</strong></p>
+<p>📊 <strong>고객 만족도 분석</strong></p>
 <ul>
-<li><i class="fas fa-calculator"></i> 고급 통계 분석</li>
-<li><i class="fas fa-chart-area"></i> 복합 시각화</li>
-<li><i class="fas fa-database"></i> SQL 활용</li>
-<li><i class="fas fa-search-plus"></i> 패턴 인식</li>
+<li>어떤 요인이 만족도에 가장 영향을 미쳤나?</li>
+<li>연령대별로 다른 패턴이 있나?</li>
 </ul>
-</div><div class="column" style="width:30%;">
-<h3 id="고급-단계">고급 단계</h3>
+<p>🔍 <strong>주의할 점</strong></p>
 <ul>
-<li><i class="fas fa-crystal-ball"></i> 예측 모델링</li>
-<li><i class="fas fa-brain"></i> 머신러닝 활용</li>
-<li><i class="fas fa-robot"></i> 자동화 구현</li>
-<li><i class="fas fa-lightbulb"></i> 전략적 인사이트</li>
-</ul>
-</div>
-</div>
-</section>
-<section id="실무에서의-데이터-문해력-활용" class="slide level2 smaller">
-<h2>실무에서의 데이터 문해력 활용</h2>
-<h3 id="마케팅-분야">마케팅 분야</h3>
-<ul>
-<li><i class="fas fa-users"></i> <strong>고객 세분화</strong> 및 타겟팅</li>
-<li><i class="fas fa-chart-line"></i> <strong>캠페인 성과 분석</strong></li>
-<li><i class="fas fa-dollar-sign"></i> <strong>ROI 측정</strong> 및 최적화</li>
-<li><i class="fas fa-trending-up"></i> <strong>시장 트렌드 분석</strong></li>
-</ul>
-<h3 id="운영-분야">운영 분야</h3>
-<ul>
-<li><i class="fas fa-cogs"></i> <strong>프로세스 최적화</strong></li>
-<li><i class="fas fa-check-circle"></i> <strong>품질 관리</strong></li>
-<li><i class="fas fa-boxes"></i> <strong>재고 관리</strong></li>
-<li><i class="fas fa-cut"></i> <strong>비용 절감 분석</strong></li>
-</ul>
-<h3 id="인사-분야">인사 분야</h3>
-<ul>
-<li><i class="fas fa-smile"></i> <strong>직원 만족도 조사</strong></li>
-<li><i class="fas fa-star"></i> <strong>성과 평가 분석</strong></li>
-<li><i class="fas fa-door-open"></i> <strong>이직률 예측</strong></li>
-<li><i class="fas fa-handshake"></i> <strong>채용 효율성 분석</strong></li>
-</ul>
-</section>
-<section id="데이터-문해력-향상-방법" class="slide level2 smaller">
-<h2>데이터 문해력 향상 방법</h2>
-<h3 id="기초-역량-강화">1. 기초 역량 강화</h3>
-<div>
-<ul>
-<li class="fragment"><i class="fas fa-book"></i> <strong>통계학 기초</strong> 학습</li>
-<li class="fragment"><i class="fas fa-tools"></i> <strong>데이터 분석 도구</strong> 익히기</li>
-<li class="fragment"><i class="fas fa-chart-pie"></i> <strong>시각화 원칙</strong> 이해</li>
-<li class="fragment"><i class="fas fa-building"></i> <strong>비즈니스 도메인</strong> 지식 습득</li>
+<li>단순히 AI 결과만 믿지 말고</li>
+<li>전문가의 검토와 해석 필요</li>
 </ul>
 </div>
-<h3 id="실습과-프로젝트">2. 실습과 프로젝트</h3>
-<div>
-<ul>
-<li class="fragment"><i class="fas fa-project-diagram"></i> <strong>개인 프로젝트</strong> 수행</li>
-<li class="fragment"><i class="fas fa-cloud-download-alt"></i> <strong>온라인 데이터셋</strong> 활용</li>
-<li class="fragment"><i class="fas fa-trophy"></i> <strong>캐글 경진대회</strong> 참여</li>
-<li class="fragment"><i class="fas fa-puzzle-piece"></i> <strong>실무 문제</strong> 해결 경험</li>
-</ul>
-</div>
-<h3 id="지속적-학습">3. 지속적 학습</h3>
-<div>
-<ul>
-<li class="fragment"><i class="fas fa-rss"></i> <strong>최신 트렌드</strong> 파악</li>
-<li class="fragment"><i class="fas fa-users"></i> <strong>커뮤니티 참여</strong></li>
-<li class="fragment"><i class="fas fa-network-wired"></i> <strong>전문가 네트워킹</strong></li>
-<li class="fragment"><i class="fas fa-comments"></i> <strong>피드백 수집</strong></li>
-</ul>
 </div>
 </section>
-<section id="데이터-문해력의-함정과-주의사항" class="slide level2 smaller">
-<h2>데이터 문해력의 함정과 주의사항</h2>
-<h3 id="데이터-편향-인식">1. 데이터 편향 인식</h3>
+<section id="개인정보-보호와-응답자-권리" class="slide level2">
+<h2><i class="fas fa-user-shield"></i> 개인정보 보호와 응답자 권리</h2>
+<h3 id="개인정보-보호-기본-원칙"><i class="fas fa-shield-alt"></i> 개인정보 보호 기본 원칙</h3>
 <ul>
-<li><i class="fas fa-balance-scale"></i> <strong>표본 편향</strong>: 대표성 부족</li>
-<li><i class="fas fa-eye"></i> <strong>확증 편향</strong>: 원하는 결과만 찾기</li>
-<li><i class="fas fa-medal"></i> <strong>생존자 편향</strong>: 성공 사례만 고려</li>
+<li><strong>동의</strong>: 응답자가 명확히 이해하고 동의했는가?</li>
+<li><strong>목적 제한</strong>: 수집한 정보를 약속한 용도로만 사용</li>
+<li><strong>최소 수집</strong>: 꼭 필요한 정보만 수집</li>
+<li><strong>안전한 보관</strong>: 개인정보 유출 방지</li>
 </ul>
-<h3 id="상관관계-vs-인과관계">2. 상관관계 vs 인과관계</h3>
+<h3 id="응답자가-가진-권리들"><i class="fas fa-user-check"></i> 응답자가 가진 권리들</h3>
 <ul>
-<li><i class="fas fa-link"></i> 상관관계가 있다고 인과관계가 있는 것은 아님</li>
-<li><i class="fas fa-question"></i> 제3의 변수가 영향을 미칠 수 있음</li>
-<li><i class="fas fa-clock"></i> 시간적 순서와 논리적 메커니즘 고려</li>
+<li><strong>알 권리</strong>: 내 정보가 어떻게 사용되는지 알 권리</li>
+<li><strong>거부할 권리</strong>: 특정 질문에 답하지 않을 권리<br>
+</li>
+<li><strong>삭제 요구</strong>: 내 응답 데이터 삭제를 요구할 권리</li>
+<li><strong>정정 요구</strong>: 잘못된 정보의 수정을 요구할 권리</li>
 </ul>
-<h3 id="과도한-일반화-주의">3. 과도한 일반화 주의</h3>
+<h3 id="실무에서-주의할-점"><i class="fas fa-clipboard-check"></i> 실무에서 주의할 점</h3>
 <ul>
-<li><i class="fas fa-map-marker-alt"></i> 특정 상황에서만 유효한 결과</li>
-<li><i class="fas fa-ruler"></i> 표본 크기와 통계적 유의성 고려</li>
-<li><i class="fas fa-globe"></i> 맥락과 환경의 중요성</li>
-</ul>
-</section>
-<section id="조직에서의-데이터-문해력-문화" class="slide level2 smaller">
-<h2>조직에서의 데이터 문해력 문화</h2>
-<h3 id="데이터-기반-의사결정-문화-조성">데이터 기반 의사결정 문화 조성</h3>
-<div>
-<ul>
-<li class="fragment"><i class="fas fa-user-tie"></i> <strong>리더십의 솔선수범</strong></li>
-<li class="fragment"><i class="fas fa-key"></i> <strong>데이터 접근성</strong> 향상</li>
-<li class="fragment"><i class="fas fa-graduation-cap"></i> <strong>실패를 통한 학습</strong> 장려</li>
-<li class="fragment"><i class="fas fa-chalkboard-teacher"></i> <strong>교육과 훈련</strong> 지원</li>
-</ul>
-</div>
-<h3 id="협업과-소통">협업과 소통</h3>
-<div>
-<ul>
-<li class="fragment"><i class="fas fa-book-open"></i> <strong>데이터 스토리텔링</strong> 역량</li>
-<li class="fragment"><i class="fas fa-comments"></i> <strong>비전문가와의 소통</strong> 능력</li>
-<li class="fragment"><i class="fas fa-chart-line"></i> <strong>시각화를 통한 설득</strong></li>
-<li class="fragment"><i class="fas fa-users"></i> <strong>데이터 기반 토론</strong> 문화</li>
-</ul>
-</div>
-</section>
-<section id="미래의-데이터-문해력" class="slide level2 smaller">
-<h2>미래의 데이터 문해력</h2>
-<h3 id="새로운-기술과-트렌드">새로운 기술과 트렌드</h3>
-<ul>
-<li><i class="fas fa-robot"></i> <strong>인공지능과 머신러닝</strong>의 대중화</li>
-<li><i class="fas fa-magic"></i> <strong>자동화된 인사이트</strong> 도출</li>
-<li><i class="fas fa-clock"></i> <strong>실시간 데이터 분석</strong></li>
-<li><i class="fas fa-eye"></i> <strong>증강 분석 (Augmented Analytics)</strong></li>
-</ul>
-<h3 id="변화하는-역량-요구사항">변화하는 역량 요구사항</h3>
-<ul>
-<li><i class="fas fa-brain"></i> <strong>AI 도구 활용</strong> 능력</li>
-<li><i class="fas fa-heart"></i> <strong>윤리적 데이터 사용</strong></li>
-<li><i class="fas fa-shield-alt"></i> <strong>개인정보 보호</strong> 인식</li>
-<li><i class="fas fa-balance-scale"></i> <strong>알고리즘 편향</strong> 이해</li>
+<li>설문 시작 전 개인정보 처리방침 명확히 고지</li>
+<li>민감한 개인정보 수집 시 별도 동의 절차</li>
+<li>데이터 보관 기간과 폐기 절차 안내</li>
+<li>응답자 문의 시 신속하고 정확한 대응</li>
 </ul>
 </section>
-<section id="실습-예제-매출-데이터-분석" class="slide level2 smaller">
-<h2>실습 예제: 매출 데이터 분석</h2>
-<h3 id="문제-상황">문제 상황</h3>
-<p><i class="fas fa-shopping-cart"></i> 온라인 쇼핑몰의 월별 매출이 감소하고 있습니다. 원인을 파악하고 해결책을 제시해야 합니다.</p>
-<h3 id="분석-접근법">분석 접근법</h3>
-<ol type="1">
-<li><i class="fas fa-download"></i> <strong>데이터 수집</strong>: 매출, 방문자, 전환율, 평균 주문액</li>
-<li><i class="fas fa-search"></i> <strong>탐색적 분석</strong>: 트렌드, 패턴, 이상치 확인</li>
-<li><i class="fas fa-layer-group"></i> <strong>세분화 분석</strong>: 제품별, 고객별, 채널별 분석</li>
-<li><i class="fas fa-lightbulb"></i> <strong>가설 설정</strong>: 가능한 원인들 나열</li>
-<li><i class="fas fa-check"></i> <strong>검증</strong>: 데이터로 가설 검증</li>
-<li><i class="fas fa-tasks"></i> <strong>액션 플랜</strong>: 개선 방안 도출</li>
-</ol>
-</section>
-<section id="마무리" class="slide level2 smaller">
-<h2>마무리</h2>
-<h3 id="데이터-문해력은-이제-필수-역량입니다">데이터 문해력은 이제 필수 역량입니다</h3>
-<div>
-<ul>
-<li class="fragment"><i class="fas fa-briefcase"></i> <strong>모든 직무</strong>에서 데이터 활용 능력 요구</li>
-<li class="fragment"><i class="fas fa-trophy"></i> <strong>경쟁력 확보</strong>의 핵심 요소</li>
-<li class="fragment"><i class="fas fa-graduation-cap"></i> <strong>평생 학습</strong>이 필요한 영역</li>
-<li class="fragment"><i class="fas fa-building"></i> <strong>조직 전체</strong>의 역량 향상 필요</li>
-</ul>
-</div>
-<h3 id="시작하는-방법">시작하는 방법</h3>
-<ol type="1">
-<li><i class="fas fa-calculator"></i> <strong>기초 통계</strong> 학습부터 시작</li>
-<li><i class="fas fa-chart-bar"></i> <strong>실무 데이터</strong>로 연습</li>
-<li><i class="fas fa-users"></i> <strong>커뮤니티 참여</strong>로 경험 공유</li>
-<li><i class="fas fa-arrow-up"></i> <strong>지속적 학습</strong>으로 역량 발전</li>
-</ol>
-</section>
-<section id="질문과-토론" class="slide level2 smaller">
-<h2>질문과 토론</h2>
-<p><strong>함께 나누고 싶은 질문들:</strong></p>
-<ul>
-<li><i class="fas fa-question-circle"></i> 여러분의 업무에서 데이터를 어떻게 활용하고 계신가요?</li>
-<li><i class="fas fa-exclamation-triangle"></i> 데이터 분석 시 가장 어려운 점은 무엇인가요?</li>
-<li><i class="fas fa-lightbulb"></i> 조직에서 데이터 문해력을 높이기 위한 방안은?</li>
-</ul>
-</section>
-<section id="감사합니다" class="slide level2 center">
-<h2>감사합니다</h2>
-<p><strong>질문이 있으신가요?</strong></p>
+<section id="설문조사-업계의-ai-활용-현황" class="slide level2">
+<h2>설문조사 업계의 AI 활용 현황</h2>
+<h3 id="현재-도입되고-있는-ai-기술">현재 도입되고 있는 AI 기술</h3>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p><strong>유용한 리소스:</strong></p>
+<p><strong>데이터 수집 단계</strong></p>
 <ul>
-<li><a href="https://www.kaggle.com/learn">Kaggle Learn</a></li>
-<li><a href="https://analytics.google.com/analytics/academy">Google Analytics Academy</a></li>
-<li><a href="https://www.coursera.org/browse/data-science">Coursera Data Science</a></li>
-<li><a href="https://datascienceschool.net">데이터 사이언스 스쿨</a></li>
+<li>자동화된 응답자 모집</li>
+<li>음성 인식 전화 설문</li>
+<li>챗봇을 활용한 설문 진행</li>
+<li>실시간 응답 품질 모니터링</li>
 </ul>
 </div><div class="column" style="width:50%;">
-<p><strong>연락처:</strong></p>
+<p><strong>데이터 분석 단계</strong></p>
 <ul>
-<li>이메일: euriion@gmail.com</li>
+<li>텍스트 응답 자동 분류</li>
+<li>감정 분석 및 태도 측정</li>
+<li>응답 패턴 기반 세분화</li>
+<li>예측 모델링 및 트렌드 분석</li>
 </ul>
 </div>
 </div>
+<h3 id="업계가-직면한-도전-과제">업계가 직면한 도전 과제</h3>
+<ul>
+<li><strong>정확성 vs 효율성</strong>: 빠른 분석과 정확한 결과 사이의 균형</li>
+<li><strong>개인화 vs 프라이버시</strong>: 맞춤형 서비스와 개인정보 보호</li>
+<li><strong>자동화 vs 인간 판단</strong>: 어디까지 AI에 맡길 것인가</li>
+<li><strong>비용 vs 품질</strong>: AI 도입 비용과 결과 품질의 균형</li>
+</ul>
+</section>
+<section id="구체적인-윤리-문제-사례" class="slide level2">
+<h2>구체적인 윤리 문제 사례</h2>
+<h3 id="사례-1-정치-여론조사-ai-분석">사례 1: 정치 여론조사 AI 분석</h3>
+<p><strong>문제 상황</strong></p>
+<ul>
+<li>특정 정당 지지층이 온라인 설문에 더 적극적으로 참여</li>
+<li>AI가 이러한 편향된 데이터를 학습하여 왜곡된 예측 생성</li>
+<li>선거 결과와 큰 차이를 보이는 여론조사 결과 발표</li>
+</ul>
+<p><strong>교훈</strong></p>
+<ul>
+<li>응답자 구성의 대표성 지속적 확인 필요</li>
+<li>여러 수집 방법을 병행하여 편향 최소화</li>
+<li>AI 분석 결과에 대한 전문가 검토 필수</li>
+</ul>
+<h3 id="사례-2-소비자-만족도-조사의-성별-편향">사례 2: 소비자 만족도 조사의 성별 편향</h3>
+<p><strong>문제 상황</strong></p>
+<ul>
+<li>과거 데이터에서 여성이 남성보다 높은 만족도 점수를 주는 패턴</li>
+<li>AI가 이를 학습하여 성별에 따라 다른 가중치 적용</li>
+<li>실제로는 제품 품질 차이인데 성별 차이로 오해석</li>
+</ul>
+<p><strong>해결 방안</strong></p>
+<ul>
+<li>성별, 연령 등 민감한 변수 분리 분석</li>
+<li>다양한 관점에서 결과 검토</li>
+<li>상식적 판단과 AI 분석 결과 비교 검토</li>
+</ul>
+</section>
+<section id="ai-윤리-체크리스트-우리-업무용" class="slide level2">
+<h2><i class="fas fa-clipboard-list"></i> AI 윤리 체크리스트 (우리 업무용)</h2>
+<h3 id="설문-설계-단계"><i class="fas fa-pencil-ruler"></i> 설문 설계 단계</h3>
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">기획 및 설계</a></li><li><a href="#tabset-1-2">데이터 수집</a></li><li><a href="#tabset-1-3">분석 및 해석</a></li><li><a href="#tabset-1-4">결과 발표</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
+<ul class="task-list">
+<li><input type="checkbox" disabled="">설문 목적이 명확하고 윤리적으로 적절한가?</li>
+<li><input type="checkbox" disabled="">다양한 응답자층을 포괄할 수 있는 설계인가?</li>
+<li><input type="checkbox" disabled="">차별적이거나 편향된 질문은 없는가?</li>
+<li><input type="checkbox" disabled="">개인정보 수집이 꼭 필요한 최소한으로 제한되어 있는가?</li>
+</ul>
+</div>
+<div id="tabset-1-2">
+<ul class="task-list">
+<li><input type="checkbox" disabled="">응답자에게 충분한 정보를 제공했는가?</li>
+<li><input type="checkbox" disabled="">자발적 동의를 받았는가?</li>
+<li><input type="checkbox" disabled="">응답 거부권을 명확히 안내했는가?</li>
+<li><input type="checkbox" disabled="">데이터 보안 조치가 적절한가?</li>
+</ul>
+</div>
+<div id="tabset-1-3">
+<ul class="task-list">
+<li><input type="checkbox" disabled="">AI 분석 결과를 맹신하지 않고 검토했는가?</li>
+<li><input type="checkbox" disabled="">특정 집단에 불공정한 결과는 없는가?</li>
+<li><input type="checkbox" disabled="">결과 해석이 객관적이고 중립적인가?</li>
+<li><input type="checkbox" disabled="">한계와 주의사항을 명시했는가?</li>
+</ul>
+</div>
+<div id="tabset-1-4">
+<ul class="task-list">
+<li><input type="checkbox" disabled="">연구 방법과 한계를 투명하게 공개했는가?</li>
+<li><input type="checkbox" disabled="">개인을 특정할 수 있는 정보는 제거했는가?</li>
+<li><input type="checkbox" disabled="">오해의 소지가 있는 표현은 없는가?</li>
+<li><input type="checkbox" disabled="">사회적 편견을 강화하는 내용은 없는가?</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="국내외-관련-법규와-가이드라인" class="slide level2">
+<h2><i class="fas fa-gavel"></i> 국내외 관련 법규와 가이드라인</h2>
+<h3 id="주요-법적-규제"><i class="fas fa-balance-scale"></i> 주요 법적 규제</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>개인정보보호법</strong></p>
+<ul>
+<li>개인정보 수집·이용·제공 시 동의 필요</li>
+<li>목적 외 사용 금지</li>
+<li>안전성 확보 조치 의무</li>
+</ul>
+<p><strong>통계법</strong></p>
+<ul>
+<li>통계 작성 시 응답자 비밀 보호</li>
+<li>통계 목적 외 사용 금지</li>
+<li>개인이나 법인 식별 금지</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>국제 동향</strong></p>
+<ul>
+<li><strong>EU GDPR</strong>: 엄격한 개인정보 보호 규정</li>
+<li><strong>미국 CCPA</strong>: 캘리포니아 개인정보보호법</li>
+<li><strong>AI Act</strong>: EU의 AI 규제법 (2024년 시행)</li>
+</ul>
+<p><strong>업계 자율 규제</strong></p>
+<ul>
+<li>한국조사업계협의회 윤리강령</li>
+<li>국제 여론조사 협회(WAPOR) 가이드라인</li>
+</ul>
+</div>
+</div>
+<h3 id="우리가-지켜야-할-원칙">우리가 지켜야 할 원칙</h3>
+<ul>
+<li><strong>투명성</strong>: 조사 방법과 과정을 공개</li>
+<li><strong>정확성</strong>: 객관적이고 정확한 정보 제공</li>
+<li><strong>공정성</strong>: 모든 집단을 공평하게 대우</li>
+<li><strong>책임성</strong>: 조사 결과에 대한 책임 의식</li>
+</ul>
+</section>
+<section id="ai-시대의-설문조사-전문가-역할" class="slide level2">
+<h2>AI 시대의 설문조사 전문가 역할</h2>
+<h3 id="변화하는-업무-환경">변화하는 업무 환경</h3>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-2">graph TD
+    A[전통적 설문조사] --&gt; B[AI 도입 초기]
+    B --&gt; C[AI 활용 성숙기]
+    C --&gt; D[인간-AI 협업 시대]
+    
+    A --&gt; E[수작업 중심]
+    B --&gt; F[부분 자동화]
+    C --&gt; G[고도 자동화]
+    D --&gt; H[전문적 판단 중심]
+</pre>
+<div id="mermaid-tooltip-2" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+<h3 id="우리에게-더욱-중요해지는-역할">우리에게 더욱 중요해지는 역할</h3>
+<ul>
+<li><strong>AI 결과 해석</strong>: 기계가 놓칠 수 있는 맥락과 의미 파악</li>
+<li><strong>윤리적 판단</strong>: 기술적으로 가능한 것과 윤리적으로 옳은 것 구분</li>
+<li><strong>품질 관리</strong>: AI 분석의 적절성과 신뢰성 검증</li>
+<li><strong>고객 소통</strong>: 복잡한 AI 분석 결과를 이해하기 쉽게 설명</li>
+</ul>
+<h3 id="필요한-역량-개발">필요한 역량 개발</h3>
+<ul>
+<li><strong>AI 리터러시</strong>: AI의 기본 원리와 한계 이해</li>
+<li><strong>비판적 사고</strong>: 결과를 맹신하지 않고 검증하는 능력</li>
+<li><strong>윤리적 감수성</strong>: 차별과 편향을 민감하게 감지하는 능력</li>
+<li><strong>소통 능력</strong>: 복잡한 내용을 쉽게 전달하는 능력</li>
+</ul>
+</section>
+<section id="설문조사-회사를-위한-ai-윤리-정책" class="slide level2">
+<h2>설문조사 회사를 위한 AI 윤리 정책</h2>
+<h3 id="조직-차원의-대응-방안">조직 차원의 대응 방안</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>내부 체계 구축</strong></p>
+<ul>
+<li>AI 윤리 위원회 구성</li>
+<li>정기적인 교육 프로그램 운영</li>
+<li>윤리 문제 신고 체계 마련</li>
+<li>사례별 대응 매뉴얼 작성</li>
+</ul>
+<p><strong>업무 프로세스 개선</strong></p>
+<ul>
+<li>프로젝트별 윤리 검토 절차</li>
+<li>데이터 보안 강화 조치</li>
+<li>고객 대응 표준화</li>
+<li>품질 관리 시스템 고도화</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>외부 협력 강화</strong></p>
+<ul>
+<li>학계·연구기관과의 협력</li>
+<li>업계 공동 가이드라인 참여</li>
+<li>정부 정책에 적극 참여</li>
+<li>국제 기준 준수 노력</li>
+</ul>
+<p><strong>지속적 개선</strong></p>
+<ul>
+<li>정기적인 시스템 점검</li>
+<li>최신 기술 동향 파악</li>
+<li>법규 변화 모니터링</li>
+<li>고객 피드백 반영</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="실생활에서-실천할-수-있는-ai-윤리" class="slide level2">
+<h2>실생활에서 실천할 수 있는 AI 윤리</h2>
+<h3 id="개인-차원에서-할-수-있는-것들">개인 차원에서 할 수 있는 것들</h3>
+<ul>
+<li><strong>의식적 사용</strong>: AI 도구 사용 시 결과를 비판적으로 검토</li>
+<li><strong>개인정보 관리</strong>: 불필요한 개인정보 제공 자제</li>
+<li><strong>다양성 존중</strong>: 편견 없는 설문 설계와 분석 노력</li>
+<li><strong>지속적 학습</strong>: AI와 데이터 윤리에 대한 관심과 학습</li>
+</ul>
+<h3 id="업무에서-실천할-수-있는-것들">업무에서 실천할 수 있는 것들</h3>
+<ul>
+<li><strong>동료와의 토론</strong>: 윤리적 이슈에 대해 열린 마음으로 논의</li>
+<li><strong>고객 교육</strong>: 고객에게 AI 분석의 한계와 주의사항 설명</li>
+<li><strong>품질 향상</strong>: 더 정확하고 공정한 조사를 위한 지속적 노력</li>
+<li><strong>사회적 책임</strong>: 조사 결과가 사회에 미치는 영향 고려</li>
+</ul>
+</section>
+<section id="미래를-준비하는-자세" class="slide level2">
+<h2><i class="fas fa-rocket"></i> 미래를 준비하는 자세</h2>
+<h3 id="앞으로-예상되는-변화"><i class="fas fa-crystal-ball"></i> 앞으로 예상되는 변화</h3>
+<ul>
+<li><strong>더 정교한 AI</strong>: 인간의 감정과 의도까지 분석하는 AI</li>
+<li><strong>실시간 분석</strong>: 설문과 동시에 결과가 나오는 시스템</li>
+<li><strong>개인화 심화</strong>: 개인별 맞춤형 설문과 분석</li>
+<li><strong>글로벌 표준화</strong>: 국제적으로 통일된 AI 윤리 기준</li>
+</ul>
+<h3 id="우리가-준비해야-할-것들"><i class="fas fa-tools"></i> 우리가 준비해야 할 것들</h3>
+<ul>
+<li><strong>윤리적 기준 내재화</strong>: 기술보다 앞서가는 윤리 의식</li>
+<li><strong>평생 학습 자세</strong>: 빠르게 변하는 기술에 대한 지속적 학습</li>
+<li><strong>인간적 가치 강화</strong>: AI가 대체할 수 없는 인간만의 가치 개발</li>
+<li><strong>협력적 사고</strong>: 기술과 인간이 함께 만드는 더 나은 미래</li>
+</ul>
+</section>
+<section id="핵심-메시지와-실천-과제" class="slide level2">
+<h2><i class="fas fa-bullhorn"></i> 핵심 메시지와 실천 과제</h2>
+<h3 id="기억해야-할-핵심-내용"><i class="fas fa-lightbulb"></i> 기억해야 할 핵심 내용</h3>
+<ol type="1">
+<li><strong>AI는 도구일 뿐</strong>: 최종 판단과 책임은 여전히 인간의 몫</li>
+<li><strong>투명성이 신뢰의 기초</strong>: 과정과 결과를 투명하게 공개</li>
+<li><strong>다양성이 곧 정확성</strong>: 편향된 데이터는 편향된 결과를 낳음</li>
+<li><strong>개인정보 보호는 필수</strong>: 응답자의 권리와 프라이버시 존중</li>
+</ol>
+<h3 id="오늘부터-실천할-수-있는-것들"><i class="fas fa-play-circle"></i> 오늘부터 실천할 수 있는 것들</h3>
+<p><strong>개인 차원</strong></p>
+<ul>
+<li>AI 분석 결과를 맹신하지 않기</li>
+<li>개인정보 제공 시 신중하게 판단하기</li>
+<li>편견 없는 질문 설계하기</li>
+<li>지속적으로 AI 윤리에 대해 학습하기</li>
+</ul>
+<p><strong>회사 차원</strong></p>
+<ul>
+<li>윤리 교육 프로그램 참여하기</li>
+<li>프로젝트별 윤리 검토 절차 도입하기</li>
+<li>고객에게 AI 분석 한계 명확히 설명하기</li>
+<li>업계 윤리 가이드라인 준수하기</li>
+</ul>
+</section>
+<section id="참고-자료-및-추가-학습" class="slide level2">
+<h2>참고 자료 및 추가 학습</h2>
+<h3 id="추천-도서-일반인용">추천 도서 (일반인용)</h3>
+<ul>
+<li><strong>『알고리즘의 편견』</strong> - 캐시 오닐</li>
+<li><strong>『AI 윤리』</strong> - 루치아노 플로리디<br>
+</li>
+<li><strong>『데이터 과학자의 사고법』</strong> - 레이철 토마스</li>
+<li><strong>『빅데이터 인간을 해석하다』</strong> - 크리스천 루더</li>
+</ul>
+<h3 id="유용한-웹사이트">유용한 웹사이트</h3>
+<ul>
+<li><strong>개인정보보호위원회</strong>: <a href="https://privacy.go.kr">privacy.go.kr</a></li>
+<li><strong>한국인터넷진흥원</strong>: <a href="https://kisa.or.kr">kisa.or.kr</a></li>
+<li><strong>AI 윤리 가이드라인</strong>: 과학기술정보통신부 자료</li>
+<li><strong>통계청 통계윤리</strong>: <a href="https://kostat.go.kr">kostat.go.kr</a></li>
+</ul>
+<h3 id="교육-기회">교육 기회</h3>
+<ul>
+<li>개인정보보호 교육 (온라인/오프라인)</li>
+<li>데이터 활용 윤리 세미나</li>
+<li>조사업계 협회 교육 프로그램</li>
+<li>대학 평생교육원 관련 과정</li>
+</ul>
+</section>
+<section id="감사합니다" class="slide level2">
+<h2><i class="fas fa-heart"></i> 감사합니다</h2>
+<p><strong><i class="fas fa-comments"></i> 질문 및 토론</strong></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="연락처"><i class="fas fa-address-book"></i> 연락처</h3>
+<ul>
+<li><strong>이메일</strong>: aiden@r2bit.com</li>
+<li><strong>조직</strong>: 한국R사용자회</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h3 id="오늘의-토론-주제"><i class="fas fa-lightbulb"></i> 오늘의 토론 주제</h3>
+<ul>
+<li>우리 회사에서 겪은 AI 윤리 이슈</li>
+<li>개인정보 보호 개선 방안</li>
+<li>설문 편향성 해결 아이디어</li>
+<li>AI 시대 전문가 역할 변화</li>
+</ul>
+</div>
+</div>
+<p><strong><i class="fas fa-quote-left"></i> “좋은 기술은 사람을 위한 기술입니다” <i class="fas fa-quote-right"></i></strong></p>
 <div class="footer footer-default">
-<p>데이터 문해력 | 홍성학</p>
+<p>AI Ethics for Survey Research | Seonghak Hong</p>
 </div>
 </section>
     </div>
   </div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="data-literacy_files/libs/revealjs/dist/reveal.js"></script>
+  <script src="ai-ethics-for-survey_files/libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="data-literacy_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="data-literacy_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="data-literacy_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="data-literacy_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="data-literacy_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
-  <script src="data-literacy_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="ai-ethics-for-survey_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="ai-ethics-for-survey_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="ai-ethics-for-survey_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="ai-ethics-for-survey_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="ai-ethics-for-survey_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="ai-ethics-for-survey_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
-  <script src="data-literacy_files/libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="data-literacy_files/libs/revealjs/plugin/search/search.js"></script>
-  <script src="data-literacy_files/libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="data-literacy_files/libs/revealjs/plugin/math/math.js"></script>
+  <script src="ai-ethics-for-survey_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="ai-ethics-for-survey_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="ai-ethics-for-survey_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="ai-ethics-for-survey_files/libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
