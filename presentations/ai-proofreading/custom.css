@@ -3,7 +3,7 @@
 /* 기본 폰트 설정 */
 .reveal {
   font-family: 'Noto Sans KR', 'Malgun Gothic', sans-serif;
-  font-size: 32px;
+  font-size: 26px;
 }
 
 /* 제목 스타일 */
@@ -20,9 +20,26 @@
 }
 
 .reveal h3 {
-  font-size: 1.0em;
+  font-size: 1.2em;
   font-weight: 700;
-  color: #ffffff;
+  color: #4285F4;
+  background-color: rgba(66, 133, 244, 0.1);
+  padding: 0.2em 0.8em;
+  border-radius: 6px;
+  border-left: 4px solid #4285F4;
+  margin: 1em 0 0.5em 0;
+  line-height: 1.2;
+}
+
+.reveal h4 {
+  font-size: 1.0em;
+  font-weight: 600;
+  color: #48bb78;
+  padding: 0.1em 0.5em;
+  border-left: 3px solid #48bb78;
+  margin: 0.8em 0 0.3em 0;
+  line-height: 1.3;
+  background-color: rgba(72, 187, 120, 0.05);
 }
 
 /* 강조 색상 */
@@ -465,3 +482,9 @@
 .reveal .bg-warning { background-color: rgba(237, 137, 54, 0.1); }
 .reveal .bg-info { background-color: rgba(66, 153, 225, 0.1); }
 .reveal .bg-danger { background-color: rgba(245, 101, 101, 0.1); }
+
+/* 볼드 텍스트 스타일 개선 */
+.reveal strong {
+  font-weight: 600;
+  color: #ffffff;
+}
