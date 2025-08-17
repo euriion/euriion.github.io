@@ -140,9 +140,54 @@
   border-radius: 0 4px 4px 0;
 }
 
+/* Quarto callout 제목 스타일 - 실제 HTML 구조에 맞는 선택자 */
+.reveal .callout .callout-caption p,
+.reveal .callout .callout-caption p strong,
+.reveal .callout-note .callout-caption p,
+.reveal .callout-note .callout-caption p strong,
+.reveal .callout.callout-note .callout-caption p,
+.reveal .callout.callout-note .callout-caption p strong,
+.reveal div.callout-note .callout-caption p,
+.reveal div.callout-note .callout-caption p strong {
+  color: #2a4365 !important;
+  font-weight: 700 !important;
+  background-color: transparent !important;
+}
+
+.reveal .callout h1,
+.reveal .callout h2,
+.reveal .callout h3,
+.reveal .callout h4,
+.reveal .callout h5,
+.reveal .callout h6 {
+  color: #2d3748 !important;
+  font-weight: 700;
+}
+
 .reveal .callout-tip {
   border-left-color: #48bb78;
   background-color: rgba(72, 187, 120, 0.1);
+}
+
+.reveal .callout-tip .callout-caption p,
+.reveal .callout-tip .callout-caption p strong,
+.reveal .callout.callout-tip .callout-caption p,
+.reveal .callout.callout-tip .callout-caption p strong,
+.reveal div.callout-tip .callout-caption p,
+.reveal div.callout-tip .callout-caption p strong {
+  color: #22543d !important;
+  font-weight: 700 !important;
+  background-color: transparent !important;
+}
+
+.reveal .callout-tip h1,
+.reveal .callout-tip h2,
+.reveal .callout-tip h3,
+.reveal .callout-tip h4,
+.reveal .callout-tip h5,
+.reveal .callout-tip h6 {
+  color: #22543d !important;
+  font-weight: 700;
 }
 
 .reveal .callout-warning {
@@ -150,9 +195,56 @@
   background-color: rgba(237, 137, 54, 0.1);
 }
 
+.reveal .callout-warning .callout-caption p,
+.reveal .callout-warning .callout-caption p strong,
+.reveal .callout.callout-warning .callout-caption p,
+.reveal .callout.callout-warning .callout-caption p strong,
+.reveal div.callout-warning .callout-caption p,
+.reveal div.callout-warning .callout-caption p strong {
+  color: #9c4221 !important;
+  font-weight: 700 !important;
+  background-color: transparent !important;
+}
+
+.reveal .callout-warning h1,
+.reveal .callout-warning h2,
+.reveal .callout-warning h3,
+.reveal .callout-warning h4,
+.reveal .callout-warning h5,
+.reveal .callout-warning h6 {
+  color: #9c4221 !important;
+  font-weight: 700;
+}
+
 .reveal .callout-note {
   border-left-color: #4299e1;
   background-color: rgba(66, 153, 225, 0.1);
+}
+
+.reveal .callout-important {
+  border-left-color: #f56565;
+  background-color: rgba(245, 101, 101, 0.1);
+}
+
+.reveal .callout-important .callout-caption p,
+.reveal .callout-important .callout-caption p strong,
+.reveal .callout.callout-important .callout-caption p,
+.reveal .callout.callout-important .callout-caption p strong,
+.reveal div.callout-important .callout-caption p,
+.reveal div.callout-important .callout-caption p strong {
+  color: #9b2c2c !important;
+  font-weight: 700 !important;
+  background-color: transparent !important;
+}
+
+.reveal .callout-important h1,
+.reveal .callout-important h2,
+.reveal .callout-important h3,
+.reveal .callout-important h4,
+.reveal .callout-important h5,
+.reveal .callout-important h6 {
+  color: #9b2c2c !important;
+  font-weight: 700;
 }
 
 /* 아이콘 스타일 */
@@ -340,6 +432,71 @@
   max-height: 80vh;
   overflow: auto;
   transform-origin: center;
+}
+
+/* Mermaid 화살표 및 선 색상 스타일 - 더 구체적인 선택자 */
+.reveal .mermaid .edgePath .path,
+.reveal .mermaid-js .edgePath .path,
+.reveal .cell-output-display .mermaid .edgePath .path {
+  stroke: #a0a0a0 !important;
+  stroke-width: 2px !important;
+}
+
+.reveal .mermaid .arrowheadPath,
+.reveal .mermaid-js .arrowheadPath,
+.reveal .cell-output-display .mermaid .arrowheadPath {
+  fill: #a0a0a0 !important;
+  stroke: #a0a0a0 !important;
+}
+
+.reveal .mermaid .edgeLabel,
+.reveal .mermaid-js .edgeLabel,
+.reveal .cell-output-display .mermaid .edgeLabel {
+  color: #ffffff !important;
+  background-color: rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Mermaid 전체 화살표 및 연결선 스타일 - 포괄적 접근 */
+.reveal svg .edgePath path,
+.reveal svg .arrowheadPath,
+.reveal pre.mermaid svg .edgePath path,
+.reveal pre.mermaid svg .arrowheadPath {
+  stroke: #a0a0a0 !important;
+  fill: #a0a0a0 !important;
+  stroke-width: 2px !important;
+}
+
+/* Flowchart 특화 스타일 */
+.reveal .mermaid .flowchart-link,
+.reveal .mermaid-js .flowchart-link {
+  stroke: #a0a0a0 !important;
+  stroke-width: 2px !important;
+}
+
+/* 화살표 삼각형 색상 - 추가 선택자 */
+.reveal svg polygon,
+.reveal svg marker polygon,
+.reveal svg defs marker polygon,
+.reveal .mermaid svg polygon,
+.reveal .mermaid-js svg polygon,
+.reveal pre.mermaid svg polygon {
+  fill: #a0a0a0 !important;
+  stroke: #a0a0a0 !important;
+}
+
+/* Marker 요소 직접 타겟팅 */
+.reveal svg marker,
+.reveal .mermaid svg marker,
+.reveal .mermaid-js svg marker {
+  fill: #a0a0a0 !important;
+  stroke: #a0a0a0 !important;
+}
+
+.reveal svg marker path,
+.reveal .mermaid svg marker path,
+.reveal .mermaid-js svg marker path {
+  fill: #a0a0a0 !important;
+  stroke: #a0a0a0 !important;
 }
 
 /* 머메이드 다이어그램 자동 크기 조절 */

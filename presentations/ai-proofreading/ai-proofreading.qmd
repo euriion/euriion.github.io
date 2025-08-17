@@ -27,6 +27,106 @@ editor: visual
 
 ---
 
+## 강사 소개
+
+::: {.columns}
+::: {.column width="30%"}
+<img src="https://avatars.githubusercontent.com/u/198962?v=4" alt="Seonghak Hong" width="120" style="border-radius: 50%; margin-bottom: 10px;">
+:::
+
+::: {.column width="70%"}
+**홍성학 (Seonghak Hong)**  
+
+- 한국R사용자회
+- 데이터 사이언티스트, AI 아키텍트
+- [https://seonghak.com](https://seonghak.com)
+
+**주요 분야**
+
+- 데이터사이언스
+- DX, AX
+- 클라우드, 빅데이터 엔지니어링
+
+**연락처**  
+이메일: [aiden@r2bit.com](mailto:aiden@r2bit.com)
+:::
+:::
+
+---
+
+## 발표 자료 접근 안내 {.center}
+
+::: {.columns}
+::: {.column width="50%"}
+### 발표자료 위치 QR 코드
+
+<img src="qr-code.png" alt="발표 자료 QR 코드" width="300" style="border: 2px solid #4285F4; border-radius: 10px; margin: 20px 0;">
+
+**발표 자료 링크**  
+[https://aidenhong.com/presentations/ai-proofreading/](https://aidenhong.com/presentations/ai-proofreading/)
+:::
+
+::: {.column width="50%"}
+### 더 많은 자료와 정보
+
+**웹사이트 방문**  
+
+<i class="fas fa-globe"></i> [https://aidenhong.com](https://aidenhong.com)
+
+**주요 콘텐츠**
+
+- <i class="fas fa-presentation-screen"></i> 발표 자료 모음
+- <i class="fas fa-blog"></i> 기술 블로그
+- <i class="fas fa-code"></i> 프로젝트 포트폴리오
+- <i class="fas fa-envelope"></i> 연락처 정보
+
+**소셜 미디어**  
+
+<i class="fab fa-github"></i> GitHub | <i class="fab fa-linkedin"></i> LinkedIn | <i class="fab fa-twitter"></i> Twitter
+:::
+:::
+
+::: {.callout-tip}
+## 📱 모바일에서도 편리하게
+QR 코드를 스캔하면 모바일 기기에서도 발표 자료를 바로 확인할 수 있습니다.
+:::
+
+---
+
+## 목차 {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+### 기본 개념과 필요성
+- AI 오탈자 교정, 왜 필요한가?
+- 기존 교정 방식의 한계
+- AI 교정의 혁신적 장점
+- AI 교정의 한계와 주의사항
+
+### 실무 활용 가이드
+- 효과적인 프롬프트 작성법
+- 생성형 AI 활용 실무 가이드
+- NotebookLM 실무 활용 가이드
+- 전문 맞춤법 검사 도구 활용법
+:::
+
+::: {.column width="50%"}
+### 실무 워크플로우
+- 단계별 교정 워크플로우
+- 문서 유형별 교정 전략
+- 고급 교정 기법
+- 도구별 비교 및 선택 가이드
+
+### 실습과 사례
+- 실제 사용 사례 및 예시
+- 주의사항 및 한계점
+- 실습 예제 및 연습
+- 실습용 예제 파일들
+:::
+:::
+
+---
+
 ## AI 오탈자 교정, 왜 필요한가?
 
 ### 보고서의 신뢰도는 디테일에서 결정됨
@@ -35,13 +135,11 @@ editor: visual
 - <i class="fas fa-book-reader"></i> **가독성**: 정확한 문장은 내용의 이해도를 높임
 - <i class="fas fa-shield-alt"></i> **신뢰도**: 잘 다듬어진 문서는 결과의 신뢰도를 높임
 
-::: {.fragment}
 ### 실제 사례: 오탈자가 미치는 영향
 
 - **학술 논문**: 오탈자 1개당 신뢰도 5% 감소 (연구 결과)
 - **비즈니스 보고서**: 오탈자가 있는 제안서의 승인율 30% 낮음
 - **공식 문서**: 법적 문서의 오탈자로 인한 분쟁 사례 증가
-:::
 
 ---
 
@@ -67,7 +165,7 @@ editor: visual
 ::: {.column width="50%"}
 #### 실제 통계 데이터
 
-::: {.callout-warning}
+::: {.callout-note}
 ## 교정 작업의 현실
 
 - **평균 교정 시간**: A4 1페이지당 15-20분
@@ -748,6 +846,7 @@ flowchart TD
 ```
 
 ### 업무 보고서
+
 **비즈니스 문서 교정**
 
 **특징:**
@@ -1307,6 +1406,50 @@ graph TD
 - **대용량**: NotebookLM → 부산대 → 품질 관리
 - **빠른**: Gemini → 네이버 → 간단 확인
 
+
+## 실습용 예제 파일들 {.smaller}
+
+### 다양한 문서 유형별 예제 텍스트
+
+**학술 및 연구 문서:**
+
+- [학술 논문 초록 📄](academic-abstract.txt)
+- [기술 문서 📋](technical-document.txt)
+- [인터뷰 기사 🎤](interview-article.txt)
+
+**비즈니스 문서:**
+
+- [업무 보고서 📊](business-report.txt)  
+- [제품 매뉴얼 📖](product-manual.txt)
+- [제품 설문조사 보고서 📈](product-survey-report.txt)
+- [선거 여론조사 보고서 🗳️](election-survey-report.txt)
+
+**일반 문서:**
+
+- [블로그 포스트 💻](blog-post.txt)
+- [뉴스 기사 📰](news-article.txt)
+- [여행 후기 ✈️](travel-review.txt)
+- [레시피 가이드 👨‍🍳](recipe-guide.txt)
+
+**개인 문서:**
+
+- [이메일 샘플 📧](email-samples.txt)
+- [편지/메시지 💌](letter-messages.txt)
+- [개인 일기 📔](personal-diary.txt)
+- [소셜미디어 게시글 📱](social-media-posts.txt)
+
+**전문 문서:**
+
+- [법률 문서 ⚖️](legal-document.txt)
+- [단편 소설 📚](short-story.txt)
+
+::: {.callout-note}
+## 실습 방법
+각 파일을 다운로드하여 ChatGPT, Claude, Gemini 등 다양한 AI 도구로 교정을 실습해보세요.  
+발표에서 다룬 프롬프트 예시와 워크플로우를 활용하여 교정 품질을 비교 분석해보시기 바랍니다.
+:::
+
+---
 
 ## 감사합니다 {.center}
 
