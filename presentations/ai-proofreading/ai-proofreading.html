@@ -28,6 +28,70 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #e1e4e8; background-color: #24292e; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #e1e4e8; } /* Normal */
+    code span.al { color: #ff5555; font-weight: bold; } /* Alert */
+    code span.an { color: #6a737d; } /* Annotation */
+    code span.at { color: #f97583; } /* Attribute */
+    code span.bn { color: #79b8ff; } /* BaseN */
+    code span.bu { color: #f97583; } /* BuiltIn */
+    code span.cf { color: #f97583; } /* ControlFlow */
+    code span.ch { color: #9ecbff; } /* Char */
+    code span.cn { color: #79b8ff; } /* Constant */
+    code span.co { color: #6a737d; } /* Comment */
+    code span.cv { color: #6a737d; } /* CommentVar */
+    code span.do { color: #6a737d; } /* Documentation */
+    code span.dt { color: #f97583; } /* DataType */
+    code span.dv { color: #79b8ff; } /* DecVal */
+    code span.er { color: #ff5555; text-decoration: underline; } /* Error */
+    code span.ex { color: #f97583; font-weight: bold; } /* Extension */
+    code span.fl { color: #79b8ff; } /* Float */
+    code span.fu { color: #b392f0; } /* Function */
+    code span.im { color: #9ecbff; } /* Import */
+    code span.in { color: #6a737d; } /* Information */
+    code span.kw { color: #f97583; } /* Keyword */
+    code span.op { color: #e1e4e8; } /* Operator */
+    code span.ot { color: #b392f0; } /* Other */
+    code span.pp { color: #f97583; } /* Preprocessor */
+    code span.re { color: #6a737d; } /* RegionMarker */
+    code span.sc { color: #79b8ff; } /* SpecialChar */
+    code span.ss { color: #9ecbff; } /* SpecialString */
+    code span.st { color: #9ecbff; } /* String */
+    code span.va { color: #ffab70; } /* Variable */
+    code span.vs { color: #9ecbff; } /* VerbatimString */
+    code span.wa { color: #ff5555; } /* Warning */
   </style>
   <link rel="stylesheet" href="ai-proofreading_files/libs/revealjs/dist/theme/quarto.css" id="theme">
   <link rel="stylesheet" href="custom.css">
@@ -807,6 +871,7 @@ Seonghak Hong
 <pre><code>첨부된 연구보고서를 전체적으로 검토해주세요.
 
 검토 항목:
+
 1. 맞춤법 및 문법 오류
 2. 인용 형식 일관성
 3. 참고문헌 표기법
@@ -814,6 +879,55 @@ Seonghak Hong
 5. 표와 그림 설명
 
 각 항목별로 문제점과 개선안을 제시해주세요.</code></pre>
+</div>
+</div>
+<h3 id="grok-활용법">Grok 활용법</h3>
+<h4 id="grok의-실시간-분석-능력-활용">Grok의 실시간 분석 능력 활용</h4>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>장점:</strong></p>
+<ul>
+<li>X 플랫폼 연동으로 실시간 트렌드 접근</li>
+<li>고급 추론 모드 (Think/Big Brain)</li>
+<li>멀티모달 상호작용 지원</li>
+<li>개인화된 메모리 기능</li>
+</ul>
+<p><strong>활용 팁:</strong></p>
+<ul>
+<li>최신 트렌드 반영 문서 교정</li>
+<li>복잡한 논리적 문제 해결</li>
+<li>실시간 정보 업데이트 확인</li>
+<li>다양한 형태의 데이터 분석</li>
+</ul>
+<p><strong>실제 활용 예시:</strong></p>
+<pre><code>다음 보도자료를 검토하고 최신 트렌드를 반영하여 
+내용을 업데이트해주세요.
+
+검토 항목:
+
+1. 맞춤법 및 문법 오류
+2. 최신 트렌드와 일치성
+3. 실시간 데이터 반영도
+4. 논리적 일관성
+5. 표현의 적절성
+
+Think 모드를 사용하여 체계적으로 분석해주세요.</code></pre>
+</div><div class="column" style="width:50%;">
+<p><strong>특화 기능:</strong></p>
+<ul>
+<li><strong>실시간 트렌드 분석</strong>: X 데이터를 통한 최신 이슈 반영</li>
+<li><strong>고급 추론</strong>: 복잡한 문제에 대한 단계별 해결</li>
+<li><strong>멀티모달 처리</strong>: 텍스트, 이미지, 음성 통합 분석</li>
+<li><strong>개인화 메모리</strong>: 이전 대화 기억을 통한 맞춤 교정</li>
+</ul>
+<p><strong>주의사항:</strong></p>
+<ul>
+<li>X 플랫폼 데이터 의존성으로 인한 편향 가능성</li>
+<li>실시간 정보의 정확성 재검토 필요</li>
+<li>감정적/주관적 정보 필터링 권장</li>
+<li>한국어 지원 수준 제한적</li>
+</ul>
+<p><strong>추천 사용법:</strong> - 트렌드 분석 보고서 작성 - 소셜미디어 콘텐츠 교정 - 시사/정치 관련 문서 검토 - 실시간 데이터 기반 문서 업데이트</p>
 </div>
 </div>
 </section>
@@ -850,6 +964,7 @@ Seonghak Hong
 [문서 입력]
 
 요구사항:
+
 1. 맞춤법, 띄어쓰기 오류 수정
 2. 어색한 문장 자연스럽게 개선
 3. 전문 용어 일관성 확인
@@ -1389,7 +1504,7 @@ Seonghak Hong
 </section>
 <section id="주의사항-및-한계점" class="slide level2 smaller">
 <h2>주의사항 및 한계점</h2>
-<p>::: {.panel-tabset} ### AI 교정의 한계</p>
+<h3 id="ai-교정의-한계">AI 교정의 한계</h3>
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><strong>생성형 AI 활용 시 주의사항</strong></p>
@@ -1616,16 +1731,34 @@ Seonghak Hong
 <td>기술 문서, 다국어</td>
 </tr>
 <tr class="even">
+<td><strong>Grok</strong></td>
+<td>실시간 정보 접근, 고급 추론</td>
+<td>X 의존성, 신뢰성 한계</td>
+<td>트렌드 분석, 연구 문서</td>
+</tr>
+<tr class="odd">
 <td><strong>NotebookLM</strong></td>
 <td>문서 전체 분석, 정확성</td>
 <td>업로드 제한, 속도</td>
 <td>긴 보고서, 연구 문서</td>
 </tr>
+<tr class="even">
+<td><strong>Microsoft Copilot</strong></td>
+<td>Office 통합, 실시간 교정</td>
+<td>구독 필요, 제한적 한국어</td>
+<td>MS Office 문서, 업무용</td>
+</tr>
 <tr class="odd">
-<td><strong>Grok</strong></td>
-<td>빠른 응답, 실시간 웹 정보</td>
-<td>한국어 한계, 일부 기능 유료</td>
-<td>시사/트렌드, 실시간 정보</td>
+<td><strong>Grammarly</strong></td>
+<td>전문 문법 검사, 브라우저 확장</td>
+<td>영어 중심, 유료 기능</td>
+<td>영문 문서, 학술 논문</td>
+</tr>
+<tr class="even">
+<td><strong>Notion AI</strong></td>
+<td>문서 작성+교정 통합</td>
+<td>제한적 교정 기능</td>
+<td>팀 문서, 노트 정리</td>
 </tr>
 </tbody>
 </table>
@@ -1696,7 +1829,401 @@ Seonghak Hong
 <li><strong>전문</strong>: Claude → 부산대 → 전문가 검토</li>
 <li><strong>대용량</strong>: NotebookLM → 부산대 → 품질 관리</li>
 <li><strong>빠른</strong>: Gemini → 네이버 → 간단 확인</li>
+<li><strong>트렌드</strong>: Grok → 실시간 검증 → 전문가 검토</li>
 </ul>
+</section>
+<section id="실무-효율화-팁" class="slide level2 smaller">
+<h2>실무 효율화 팁</h2>
+<div class="panel-tabset">
+<ul id="tabset-9" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-9-1">배치 처리 및 자동화</a></li><li><a href="#tabset-9-2">비용 최적화 전략</a></li><li><a href="#tabset-9-3">워크플로우 자동화</a></li></ul>
+<div class="tab-content">
+<div id="tabset-9-1">
+<p><strong>대량 문서 처리 방법</strong></p>
+<p><strong>ChatGPT 배치 처리:</strong></p>
+<pre><code>여러 문서를 하나의 세션에서 처리하는 방법:
+
+1. "다음부터 여러 문서를 순차적으로 보낼 예정입니다"
+2. "문서1: [첫 번째 문서 내용]"
+3. "문서2: [두 번째 문서 내용]"
+4. "모든 문서를 동일한 기준으로 교정해주세요"</code></pre>
+<p><strong>API 활용 자동화:</strong></p>
+<ul>
+<li><strong>OpenAI API</strong>: ChatGPT 기능을 프로그램에 직접 통합</li>
+<li><strong>Claude API</strong>: Anthropic의 API를 통한 대량 처리</li>
+<li><strong>Google AI Studio</strong>: Gemini API를 활용한 자동화</li>
+</ul>
+<p><strong>실제 Python 코드 예시:</strong></p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a><span class="im">import</span> openai</span>
+<span id="cb33-2"><a href="#cb33-2"></a></span>
+<span id="cb33-3"><a href="#cb33-3"></a><span class="kw">def</span> batch_proofreading(documents):</span>
+<span id="cb33-4"><a href="#cb33-4"></a>    results <span class="op">=</span> []</span>
+<span id="cb33-5"><a href="#cb33-5"></a>    <span class="cf">for</span> doc <span class="kw">in</span> documents:</span>
+<span id="cb33-6"><a href="#cb33-6"></a>        response <span class="op">=</span> openai.ChatCompletion.create(</span>
+<span id="cb33-7"><a href="#cb33-7"></a>            model<span class="op">=</span><span class="st">"gpt-4"</span>,</span>
+<span id="cb33-8"><a href="#cb33-8"></a>            messages<span class="op">=</span>[{</span>
+<span id="cb33-9"><a href="#cb33-9"></a>                <span class="st">"role"</span>: <span class="st">"user"</span>, </span>
+<span id="cb33-10"><a href="#cb33-10"></a>                <span class="st">"content"</span>: <span class="ss">f"다음 문서를 교정해주세요: </span><span class="sc">{</span>doc<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb33-11"><a href="#cb33-11"></a>            }]</span>
+<span id="cb33-12"><a href="#cb33-12"></a>        )</span>
+<span id="cb33-13"><a href="#cb33-13"></a>        results.append(response.choices[<span class="dv">0</span>].message.content)</span>
+<span id="cb33-14"><a href="#cb33-14"></a>    <span class="cf">return</span> results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-9-2">
+<p><strong>도구별 요금제 비교</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>서비스</th>
+<th>무료 제한</th>
+<th>유료 요금</th>
+<th>권장 사용법</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>ChatGPT</strong></td>
+<td>제한적</td>
+<td>$20/월</td>
+<td>일반 교정, 창작</td>
+</tr>
+<tr class="even">
+<td><strong>Claude</strong></td>
+<td>제한적</td>
+<td>$20/월</td>
+<td>긴 문서, 전문 분야</td>
+</tr>
+<tr class="odd">
+<td><strong>Gemini</strong></td>
+<td>관대함</td>
+<td>무료/Pro버전</td>
+<td>비용 절약형</td>
+</tr>
+<tr class="even">
+<td><strong>Grok</strong></td>
+<td>X 계정 필요</td>
+<td>X Premium+ 구독</td>
+<td>실시간 트렌드 분석</td>
+</tr>
+<tr class="odd">
+<td><strong>Microsoft Copilot</strong></td>
+<td>-</td>
+<td>$30/월</td>
+<td>Office 사용자</td>
+</tr>
+</tbody>
+</table>
+<p><strong>비용 절약 전략:</strong></p>
+<ol type="1">
+<li><strong>단계별 접근</strong>: 무료 도구 → 유료 도구 순서</li>
+<li><strong>토큰 최적화</strong>: 불필요한 내용 제거 후 요청</li>
+<li><strong>배치 처리</strong>: 여러 문서를 한 번에 처리</li>
+<li><strong>하이브리드 사용</strong>: 용도별 도구 조합</li>
+</ol>
+<p><strong>월 예산별 추천 조합:</strong> - <strong>무료</strong>: Gemini + 부산대 검사기 - <strong>1-2만원</strong>: ChatGPT + 전문 검사기 - <strong>3-5만원</strong>: Claude + Grok (X Premium) + 전문 검사기 - <strong>기업용</strong>: API 구독 + 전용 솔루션</p>
+</div>
+<div id="tabset-9-3">
+<p><strong>Excel/Google Sheets 연동</strong></p>
+<pre><code>=GOOGLETRANSLATE(A1, "auto", "ko") // 번역 후 교정
+=SUBSTITUTE(A1, "문제단어", "수정단어") // 일괄 치환</code></pre>
+<p><strong>Notion 자동화 설정</strong></p>
+<ol type="1">
+<li>Notion AI로 초안 작성</li>
+<li>외부 AI 도구로 정밀 교정</li>
+<li>최종 검토 후 발행</li>
+</ol>
+<p><strong>Zapier/IFTTT 활용</strong></p>
+<ul>
+<li>이메일 → 자동 교정 → 저장</li>
+<li>문서 업로드 → AI 교정 → 결과 전송</li>
+<li>일정 시간마다 대기 중인 문서 일괄 처리</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="고급-활용-기법" class="slide level2 smaller">
+<h2>고급 활용 기법</h2>
+<div class="panel-tabset">
+<ul id="tabset-10" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-10-1">스타일 가이드 적용</a></li><li><a href="#tabset-10-2">용어집 및 사전 구축</a></li><li><a href="#tabset-10-3">품질 검증 시스템</a></li></ul>
+<div class="tab-content">
+<div id="tabset-10-1">
+<p><strong>기관별 문체 가이드 구축</strong></p>
+<p><strong>프롬프트 템플릿:</strong></p>
+<pre><code>다음은 [기관명]의 공식 문서 스타일 가이드입니다:
+
+문체 규칙:
+
+- 존댓말 사용 (합니다/습니다 체)
+- 능동형 문장 선호
+- 1인칭 복수 사용 금지
+- 전문용어는 [용어집] 참조
+
+금지 표현:
+
+- "~것 같다", "~인 듯하다" (추측 표현)
+- "매우", "정말" (과도한 수식어)
+- 이모티콘 및 줄임말
+
+이 가이드에 따라 다음 문서를 교정해주세요:
+[문서 내용]</code></pre>
+<p><strong>분야별 특화 가이드:</strong></p>
+<ul>
+<li><strong>학술</strong>: APA/MLA 스타일, 객관적 서술</li>
+<li><strong>법무</strong>: 법령 용어, 정확한 인용</li>
+<li><strong>의료</strong>: 의학 용어, 환자 중심 언어</li>
+<li><strong>기술</strong>: 표준 용어, 간결한 설명</li>
+</ul>
+</div>
+<div id="tabset-10-2">
+<p><strong>전문 용어 사전 만들기</strong></p>
+<p><strong>용어 표준화 시트:</strong></p>
+<pre><code>원어,표준 용어,대체 용어,사용 분야,예시
+Artificial Intelligence,인공지능,"AI,A.I.",전체,인공지능 기술 발전
+Machine Learning,머신러닝,기계학습,기술,머신러닝 알고리즘
+Deep Learning,딥러닝,심층학습,기술,딥러닝 모델 훈련</code></pre>
+<p><strong>AI에게 용어집 제공 방법:</strong></p>
+<pre><code>첨부된 용어집을 참조하여 교정해주세요:
+[용어집 내용 붙여넣기]
+
+다음 규칙을 따라주세요:
+
+1. 표준 용어만 사용
+2. 대체 용어 발견 시 표준 용어로 교체
+3. 새로운 용어 발견 시 알려주기</code></pre>
+</div>
+<div id="tabset-10-3">
+<p><strong>다단계 검증 프로세스</strong></p>
+<p><strong>1단계: AI 교정</strong></p>
+<ul>
+<li>기본 맞춤법, 띄어쓰기</li>
+<li>문법 오류 수정</li>
+<li>문체 통일</li>
+</ul>
+<p><strong>2단계: 교차 검증</strong></p>
+<ul>
+<li>다른 AI 도구로 재검토</li>
+<li>결과 비교 분석</li>
+<li>불일치 항목 별도 검토</li>
+</ul>
+<p><strong>3단계: 인간 검수</strong></p>
+<ul>
+<li>전문가 최종 검토</li>
+<li>맥락 적합성 확인</li>
+<li>의미 보존 검증</li>
+</ul>
+<p><strong>품질 지표 모니터링:</strong></p>
+<pre><code>월간 교정 품질 리포트:
+- 교정 문서 수: 150건
+- 평균 정확도: 94.2%
+- 재작업률: 8.3%
+- 사용자 만족도: 4.6/5.0
+
+개선 필요 영역:
+
+- 전문 용어 일관성
+- 숫자 표기 통일성</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="문제-해결-가이드" class="slide level2 smaller">
+<h2>문제 해결 가이드</h2>
+<div class="panel-tabset">
+<ul id="tabset-11" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-11-1">일반적인 문제와 해결책</a></li><li><a href="#tabset-11-2">오류 패턴별 대응법</a></li><li><a href="#tabset-11-3">응급 복구 방법</a></li></ul>
+<div class="tab-content">
+<div id="tabset-11-1">
+<p><strong>자주 발생하는 문제들</strong></p>
+<div class="callout callout-warning callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>문제 1: AI가 원문의 의미를 바꿔버림</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>증상</strong>: 중요한 정보나 뉘앙스가 사라짐</p>
+<p><strong>해결책</strong>:</p>
+<ul>
+<li>“의미를 절대 바꾸지 말고” 명시적 지시</li>
+<li>단락별로 나누어 교정</li>
+<li>결과와 원문 꼼꼼히 비교</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-warning callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>문제 2: 전문 용어를 잘못 수정함</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>증상</strong>: 기술 용어, 고유명사 등이 일반 단어로 변경</p>
+<p><strong>해결책</strong>:</p>
+<ul>
+<li>전문 용어 목록 사전 제공</li>
+<li>“다음 용어들은 수정하지 말 것” 지시</li>
+<li>분야별 전문가 최종 검토</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-warning callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>문제 3: 일관성 없는 교정</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>증상</strong>: 같은 표현이 문서 내에서 다르게 수정됨</p>
+<p><strong>해결책</strong>:</p>
+<ul>
+<li>전체 문서를 한 번에 교정 요청</li>
+<li>용어집과 스타일 가이드 활용</li>
+<li>“문서 전체의 일관성 유지” 명시</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-11-2">
+<p><strong>패턴 1: 과도한 수정</strong></p>
+<pre><code>문제: AI가 괜찮은 문장도 "개선"하려고 함
+대응: "맞춤법과 문법 오류만 수정하되, 
+      올바른 문장은 그대로 유지해주세요"</code></pre>
+<p><strong>패턴 2: 문맥 무시</strong></p>
+<pre><code>문제: 앞뒤 문맥을 고려하지 않은 수정
+대응: 문서 전체 또는 큰 단위로 교정 요청
+      "전체 맥락을 고려하여 교정해주세요"</code></pre>
+<p><strong>패턴 3: 숫자/날짜 오류</strong></p>
+<pre><code>문제: 중요한 수치나 날짜를 임의로 변경
+대응: "숫자, 날짜, 고유명사는 절대 변경 금지"
+      수정 후 반드시 원본과 대조 확인</code></pre>
+</div>
+<div id="tabset-11-3">
+<p><strong>교정 실패 시 대응법</strong></p>
+<p><strong>즉시 조치:</strong></p>
+<ol type="1">
+<li><strong>원본 백업 복구</strong>: 항상 원본 보관 필수</li>
+<li><strong>문제 구간 식별</strong>: 어디서 잘못되었는지 파악</li>
+<li><strong>부분 재교정</strong>: 문제 부분만 다시 교정</li>
+</ol>
+<p><strong>예방 조치:</strong></p>
+<pre><code>교정 전 체크리스트:
+
+□ 원본 파일 백업 완료
+□ 중요 정보 (숫자, 고유명사) 별도 기록
+□ 교정 범위와 제외 사항 명확히 지시
+□ 결과 검토 시간 충분히 확보</code></pre>
+<p><strong>긴급 복구 프로세스:</strong></p>
+<ol type="1">
+<li>원본 파일로 되돌리기</li>
+<li>문제가 된 부분 수동 수정</li>
+<li>안전한 부분만 선별적 AI 교정 재시도</li>
+<li>전문가 검토 후 최종 확정</li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="실시간-협업-교정-시스템" class="slide level2 smaller">
+<h2>실시간 협업 교정 시스템</h2>
+<div class="panel-tabset">
+<ul id="tabset-12" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-12-1">실시간 교정 도구</a></li><li><a href="#tabset-12-2">버전 관리 시스템</a></li><li><a href="#tabset-12-3">팀 교정 가이드라인</a></li></ul>
+<div class="tab-content">
+<div id="tabset-12-1">
+<p><strong>MS Word + Copilot 조합</strong></p>
+<ul>
+<li>문서 작성과 동시에 실시간 교정</li>
+<li>댓글 기능으로 수정 사항 트래킹</li>
+<li>변경 내역 자동 저장</li>
+</ul>
+<p><strong>Google Docs 협업 워크플로우</strong></p>
+<ol type="1">
+<li>초안 작성자가 문서 생성</li>
+<li>AI 교정 결과를 제안 모드로 적용</li>
+<li>검토자가 제안 승인/거부</li>
+<li>최종 승인자가 확정</li>
+</ol>
+<p><strong>Notion 팀 교정 시스템</strong></p>
+<pre><code>교정 워크플로우:
+
+작성자 → AI 교정 → 1차 검토자 → 2차 검토자 → 최종 승인
+
+상태 관리:
+
+- 작성 중 🔵
+- 교정 대기 🟡  
+- 검토 중 🟠
+- 완료 🟢</code></pre>
+</div>
+<div id="tabset-12-2">
+<p><strong>Git 기반 문서 관리</strong></p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb44-1"><a href="#cb44-1"></a><span class="co"># 초안 생성</span></span>
+<span id="cb44-2"><a href="#cb44-2"></a><span class="fu">git</span> add draft.md</span>
+<span id="cb44-3"><a href="#cb44-3"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"초안 작성 완료"</span></span>
+<span id="cb44-4"><a href="#cb44-4"></a></span>
+<span id="cb44-5"><a href="#cb44-5"></a><span class="co"># AI 교정 버전</span></span>
+<span id="cb44-6"><a href="#cb44-6"></a><span class="fu">git</span> add corrected.md  </span>
+<span id="cb44-7"><a href="#cb44-7"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"AI 교정 1차 완료"</span></span>
+<span id="cb44-8"><a href="#cb44-8"></a></span>
+<span id="cb44-9"><a href="#cb44-9"></a><span class="co"># 최종 검토 버전</span></span>
+<span id="cb44-10"><a href="#cb44-10"></a><span class="fu">git</span> add final.md</span>
+<span id="cb44-11"><a href="#cb44-11"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"전문가 검토 완료"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>SharePoint/OneDrive 버전 관리</strong></p>
+<ul>
+<li>자동 버전 저장 기능 활용</li>
+<li>교정 단계별 폴더 구조</li>
+<li>권한별 접근 제어</li>
+</ul>
+</div>
+<div id="tabset-12-3">
+<p><strong>역할별 책임 분담</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>역할</th>
+<th>담당 업무</th>
+<th>도구</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>작성자</strong></td>
+<td>초안 작성, 1차 AI 교정</td>
+<td>ChatGPT, Gemini</td>
+</tr>
+<tr class="even">
+<td><strong>교정자</strong></td>
+<td>정밀 교정, 전문 용어 검토</td>
+<td>Claude, Grok, 전문 도구</td>
+</tr>
+<tr class="odd">
+<td><strong>검토자</strong></td>
+<td>내용 검증, 최종 확인</td>
+<td>수동 검토</td>
+</tr>
+<tr class="even">
+<td><strong>승인자</strong></td>
+<td>품질 승인, 발행 결정</td>
+<td>종합 판단</td>
+</tr>
+</tbody>
+</table>
+<p><strong>커뮤니케이션 규칙</strong></p>
+<ul>
+<li>수정 사유 명시 필수</li>
+<li>의견 충돌 시 토론 절차</li>
+<li>긴급 수정 시 알림 체계</li>
+</ul>
+</div>
+</div>
+</div>
 </section>
 <section id="ai-교정-프롬프트-예제" class="slide level2 smaller">
 <h2>AI 교정 프롬프트 예제</h2>
