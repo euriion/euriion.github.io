@@ -1,0 +1,2918 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="data-visualization_files/libs/clipboard/clipboard.min.js"></script>
+<script src="data-visualization_files/libs/quarto-html/tabby.min.js"></script>
+<script src="data-visualization_files/libs/quarto-html/popper.min.js"></script>
+<script src="data-visualization_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="data-visualization_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="data-visualization_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="data-visualization_files/libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.2.335">
+
+  <meta name="author" content="홍성학">
+  <title>데이터 시각화 Data Visualization</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="data-visualization_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="data-visualization_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #e1e4e8; background-color: #24292e; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #e1e4e8; } /* Normal */
+    code span.al { color: #ff5555; font-weight: bold; } /* Alert */
+    code span.an { color: #6a737d; } /* Annotation */
+    code span.at { color: #f97583; } /* Attribute */
+    code span.bn { color: #79b8ff; } /* BaseN */
+    code span.bu { color: #f97583; } /* BuiltIn */
+    code span.cf { color: #f97583; } /* ControlFlow */
+    code span.ch { color: #9ecbff; } /* Char */
+    code span.cn { color: #79b8ff; } /* Constant */
+    code span.co { color: #6a737d; } /* Comment */
+    code span.cv { color: #6a737d; } /* CommentVar */
+    code span.do { color: #6a737d; } /* Documentation */
+    code span.dt { color: #f97583; } /* DataType */
+    code span.dv { color: #79b8ff; } /* DecVal */
+    code span.er { color: #ff5555; text-decoration: underline; } /* Error */
+    code span.ex { color: #f97583; font-weight: bold; } /* Extension */
+    code span.fl { color: #79b8ff; } /* Float */
+    code span.fu { color: #b392f0; } /* Function */
+    code span.im { color: #9ecbff; } /* Import */
+    code span.in { color: #6a737d; } /* Information */
+    code span.kw { color: #f97583; } /* Keyword */
+    code span.op { color: #e1e4e8; } /* Operator */
+    code span.ot { color: #b392f0; } /* Other */
+    code span.pp { color: #f97583; } /* Preprocessor */
+    code span.re { color: #6a737d; } /* RegionMarker */
+    code span.sc { color: #79b8ff; } /* SpecialChar */
+    code span.ss { color: #9ecbff; } /* SpecialString */
+    code span.st { color: #9ecbff; } /* String */
+    code span.va { color: #ffab70; } /* Variable */
+    code span.vs { color: #9ecbff; } /* VerbatimString */
+    code span.wa { color: #ff5555; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="data-visualization_files/libs/revealjs/dist/theme/quarto.css" id="theme">
+  <link rel="stylesheet" href="custom.css">
+  <link href="data-visualization_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="data-visualization_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="data-visualization_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="data-visualization_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="data-visualization_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="data-visualization_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-captioned.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-captioned) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-captioned.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-captioned .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-captioned .callout-caption  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-captioned.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-captioned.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-caption {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-caption {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-caption {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-captioned .callout-body > .callout-content > :last-child {
+    margin-bottom: 0.5rem;
+  }
+
+  .callout.callout-captioned .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-captioned) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-caption {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-caption {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-caption {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-caption {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-caption {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="quarto-dark">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">데이터 시각화 Data Visualization</h1>
+  <p class="subtitle">현대인을 위한 실전 시각화 가이드</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+홍성학 
+</div>
+</div>
+</div>
+
+  <p class="date">8/23/25</p>
+</section>
+<section id="발표자-소개" class="slide level2">
+<h2>발표자 소개</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="홍성학-seonghak-hong">홍성학 (Seonghak Hong)</h3>
+<ul>
+<li><i class="fas fa-graduation-cap"></i> <strong>데이터 사이언티스트</strong></li>
+</ul>
+<h3 id="전문분야">전문분야</h3>
+<ul>
+<li><i class="fas fa-database"></i> 데이터 과학, 빅데이터, 클라우드</li>
+<li><i class="fas fa-database"></i> 데이터 아키텍처 및 전략</li>
+<li><i class="fas fa-database"></i> 데이터 시각화</li>
+<li><i class="fas fa-database"></i> 실시간 데이터 처리</li>
+<li><i class="fas fa-robot"></i> AI</li>
+</ul>
+<h3 id="연락처">연락처</h3>
+<ul>
+<li><i class="fas fa-envelope"></i> <a href="https://r2bit.com">공익법인 한국R사용자회</a></li>
+<li><i class="fas fa-envelope"></i> <a href="https://aidenhong.com">aidenhong.com</a></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="목차" class="slide level2">
+<h2>목차</h2>
+<h3 id="오늘-다룰-주요-내용">오늘 다룰 주요 내용</h3>
+<ul>
+<li><i class="fas fa-chart-line"></i> <strong>데이터 시각화의 중요성과 현대적 접근</strong></li>
+<li><i class="fas fa-tools"></i> <strong>다양한 시각화 도구와 라이브러리</strong><br>
+</li>
+<li><i class="fas fa-palette"></i> <strong>효과적인 시각화 설계 원칙</strong></li>
+<li><i class="fas fa-rocket"></i> <strong>실무에서 활용할 수 있는 시각화 패턴</strong></li>
+<li><i class="fas fa-magic"></i> <strong>인터랙티브 및 대시보드 구축</strong></li>
+<li><i class="fas fa-lightbulb"></i> <strong>AI 시대 시각화의 미래</strong></li>
+</ul>
+</section>
+<section id="데이터-시각화란-무엇인가" class="slide level2">
+<h2>데이터 시각화란 무엇인가?</h2>
+<h3 id="시각화의-정의와-핵심-개념">시각화의 정의와 핵심 개념</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h4 id="데이터-시각화의-본질">데이터 시각화의 본질</h4>
+<ul>
+<li><i class="fas fa-eye"></i> <strong>데이터를 시각적 형태로 변환</strong>하는 과정</li>
+<li><i class="fas fa-brain"></i> <strong>패턴, 트렌드, 관계</strong>를 직관적으로 이해</li>
+<li><i class="fas fa-lightbulb"></i> <strong>복잡한 정보를 간단하게</strong> 전달</li>
+<li><i class="fas fa-comments"></i> <strong>데이터 기반 의사소통</strong>의 핵심 도구</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h4 id="현대-사회에서의-역할">현대 사회에서의 역할</h4>
+<ul>
+<li><i class="fas fa-chart-line"></i> <strong>빅데이터 시대의 필수 스킬</strong></li>
+<li><i class="fas fa-rocket"></i> <strong>비즈니스 인텔리전스</strong>의 핵심</li>
+<li><i class="fas fa-users"></i> <strong>데이터 민주화</strong>를 통한 접근성 향상</li>
+<li><i class="fas fa-globe"></i> <strong>글로벌 의사소통</strong>의 공통 언어</li>
+</ul>
+</div>
+</div>
+<h3 id="시각화가-필요한-이유">시각화가 필요한 이유</h3>
+<ul>
+<li><i class="fas fa-stopwatch"></i> <strong>인간의 시각 처리</strong>: 텍스트보다 60,000배 빠른 이미지 인식</li>
+<li><i class="fas fa-search"></i> <strong>패턴 발견</strong>: 숨겨진 인사이트와 이상치 탐지</li>
+<li><i class="fas fa-memory"></i> <strong>기억 효과</strong>: 시각적 정보는 3일 후에도 65% 기억</li>
+<li><i class="fas fa-handshake"></i> <strong>효과적 소통</strong>: 복잡한 개념을 단순하게 전달</li>
+</ul>
+</section>
+<section id="시각화-용어-정리" class="slide level2">
+<h2>시각화 용어 정리</h2>
+<h3 id="혼용되는-용어들의-정확한-의미">혼용되는 용어들의 정확한 의미</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h4 id="chart-차트">Chart (차트)</h4>
+<ul>
+<li><i class="fas fa-chart-bar"></i> <strong>정의</strong>: 데이터를 시각적으로 표현하는 <strong>모든 형태</strong></li>
+<li><i class="fas fa-info-circle"></i> <strong>특징</strong>: 가장 포괄적인 용어</li>
+<li><i class="fas fa-examples"></i> <strong>예시</strong>: 막대차트, 원차트, 선차트 등</li>
+<li><i class="fas fa-lightbulb"></i> <strong>용도</strong>: 비즈니스 보고서, 대시보드</li>
+</ul>
+<h4 id="graphic-그래픽">Graphic (그래픽)</h4>
+<ul>
+<li><i class="fas fa-image"></i> <strong>정의</strong>: 시각적 <strong>디자인 요소</strong>가 강조된 표현</li>
+<li><i class="fas fa-palette"></i> <strong>특징</strong>: 미적 요소와 정보 전달의 결합</li>
+<li><i class="fas fa-newspaper"></i> <strong>예시</strong>: 인포그래픽, 뉴스 그래픽</li>
+<li><i class="fas fa-users"></i> <strong>용도</strong>: 대중 커뮤니케이션, 마케팅</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h4 id="graph-그래프">Graph (그래프)</h4>
+<ul>
+<li><i class="fas fa-project-diagram"></i> <strong>정의</strong>: <strong>수학적 관계</strong>를 표현하는 시각화</li>
+<li><i class="fas fa-calculator"></i> <strong>특징</strong>: 정확한 수치와 관계 중심</li>
+<li><i class="fas fa-chart-line"></i> <strong>예시</strong>: 함수 그래프, 네트워크 그래프</li>
+<li><i class="fas fa-graduation-cap"></i> <strong>용도</strong>: 학술 연구, 수학적 분석</li>
+</ul>
+<h4 id="plot-플롯">Plot (플롯)</h4>
+<ul>
+<li><i class="fas fa-map-pin"></i> <strong>정의</strong>: 데이터 <strong>포인트를 좌표에 배치</strong></li>
+<li><i class="fas fa-code"></i> <strong>특징</strong>: 통계 분석 도구에서 주로 사용</li>
+<li><i class="fas fa-chart-scatter"></i> <strong>예시</strong>: 산점도, 박스플롯, 히스토그램</li>
+<li><i class="fas fa-microscope"></i> <strong>용도</strong>: 데이터 분석, 통계적 탐색</li>
+</ul>
+</div>
+</div>
+<h3 id="실무에서의-용어-선택-가이드">실무에서의 용어 선택 가이드</h3>
+<ul>
+<li><i class="fas fa-briefcase"></i> <strong>비즈니스 맥락</strong>: “차트”를 일반적으로 사용</li>
+<li><i class="fas fa-flask"></i> <strong>분석 작업</strong>: “플롯”이 더 정확한 표현</li>
+<li><i class="fas fa-newspaper"></i> <strong>대중 소통</strong>: “그래픽”이 친숙한 용어</li>
+<li><i class="fas fa-graduation-cap"></i> <strong>학술 논문</strong>: “그래프”가 엄밀한 표현</li>
+</ul>
+</section>
+<section id="막대-차트-bar-chart" class="slide level2">
+<h2>막대 차트 (Bar Chart)</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="언제-사용하나요">언제 사용하나요?</h3>
+<ul>
+<li><i class="fas fa-chart-bar"></i> <strong>범주형 데이터 비교</strong>에 최적</li>
+<li><i class="fas fa-sort-amount-up"></i> <strong>순위나 크기 비교</strong></li>
+<li><i class="fas fa-balance-scale"></i> <strong>여러 그룹 간 차이</strong> 시각화</li>
+</ul>
+<h3 id="특징">특징</h3>
+<ul>
+<li><i class="fas fa-eye"></i> <strong>직관적 이해</strong>: 막대 길이로 값 비교</li>
+<li><i class="fas fa-arrows-alt-h"></i> <strong>수평/수직</strong>: 레이블 길이에 따라 선택</li>
+<li><i class="fas fa-layer-group"></i> <strong>그룹화 가능</strong>: 다중 시리즈 비교</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/bar_chart_example.png" style="width:90.0%"></p>
+<p></p><figcaption>막대 차트 예시</figcaption><p></p>
+</figure>
+</div>
+<h3 id="사용-예시">사용 예시</h3>
+<ul>
+<li>지역별 매출 비교</li>
+<li>제품별 판매량</li>
+<li>부서별 인원수</li>
+<li>월별 성과 지표</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="선-차트-line-chart" class="slide level2">
+<h2>선 차트 (Line Chart)</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="언제-사용하나요-1">언제 사용하나요?</h3>
+<ul>
+<li><i class="fas fa-chart-line"></i> <strong>시간 흐름</strong>에 따른 변화</li>
+<li><i class="fas fa-trending-up"></i> <strong>트렌드 패턴</strong> 분석</li>
+<li><i class="fas fa-arrows-alt"></i> <strong>연속적인 데이터</strong> 표현</li>
+</ul>
+<h3 id="특징-1">특징</h3>
+<ul>
+<li><i class="fas fa-clock"></i> <strong>시계열 데이터</strong>에 특화</li>
+<li><i class="fas fa-search-plus"></i> <strong>패턴 발견</strong>: 상승, 하락, 계절성</li>
+<li><i class="fas fa-layer-group"></i> <strong>다중 시리즈</strong>: 여러 변수 동시 비교</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/line_chart_example.png" style="width:90.0%"></p>
+<p></p><figcaption>선 차트 예시</figcaption><p></p>
+</figure>
+</div>
+<h3 id="사용-예시-1">사용 예시</h3>
+<ul>
+<li>주가 변동 추이</li>
+<li>월별 방문자 수</li>
+<li>온도 변화</li>
+<li>성장률 추이</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="원-차트-pie-chart" class="slide level2">
+<h2>원 차트 (Pie Chart)</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="언제-사용하나요-2">언제 사용하나요?</h3>
+<ul>
+<li><i class="fas fa-chart-pie"></i> <strong>전체 대비 비율</strong> 표현</li>
+<li><i class="fas fa-percentage"></i> <strong>구성 요소</strong>의 상대적 크기</li>
+<li><i class="fas fa-list-ol"></i> <strong>카테고리 수가 적을 때</strong> (5-7개 이하)</li>
+</ul>
+<h3 id="특징-2">특징</h3>
+<ul>
+<li><i class="fas fa-circle"></i> <strong>원형 표현</strong>: 전체를 100%로 표시</li>
+<li><i class="fas fa-palette"></i> <strong>색상 구분</strong>: 각 카테고리별 구분</li>
+<li><i class="fas fa-exclamation-triangle"></i> <strong>제한사항</strong>: 많은 카테고리 시 가독성 저하</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/pie_chart_example.png" style="width:90.0%"></p>
+<p></p><figcaption>원 차트 예시</figcaption><p></p>
+</figure>
+</div>
+<h3 id="사용-예시-2">사용 예시</h3>
+<ul>
+<li>시장 점유율</li>
+<li>예산 배분</li>
+<li>설문조사 결과</li>
+<li>성별/연령대 분포</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="산점도-scatter-plot" class="slide level2">
+<h2>산점도 (Scatter Plot)</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="언제-사용하나요-3">언제 사용하나요?</h3>
+<ul>
+<li><i class="fas fa-chart-scatter"></i> <strong>두 변수 간 관계</strong> 분석</li>
+<li><i class="fas fa-search"></i> <strong>상관관계</strong> 탐색</li>
+<li><i class="fas fa-exclamation-circle"></i> <strong>이상치 발견</strong></li>
+</ul>
+<h3 id="특징-3">특징</h3>
+<ul>
+<li><i class="fas fa-dot-circle"></i> <strong>점 분포</strong>: 각 데이터를 점으로 표현</li>
+<li><i class="fas fa-chart-line"></i> <strong>추세선</strong>: 상관관계 시각화</li>
+<li><i class="fas fa-expand"></i> <strong>패턴 발견</strong>: 클러스터, 이상치 식별</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/scatter_plot_example.png" style="width:90.0%"></p>
+<p></p><figcaption>산점도 예시</figcaption><p></p>
+</figure>
+</div>
+<h3 id="사용-예시-3">사용 예시</h3>
+<ul>
+<li>키와 몸무게 관계</li>
+<li>광고비와 매출 관계</li>
+<li>온도와 아이스크림 판매량</li>
+<li>학습시간과 성적</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="히스토그램-histogram" class="slide level2">
+<h2>히스토그램 (Histogram)</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="언제-사용하나요-4">언제 사용하나요?</h3>
+<ul>
+<li><i class="fas fa-chart-area"></i> <strong>데이터 분포</strong> 확인</li>
+<li><i class="fas fa-bell"></i> <strong>정규성 검정</strong></li>
+<li><i class="fas fa-chart-bar"></i> <strong>빈도 분석</strong></li>
+</ul>
+<h3 id="특징-4">특징</h3>
+<ul>
+<li><i class="fas fa-layer-group"></i> <strong>구간별 빈도</strong>: 연속형 데이터를 구간으로 나눔</li>
+<li><i class="fas fa-mountain"></i> <strong>분포 형태</strong>: 정규분포, 치우침 등 확인</li>
+<li><i class="fas fa-adjust"></i> <strong>bin 크기</strong>: 구간 크기에 따라 모양 변화</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/histogram_example.png" style="width:90.0%"></p>
+<p></p><figcaption>히스토그램 예시</figcaption><p></p>
+</figure>
+</div>
+<h3 id="사용-예시-4">사용 예시</h3>
+<ul>
+<li>시험 점수 분포</li>
+<li>연령대별 인원 분포</li>
+<li>소득 분포</li>
+<li>제품 품질 측정값</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="박스-플롯-box-plot" class="slide level2">
+<h2>박스 플롯 (Box Plot)</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="언제-사용하나요-5">언제 사용하나요?</h3>
+<ul>
+<li><i class="fas fa-square"></i> <strong>데이터 요약 통계</strong> 표현</li>
+<li><i class="fas fa-exclamation-triangle"></i> <strong>이상치 탐지</strong></li>
+<li><i class="fas fa-chart-bar"></i> <strong>그룹 간 분포 비교</strong></li>
+</ul>
+<h3 id="특징-5">특징</h3>
+<ul>
+<li><i class="fas fa-grip-lines"></i> <strong>5수 요약</strong>: 최솟값, Q1, 중앙값, Q3, 최댓값</li>
+<li><i class="fas fa-dot-circle"></i> <strong>이상치 표시</strong>: 박스 밖 점들</li>
+<li><i class="fas fa-compress"></i> <strong>분포 압축</strong>: 분포를 한눈에 파악</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/box_plot_example.png" style="width:90.0%"></p>
+<p></p><figcaption>박스 플롯 예시</figcaption><p></p>
+</figure>
+</div>
+<h3 id="사용-예시-5">사용 예시</h3>
+<ul>
+<li>부서별 급여 분포</li>
+<li>지역별 기온 분포</li>
+<li>제품별 품질 지표</li>
+<li>그룹별 성과 비교</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="시계열-그래프-time-series-chart" class="slide level2">
+<h2>시계열 그래프 (Time Series Chart)</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="언제-사용하나요-6">언제 사용하나요?</h3>
+<ul>
+<li><i class="fas fa-clock"></i> <strong>시간 흐름</strong>에 따른 데이터 변화</li>
+<li><i class="fas fa-chart-line"></i> <strong>장기 트렌드</strong> 분석</li>
+<li><i class="fas fa-wave-square"></i> <strong>계절성 패턴</strong> 탐지</li>
+</ul>
+<h3 id="특징-6">특징</h3>
+<ul>
+<li><i class="fas fa-calendar-alt"></i> <strong>연속적 시간축</strong>: 일, 월, 년 단위</li>
+<li><i class="fas fa-trending-up"></i> <strong>패턴 인식</strong>: 상승, 하락, 주기성</li>
+<li><i class="fas fa-chart-area"></i> <strong>이동평균</strong>: 노이즈 제거 및 트렌드 강조</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/time_series_example.png" style="width:90.0%"></p>
+<p></p><figcaption>시계열 그래프 예시</figcaption><p></p>
+</figure>
+</div>
+<h3 id="사용-예시-6">사용 예시</h3>
+<ul>
+<li>주가 차트</li>
+<li>기온 변화 추이</li>
+<li>웹사이트 방문자 통계</li>
+<li>경제 지표 변화</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="에어리어-차트-area-chart" class="slide level2">
+<h2>에어리어 차트 (Area Chart)</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="언제-사용하나요-7">언제 사용하나요?</h3>
+<ul>
+<li><i class="fas fa-layer-group"></i> <strong>누적 데이터</strong> 표현</li>
+<li><i class="fas fa-percentage"></i> <strong>구성 비율 변화</strong> 시각화</li>
+<li><i class="fas fa-chart-area"></i> <strong>전체 대비 부분</strong> 강조</li>
+</ul>
+<h3 id="특징-7">특징</h3>
+<ul>
+<li><i class="fas fa-fill"></i> <strong>영역 채우기</strong>: 선 아래 면적 강조</li>
+<li><i class="fas fa-stack-overflow"></i> <strong>누적 가능</strong>: 여러 시리즈 적층</li>
+<li><i class="fas fa-eye"></i> <strong>시각적 임팩트</strong>: 변화량 직관적 파악</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/area_chart_example.png" style="width:90.0%"></p>
+<p></p><figcaption>에어리어 차트 예시</figcaption><p></p>
+</figure>
+</div>
+<h3 id="사용-예시-7">사용 예시</h3>
+<ul>
+<li>월별 매출 구성</li>
+<li>에너지 소비 패턴</li>
+<li>인구 구성 변화</li>
+<li>예산 배분 추이</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="트리맵-treemap" class="slide level2">
+<h2>트리맵 (Treemap)</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="언제-사용하나요-8">언제 사용하나요?</h3>
+<ul>
+<li><i class="fas fa-th-large"></i> <strong>계층적 데이터</strong> 표현</li>
+<li><i class="fas fa-compress"></i> <strong>공간 효율적</strong> 시각화</li>
+<li><i class="fas fa-percentage"></i> <strong>비율 비교</strong>에 특화</li>
+</ul>
+<h3 id="특징-8">특징</h3>
+<ul>
+<li><i class="fas fa-square"></i> <strong>사각형 크기</strong>: 값의 크기 반영</li>
+<li><i class="fas fa-palette"></i> <strong>색상 인코딩</strong>: 추가 차원 표현</li>
+<li><i class="fas fa-layer-group"></i> <strong>중첩 구조</strong>: 다단계 분류 가능</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/treemap_example.png" style="width:90.0%"></p>
+<p></p><figcaption>트리맵 예시</figcaption><p></p>
+</figure>
+</div>
+<h3 id="사용-예시-8">사용 예시</h3>
+<ul>
+<li>포트폴리오 구성</li>
+<li>웹사이트 트래픽 분석</li>
+<li>시장 점유율</li>
+<li>파일 시스템 용량</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="레이더-차트-radar-chart" class="slide level2">
+<h2>레이더 차트 (Radar Chart)</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="언제-사용하나요-9">언제 사용하나요?</h3>
+<ul>
+<li><i class="fas fa-star"></i> <strong>다차원 성능</strong> 비교</li>
+<li><i class="fas fa-balance-scale"></i> <strong>균형점 분석</strong></li>
+<li><i class="fas fa-chart-radar"></i> <strong>프로필 시각화</strong></li>
+</ul>
+<h3 id="특징-9">특징</h3>
+<ul>
+<li><i class="fas fa-circle"></i> <strong>방사형 축</strong>: 여러 변수 동시 표현</li>
+<li><i class="fas fa-polygon"></i> <strong>다각형 형태</strong>: 전체적 패턴 파악</li>
+<li><i class="fas fa-layer-group"></i> <strong>중첩 비교</strong>: 여러 객체 동시 분석</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/radar_chart_example.png" style="width:90.0%"></p>
+<p></p><figcaption>레이더 차트 예시</figcaption><p></p>
+</figure>
+</div>
+<h3 id="사용-예시-9">사용 예시</h3>
+<ul>
+<li>제품 성능 비교</li>
+<li>직원 역량 평가</li>
+<li>게임 캐릭터 능력치</li>
+<li>지역별 생활 지표</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="평행-좌표-그래프-parallel-coordinates" class="slide level2">
+<h2>평행 좌표 그래프 (Parallel Coordinates)</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="언제-사용하나요-10">언제 사용하나요?</h3>
+<ul>
+<li><i class="fas fa-arrows-alt-h"></i> <strong>고차원 데이터</strong> 탐색</li>
+<li><i class="fas fa-search"></i> <strong>패턴 발견</strong> 및 클러스터링</li>
+<li><i class="fas fa-filter"></i> <strong>이상치 탐지</strong></li>
+</ul>
+<h3 id="특징-10">특징</h3>
+<ul>
+<li><i class="fas fa-grip-lines-vertical"></i> <strong>평행 축</strong>: 각 변수를 수직선으로 표현</li>
+<li><i class="fas fa-bezier-curve"></i> <strong>연결선</strong>: 데이터 포인트 간 관계</li>
+<li><i class="fas fa-eye"></i> <strong>패턴 인식</strong>: 교차점으로 상관관계 파악</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/parallel_coordinates_example.png" style="width:90.0%"></p>
+<p></p><figcaption>평행 좌표 그래프 예시</figcaption><p></p>
+</figure>
+</div>
+<h3 id="사용-예시-10">사용 예시</h3>
+<ul>
+<li>다변량 통계 분석</li>
+<li>제품 특성 비교</li>
+<li>학생 성적 분석</li>
+<li>센서 데이터 모니터링</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="역사-속-시각화의-걸작들" class="slide level2">
+<h2>역사 속 시각화의 걸작들</h2>
+<h3 id="데이터-시각화의-전설적-사례들">데이터 시각화의 전설적 사례들</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h4 id="john-snow의-콜레라-지도-1854">John Snow의 콜레라 지도 (1854)</h4>
+<ul>
+<li><i class="fas fa-map-marked-alt"></i> <strong>역학의 아버지</strong>: 최초의 질병 지도 시각화</li>
+<li><i class="fas fa-search"></i> <strong>인과관계 발견</strong>: 콜레라 발병원인을 지도로 규명</li>
+<li><i class="fas fa-water"></i> <strong>공중보건 혁명</strong>: 오염된 급수원을 시각적으로 증명</li>
+</ul>
+<h4 id="charles-minard의-나폴레옹-원정-1869">Charles Minard의 나폴레옹 원정 (1869)</h4>
+<ul>
+<li><i class="fas fa-chart-line"></i> <strong>정보 디자인의 걸작</strong>: “최고의 통계 그래픽”</li>
+<li><i class="fas fa-thermometer-half"></i> <strong>6차원 데이터</strong>: 군대규모, 경로, 온도, 시간 등</li>
+<li><i class="fas fa-exclamation-triangle"></i> <strong>비극의 시각화</strong>: 42만→1만명의 참혹한 현실</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h4 id="florence-nightingale의-장미도표-1858">Florence Nightingale의 장미도표 (1858)</h4>
+<ul>
+<li><i class="fas fa-chart-pie"></i> <strong>Rose Diagram</strong>: 원형 면적 차트의 혁신</li>
+<li><i class="fas fa-hospital"></i> <strong>의료 개혁</strong>: 병원 위생상태의 시각적 증명</li>
+<li><i class="fas fa-female"></i> <strong>데이터 저널리즘</strong>: 통계를 통한 사회 변화</li>
+</ul>
+<h4 id="hans-rosling의-gapminder">Hans Rosling의 Gapminder</h4>
+<ul>
+<li><i class="fas fa-play"></i> <strong>동적 시각화</strong>: 시간의 흐름을 애니메이션으로</li>
+<li><i class="fas fa-globe"></i> <strong>세계 발전상</strong>: 건강과 부의 상관관계 시연</li>
+<li><i class="fas fa-chart-bubble"></i> <strong>버블 차트</strong>: 다차원 데이터의 직관적 표현</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="john-snow의-콜레라-지도-1854-1" class="slide level2">
+<h2>John Snow의 콜레라 지도 (1854)</h2>
+
+<img data-src="images/snow-cholera-map.jpg" style="width:80.0%" class="r-stretch quarto-figure-center"><p class="caption">John Snow’s Cholera Map</p><h3 id="현대-역학의-시작점">현대 역학의 시작점</h3>
+<ul>
+<li><i class="fas fa-microscope"></i> <strong>과학적 접근</strong>: 데이터를 통한 가설 검증</li>
+<li><i class="fas fa-map"></i> <strong>공간 분석</strong>: 지리적 패턴으로 원인 추적</li>
+<li><i class="fas fa-lightbulb"></i> <strong>시각적 증명</strong>: 브로드 스트리트 펌프가 감염원</li>
+</ul>
+</section>
+<section id="charles-minard의-나폴레옹-원정도-1869" class="slide level2">
+<h2>Charles Minard의 나폴레옹 원정도 (1869)</h2>
+
+<img data-src="images/minard-napoleon-march.png" style="width:90.0%" class="r-stretch quarto-figure-center"><p class="caption">Charles Minard’s Napoleon March</p><h3 id="edward-tufte가-극찬한-최고의-통계-그래픽">Edward Tufte가 극찬한 “최고의 통계 그래픽”</h3>
+<ul>
+<li><i class="fas fa-users"></i> <strong>병력 변화</strong>: 선의 두께로 군대 규모 표현</li>
+<li><i class="fas fa-route"></i> <strong>이동 경로</strong>: 진군과 후퇴 경로를 색상으로 구분</li>
+<li><i class="fas fa-thermometer-quarter"></i> <strong>기온 정보</strong>: 하단 차트로 혹독한 추위 표현</li>
+</ul>
+</section>
+<section id="florence-nightingale의-장미도표-1858-1" class="slide level2">
+<h2>Florence Nightingale의 장미도표 (1858)</h2>
+
+<img data-src="images/nightingale-rose-diagram.jpg" style="width:70.0%" class="r-stretch quarto-figure-center"><p class="caption">Florence Nightingale’s Rose Diagram</p><h3 id="데이터-저널리즘의-선구자">데이터 저널리즘의 선구자</h3>
+<ul>
+<li><i class="fas fa-chart-pie"></i> <strong>혁신적 차트</strong>: 원형 면적 차트(Coxcomb) 개발</li>
+<li><i class="fas fa-balance-scale"></i> <strong>사회 개혁</strong>: 통계로 의료 시스템 문제점 부각</li>
+<li><i class="fas fa-heart"></i> <strong>인명 구조</strong>: 시각화를 통한 실질적 변화 달성</li>
+</ul>
+</section>
+<section id="현대-시각화의-혁신-gapminder" class="slide level2">
+<h2>현대 시각화의 혁신: Gapminder</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="hans-rosling의-the-joy-of-stats">Hans Rosling의 “The Joy of Stats”</h3>
+<ul>
+<li><i class="fas fa-play"></i> <strong>동적 애니메이션</strong>: 시간 흐름에 따른 데이터 변화</li>
+<li><i class="fas fa-globe-americas"></i> <strong>글로벌 트렌드</strong>: 국가별 발전 상황을 한눈에</li>
+<li><i class="fas fa-chart-bubble"></i> <strong>다차원 표현</strong>: 인구(크기), 지역(색상), 소득-수명(위치)</li>
+</ul>
+<p><em>“200년간의 국가 발전사를 4분만에”</em> - Hans Rosling</p>
+<h3 id="혁신적-특징">혁신적 특징</h3>
+<ul>
+<li><i class="fas fa-magic"></i> <strong>데이터 스토리텔링</strong>의 새로운 패러다임</li>
+<li><i class="fas fa-users"></i> <strong>일반 대중</strong>도 이해할 수 있는 복잡한 데이터</li>
+<li><i class="fas fa-heart"></i> <strong>감정적 연결</strong>: 통계를 인간의 이야기로</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/gapminder-style-chart.png" style="width:100.0%"></p>
+<p></p><figcaption>Gapminder 스타일 버블 차트</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="edward-tufte-정보-디자인의-아버지" class="slide level2">
+<h2>Edward Tufte: 정보 디자인의 아버지</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="핵심-철학">핵심 철학</h3>
+<ul>
+<li><i class="fas fa-eye"></i> <strong>Data-Ink Ratio</strong>: 잉크 사용량 대비 정보량 최대화</li>
+<li><i class="fas fa-minus"></i> <strong>Chartjunk 제거</strong>: 불필요한 장식 요소 배제</li>
+<li><i class="fas fa-compress"></i> <strong>고밀도 정보</strong>: 작은 공간에 많은 정보</li>
+</ul>
+<h3 id="주요-원칙">주요 원칙</h3>
+<ul>
+<li><i class="fas fa-balance-scale"></i> <strong>무결성</strong>: 데이터의 정확한 표현</li>
+<li><i class="fas fa-sparkles"></i> <strong>우아함</strong>: 단순하면서도 정교한 디자인</li>
+<li><i class="fas fa-layers"></i> <strong>다차원성</strong>: 복잡한 관계의 명확한 표현</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/tufte-style-chart.png" style="width:100.0%"></p>
+<p></p><figcaption>Edward Tufte의 미니멀한 디자인</figcaption><p></p>
+</figure>
+</div>
+<h3 id="대표작과-영향">대표작과 영향</h3>
+<ul>
+<li><strong>“The Visual Display of Quantitative Information”</strong></li>
+<li><strong>스파크라인(Sparklines)</strong> 개념 창시</li>
+<li><strong>현대 정보 디자인</strong>의 기초 확립</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="d3.js-데이터-기반-문서" class="slide level2">
+<h2>D3.js: 데이터 기반 문서</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="혁신적-접근">혁신적 접근</h3>
+<ul>
+<li><i class="fas fa-code"></i> <strong>웹 표준 기반</strong>: HTML, SVG, CSS 활용</li>
+<li><i class="fas fa-link"></i> <strong>데이터 바인딩</strong>: 데이터와 DOM 요소 직접 연결</li>
+<li><i class="fas fa-magic"></i> <strong>무한한 자유도</strong>: 모든 시각화 구현 가능</li>
+</ul>
+<h3 id="핵심-개념">핵심 개념</h3>
+<ul>
+<li><i class="fas fa-circle"></i> <strong>Enter, Update, Exit</strong>: 데이터 변화 처리</li>
+<li><i class="fas fa-paint-brush"></i> <strong>선택자(Selectors)</strong>: jQuery 스타일 요소 조작</li>
+<li><i class="fas fa-play"></i> <strong>트랜지션</strong>: 부드러운 애니메이션</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/d3-style-chart.png" style="width:100.0%"></p>
+<p></p><figcaption>D3.js 인터랙티브 시각화</figcaption><p></p>
+</figure>
+</div>
+<h3 id="d3.js의-영향">D3.js의 영향</h3>
+<ul>
+<li><strong>웹 시각화 표준</strong>으로 자리잡음</li>
+<li><strong>Observable</strong> 플랫폼의 기반</li>
+<li><strong>데이터 저널리즘</strong> 혁신 주도</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="ggplot2-grammar-of-graphics" class="slide level2">
+<h2>ggplot2: Grammar of Graphics</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="leland-wilkinson의-문법">Leland Wilkinson의 문법</h3>
+<ul>
+<li><i class="fas fa-layer-group"></i> <strong>레이어 시스템</strong>: 요소별 단계적 구성</li>
+<li><i class="fas fa-puzzle-piece"></i> <strong>구성 요소</strong>: Data + Aesthetics + Geoms + Stats</li>
+<li><i class="fas fa-cogs"></i> <strong>체계적 접근</strong>: 일관된 문법 구조</li>
+</ul>
+<h3 id="핵심-장점">핵심 장점</h3>
+<ul>
+<li><i class="fas fa-rocket"></i> <strong>빠른 프로토타이핑</strong>: 간결한 코드로 복잡한 차트</li>
+<li><i class="fas fa-palette"></i> <strong>일관된 스타일</strong>: 통일된 디자인 시스템</li>
+<li><i class="fas fa-expand"></i> <strong>확장성</strong>: 테마와 패키지 생태계</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/ggplot-style-chart.png" style="width:100.0%"></p>
+<p></p><figcaption>ggplot2 Grammar of Graphics</figcaption><p></p>
+</figure>
+</div>
+<h3 id="r-생태계의-핵심">R 생태계의 핵심</h3>
+<ul>
+<li><strong>Tidyverse</strong>의 시각화 엔진</li>
+<li><strong>재현 가능한 연구</strong>의 표준</li>
+<li><strong>통계 시각화</strong> 분야 선도</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="워싱턴-포스트-데이터-저널리즘의-혁신" class="slide level2">
+<h2>워싱턴 포스트: 데이터 저널리즘의 혁신</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="데이터-저널리즘의-선구자-1">데이터 저널리즘의 선구자</h3>
+<ul>
+<li><i class="fas fa-newspaper"></i> <strong>스토리텔링과 데이터 융합</strong>: 복잡한 이슈를 시각적으로 전달</li>
+<li><i class="fas fa-globe"></i> <strong>실시간 보도</strong>: 선거, 코로나19, 기후변화 등</li>
+<li><i class="fas fa-users"></i> <strong>대중 접근성</strong>: 일반인도 이해할 수 있는 데이터 표현</li>
+</ul>
+<h3 id="혁신적-시각화-기법">혁신적 시각화 기법</h3>
+<ul>
+<li><i class="fas fa-chart-line"></i> <strong>인터랙티브 차트</strong>: 독자 참여형 콘텐츠</li>
+<li><i class="fas fa-map"></i> <strong>지리적 시각화</strong>: 지역별 데이터 분석</li>
+<li><i class="fas fa-clock"></i> <strong>시계열 애니메이션</strong>: 변화 과정의 동적 표현</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/washington-post-dataviz.png" style="width:100.0%"></p>
+<p></p><figcaption>워싱턴 포스트 데이터 시각화</figcaption><p></p>
+</figure>
+</div>
+<h3 id="대표적인-성과">대표적인 성과</h3>
+<ul>
+<li><strong>2020 대선 실시간 개표 추이</strong></li>
+<li><strong>코로나19 확산 시각화</strong></li>
+<li><strong>기후변화 온도 변화 나선형 차트</strong></li>
+<li><strong>총기 사건 추적 및 분석</strong></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="mbc-선거-여론조사-한국형-데이터-저널리즘" class="slide level2">
+<h2>MBC 선거 여론조사: 한국형 데이터 저널리즘</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="혁신적-선거-보도">혁신적 선거 보도</h3>
+<ul>
+<li><i class="fas fa-vote-yea"></i> <strong>실시간 여론조사</strong>: 선거 기간 동적 변화 추적</li>
+<li><i class="fas fa-chart-area"></i> <strong>벌집지도(Hexagonal Map)</strong>: 지역별 선거 결과 시각화</li>
+<li><i class="fas fa-mobile-alt"></i> <strong>모바일 최적화</strong>: 실시간 접근 가능한 인터랙티브 대시보드</li>
+</ul>
+<h3 id="데이터-기반-선거-분석">데이터 기반 선거 분석</h3>
+<ul>
+<li><i class="fas fa-map-marked-alt"></i> <strong>지역별 세분화</strong>: 시/군/구 단위 상세 분석</li>
+<li><i class="fas fa-chart-pie"></i> <strong>연령/성별 교차분석</strong>: 다차원 유권자 행태 분석</li>
+<li><i class="fas fa-trending-up"></i> <strong>트렌드 예측</strong>: 통계 모델 기반 당선 가능성</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/mbc-kitogram.png" style="width:100.0%"></p>
+<p></p><figcaption>MBC 벌집지도 시각화</figcaption><p></p>
+</figure>
+</div>
+<h3 id="한국-미디어의-변화">한국 미디어의 변화</h3>
+<ul>
+<li><strong>전통 방송과 디지털의 융합</strong></li>
+<li><strong>데이터 기반 객관적 보도</strong></li>
+<li><strong>시청자 참여형 선거 콘텐츠</strong></li>
+<li><strong>실시간 빅데이터 활용</strong></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="데이터-시각화-왜-중요한가" class="slide level2">
+<h2>데이터 시각화, 왜 중요한가?</h2>
+<h3 id="시각화의-힘">시각화의 힘</h3>
+<ul>
+<li><i class="fas fa-eye"></i> <strong>“데이터는 보이는 것이 믿는 것”</strong></li>
+<li><i class="fas fa-brain"></i> <strong>인간의 시각 처리 능력: 13밀리초 내 이미지 인식</strong></li>
+<li><i class="fas fa-chart-bar"></i> <strong>복잡한 패턴을 직관적으로 파악</strong></li>
+<li><i class="fas fa-search"></i> <strong>이상치, 트렌드, 상관관계 신속 발견</strong></li>
+<li><i class="fas fa-comments"></i> <strong>의사결정자에게 명확한 인사이트 전달</strong></li>
+</ul>
+</section>
+<section id="비즈니스에서의-가치" class="slide level2">
+<h2>비즈니스에서의 가치</h2>
+<ul>
+<li><i class="fas fa-dollar-sign"></i> <strong>의사결정 속도 40% 향상</strong> → ROI 증대</li>
+<li><i class="fas fa-users"></i> <strong>크로스팀 커뮤니케이션 효율성 증대</strong></li>
+<li><i class="fas fa-lightbulb"></i> <strong>데이터 기반 비즈니스 인사이트 도출</strong></li>
+<li><i class="fas fa-trophy"></i> <strong>데이터 리터러시 향상으로 경쟁 우위 확보</strong></li>
+</ul>
+</section>
+<section id="현대-데이터-시각화의-트렌드" class="slide level2">
+<h2>현대 데이터 시각화의 트렌드</h2>
+<h3 id="데이터-폭발-시대-2.0">데이터 폭발 시대 2.0</h3>
+<ul>
+<li><i class="fas fa-database"></i> <strong>매일 2.5퀸틸리언 바이트</strong>의 데이터 생성</li>
+<li><i class="fas fa-mobile-alt"></i> <strong>IoT, 소셜미디어, 실시간 스트리밍</strong> 데이터 확산</li>
+<li><i class="fas fa-cloud"></i> <strong>클라우드 네이티브 분석 플랫폼</strong> 주류화</li>
+<li><i class="fas fa-robot"></i> <strong>AI/ML 기반 자동 시각화</strong> 및 인사이트 생성</li>
+</ul>
+</section>
+<section id="시각화-도구의-진화" class="slide level2">
+<h2>시각화 도구의 진화</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h4 id="코드-기반-도구">코드 기반 도구</h4>
+<ul>
+<li><i class="fab fa-python"></i> <strong>Python</strong>: matplotlib, seaborn, plotly</li>
+<li><i class="fab fa-r-project"></i> <strong>R</strong>: ggplot2, shiny, lattice</li>
+<li><i class="fab fa-js-square"></i> <strong>JavaScript</strong>: D3.js, Chart.js, Three.js</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h4 id="비즈니스-인텔리전스-도구">비즈니스 인텔리전스 도구</h4>
+<ul>
+<li><i class="fas fa-chart-pie"></i> <strong>Tableau</strong>, <strong>Power BI</strong></li>
+<li><i class="fas fa-globe"></i> <strong>Looker</strong>, <strong>Qlik Sense</strong></li>
+<li><i class="fas fa-magic"></i> <strong>Observable</strong>, <strong>Streamlit</strong></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="part-1-시각화-설계-원칙" class="slide level2">
+<h2>Part 1: 시각화 설계 원칙</h2>
+</section>
+<section id="효과적인-시각화의-핵심-원칙" class="slide level2">
+<h2>효과적인 시각화의 핵심 원칙</h2>
+<ul>
+<li><i class="fas fa-eye"></i> <strong>명료성(Clarity)</strong>
+<ul>
+<li>5초 이내에 핵심 메시지가 명확하게 전달되어야 합니다.</li>
+</ul></li>
+<li><i class="fas fa-check-circle"></i> <strong>정확성(Accuracy)</strong>
+<ul>
+<li>데이터의 무결성, 통계적 정확성을 유지해야 합니다.</li>
+</ul></li>
+<li><i class="fas fa-tachometer-alt"></i> <strong>효율성(Efficiency)</strong>
+<ul>
+<li>불필요한 시각적 요소를 줄이고, 최소한의 정보로 최대 효과를 내야 합니다.</li>
+</ul></li>
+<li><i class="fas fa-palette"></i> <strong>심미성(Aesthetics)</strong>
+<ul>
+<li>사용자 경험을 고려한 깔끔하고 일관된 디자인이 필요합니다.</li>
+</ul></li>
+<li><i class="fas fa-users"></i> <strong>접근성(Accessibility)</strong>
+<ul>
+<li>색각 이상자, 다양한 기기 등 모든 사용자가 정보를 이해할 수 있도록 설계해야 합니다.</li>
+</ul></li>
+</ul>
+</section>
+<section id="시각화-설계-프로세스-12" class="slide level2">
+<h2>시각화 설계 프로세스 (1/2)</h2>
+<h4 id="목적과-대상-정의">1. 목적과 대상 정의</h4>
+<ul>
+<li><i class="fas fa-bullseye"></i> <strong>비즈니스 목표</strong>: 어떤 액션을 유도할 것인가?</li>
+<li><i class="fas fa-users"></i> <strong>타겟 오디언스</strong>: 경영진? 분석가? 일반 사용자?</li>
+<li><i class="fas fa-question"></i> <strong>핵심 질문</strong>: 어떤 인사이트를 발견해야 하는가?</li>
+</ul>
+<h4 id="데이터-탐색-및-준비">2. 데이터 탐색 및 준비</h4>
+<ul>
+<li><i class="fas fa-search"></i> <strong>EDA (Exploratory Data Analysis)</strong></li>
+<li><i class="fas fa-chart-line"></i> <strong>변수 간 관계성 분석</strong></li>
+<li><i class="fas fa-exclamation-triangle"></i> <strong>데이터 품질 검증</strong> (결측값, 이상치)</li>
+</ul>
+</section>
+<section id="시각화-설계-프로세스-22" class="slide level2">
+<h2>시각화 설계 프로세스 (2/2)</h2>
+<h4 id="차트-유형-선택-전략">3. 차트 유형 선택 전략</h4>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li><i class="fas fa-chart-bar"></i> <strong>비교</strong>: 막대, 컬럼 차트</li>
+<li><i class="fas fa-chart-line"></i> <strong>시계열</strong>: 선, 영역 차트</li>
+<li><i class="fas fa-chart-pie"></i> <strong>구성</strong>: 파이, 도넛, 트리맵</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<ul>
+<li><i class="fas fa-chart-scatter"></i> <strong>상관관계</strong>: 산점도, 버블 차트</li>
+<li><i class="fas fa-chart-area"></i> <strong>분포</strong>: 히스토그램, 박스플롯</li>
+<li><i class="fas fa-map"></i> <strong>지리적</strong>: 지도, 히트맵</li>
+</ul>
+</div>
+</div>
+<h4 id="시각적-인코딩-및-최적화">4. 시각적 인코딩 및 최적화</h4>
+<ul>
+<li><i class="fas fa-paint-brush"></i> <strong>색상 체계</strong>: 일관성 있는 컬러 팔레트</li>
+<li><i class="fas fa-text-height"></i> <strong>타이포그래피</strong>: 가독성 최적화</li>
+<li><i class="fas fa-comments"></i> <strong>사용자 피드백</strong> 기반 반복 개선</li>
+</ul>
+</section>
+<section id="part-2-다양한-시각화-도구와-기술" class="slide level2">
+<h2>Part 2: 다양한 시각화 도구와 기술</h2>
+</section>
+<section id="python-생태계" class="slide level2">
+<h2>Python 생태계</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h4 id="matplotlib-기반">Matplotlib 기반</h4>
+<ul>
+<li><i class="fas fa-layer-group"></i> <strong>matplotlib</strong>: 기본 플롯 라이브러리</li>
+<li><i class="fas fa-chart-bar"></i> <strong>seaborn</strong>: 통계적 시각화</li>
+<li><i class="fas fa-table"></i> <strong>pandas.plot</strong>: 빠른 프로토타이핑</li>
+</ul>
+<h4 id="웹-기반-인터랙티브">웹 기반 인터랙티브</h4>
+<ul>
+<li><i class="fas fa-mouse-pointer"></i> <strong>plotly</strong>: 인터랙티브 차트</li>
+<li><i class="fas fa-globe"></i> <strong>bokeh</strong>: 웹 애플리케이션</li>
+<li><i class="fas fa-rocket"></i> <strong>streamlit</strong>: 대시보드 구축</li>
+</ul>
+<h3 id="python의-시각화-철학">Python의 시각화 철학</h3>
+<ul>
+<li><i class="fas fa-code"></i> <strong>코드 중심</strong>: 프로그래밍적 접근</li>
+<li><i class="fas fa-layers"></i> <strong>모듈화</strong>: 각 라이브러리의 전문성</li>
+<li><i class="fas fa-users"></i> <strong>오픈소스</strong>: 활발한 커뮤니티</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/programming-languages/python-ecosystem.png" style="width:100.0%"></p>
+<p></p><figcaption>Python 시각화 생태계</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="r-생태계" class="slide level2">
+<h2>R 생태계</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h4 id="ggplot2-중심">ggplot2 중심</h4>
+<ul>
+<li><i class="fas fa-book"></i> <strong>ggplot2</strong>: Grammar of Graphics</li>
+<li><i class="fas fa-layer-group"></i> <strong>patchwork</strong>: 다중 플롯 조합</li>
+<li><i class="fas fa-palette"></i> <strong>ggthemes</strong>: 전문적 테마</li>
+</ul>
+<h4 id="특화-패키지">특화 패키지</h4>
+<ul>
+<li><i class="fas fa-globe"></i> <strong>shiny</strong>: 웹 애플리케이션</li>
+<li><i class="fas fa-chart-network"></i> <strong>visNetwork</strong>: 네트워크 시각화</li>
+<li><i class="fas fa-table"></i> <strong>DT</strong>: 인터랙티브 테이블</li>
+</ul>
+<h3 id="r의-시각화-철학">R의 시각화 철학</h3>
+<ul>
+<li><i class="fas fa-graduation-cap"></i> <strong>통계 중심</strong>: 학술적 접근</li>
+<li><i class="fas fa-layer-group"></i> <strong>Grammar of Graphics</strong>: 체계적 구조</li>
+<li><i class="fas fa-microscope"></i> <strong>연구 지향</strong>: 재현 가능한 분석</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/programming-languages/r-ecosystem.png" style="width:100.0%"></p>
+<p></p><figcaption>R 시각화 생태계</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="javascript와-웹-기술" class="slide level2">
+<h2>JavaScript와 웹 기술</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="d3.js-기반-고급-시각화">D3.js 기반 고급 시각화</h3>
+<ul>
+<li><i class="fas fa-code"></i> <strong>완전한 커스터마이징</strong>: SVG 기반 벡터 그래픽</li>
+<li><i class="fas fa-mouse-pointer"></i> <strong>고도의 인터랙티브</strong> 기능</li>
+<li><i class="fas fa-play"></i> <strong>애니메이션과 전환 효과</strong></li>
+</ul>
+<h3 id="현대적-차트-라이브러리">현대적 차트 라이브러리</h3>
+<ul>
+<li><i class="fas fa-chart-bar"></i> <strong>Chart.js</strong>: 간단하고 반응형</li>
+<li><i class="fas fa-mobile-alt"></i> <strong>ApexCharts</strong>: 모던 모바일 친화적</li>
+<li><i class="fas fa-cube"></i> <strong>Three.js</strong>: 3D 시각화</li>
+</ul>
+<h3 id="웹-기술의-장점">웹 기술의 장점</h3>
+<ul>
+<li><i class="fas fa-globe"></i> <strong>범용성</strong>: 모든 플랫폼에서 실행</li>
+<li><i class="fas fa-share-alt"></i> <strong>공유 용이성</strong>: URL 기반 배포</li>
+<li><i class="fas fa-mobile-alt"></i> <strong>반응형</strong>: 다양한 화면 크기 지원</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/programming-languages/javascript-web-ecosystem.png" style="width:100.0%"></p>
+<p></p><figcaption>JavaScript 웹 시각화 생태계</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="microsoft-excel-가장-친숙한-시각화-도구" class="slide level2">
+<h2>Microsoft Excel: 가장 친숙한 시각화 도구</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="excel의-시각화-강점">Excel의 시각화 강점</h3>
+<ul>
+<li><i class="fas fa-users"></i> <strong>높은 접근성</strong>: 전 세계 10억 명 이상 사용</li>
+<li><i class="fas fa-mouse-pointer"></i> <strong>직관적 인터페이스</strong>: 드래그 앤 드롭으로 차트 생성</li>
+<li><i class="fas fa-table"></i> <strong>데이터와 차트 통합</strong>: 스프레드시트 기반 작업</li>
+<li><i class="fas fa-magic"></i> <strong>빠른 프로토타이핑</strong>: 아이디어를 즉시 시각화</li>
+</ul>
+<h3 id="주요-차트-유형">주요 차트 유형</h3>
+<ul>
+<li><i class="fas fa-chart-bar"></i> <strong>기본 차트</strong>: 막대, 선, 원형, 영역</li>
+<li><i class="fas fa-chart-scatter"></i> <strong>분석 차트</strong>: 산점도, 버블, 히스토그램</li>
+<li><i class="fas fa-chart-pie"></i> <strong>특수 차트</strong>: 콤보, 도넛, 레이더</li>
+<li><i class="fas fa-map"></i> <strong>지도 차트</strong>: 3D 맵, 지역별 데이터</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/business-tools/excel-visualization.png" style="width:100.0%"></p>
+<p></p><figcaption>Microsoft Excel 시각화</figcaption><p></p>
+</figure>
+</div>
+<h3 id="실무-활용-팁">실무 활용 팁</h3>
+<ul>
+<li><strong>피벗 차트</strong>: 대용량 데이터 요약 시각화</li>
+<li><strong>조건부 서식</strong>: 데이터 패턴 강조</li>
+<li><strong>스파크라인</strong>: 셀 내 미니 차트</li>
+<li><strong>슬라이서</strong>: 인터랙티브 필터링</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="tableau-비즈니스-인텔리전스의-선두주자" class="slide level2">
+<h2>Tableau: 비즈니스 인텔리전스의 선두주자</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="tableau의-핵심-철학">Tableau의 핵심 철학</h3>
+<ul>
+<li><i class="fas fa-eye"></i> <strong>VizQL 엔진</strong>: 직관적 드래그 앤 드롭 인터페이스</li>
+<li><i class="fas fa-database"></i> <strong>다양한 데이터 연결</strong>: 100+ 데이터 소스 지원</li>
+<li><i class="fas fa-magic"></i> <strong>Show Me 기능</strong>: 최적 차트 자동 추천</li>
+<li><i class="fas fa-share-alt"></i> <strong>협업 중심</strong>: Tableau Server/Cloud 기반 공유</li>
+</ul>
+<h3 id="고급-시각화-기능">고급 시각화 기능</h3>
+<ul>
+<li><i class="fas fa-layer-group"></i> <strong>듀얼 축</strong>: 서로 다른 척도의 데이터 비교</li>
+<li><i class="fas fa-filter"></i> <strong>액션 필터</strong>: 차트 간 상호작용</li>
+<li><i class="fas fa-calculator"></i> <strong>계산 필드</strong>: 고급 데이터 변환</li>
+<li><i class="fas fa-map-marked-alt"></i> <strong>지리적 분석</strong>: 내장된 지도 기능</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/business-tools/tableau-visualization.png" style="width:100.0%"></p>
+<p></p><figcaption>Tableau 시각화</figcaption><p></p>
+</figure>
+</div>
+<h3 id="비즈니스-가치">비즈니스 가치</h3>
+<ul>
+<li><strong>신속한 인사이트</strong>: 몇 분 만에 대시보드 구축</li>
+<li><strong>데이터 민주화</strong>: 비전문가도 고급 분석 가능</li>
+<li><strong>확장성</strong>: 개인부터 엔터프라이즈까지</li>
+<li><strong>모바일 지원</strong>: 언제 어디서나 데이터 접근</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="tibco-spotfire-고급-분석-플랫폼" class="slide level2">
+<h2>TIBCO Spotfire: 고급 분석 플랫폼</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="spotfire의-차별화-요소">Spotfire의 차별화 요소</h3>
+<ul>
+<li><i class="fas fa-brain"></i> <strong>고급 분석</strong>: 통계 모델링과 예측 분석</li>
+<li><i class="fas fa-search-plus"></i> <strong>탐색적 분석</strong>: 실시간 데이터 드릴다운</li>
+<li><i class="fas fa-code"></i> <strong>R/Python 통합</strong>: 오픈소스 분석 도구 연계</li>
+<li><i class="fas fa-industry"></i> <strong>산업 특화</strong>: 제조, 바이오, 에너지 분야 특화</li>
+</ul>
+<h3 id="핵심-시각화-기능">핵심 시각화 기능</h3>
+<ul>
+<li><i class="fas fa-chart-scatter"></i> <strong>스마트 산점도</strong>: 자동 패턴 인식</li>
+<li><i class="fas fa-arrows-alt-h"></i> <strong>평행 좌표</strong>: 고차원 데이터 탐색</li>
+<li><i class="fas fa-chart-area"></i> <strong>트렐리스 플롯</strong>: 다면 분석</li>
+<li><i class="fas fa-clock"></i> <strong>시계열 분석</strong>: 예측 및 이상치 탐지</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/business-tools/spotfire-visualization.png" style="width:100.0%"></p>
+<p></p><figcaption>TIBCO Spotfire 시각화</figcaption><p></p>
+</figure>
+</div>
+<h3 id="고급-분석-워크플로우">고급 분석 워크플로우</h3>
+<ul>
+<li><strong>데이터 랭글링</strong>: 자동 데이터 준비</li>
+<li><strong>예측 모델링</strong>: 내장 ML 알고리즘</li>
+<li><strong>실시간 분석</strong>: 스트리밍 데이터 처리</li>
+<li><strong>협업 분석</strong>: 분석 결과 공유 및 토론</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="도구별-비교-및-선택-가이드" class="slide level2">
+<h2>도구별 비교 및 선택 가이드</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="사용자-수준별-추천">사용자 수준별 추천</h3>
+<ul>
+<li><i class="fas fa-user"></i> <strong>초급자</strong>: Excel (친숙함, 낮은 진입장벽)</li>
+<li><i class="fas fa-users"></i> <strong>중급자</strong>: Tableau (직관적 BI 도구)</li>
+<li><i class="fas fa-user-graduate"></i> <strong>고급자</strong>: Spotfire (고급 분석 기능)</li>
+</ul>
+<h3 id="조직-규모별-고려사항">조직 규모별 고려사항</h3>
+<ul>
+<li><i class="fas fa-building"></i> <strong>소규모</strong>: Excel + Power BI</li>
+<li><i class="fas fa-city"></i> <strong>중간 규모</strong>: Tableau + 클라우드</li>
+<li><i class="fas fa-globe"></i> <strong>대기업</strong>: Spotfire + 엔터프라이즈 솔루션</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h3 id="프로젝트-성격별-선택">프로젝트 성격별 선택</h3>
+<ul>
+<li><i class="fas fa-chart-line"></i> <strong>보고서</strong>: Excel, Tableau</li>
+<li><i class="fas fa-tachometer-alt"></i> <strong>대시보드</strong>: Tableau, Power BI</li>
+<li><i class="fas fa-microscope"></i> <strong>탐색적 분석</strong>: Spotfire, R/Python</li>
+<li><i class="fas fa-robot"></i> <strong>예측 분석</strong>: Spotfire, SAS</li>
+</ul>
+<h3 id="비용-대비-효과">비용 대비 효과</h3>
+<ul>
+<li><i class="fas fa-dollar-sign"></i> <strong>예산 고려</strong>: 라이선스 vs 오픈소스</li>
+<li><i class="fas fa-graduation-cap"></i> <strong>교육 비용</strong>: 학습 곡선 고려</li>
+<li><i class="fas fa-wrench"></i> <strong>유지보수</strong>: IT 인프라 요구사항</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="part-3-실무-시각화-패턴" class="slide level2">
+<h2>Part 3: 실무 시각화 패턴</h2>
+</section>
+<section id="탐색적-데이터-분석-eda" class="slide level2">
+<h2>탐색적 데이터 분석 (EDA)</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h4 id="기본-통계-시각화">기본 통계 시각화</h4>
+<ul>
+<li><i class="fas fa-chart-bar"></i> <strong>히스토그램</strong>: 분포 확인</li>
+<li><i class="fas fa-square"></i> <strong>박스플롯</strong>: 이상치 탐지</li>
+<li><i class="fas fa-chart-scatter"></i> <strong>산점도 매트릭스</strong>: 다변수 관계</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h4 id="고급-탐색-기법">고급 탐색 기법</h4>
+<ul>
+<li><i class="fas fa-th"></i> <strong>상관관계 히트맵</strong></li>
+<li><i class="fas fa-chart-line"></i> <strong>평행 좌표계</strong></li>
+<li><i class="fas fa-eye"></i> <strong>t-SNE / PCA 시각화</strong></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="히스토그램-데이터-분포-탐색" class="slide level2">
+<h2>히스토그램: 데이터 분포 탐색</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="언제-사용하나요-11">언제 사용하나요?</h3>
+<ul>
+<li><i class="fas fa-chart-area"></i> <strong>연속형 데이터 분포</strong> 파악</li>
+<li><i class="fas fa-bell"></i> <strong>정규성 검정</strong> 시각적 확인</li>
+<li><i class="fas fa-search"></i> <strong>이상치와 치우침</strong> 탐지</li>
+</ul>
+<h3 id="핵심-인사이트">핵심 인사이트</h3>
+<ul>
+<li><i class="fas fa-mountain"></i> <strong>분포 형태</strong>: 정규분포, 왜곡분포, 다봉분포</li>
+<li><i class="fas fa-arrows-alt-h"></i> <strong>중심경향</strong>: 평균, 중앙값, 최빈값</li>
+<li><i class="fas fa-expand-alt"></i> <strong>산포도</strong>: 표준편차, 분산, 범위</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/eda-histogram.png" style="width:100.0%"></p>
+<p></p><figcaption>히스토그램 EDA 예시</figcaption><p></p>
+</figure>
+</div>
+<h3 id="eda에서의-활용">EDA에서의 활용</h3>
+<ul>
+<li>변수별 분포 특성 파악</li>
+<li>데이터 전처리 전략 수립</li>
+<li>적절한 통계 모델 선택</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="상관관계-히트맵-변수-간-관계-탐색" class="slide level2">
+<h2>상관관계 히트맵: 변수 간 관계 탐색</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="언제-사용하나요-12">언제 사용하나요?</h3>
+<ul>
+<li><i class="fas fa-th"></i> <strong>다변수 상관관계</strong> 한눈에 파악</li>
+<li><i class="fas fa-search-plus"></i> <strong>다중공선성</strong> 문제 탐지</li>
+<li><i class="fas fa-filter"></i> <strong>변수 선택</strong> 전략 수립</li>
+</ul>
+<h3 id="해석-방법">해석 방법</h3>
+<ul>
+<li><i class="fas fa-thermometer-full"></i> <strong>색상 강도</strong>: 상관계수 크기</li>
+<li><i class="fas fa-plus-circle"></i> <strong>양의 상관</strong>: 같은 방향 변화</li>
+<li><i class="fas fa-minus-circle"></i> <strong>음의 상관</strong>: 반대 방향 변화</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/eda-correlation-heatmap.png" style="width:100.0%"></p>
+<p></p><figcaption>상관관계 히트맵 예시</figcaption><p></p>
+</figure>
+</div>
+<h3 id="실무-적용">실무 적용</h3>
+<ul>
+<li>특성 공학 아이디어 도출</li>
+<li>불필요한 변수 제거</li>
+<li>모델 성능 개선 방향 제시</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="산점도-매트릭스-다변수-관계-시각화" class="slide level2">
+<h2>산점도 매트릭스: 다변수 관계 시각화</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="언제-사용하나요-13">언제 사용하나요?</h3>
+<ul>
+<li><i class="fas fa-chart-scatter"></i> <strong>모든 변수 쌍</strong> 관계 동시 확인</li>
+<li><i class="fas fa-search"></i> <strong>비선형 관계</strong> 패턴 탐지</li>
+<li><i class="fas fa-layer-group"></i> <strong>클러스터 구조</strong> 파악</li>
+</ul>
+<h3 id="분석-포인트">분석 포인트</h3>
+<ul>
+<li><i class="fas fa-dot-circle"></i> <strong>산점도 패턴</strong>: 선형, 곡선, 클러스터</li>
+<li><i class="fas fa-exclamation-triangle"></i> <strong>이상치 그룹</strong>: 특이한 데이터 포인트</li>
+<li><i class="fas fa-compress"></i> <strong>밀도 분포</strong>: 데이터 집중 영역</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/eda-scatter-matrix.png" style="width:100.0%"></p>
+<p></p><figcaption>산점도 매트릭스 예시</figcaption><p></p>
+</figure>
+</div>
+<h3 id="고급-활용">고급 활용</h3>
+<ul>
+<li>차원 축소 전 관계 파악</li>
+<li>세그멘테이션 기준 발견</li>
+<li>예측 모델 변수 조합 최적화</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="평행-좌표-고차원-데이터-탐색" class="slide level2">
+<h2>평행 좌표: 고차원 데이터 탐색</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="언제-사용하나요-14">언제 사용하나요?</h3>
+<ul>
+<li><i class="fas fa-arrows-alt-h"></i> <strong>고차원 데이터</strong> 패턴 파악</li>
+<li><i class="fas fa-filter"></i> <strong>이상치 탐지</strong> 및 필터링</li>
+<li><i class="fas fa-users"></i> <strong>그룹별 특성</strong> 비교</li>
+</ul>
+<h3 id="해석-기법">해석 기법</h3>
+<ul>
+<li><i class="fas fa-bezier-curve"></i> <strong>선의 패턴</strong>: 데이터 포인트별 특성</li>
+<li><i class="fas fa-intersect"></i> <strong>교차점</strong>: 변수 간 상호작용</li>
+<li><i class="fas fa-layer-group"></i> <strong>밀도 영역</strong>: 일반적 vs 특이 패턴</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/eda-parallel-coordinates.png" style="width:100.0%"></p>
+<p></p><figcaption>평행 좌표 EDA 예시</figcaption><p></p>
+</figure>
+</div>
+<h3 id="실무-활용">실무 활용</h3>
+<ul>
+<li>고객 세그멘테이션</li>
+<li>제품 품질 관리</li>
+<li>복합 지표 모니터링</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="t-snepca-차원-축소-시각화" class="slide level2">
+<h2>t-SNE/PCA: 차원 축소 시각화</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="언제-사용하나요-15">언제 사용하나요?</h3>
+<ul>
+<li><i class="fas fa-compress-alt"></i> <strong>고차원 → 2D/3D</strong> 변환</li>
+<li><i class="fas fa-search"></i> <strong>숨겨진 패턴</strong> 발견</li>
+<li><i class="fas fa-project-diagram"></i> <strong>클러스터 구조</strong> 시각화</li>
+</ul>
+<h3 id="기법별-특징">기법별 특징</h3>
+<ul>
+<li><i class="fas fa-chart-scatter"></i> <strong>PCA</strong>: 선형 변환, 분산 보존</li>
+<li><i class="fas fa-magic"></i> <strong>t-SNE</strong>: 비선형, 지역 구조 보존</li>
+<li><i class="fas fa-cube"></i> <strong>UMAP</strong>: 빠른 속도, 글로벌 구조</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/eda-tsne.png" style="width:100.0%"></p>
+<p></p><figcaption>t-SNE 차원축소 예시</figcaption><p></p>
+</figure>
+</div>
+<h3 id="머신러닝-연계">머신러닝 연계</h3>
+<ul>
+<li>특성 추출 및 선택</li>
+<li>클러스터링 전처리</li>
+<li>모델 결과 해석</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="비즈니스-대시보드-설계" class="slide level2">
+<h2>비즈니스 대시보드 설계</h2>
+<h3 id="kpi-중심-레이아웃">KPI 중심 레이아웃</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h4 id="상단-요약-영역">상단 요약 영역</h4>
+<ul>
+<li><i class="fas fa-tachometer-alt"></i> <strong>핵심 지표 카드</strong></li>
+<li><i class="fas fa-arrow-up"></i> <strong>전기 대비 증감률</strong></li>
+<li><i class="fas fa-stoplight"></i> <strong>트래픽 라이트 시스템</strong></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h4 id="상세-분석-영역">상세 분석 영역</h4>
+<ul>
+<li><i class="fas fa-chart-line"></i> <strong>트렌드 분석 차트</strong></li>
+<li><i class="fas fa-chart-pie"></i> <strong>구성 비율 분석</strong></li>
+<li><i class="fas fa-filter"></i> <strong>드릴다운 필터링</strong></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="kpi-카드-핵심-지표-한눈에" class="slide level2">
+<h2>KPI 카드: 핵심 지표 한눈에</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="효과적인-kpi-카드-설계">효과적인 KPI 카드 설계</h3>
+<ul>
+<li><i class="fas fa-tachometer-alt"></i> <strong>명확한 수치</strong>: 큰 폰트로 핵심 값 강조</li>
+<li><i class="fas fa-arrow-up"></i> <strong>트렌드 표시</strong>: 전기 대비 증감 시각화</li>
+<li><i class="fas fa-stoplight"></i> <strong>상태 색상</strong>: 성과 수준에 따른 색상 코딩</li>
+</ul>
+<h3 id="구성-요소">구성 요소</h3>
+<ul>
+<li><i class="fas fa-hashtag"></i> <strong>메인 수치</strong>: 현재 핵심 지표 값</li>
+<li><i class="fas fa-percentage"></i> <strong>변화율</strong>: 전기간 대비 증감률</li>
+<li><i class="fas fa-chart-line"></i> <strong>미니 차트</strong>: 최근 트렌드 스파크라인</li>
+<li><i class="fas fa-calendar"></i> <strong>기준 기간</strong>: 데이터 수집 기간 명시</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/dashboard-kpi-cards.png" style="width:100.0%"></p>
+<p></p><figcaption>KPI 카드 예시</figcaption><p></p>
+</figure>
+</div>
+<h3 id="설계-원칙">설계 원칙</h3>
+<ul>
+<li><strong>단순명료</strong>: 5초 내 핵심 정보 파악</li>
+<li><strong>일관성</strong>: 통일된 레이아웃과 색상 체계</li>
+<li><strong>반응형</strong>: 다양한 화면 크기 대응</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="트렌드-분석-차트-시간-흐름-추적" class="slide level2">
+<h2>트렌드 분석 차트: 시간 흐름 추적</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="트렌드-차트의-핵심">트렌드 차트의 핵심</h3>
+<ul>
+<li><i class="fas fa-chart-line"></i> <strong>시계열 데이터</strong>: 일, 주, 월, 년 단위 분석</li>
+<li><i class="fas fa-search-plus"></i> <strong>패턴 인식</strong>: 계절성, 주기성, 이상치 탐지</li>
+<li><i class="fas fa-layer-group"></i> <strong>다중 시리즈</strong>: 여러 지표 동시 비교</li>
+</ul>
+<h3 id="고급-기능">고급 기능</h3>
+<ul>
+<li><i class="fas fa-chart-area"></i> <strong>영역 차트</strong>: 누적 데이터 시각화</li>
+<li><i class="fas fa-bullseye"></i> <strong>목표선</strong>: 타겟 대비 실적 비교</li>
+<li><i class="fas fa-eye"></i> <strong>주석</strong>: 주요 이벤트 마커 표시</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/dashboard-trend-analysis.png" style="width:100.0%"></p>
+<p></p><figcaption>트렌드 분석 차트 예시</figcaption><p></p>
+</figure>
+</div>
+<h3 id="비즈니스-활용">비즈니스 활용</h3>
+<ul>
+<li>매출 성장률 모니터링</li>
+<li>고객 증감 추이 분석</li>
+<li>시장 점유율 변화 추적</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="구성-비율-분석-전체-대비-파트" class="slide level2">
+<h2>구성 비율 분석: 전체 대비 파트</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="효과적인-구성-분석">효과적인 구성 분석</h3>
+<ul>
+<li><i class="fas fa-chart-pie"></i> <strong>파이 차트</strong>: 5개 이하 카테고리</li>
+<li><i class="fas fa-chart-bar"></i> <strong>도넛 차트</strong>: 중앙에 총합 표시</li>
+<li><i class="fas fa-layer-group"></i> <strong>스택 차트</strong>: 시간별 구성 변화</li>
+</ul>
+<h3 id="설계-가이드라인">설계 가이드라인</h3>
+<ul>
+<li><i class="fas fa-palette"></i> <strong>색상 일관성</strong>: 브랜드 컬러 활용</li>
+<li><i class="fas fa-sort-amount-down"></i> <strong>정렬 원칙</strong>: 크기 순 또는 중요도 순</li>
+<li><i class="fas fa-percentage"></i> <strong>레이블링</strong>: 비율과 절대값 함께 표시</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/dashboard-composition-analysis.png" style="width:100.0%"></p>
+<p></p><figcaption>구성 비율 분석 예시</figcaption><p></p>
+</figure>
+</div>
+<h3 id="실무-적용-사례">실무 적용 사례</h3>
+<ul>
+<li>매출 채널별 기여도</li>
+<li>제품 카테고리별 수익 분석</li>
+<li>지역별 성과 비중</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="드릴다운-필터링-상세-분석" class="slide level2">
+<h2>드릴다운 필터링: 상세 분석</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="인터랙티브-필터링">인터랙티브 필터링</h3>
+<ul>
+<li><i class="fas fa-filter"></i> <strong>계층적 탐색</strong>: 전체 → 지역 → 매장</li>
+<li><i class="fas fa-calendar-alt"></i> <strong>시간 필터</strong>: 기간별 동적 조회</li>
+<li><i class="fas fa-tags"></i> <strong>다중 필터</strong>: 여러 조건 조합 분석</li>
+</ul>
+<h3 id="사용자-경험-설계">사용자 경험 설계</h3>
+<ul>
+<li><i class="fas fa-mouse-pointer"></i> <strong>직관적 인터페이스</strong>: 클릭 한 번으로 상세 보기</li>
+<li><i class="fas fa-history"></i> <strong>필터 상태 유지</strong>: 사용자 선택 기억</li>
+<li><i class="fas fa-undo"></i> <strong>쉬운 리셋</strong>: 원래 상태 복귀 기능</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/dashboard-drilldown-filtering.png" style="width:100.0%"></p>
+<p></p><figcaption>드릴다운 필터링 예시</figcaption><p></p>
+</figure>
+</div>
+<h3 id="고급-필터링-기능">고급 필터링 기능</h3>
+<ul>
+<li>동적 필터 연동</li>
+<li>자동 추천 필터</li>
+<li>저장된 필터 프리셋</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="통합-대시보드-종합-관제판" class="slide level2">
+<h2>통합 대시보드: 종합 관제판</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="레이아웃-전략">레이아웃 전략</h3>
+<ul>
+<li><i class="fas fa-th-large"></i> <strong>그리드 시스템</strong>: 일관된 배치와 비율</li>
+<li><i class="fas fa-layer-group"></i> <strong>위계 구조</strong>: 중요도에 따른 크기 조절</li>
+<li><i class="fas fa-mobile-alt"></i> <strong>반응형 디자인</strong>: 모바일부터 대형 화면까지</li>
+</ul>
+<h3 id="통합-설계-원칙">통합 설계 원칙</h3>
+<ul>
+<li><i class="fas fa-eye"></i> <strong>한눈에 파악</strong>: 5-7-2 법칙 적용</li>
+<li><i class="fas fa-link"></i> <strong>연관성 표현</strong>: 관련 지표 그룹핑</li>
+<li><i class="fas fa-sync"></i> <strong>실시간 업데이트</strong>: 데이터 동기화</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/dashboard-integrated-layout.png" style="width:100.0%"></p>
+<p></p><figcaption>통합 대시보드 예시</figcaption><p></p>
+</figure>
+</div>
+<h3 id="성공적인-대시보드-요소">성공적인 대시보드 요소</h3>
+<ul>
+<li>명확한 정보 위계</li>
+<li>일관된 시각적 언어</li>
+<li>사용자 중심 설계</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="인터랙티브-시각화-기법" class="slide level2">
+<h2>인터랙티브 시각화 기법</h2>
+<h3 id="사용자-참여도-높이기">사용자 참여도 높이기</h3>
+</section>
+<section id="호버-툴팁-hover-tooltips" class="slide level2">
+<h2>호버 툴팁 (Hover Tooltips)</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="언제-사용하나요-16">언제 사용하나요?</h3>
+<ul>
+<li><i class="fas fa-mouse-pointer"></i> <strong>상세 정보 제공</strong>: 차트 위 마우스 오버 시</li>
+<li><i class="fas fa-info-circle"></i> <strong>공간 절약</strong>: 레이블 없이 정보 전달</li>
+<li><i class="fas fa-eye"></i> <strong>사용자 경험</strong>: 직관적 정보 탐색</li>
+</ul>
+<h3 id="특징-11">특징</h3>
+<ul>
+<li><i class="fas fa-layer-group"></i> <strong>다층 정보</strong>: 기본 + 상세 데이터</li>
+<li><i class="fas fa-magic"></i> <strong>동적 표시</strong>: 실시간 정보 업데이트</li>
+<li><i class="fas fa-palette"></i> <strong>스타일링</strong>: 브랜딩에 맞는 디자인</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/interactive/hover-tooltip.png" style="width:90.0%"></p>
+<p></p><figcaption>호버 툴팁 예시</figcaption><p></p>
+</figure>
+</div>
+<h3 id="사용-예시-11">사용 예시</h3>
+<ul>
+<li>산점도의 개별 데이터 포인트 정보</li>
+<li>지도의 지역별 통계</li>
+<li>차트의 정확한 수치 확인</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="줌-및-팬-zoom-and-pan" class="slide level2">
+<h2>줌 및 팬 (Zoom and Pan)</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="언제-사용하나요-17">언제 사용하나요?</h3>
+<ul>
+<li><i class="fas fa-search-plus"></i> <strong>대용량 데이터</strong>: 상세 영역 탐색</li>
+<li><i class="fas fa-chart-line"></i> <strong>시계열 데이터</strong>: 특정 기간 집중 분석</li>
+<li><i class="fas fa-map"></i> <strong>지리적 데이터</strong>: 지역별 확대/축소</li>
+</ul>
+<h3 id="특징-12">특징</h3>
+<ul>
+<li><i class="fas fa-expand"></i> <strong>확대/축소</strong>: 관심 영역 포커스</li>
+<li><i class="fas fa-arrows-alt"></i> <strong>이동</strong>: 전체 데이터 영역 탐색</li>
+<li><i class="fas fa-undo"></i> <strong>리셋</strong>: 원래 뷰로 복귀</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/interactive/zoom-pan.png" style="width:90.0%"></p>
+<p></p><figcaption>줌 및 팬 예시</figcaption><p></p>
+</figure>
+</div>
+<h3 id="사용-예시-12">사용 예시</h3>
+<ul>
+<li>주가 차트의 특정 기간 분석</li>
+<li>대용량 산점도 탐색</li>
+<li>지도 데이터의 지역별 확대</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="동적-필터링-dynamic-filtering" class="slide level2">
+<h2>동적 필터링 (Dynamic Filtering)</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="언제-사용하나요-18">언제 사용하나요?</h3>
+<ul>
+<li><i class="fas fa-filter"></i> <strong>실시간 조건 변경</strong>: 즉시 결과 확인</li>
+<li><i class="fas fa-sliders-h"></i> <strong>다중 조건</strong>: 복합 필터링</li>
+<li><i class="fas fa-eye"></i> <strong>탐색적 분석</strong>: 다양한 시나리오 검토</li>
+</ul>
+<h3 id="특징-13">특징</h3>
+<ul>
+<li><i class="fas fa-lightning"></i> <strong>즉시 반응</strong>: 실시간 차트 업데이트</li>
+<li><i class="fas fa-layer-group"></i> <strong>다차원 필터</strong>: 여러 변수 동시 적용</li>
+<li><i class="fas fa-history"></i> <strong>상태 유지</strong>: 필터 설정 기억</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/interactive/dynamic-filtering.png" style="width:90.0%"></p>
+<p></p><figcaption>동적 필터링 예시</figcaption><p></p>
+</figure>
+</div>
+<h3 id="사용-예시-13">사용 예시</h3>
+<ul>
+<li>대시보드의 기간/지역 필터</li>
+<li>제품 카탈로그의 조건별 검색</li>
+<li>고객 세그멘테이션 분석</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="연결된-뷰-linked-views" class="slide level2">
+<h2>연결된 뷰 (Linked Views)</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="언제-사용하나요-19">언제 사용하나요?</h3>
+<ul>
+<li><i class="fas fa-link"></i> <strong>다중 차트 연동</strong>: 한 차트 선택이 다른 차트에 반영</li>
+<li><i class="fas fa-search"></i> <strong>다각도 분석</strong>: 동일 데이터를 여러 관점에서</li>
+<li><i class="fas fa-eye"></i> <strong>패턴 발견</strong>: 차트 간 상관관계 탐색</li>
+</ul>
+<h3 id="특징-14">특징</h3>
+<ul>
+<li><i class="fas fa-sync"></i> <strong>동기화</strong>: 선택/필터링 상태 공유</li>
+<li><i class="fas fa-layer-group"></i> <strong>다차원 뷰</strong>: 동일 데이터셋의 다른 시각화</li>
+<li><i class="fas fa-mouse-pointer"></i> <strong>인터랙션</strong>: 클릭/브러시 선택 연동</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/interactive/linked-views.png" style="width:90.0%"></p>
+<p></p><figcaption>연결된 뷰 예시</figcaption><p></p>
+</figure>
+</div>
+<h3 id="사용-예시-14">사용 예시</h3>
+<ul>
+<li>산점도와 히스토그램 연동</li>
+<li>지도와 막대차트 연계 분석</li>
+<li>시계열과 분포도 동시 탐색</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="애니메이션-animation" class="slide level2">
+<h2>애니메이션 (Animation)</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="언제-사용하나요-20">언제 사용하나요?</h3>
+<ul>
+<li><i class="fas fa-play"></i> <strong>시간적 변화</strong>: 데이터 변화 과정 표현</li>
+<li><i class="fas fa-magic"></i> <strong>스토리텔링</strong>: 데이터 내러티브 구성</li>
+<li><i class="fas fa-eye"></i> <strong>주의 집중</strong>: 중요한 변화 강조</li>
+</ul>
+<h3 id="특징-15">특징</h3>
+<ul>
+<li><i class="fas fa-clock"></i> <strong>시간 차원</strong>: 변화 과정 시각화</li>
+<li><i class="fas fa-play-circle"></i> <strong>재생 제어</strong>: 일시정지, 속도 조절</li>
+<li><i class="fas fa-chart-line"></i> <strong>트렌드 강조</strong>: 패턴 변화 명확화</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/interactive/animation.png" style="width:90.0%"></p>
+<p></p><figcaption>애니메이션 예시</figcaption><p></p>
+</figure>
+</div>
+<h3 id="사용-예시-15">사용 예시</h3>
+<ul>
+<li>버블차트의 시간별 변화 (Gapminder 스타일)</li>
+<li>순위 변화 애니메이션</li>
+<li>지도의 시간별 데이터 변화</li>
+</ul>
+</div>
+</div>
+<h3 id="인터랙티브-기법-조합-활용">인터랙티브 기법 조합 활용</h3>
+<ul>
+<li><i class="fas fa-layer-group"></i> <strong>복합 인터랙션</strong>: 여러 기법 동시 적용</li>
+<li><i class="fas fa-users"></i> <strong>사용자 맞춤</strong>: 탐색 패턴에 따른 개인화</li>
+<li><i class="fas fa-mobile-alt"></i> <strong>반응형 설계</strong>: 디바이스별 최적화</li>
+</ul>
+</section>
+<section id="part-4-시각화-베스트-프랙티스" class="slide level2">
+<h2>Part 4: 시각화 베스트 프랙티스</h2>
+</section>
+<section id="색상-설계-가이드라인" class="slide level2">
+<h2>색상 설계 가이드라인</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h4 id="색상-선택-전략">색상 선택 전략</h4>
+<ul>
+<li><i class="fas fa-palette"></i> <strong>순차적</strong>: 단일 색상 계열</li>
+<li><i class="fas fa-arrows-alt-h"></i> <strong>발산적</strong>: 중앙값 중심 양극화</li>
+<li><i class="fas fa-tags"></i> <strong>범주형</strong>: 구별되는 색상</li>
+</ul>
+<h4 id="접근성-고려사항">접근성 고려사항</h4>
+<ul>
+<li><i class="fas fa-eye"></i> <strong>색각 이상자 친화적</strong> 팔레트</li>
+<li><i class="fas fa-adjust"></i> <strong>충분한 명도 대비</strong></li>
+<li><i class="fas fa-shapes"></i> <strong>색상 외 추가 인코딩</strong> (모양, 패턴)</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/best-practices/color-guidelines.png" style="width:100.0%"></p>
+<p></p><figcaption>색상 설계 가이드라인</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="레이아웃과-타이포그래피" class="slide level2">
+<h2>레이아웃과 타이포그래피</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="시각적-위계-구성">시각적 위계 구성</h3>
+<ul>
+<li><i class="fas fa-list-ol"></i> <strong>정보의 우선순위</strong>에 따른 크기 조정</li>
+<li><i class="fas fa-align-center"></i> <strong>그리드 시스템</strong> 활용한 정렬</li>
+<li><i class="fas fa-expand"></i> <strong>여백의 효과적 활용</strong></li>
+</ul>
+<h3 id="가독성-최적화">가독성 최적화</h3>
+<ul>
+<li><i class="fas fa-font"></i> <strong>폰트 선택</strong>: 산세리프 권장</li>
+<li><i class="fas fa-text-height"></i> <strong>적절한 폰트 크기</strong>: 최소 12px</li>
+<li><i class="fas fa-align-left"></i> <strong>축 레이블 회전</strong> 최소화</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/best-practices/layout-typography.png" style="width:100.0%"></p>
+<p></p><figcaption>레이아웃과 타이포그래피 베스트 프랙티스</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="성능-최적화-전략" class="slide level2">
+<h2>성능 최적화 전략</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="대용량-데이터-처리">대용량 데이터 처리</h3>
+<h4 id="데이터-전처리">데이터 전처리</h4>
+<ul>
+<li><i class="fas fa-compress"></i> <strong>데이터 집계</strong>: 적절한 레벨로 요약</li>
+<li><i class="fas fa-filter"></i> <strong>샘플링</strong>: 통계적 대표성 유지</li>
+<li><i class="fas fa-database"></i> <strong>인덱싱</strong>: 쿼리 성능 향상</li>
+</ul>
+<h4 id="렌더링-최적화">렌더링 최적화</h4>
+<ul>
+<li><i class="fas fa-layer-group"></i> <strong>가상화</strong>: 보이는 영역만 렌더링</li>
+<li><i class="fas fa-hourglass-half"></i> <strong>지연 로딩</strong>: 필요시에만 데이터 요청</li>
+<li><i class="fas fa-memory"></i> <strong>캐싱 전략</strong>: 반복 계산 최소화</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/best-practices/performance-optimization.png" style="width:100.0%"></p>
+<p></p><figcaption>성능 최적화 전략</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="접근성-고려사항-1" class="slide level2">
+<h2>접근성 고려사항</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="다양한-사용자를-위한-설계">다양한 사용자를 위한 설계</h3>
+<ul>
+<li><i class="fas fa-universal-access"></i> <strong>유니버설 디자인</strong>: 모든 사용자가 접근 가능</li>
+<li><i class="fas fa-eye-slash"></i> <strong>시각 장애 고려</strong>: 스크린 리더 호환성</li>
+<li><i class="fas fa-palette"></i> <strong>색상 의존성 제거</strong>: 패턴과 텍스처 활용</li>
+<li><i class="fas fa-keyboard"></i> <strong>키보드 네비게이션</strong>: 마우스 없이도 조작 가능</li>
+</ul>
+<h3 id="국제-접근성-표준">국제 접근성 표준</h3>
+<ul>
+<li><i class="fas fa-check-circle"></i> <strong>WCAG 2.1 준수</strong>: 웹 콘텐츠 접근성 가이드라인</li>
+<li><i class="fas fa-certificate"></i> <strong>508 준수</strong>: 미국 재활법 508조</li>
+<li><i class="fas fa-globe"></i> <strong>다국어 지원</strong>: 국제화 고려</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/best-practices/accessibility.png" style="width:100.0%"></p>
+<p></p><figcaption>접근성 고려사항</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="part-5-현대적-시각화-플랫폼" class="slide level2">
+<h2>Part 5: 현대적 시각화 플랫폼</h2>
+</section>
+<section id="클라우드-기반-솔루션" class="slide level2">
+<h2>클라우드 기반 솔루션</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h4 id="엔터프라이즈-플랫폼">엔터프라이즈 플랫폼</h4>
+<ul>
+<li><i class="fas fa-cloud"></i> <strong>Tableau Cloud</strong></li>
+<li><i class="fas fa-microsoft"></i> <strong>Power BI Service</strong></li>
+<li><i class="fas fa-google"></i> <strong>Google Data Studio</strong></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h4 id="개발자-친화적">개발자 친화적</h4>
+<ul>
+<li><i class="fas fa-code"></i> <strong>Observable</strong>: 노트북 스타일</li>
+<li><i class="fas fa-rocket"></i> <strong>Streamlit Cloud</strong></li>
+<li><i class="fas fa-layer-group"></i> <strong>Plotly Dash</strong></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="ai-기반-시각화의-미래" class="slide level2">
+<h2>AI 기반 시각화의 미래</h2>
+<h3 id="자동화-트렌드">자동화 트렌드</h3>
+<ul>
+<li><i class="fas fa-robot"></i> <strong>AutoML for Visualization</strong>: 최적 차트 자동 추천</li>
+<li><i class="fas fa-comments"></i> <strong>자연어 쿼리</strong>: “작년 매출 트렌드 보여줘”</li>
+<li><i class="fas fa-magic"></i> <strong>지능형 인사이트</strong>: AI가 발견한 패턴 하이라이트</li>
+<li><i class="fas fa-eye"></i> <strong>시각적 이상치 탐지</strong>: 자동 알림 시스템</li>
+<li><i class="fas fa-brain"></i> <strong>예측적 시각화</strong>: 미래 트렌드 예측 그래프</li>
+</ul>
+</section>
+<section id="genbi-생성형-비즈니스-인텔리전스" class="slide level2">
+<h2>GenBI: 생성형 비즈니스 인텔리전스</h2>
+<h3 id="데이터-시각화의-새로운-패러다임">데이터 시각화의 새로운 패러다임</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h4 id="genbi란-무엇인가">GenBI란 무엇인가?</h4>
+<ul>
+<li><i class="fas fa-comments"></i> <strong>자연어 인터페이스</strong>: “작년 매출 트렌드 보여줘”</li>
+<li><i class="fas fa-magic"></i> <strong>자동 차트 생성</strong>: AI가 최적 시각화 방법 선택</li>
+<li><i class="fas fa-brain"></i> <strong>컨텍스트 이해</strong>: 비즈니스 도메인 지식 적용</li>
+<li><i class="fas fa-search"></i> <strong>인사이트 발견</strong>: 패턴과 이상치 자동 탐지</li>
+</ul>
+<h4 id="혁신적-특징-1">혁신적 특징</h4>
+<ul>
+<li><i class="fas fa-rocket"></i> <strong>즉시 생성</strong>: 몇 초 만에 복잡한 분석 차트</li>
+<li><i class="fas fa-users"></i> <strong>민주화</strong>: 비전문가도 고급 분석 가능</li>
+<li><i class="fas fa-sync"></i> <strong>실시간 대화</strong>: 질문과 답변의 연속적 흐름</li>
+<li><i class="fas fa-lightbulb"></i> <strong>예측적 제안</strong>: 다음에 궁금할 질문 추천</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/ai-future/genbi-ecosystem.png" style="width:100.0%"></p>
+<p></p><figcaption>GenBI 생태계</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<h3 id="genbi의-핵심-워크플로우">GenBI의 핵심 워크플로우</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h4 id="자연어-입력-처리">1. 자연어 입력 처리</h4>
+<ul>
+<li><i class="fas fa-microphone"></i> <strong>음성/텍스트</strong>: 다양한 입력 방식 지원</li>
+<li><i class="fas fa-language"></i> <strong>의도 파악</strong>: NLP로 사용자 질문 분석</li>
+<li><i class="fas fa-database"></i> <strong>데이터 매핑</strong>: 적절한 데이터셋 자동 선택</li>
+</ul>
+<h4 id="지능형-시각화-생성">2. 지능형 시각화 생성</h4>
+<ul>
+<li><i class="fas fa-chart-bar"></i> <strong>차트 타입 추론</strong>: 데이터 특성에 맞는 최적 차트</li>
+<li><i class="fas fa-palette"></i> <strong>스타일 자동 적용</strong>: 브랜드 가이드라인 준수</li>
+<li><i class="fas fa-mobile-alt"></i> <strong>반응형 생성</strong>: 다양한 디바이스 최적화</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h4 id="자동-인사이트-제공">3. 자동 인사이트 제공</h4>
+<ul>
+<li><i class="fas fa-search-plus"></i> <strong>패턴 인식</strong>: 숨겨진 트렌드 발굴</li>
+<li><i class="fas fa-exclamation-triangle"></i> <strong>이상치 감지</strong>: 주목할 만한 데이터 포인트</li>
+<li><i class="fas fa-chart-line"></i> <strong>예측 분석</strong>: 미래 전망 자동 생성</li>
+</ul>
+<h4 id="대화형-탐색">4. 대화형 탐색</h4>
+<ul>
+<li><i class="fas fa-comments"></i> <strong>후속 질문</strong>: “왜 6월에 급증했나요?”</li>
+<li><i class="fas fa-filter"></i> <strong>동적 필터링</strong>: 조건 변경 시 즉시 반영</li>
+<li><i class="fas fa-share-alt"></i> <strong>공유 및 협업</strong>: 분석 결과 팀 공유</li>
+</ul>
+</div>
+</div>
+<h3 id="genbi-도구와-플랫폼">GenBI 도구와 플랫폼</h3>
+<ul>
+<li><i class="fas fa-microsoft"></i> <strong>Microsoft Copilot for Power BI</strong>: 자연어로 대시보드 생성</li>
+<li><i class="fas fa-chart-bar"></i> <strong>Tableau Ask Data</strong>: 질문 기반 시각화 생성</li>
+<li><i class="fas fa-google"></i> <strong>Google Analytics Intelligence</strong>: AI 기반 인사이트 자동 발견</li>
+<li><i class="fas fa-robot"></i> <strong>Qlik Associative AI</strong>: 연관성 기반 지능형 추천</li>
+<li><i class="fas fa-aws"></i> <strong>Amazon QuickSight Q</strong>: 자연어 쿼리 비즈니스 인텔리전스</li>
+</ul>
+<h3 id="genbi의-비즈니스-임팩트">GenBI의 비즈니스 임팩트</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h4 id="효율성-혁신">효율성 혁신</h4>
+<ul>
+<li><i class="fas fa-clock"></i> <strong>시간 단축</strong>: 기존 분석 시간의 90% 절약</li>
+<li><i class="fas fa-users"></i> <strong>접근성 향상</strong>: 모든 직원이 데이터 분석가</li>
+<li><i class="fas fa-money-bill-wave"></i> <strong>비용 효율</strong>: 전문가 의존도 감소</li>
+</ul>
+<h4 id="의사결정-품질-향상">의사결정 품질 향상</h4>
+<ul>
+<li><i class="fas fa-eye"></i> <strong>실시간 인사이트</strong>: 즉각적인 비즈니스 판단</li>
+<li><i class="fas fa-target"></i> <strong>정확성 증대</strong>: AI 기반 객관적 분석</li>
+<li><i class="fas fa-chart-line"></i> <strong>예측력 강화</strong>: 미래 트렌드 사전 파악</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h4 id="조직-문화-변화">조직 문화 변화</h4>
+<ul>
+<li><i class="fas fa-graduation-cap"></i> <strong>데이터 리터러시 확산</strong>: 전사적 데이터 활용</li>
+<li><i class="fas fa-handshake"></i> <strong>협업 강화</strong>: 데이터 기반 토론 문화</li>
+<li><i class="fas fa-lightbulb"></i> <strong>혁신 가속</strong>: 빠른 실험과 검증</li>
+</ul>
+<h4 id="미래-전망">미래 전망</h4>
+<ul>
+<li><i class="fas fa-brain"></i> <strong>AGI 통합</strong>: 더욱 정교한 분석 능력</li>
+<li><i class="fas fa-vr-cardboard"></i> <strong>몰입형 시각화</strong>: VR/AR 기반 데이터 탐색</li>
+<li><i class="fas fa-network-wired"></i> <strong>IoT 연계</strong>: 실시간 센서 데이터 시각화</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="실습해보기-데이터-시각화-연습" class="slide level2">
+<h2>실습해보기: 데이터 시각화 연습</h2>
+<h3 id="준비된-연습-데이터셋으로-시각화-실습">준비된 연습 데이터셋으로 시각화 실습</h3>
+<h4 id="제공되는-연습-데이터셋">📊 제공되는 연습 데이터셋</h4>
+<h5 id="매출-데이터-sales_data.csv">1. 매출 데이터 (sales_data.csv)</h5>
+<ul>
+<li><i class="fas fa-calendar-alt"></i> <strong>기간</strong>: 2024년 1월 첫째 주 (7일간)</li>
+<li><i class="fas fa-map-marker-alt"></i> <strong>지역</strong>: 서울, 부산, 대구, 인천, 광주 (5개 지역)</li>
+<li><i class="fas fa-tags"></i> <strong>카테고리</strong>: 전자제품, 의류, 식품 (3개 카테고리)</li>
+<li><i class="fas fa-chart-bar"></i> <strong>변수</strong>: 매출액, 수량, 고객수</li>
+<li><i class="fas fa-lightbulb"></i> <strong>연습 가능</strong>: 막대차트, 선차트, 히트맵, 트렌드 분석</li>
+<li><i class="fas fa-download"></i><a href="./practice_data/sales_data.csv">sales_data.csv 다운로드</a></li>
+</ul>
+<h5 id="고객-데이터-customer_data.csv">2. 고객 데이터 (customer_data.csv)</h5>
+<ul>
+<li><i class="fas fa-users"></i> <strong>고객수</strong>: 25명 샘플 데이터</li>
+<li><i class="fas fa-user"></i> <strong>인구통계</strong>: 연령, 성별, 지역, 직업</li>
+<li><i class="fas fa-won-sign"></i> <strong>구매정보</strong>: 연간소득, 구매횟수, 총구매금액</li>
+<li><i class="fas fa-heart"></i> <strong>선호도</strong>: 선호 카테고리</li>
+<li><i class="fas fa-lightbulb"></i> <strong>연습 가능</strong>: 산점도, 박스플롯, 세그멘테이션 분석</li>
+<li><i class="fas fa-download"></i><a href="./practice_data/customer_data.csv">customer_data.csv 다운로드</a></li>
+</ul>
+<h5 id="웹사이트-트래픽-website_traffic.csv">3. 웹사이트 트래픽 (website_traffic.csv)</h5>
+<ul>
+<li><i class="fas fa-clock"></i> <strong>시간대</strong>: 24시간 시간별 데이터</li>
+<li><i class="fas fa-chart-line"></i> <strong>지표</strong>: 페이지뷰, 사용자수, 세션시간, 이탈률</li>
+<li><i class="fas fa-mobile-alt"></i> <strong>디바이스</strong>: 모바일, 데스크톱, 태블릿</li>
+<li><i class="fas fa-external-link-alt"></i> <strong>유입경로</strong>: 직접방문, 검색엔진, 소셜미디어</li>
+<li><i class="fas fa-lightbulb"></i> <strong>연습 가능</strong>: 시계열 차트, 스택 차트, 다중 축 차트</li>
+<li><i class="fas fa-download"></i><a href="./practice_data/website_traffic.csv">website_traffic.csv 다운로드</a></li>
+</ul>
+<h5 id="설문조사-데이터-survey_data.csv">4. 설문조사 데이터 (survey_data.csv)</h5>
+<ul>
+<li><i class="fas fa-poll"></i> <strong>응답자</strong>: 25명 설문 결과</li>
+<li><i class="fas fa-graduation-cap"></i> <strong>속성</strong>: 연령대, 교육수준, 직업군</li>
+<li><i class="fas fa-star"></i> <strong>평가</strong>: 만족도, 추천의향, 사용빈도 (1-5점 척도)</li>
+<li><i class="fas fa-balance-scale"></i> <strong>중요도</strong>: 가격, 품질, 서비스, 편의성 (1-5점 척도)</li>
+<li><i class="fas fa-lightbulb"></i> <strong>연습 가능</strong>: 레이더 차트, 상관관계 분석, 히트맵</li>
+<li><i class="fas fa-download"></i><a href="./practice_data/survey_data.csv">survey_data.csv 다운로드</a></li>
+</ul>
+<h3 id="단계별-실습-가이드">📝 단계별 실습 가이드</h3>
+<h4 id="step-1-기본-차트-만들기-15분">Step 1: 기본 차트 만들기 (15분)</h4>
+<ul>
+<li><i class="fas fa-download"></i> <strong>데이터 로드</strong>: <code>sales_data.csv</code> 파일 읽기</li>
+<li><i class="fas fa-chart-bar"></i> <strong>막대차트</strong>: 지역별 총 매출액 비교</li>
+<li><i class="fas fa-chart-line"></i> <strong>선차트</strong>: 날짜별 매출 트렌드</li>
+<li><i class="fas fa-chart-pie"></i> <strong>원차트</strong>: 제품 카테고리별 매출 비중</li>
+</ul>
+<h4 id="step-2-중급-시각화-20분">Step 2: 중급 시각화 (20분)</h4>
+<ul>
+<li><i class="fas fa-layer-group"></i> <strong>스택 차트</strong>: 지역별 카테고리 매출 구성</li>
+<li><i class="fas fa-th"></i> <strong>히트맵</strong>: 지역×카테고리 매출 매트릭스</li>
+<li><i class="fas fa-chart-scatter"></i> <strong>산점도</strong>: 수량 vs 매출액 관계 (<code>customer_data.csv</code>)</li>
+</ul>
+<h4 id="step-3-고급-분석-시각화-25분">Step 3: 고급 분석 시각화 (25분)</h4>
+<ul>
+<li><i class="fas fa-chart-area"></i> <strong>시계열 분석</strong>: 시간대별 웹 트래픽 패턴 (<code>website_traffic.csv</code>)</li>
+<li><i class="fas fa-chart-radar"></i> <strong>레이더 차트</strong>: 연령대별 중요도 평가 (<code>survey_data.csv</code>)</li>
+<li><i class="fas fa-filter"></i> <strong>인터랙티브</strong>: 필터링 가능한 대시보드 구성</li>
+</ul>
+<h4 id="step-4-인사이트-도출-20분">Step 4: 인사이트 도출 (20분)</h4>
+<ul>
+<li><i class="fas fa-search"></i> <strong>패턴 발견</strong>: 각 데이터셋에서 흥미로운 패턴 찾기</li>
+<li><i class="fas fa-exclamation-triangle"></i> <strong>이상치 탐지</strong>: 예상과 다른 데이터 포인트 식별</li>
+<li><i class="fas fa-lightbulb"></i> <strong>비즈니스 인사이트</strong>: 데이터에서 실무 시사점 도출</li>
+</ul>
+<h3 id="도구별-실습-방법">🛠️ 도구별 실습 방법</h3>
+<h4 id="excel-사용자">Excel 사용자</h4>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a>1. 파일 → 열기 → CSV 선택</span>
+<span id="cb1-2"><a href="#cb1-2"></a>2. 데이터 → 피벗테이블</span>
+<span id="cb1-3"><a href="#cb1-3"></a>3. 삽입 → 차트 선택</span>
+<span id="cb1-4"><a href="#cb1-4"></a>4. 디자인 탭에서 스타일 조정</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<h4 id="python-사용자">Python 사용자</h4>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb2-4"><a href="#cb2-4"></a></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="co"># 데이터 로드</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'sales_data.csv'</span>)</span>
+<span id="cb2-7"><a href="#cb2-7"></a></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="co"># 기본 시각화</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a>df.groupby(<span class="st">'지역'</span>)[<span class="st">'매출액'</span>].<span class="bu">sum</span>().plot(kind<span class="op">=</span><span class="st">'bar'</span>)</span>
+<span id="cb2-10"><a href="#cb2-10"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<h4 id="r-사용자">R 사용자</h4>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb3-3"><a href="#cb3-3"></a></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="co"># 데이터 로드</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'sales_data.csv'</span>)</span>
+<span id="cb3-6"><a href="#cb3-6"></a></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="co"># ggplot으로 시각화</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb3-9"><a href="#cb3-9"></a>  <span class="fu">group_by</span>(지역) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-10"><a href="#cb3-10"></a>  <span class="fu">summarise</span>(총매출 <span class="ot">=</span> <span class="fu">sum</span>(매출액)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>지역, <span class="at">y=</span>총매출)) <span class="sc">+</span></span>
+<span id="cb3-12"><a href="#cb3-12"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">'identity'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<h4 id="tableau-사용자">Tableau 사용자</h4>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href="#cb4-1"></a>1. 연결 → 텍스트 파일 선택</span>
+<span id="cb4-2"><a href="#cb4-2"></a>2. 측정값을 행/열 선반에 드래그</span>
+<span id="cb4-3"><a href="#cb4-3"></a>3. 마크 카드에서 차트 유형 선택</span>
+<span id="cb4-4"><a href="#cb4-4"></a>4. 색상/크기로 인코딩 추가</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<h4 id="온라인-도구-활용">온라인 도구 활용</h4>
+<ul>
+<li><i class="fas fa-chart-bar"></i> <strong>Google Sheets</strong>: 간단한 차트 생성</li>
+<li><i class="fas fa-globe"></i> <strong>Flourish</strong>: 인터랙티브 시각화</li>
+<li><i class="fas fa-code"></i> <strong>Observable</strong>: D3.js 기반 고급 시각화</li>
+<li><i class="fas fa-rocket"></i> <strong>Plotly Online</strong>: 빠른 프로토타이핑</li>
+</ul>
+<h4 id="실습-팁">💡 실습 팁</h4>
+<ul>
+<li><i class="fas fa-palette"></i> <strong>색상 일관성</strong>: 같은 카테고리는 같은 색상 사용</li>
+<li><i class="fas fa-text-height"></i> <strong>명확한 제목</strong>: 차트 목적을 한눈에 알 수 있게</li>
+<li><i class="fas fa-ruler"></i> <strong>적절한 축 범위</strong>: 데이터 패턴이 잘 보이도록 조정</li>
+<li><i class="fas fa-mobile-alt"></i> <strong>반응형 고려</strong>: 다양한 화면에서 확인</li>
+</ul>
+<h3 id="데이터-파일-위치-및-다운로드">📁 데이터 파일 위치 및 다운로드</h3>
+<p><strong>파일 경로</strong>: <code>practice_data/</code> 폴더</p>
+<ul>
+<li>📄 <code>sales_data.csv</code> - 매출 데이터 (35행 × 6열)</li>
+<li>📄 <code>customer_data.csv</code> - 고객 데이터 (25행 × 10열)<br>
+</li>
+<li>📄 <code>website_traffic.csv</code> - 웹 트래픽 데이터 (24행 × 8열)</li>
+<li>📄 <code>survey_data.csv</code> - 설문조사 데이터 (25행 × 11열)</li>
+</ul>
+<p><strong>총 데이터 포인트</strong>: 109행의 실무형 샘플 데이터 💪</p>
+</section>
+<section id="실무-적용-가이드" class="slide level2">
+<h2>실무 적용 가이드</h2>
+<h3 id="단계별-도입-전략">단계별 도입 전략</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h4 id="초기-단계-quick-wins">초기 단계: Quick Wins</h4>
+<ul>
+<li><i class="fas fa-chart-bar"></i> <strong>기존 보고서</strong> 시각화 개선</li>
+<li><i class="fas fa-template"></i> <strong>표준 템플릿</strong> 개발</li>
+<li><i class="fas fa-graduation-cap"></i> <strong>팀 교육</strong> 및 가이드라인</li>
+</ul>
+<h4 id="확장-단계-scale-up">확장 단계: Scale Up</h4>
+<ul>
+<li><i class="fas fa-globe"></i> <strong>대시보드 플랫폼</strong> 구축</li>
+<li><i class="fas fa-sync"></i> <strong>자동화 파이프라인</strong></li>
+<li><i class="fas fa-users"></i> <strong>셀프 서비스 BI</strong> 환경</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h4 id="성숙-단계-optimization">성숙 단계: Optimization</h4>
+<ul>
+<li><i class="fas fa-robot"></i> <strong>AI 기반 인사이트</strong></li>
+<li><i class="fas fa-mobile-alt"></i> <strong>모바일 최적화</strong></li>
+<li><i class="fas fa-shield-alt"></i> <strong>거버넌스 체계</strong> 확립</li>
+</ul>
+<h4 id="혁신-단계-innovation">혁신 단계: Innovation</h4>
+<ul>
+<li><i class="fas fa-vr-cardboard"></i> <strong>VR/AR 시각화</strong></li>
+<li><i class="fas fa-comments"></i> <strong>대화형 AI 분석가</strong></li>
+<li><i class="fas fa-rocket"></i> <strong>실시간 스트리밍</strong> 대시보드</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="팀-시각화-역량-강화" class="slide level2">
+<h2>팀 시각화 역량 강화</h2>
+<h3 id="조직-문화-개선">조직 문화 개선</h3>
+<ul>
+<li><i class="fas fa-book-open"></i> <strong>시각화 스타일 가이드</strong> 수립</li>
+<li><i class="fas fa-code"></i> <strong>재사용 가능한 템플릿</strong> 라이브러리</li>
+<li><i class="fas fa-graduation-cap"></i> <strong>정기적 스킬업</strong> 워크샵</li>
+<li><i class="fas fa-comments"></i> <strong>피드백과 리뷰</strong> 프로세스</li>
+<li><i class="fas fa-trophy"></i> <strong>우수 사례 공유</strong> 세션</li>
+</ul>
+</section>
+<section id="학습-로드맵과-커리어" class="slide level2">
+<h2>학습 로드맵과 커리어</h2>
+<h3 id="데이터-시각화-전문가-되기">데이터 시각화 전문가 되기</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h4 id="기초-역량-2-3개월">기초 역량 (2-3개월)</h4>
+<ul>
+<li><i class="fas fa-chart-bar"></i> <strong>기본 차트 유형</strong> 마스터</li>
+<li><i class="fas fa-palette"></i> <strong>색상 이론</strong> 및 디자인 원칙</li>
+<li><i class="fas fa-tools"></i> <strong>도구 숙련도</strong> (Python/R/Tableau)</li>
+</ul>
+<h4 id="중급-역량-3-6개월">중급 역량 (3-6개월)</h4>
+<ul>
+<li><i class="fas fa-code"></i> <strong>프로그래밍 기반</strong> 커스터마이징</li>
+<li><i class="fas fa-database"></i> <strong>데이터 파이프라인</strong> 구축</li>
+<li><i class="fas fa-mouse-pointer"></i> <strong>인터랙티브</strong> 대시보드</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h4 id="고급-역량-6개월">고급 역량 (6개월+)</h4>
+<ul>
+<li><i class="fas fa-brain"></i> <strong>통계적 시각화</strong> 및 분석</li>
+<li><i class="fas fa-project-diagram"></i> <strong>대규모 시스템</strong> 아키텍처</li>
+<li><i class="fas fa-users"></i> <strong>조직 시각화</strong> 전략 수립</li>
+</ul>
+<h4 id="전문가-역량-지속적">전문가 역량 (지속적)</h4>
+<ul>
+<li><i class="fas fa-lightbulb"></i> <strong>혁신적 시각화</strong> 연구</li>
+<li><i class="fas fa-chalkboard-teacher"></i> <strong>지식 전파</strong> 및 멘토링</li>
+<li><i class="fas fa-globe"></i> <strong>커뮤니티 리더십</strong></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="마무리-및-핵심-메시지" class="slide level2">
+<h2>마무리 및 핵심 메시지</h2>
+<h3 id="오늘-배운-핵심-내용">오늘 배운 핵심 내용</h3>
+<ul>
+<li><i class="fas fa-eye"></i> <strong>시각화는 데이터 과학의 핵심</strong>: 인사이트 발견과 소통의 도구<br>
+</li>
+<li><i class="fas fa-tools"></i> <strong>도구의 다양성</strong>: 목적에 맞는 도구 선택의 중요성<br>
+</li>
+<li><i class="fas fa-users"></i> <strong>사용자 중심 설계</strong>: 오디언스를 고려한 시각화<br>
+</li>
+<li><i class="fas fa-rocket"></i> <strong>실무 적용</strong>: 단계적 도입과 조직 역량 강화<br>
+</li>
+<li><i class="fas fa-brain"></i> <strong>미래 준비</strong>: AI와 자동화 시대의 시각화</li>
+</ul>
+</section>
+<section id="성공하는-데이터-시각화-전문가의-마음가짐" class="slide level2">
+<h2>성공하는 데이터 시각화 전문가의 마음가짐</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li><i class="fas fa-heart"></i> <strong>사용자 경험</strong> 최우선</li>
+<li><i class="fas fa-search"></i> <strong>지속적 탐구</strong>와 학습</li>
+<li><i class="fas fa-balance-scale"></i> <strong>기술과 예술</strong>의 균형</li>
+<li><i class="fas fa-handshake"></i> <strong>협업과 소통</strong> 중시</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<ul>
+<li><i class="fas fa-lightbulb"></i> <strong>창의적 문제해결</strong></li>
+<li><i class="fas fa-trophy"></i> <strong>품질에 대한 열정</strong></li>
+<li><i class="fas fa-globe"></i> <strong>글로벌 트렌드</strong> 인식</li>
+<li><i class="fas fa-share"></i> <strong>지식 공유</strong>와 기여</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="추가-학습-리소스" class="slide level2">
+<h2>추가 학습 리소스</h2>
+<h3 id="필수-도서-및-자료">필수 도서 및 자료</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h4 id="추천-도서">📚 추천 도서</h4>
+<ul>
+<li><strong>“The Grammar of Graphics”</strong> - Leland Wilkinson</li>
+<li><strong>“Information is Beautiful”</strong> - David McCandless</li>
+<li><strong>“Storytelling with Data”</strong> - Cole Nussbaumer Knaflic</li>
+<li><strong>“Interactive Data Visualization for the Web”</strong> - Scott Murray</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h4 id="온라인-리소스">🌐 온라인 리소스</h4>
+<ul>
+<li><a href="https://observablehq.com/"><strong>Observable</strong></a> - D3.js 학습과 공유</li>
+<li><a href="https://www.data-to-viz.com/"><strong>Data to Viz</strong></a> - 차트 선택 가이드</li>
+<li><a href="https://plotly.com/python/"><strong>Plotly Documentation</strong></a></li>
+<li><a href="https://seaborn.pydata.org/"><strong>Seaborn Gallery</strong></a></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="커뮤니티-및-네트워킹" class="slide level2">
+<h2>커뮤니티 및 네트워킹</h2>
+<ul>
+<li><i class="fab fa-python"></i> <strong>PyData 커뮤니티</strong>: <a href="https://pydata.org/">https://pydata.org/</a></li>
+<li><i class="fab fa-r-project"></i> <strong>한국 R 사용자회</strong>: <a href="https://r2bit.com">https://r2bit.com</a></li>
+<li><i class="fas fa-chart-bar"></i> <strong>Tableau User Groups</strong>: <a href="https://www.tableau.com/support/user-groups">https://www.tableau.com/support/user-groups</a></li>
+<li><i class="fab fa-twitter"></i> <strong>데이터 시각화 트위터</strong>: <a href="https://twitter.com/hashtag/dataviz">#dataviz</a>, <a href="https://twitter.com/hashtag/d3js">#d3js</a></li>
+<li><i class="fab fa-kaggle"></i> <strong>Kaggle</strong>: <a href="https://www.kaggle.com/">https://www.kaggle.com/</a></li>
+</ul>
+</section>
+<section id="q-a-세션" class="slide level2">
+<h2>Q &amp; A 세션</h2>
+<p><strong>자주 묻는 질문들:</strong></p>
+<ul>
+<li><i class="fas fa-question-circle"></i> <strong>Q1</strong>: “어떤 시각화 도구를 선택해야 할까요?”</li>
+<li><i class="fas fa-question-circle"></i> <strong>Q2</strong>: “대용량 데이터 시각화의 성능 이슈 해결법은?”</li>
+<li><i class="fas fa-question-circle"></i> <strong>Q3</strong>: “비개발자도 고급 시각화를 만들 수 있을까요?”</li>
+<li><i class="fas fa-question-circle"></i> <strong>Q4</strong>: “AI 시대에 시각화 전문가의 역할은?”</li>
+<li><i class="fas fa-question-circle"></i> <strong>Q5</strong>: “조직에 시각화 문화를 정착시키는 방법은?”</li>
+</ul>
+<p><strong>💡 언제든지 질문해 주세요!</strong></p>
+</section>
+<section id="감사합니다" class="slide level2 center">
+<h2>감사합니다!</h2>
+</section>
+<section id="section" class="slide level2">
+<h2></h2>
+<h3 id="다음-단계"><i class="fas fa-check-circle"></i> 다음 단계</h3>
+<ul>
+<li><i class="fas fa-code"></i> <strong>실습 프로젝트</strong> 시작하기</li>
+<li><i class="fas fa-users"></i> <strong>커뮤니티</strong> 참여하기</li>
+<li><i class="fas fa-book"></i> <strong>심화 학습</strong> 계속하기</li>
+<li><i class="fas fa-rocket"></i> <strong>조직에 적용</strong>하기</li>
+</ul>
+</section>
+<section id="section-1" class="slide level2">
+<h2></h2>
+<h3 id="마지막-메시지"><i class="fas fa-star"></i> 마지막 메시지</h3>
+<blockquote>
+<p><strong>“데이터 시각화는 단순한 차트 제작이 아닙니다.<br> 데이터에 숨겨진 스토리를 찾아내고,<br> 그 스토리가 세상을 변화시킬 수 있도록<br> 사람들의 마음에 전달하는 것입니다.”</strong></p>
+</blockquote>
+<div class="footer footer-default">
+<p>데이터 시각화 | 홍성학</p>
+</div>
+</section>
+    </div>
+  </div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="data-visualization_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="data-visualization_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="data-visualization_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="data-visualization_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="data-visualization_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="data-visualization_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="data-visualization_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="data-visualization_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="data-visualization_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="data-visualization_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="data-visualization_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'smaller': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const clipboard = new window.ClipboardJS('.code-copy-button', {
+        target: function(trigger) {
+          return trigger.previousElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      });
+      function tippyHover(el, contentFn) {
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto-reveal',
+          placement: 'bottom-start'
+        };
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          return note.innerHTML;
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>
