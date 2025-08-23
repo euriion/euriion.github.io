@@ -25,6 +25,29 @@ mermaid:
 editor: visual
 ---
 
+## 발표자 소개 {.smaller}
+
+::: {.columns}
+::: {.column width="40%"}
+<div style="text-align: center;">
+<i class="fas fa-user-circle" style="font-size: 3em; color: #64b5f6;"></i>
+</div>
+:::
+
+::: {.column width="60%"}
+**홍성학 (Seonghak Hong)**
+
+- <i class="fas fa-briefcase"></i> **현재**: 데이터 엔지니어
+- <i class="fas fa-graduation-cap"></i> **전문 분야**: 
+  - 데이터 파이프라인 설계 및 구축
+  - 클라우드 인프라 아키텍처
+  - 실시간 데이터 처리 시스템
+- <i class="fas fa-tools"></i> **주요 기술**: Python, Apache Spark, AWS, Kafka
+- <i class="fas fa-envelope"></i> seonghak.hong@email.com
+- <i class="fas fa-globe"></i> https://aidenhong.com
+:::
+:::
+
 ## 목차 {.smaller}
 
 ::: {.incremental}
