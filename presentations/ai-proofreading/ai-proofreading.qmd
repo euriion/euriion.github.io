@@ -61,7 +61,7 @@ editor: visual
 <img src="qr-code.png" alt="발표 자료 QR 코드" width="300" style="border: 2px solid #4285F4; border-radius: 10px; margin: 20px 0;">
 
 **발표 자료 링크**  
-[https://aidenhong.com/presentations/ai-proofreading/](https://aidenhong.com/presentations/ai-proofreading/)
+[https://aidenhong.com/presentations/ai-proofreading/ai-proofreading.html](https://aidenhong.com/presentations/ai-proofreading/ai-proofreading.html)
 
 
 ::: {.callout-tip}
