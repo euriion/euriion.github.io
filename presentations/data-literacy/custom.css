@@ -354,4 +354,74 @@
 .reveal .bg-success { background-color: rgba(72, 187, 120, 0.1); }
 .reveal .bg-warning { background-color: rgba(237, 137, 54, 0.1); }
 .reveal .bg-info { background-color: rgba(66, 153, 225, 0.1); }
-.reveal .bg-danger { background-color: rgba(245, 101, 101, 0.1); } 
+.reveal .bg-danger { background-color: rgba(245, 101, 101, 0.1); }
+
+/* 2컬럼 레이아웃에서 코드 블록 폭 제한 - 더 강력한 선택자 사용 */
+.reveal .slide-content .columns .column pre,
+.reveal .columns .column pre {
+  max-width: 100% !important;
+  width: auto !important;
+  overflow-x: auto !important;
+  overflow-wrap: break-word !important;
+  word-wrap: break-word !important;
+  white-space: pre-wrap !important;
+  font-size: 0.75em !important;
+  line-height: 1.2 !important;
+  box-sizing: border-box !important;
+  padding: 0.8em !important;
+  margin: 0.5em 0 !important;
+}
+
+.reveal .slide-content .columns .column code,
+.reveal .columns .column code {
+  max-width: 100% !important;
+  overflow-wrap: break-word !important;
+  word-break: break-all !important;
+  font-size: 0.8em !important;
+  white-space: pre-wrap !important;
+  display: inline-block !important;
+  box-sizing: border-box !important;
+}
+
+/* 매우 좁은 컬럼에서는 더 작은 폰트 사용 */
+.reveal .columns .column[width*="33%"] pre,
+.reveal .columns .column[width*="30%"] pre,
+.reveal .columns .column[width*="45%"] pre {
+  font-size: 0.65em !important;
+  line-height: 1.1 !important;
+  padding: 0.6em !important;
+}
+
+.reveal .columns .column[width*="33%"] code,
+.reveal .columns .column[width*="30%"] code,
+.reveal .columns .column[width*="45%"] code {
+  font-size: 0.7em !important;
+}
+
+/* 코드 블록 내 텍스트가 너무 길 경우 줄바꿈 - 더 강력한 적용 */
+.reveal .slide-content .columns pre code,
+.reveal .columns pre code {
+  display: block !important;
+  padding: 0 !important;
+  background: transparent !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  white-space: pre-wrap !important;
+  word-break: break-all !important;
+  overflow-wrap: break-word !important;
+  box-sizing: border-box !important;
+}
+
+/* 컬럼 자체의 overflow 제어 */
+.reveal .columns .column {
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+}
+
+/* 추가: 테이블 형태의 코드 블록도 제어 */
+.reveal .columns .column pre,
+.reveal .columns .column code {
+  hyphens: auto !important;
+  -webkit-hyphens: auto !important;
+  -ms-hyphens: auto !important;
+} 
