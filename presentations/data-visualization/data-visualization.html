@@ -406,6 +406,23 @@
 
   <p class="date">8/23/25</p>
 </section>
+<section id="발표-자료-접근-안내" class="slide level2 center">
+<h2>발표 자료 접근 안내</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="온라인-슬라이드">온라인 슬라이드</h3>
+<p><strong>링크</strong>: <a href="https://aidenhong.com/presentations/data-visualization/data-visualization.html">https://aidenhong.com/presentations/data-visualization/data-visualization.html</a></p>
+</div><div class="column" style="width:50%;">
+<h3 id="qr-코드">QR 코드</h3>
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="data-visualization_files/figure-revealjs/unnamed-chunk-1-1.png" width="384"></p>
+</div>
+</div>
+<p><strong><i class="fas fa-camera"></i> 스마트폰으로 QR코드를 스캔하세요</strong></p>
+</div>
+</div>
+</section>
 <section id="발표자-소개" class="slide level2">
 <h2>발표자 소개</h2>
 <div class="columns">
@@ -414,13 +431,9 @@
 <ul>
 <li><i class="fas fa-graduation-cap"></i> <strong>데이터 사이언티스트</strong></li>
 </ul>
-<h3 id="전문분야">전문분야</h3>
+<h3 id="분야">분야</h3>
 <ul>
-<li><i class="fas fa-database"></i> 데이터 과학, 빅데이터, 클라우드</li>
-<li><i class="fas fa-database"></i> 데이터 아키텍처 및 전략</li>
-<li><i class="fas fa-database"></i> 데이터 시각화</li>
-<li><i class="fas fa-database"></i> 실시간 데이터 처리</li>
-<li><i class="fas fa-robot"></i> AI</li>
+<li><i class="fas fa-database"></i> 데이터 사이언스, AI</li>
 </ul>
 <h3 id="연락처">연락처</h3>
 <ul>
@@ -2781,6 +2794,44 @@
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

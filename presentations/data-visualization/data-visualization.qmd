@@ -25,6 +25,32 @@ mermaid:
 editor: visual
 ---
 
+## 발표 자료 접근 안내 {.center}
+
+::: {.columns}
+::: {.column width="50%"}
+### 온라인 슬라이드
+
+**링크**: [https://aidenhong.com/presentations/data-visualization/data-visualization.html](https://aidenhong.com/presentations/data-visualization/data-visualization.html)
+
+:::
+
+::: {.column width="50%"}
+### QR 코드
+
+```{r}
+#| echo: false
+#| fig-width: 4
+#| fig-height: 4
+library(qrcode)
+qr_code <- qr_code("https://aidenhong.com/presentations/data-visualization/data-visualization.html")
+plot(qr_code, col = c("white", "black"))
+```
+
+**<i class="fas fa-camera"></i> 스마트폰으로 QR코드를 스캔하세요**
+:::
+:::
+
 ## 발표자 소개
 ::: columns
 ::: {.column width="50%"}
@@ -32,12 +58,8 @@ editor: visual
 ### 홍성학 (Seonghak Hong)
 - <i class="fas fa-graduation-cap"></i> **데이터 사이언티스트**
 
-### 전문분야
-- <i class="fas fa-database"></i> 데이터 과학, 빅데이터, 클라우드
-- <i class="fas fa-database"></i> 데이터 아키텍처 및 전략
-- <i class="fas fa-database"></i> 데이터 시각화
-- <i class="fas fa-database"></i> 실시간 데이터 처리
-- <i class="fas fa-robot"></i> AI
+### 분야
+- <i class="fas fa-database"></i> 데이터 사이언스, AI
 
 ### 연락처
 - <i class="fas fa-envelope"></i> [공익법인 한국R사용자회](https://r2bit.com)
