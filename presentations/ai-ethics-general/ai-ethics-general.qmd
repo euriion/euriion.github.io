@@ -6,35 +6,39 @@ date: "2025-08-24"
 format: 
   revealjs:
     theme: night
-    transition: none
-    background-transition: none
-    highlight-style: github
-    code-fold: true
-    code-tools: true
+    transition: slide
+    background-transition: slide
     slide-number: true
     chalkboard: true
     scrollable: true
     incremental: false
-    footer: "AI Ethics for Everyone | Seonghak Hong"
-    css: custom.css
+    controls: true
+    progress: true
+    hash: true
+    history: true
+    overview: true
     navigation-mode: linear
+    slide-level: 2
+    vertical-slides: false
+    width: 1024
+    height: 768
+    margin: 0.05
+    min-scale: 0.2
+    max-scale: 2.0
+    css: custom.css
     include-in-header:
       - text: |
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-mermaid:
-  theme: dark
 editor: visual
-
 ---
 
-## 발표 자료 접근 <i class="fas fa-link"></i>
+## 발표 자료 접근
 
 ### 온라인 슬라이드에 접속하세요
 
 :::: {.columns}
 ::: {.column width="60%"}
-**QR 코드로 접속** <i class="fas fa-qrcode"></i>
+**QR 코드로 접속** 
 
 <div style="text-align: center; margin: 20px 0;">
 <img src="qr-code.png" alt="QR Code" style="width: 200px; height: 200px;">
@@ -46,7 +50,7 @@ editor: visual
 :::
 
 ::: {.column width="40%"}
-**사용법** <i class="fas fa-star"></i>
+**사용법** 
 
 - 스마트폰으로 QR 스캔
 - 태블릿이나 노트북으로 접속
@@ -54,58 +58,57 @@ editor: visual
 :::
 ::::
 
----
-
-## 오늘의 학습 여정 <i class="fas fa-rocket"></i>
+## 오늘의 학습 여정 
 
 :::: {.columns}
 ::: {.column width="50%"}
-**1부 - AI 이해하기 (60분)**
+**📚 1부 - AI 이해하기 (70분)**
 
 - AI가 무엇인지 알아보기
 - 일상 속 AI 찾아보기
-- AI의 장점과 위험성
+- 생성형 AI와 새로운 캐릭터 서비스
+- AI의 장점과 ⚠️ 위험성
 - 개인정보와 프라이버시
+- 편향과 차별 문제
 
-**휴식 (10분)** <i class="fas fa-coffee"></i>
+**☕ 휴식 (10분)** 
 :::
 
 ::: {.column width="50%"}
-**2부 - AI 윤리 실천하기 (50분)**
+**💼 2부 - AI 윤리 실천하기 (60분)**
 
-- 편향과 차별 문제
 - AI와 일자리 변화
-- 개인이 할 수 있는 실천
-- 미래 사회 준비하기
+- 개인이 실천할 수 있는 AI 윤리
+- 기업과 사용자의 윤리적 책임
+- 정책과 규제 동향
+- 미래 사회 변화와 대비
 
-**마무리 및 Q&A (20분)** <i class="fas fa-comments"></i>
+**❓ 마무리 및 Q&A (20분)** 
 :::
 ::::
 
 > **"AI 시대를 살아가는 지혜로운 사람이 되기 위해"**
 
----
-
-## 강사 소개 <i class="fas fa-user-tie"></i>
+## 강사 소개 
 
 :::: {.columns}
 ::: {.column width="60%"}
 **Seonghak Hong (홍성학)**
 
-- <i class="fas fa-briefcase"></i> 데이터 사이언티스트
-- <i class="fas fa-building"></i> [공익법인 한국R사용자회](https://r2bit.com)
-- <i class="fas fa-envelope"></i> [https://aidenhong.com](https://aidenhong.com)
+- 데이터 사이언티스트
+- [공익법인 한국R사용자회](https://r2bit.com)
+- [https://aidenhong.com](https://aidenhong.com)
 :::
 
 ::: {.column width="40%"}
-**오늘의 약속**
+**📢 오늘의 약속**
 
-<i class="fas fa-check"></i> 어려운 용어 없이 쉽게 설명  
-<i class="fas fa-check"></i> 실생활 예시 중심으로  
-<i class="fas fa-check"></i> 언제든 질문 환영  
-<i class="fas fa-check"></i> 실용적인 팁 제공  
+ ✅ 어려운 용어 없이 쉽게 설명  
+ ✅ 실생활 예시 중심으로  
+ ✅ 언제든 질문 환영  
+ ✅ 실용적인 팁 제공  
 
-**참여 방법**
+**🤝 참여 방법**
 
 - 궁금한 것은 바로 질문하세요!
 - 휴대폰 설정을 함께 체크해봐요
@@ -113,28 +116,24 @@ editor: visual
 :::
 ::::
 
----
-
-## 퀴즈로 시작하기! <i class="fas fa-question-circle"></i>
+## 퀴즈로 시작하기! 
 
 ### 다음 중 AI가 **아닌** 것은?
 
-A. 넷플릭스 영화 추천 <i class="fas fa-tv"></i>  
-B. 네비게이션 최단경로 찾기 <i class="fas fa-map"></i>  
-C. 은행 ATM 기계 <i class="fas fa-credit-card"></i>  
-D. 스마트폰 사진 자동 분류 <i class="fas fa-mobile-alt"></i>  
+A. 넷플릭스 영화 추천   
+B. 네비게이션 최단경로 찾기   
+C. 은행 ATM 기계   
+D. 스마트폰 사진 자동 분류   
 
 **생각해보세요...**
 
----
+## 정답 공개! 
 
-## 정답 공개! <i class="fas fa-star"></i>
-
-### 정답: **C. 은행 ATM 기계** <i class="fas fa-credit-card"></i>
+### 정답: **C. 은행 ATM 기계** 
 
 :::: {.columns}
 ::: {.column width="50%"}
-**AI인 것들:**
+**🧠 AI인 것들:**
 
 - **넷플릭스**: 취향을 학습해서 추천
 - **네비게이션**: 실시간 교통정보로 경로 최적화  
@@ -144,7 +143,7 @@ D. 스마트폰 사진 자동 분류 <i class="fas fa-mobile-alt"></i>
 :::
 
 ::: {.column width="50%"}
-**ATM이 AI가 아닌 이유:**
+**🤖 ATM이 AI가 아닌 이유:**
 
 - 미리 정해진 규칙대로만 작동
 - 학습하지 않음
@@ -154,15 +153,9 @@ D. 스마트폰 사진 자동 분류 <i class="fas fa-mobile-alt"></i>
 :::
 ::::
 
-> **AI의 핵심: 데이터를 보고 스스로 학습하여 판단하는 능력** <i class="fas fa-brain"></i>
+## 1부: AI 이해하기 {.center}
 
----
-
-## 1부: AI 이해하기
-
-# AI가 무엇인지 알아보기 <i class="fas fa-robot"></i>
-
----
+> **"AI를 알아야 지혜롭게 사용할 수 있습니다"**
 
 ## AI를 쉽게 이해하기
 
@@ -170,7 +163,7 @@ D. 스마트폰 사진 자동 분류 <i class="fas fa-mobile-alt"></i>
 
 :::: {.columns}
 ::: {.column width="50%"}
-**전통적인 컴퓨터** <i class="fas fa-laptop"></i>
+**🖥️ 전통적인 컴퓨터** 
 
 - 사람: "1+1을 계산해"
 - 컴퓨터: "2입니다"
@@ -181,7 +174,7 @@ D. 스마트폰 사진 자동 분류 <i class="fas fa-mobile-alt"></i>
 :::
 
 ::: {.column width="50%"}
-**AI 컴퓨터** <i class="fas fa-brain"></i>
+**🧠 AI 컴퓨터** 
 
 - 사람: "고양이 사진 1만장을 보여줌"
 - AI: "아, 이런 게 고양이구나!"
@@ -192,56 +185,43 @@ D. 스마트폰 사진 자동 분류 <i class="fas fa-mobile-alt"></i>
 :::
 ::::
 
-### 쉬운 비유: AI는 매우 빠른 학습을 하는 학생 <i class="fas fa-graduation-cap"></i>
+### <i class="fas fa-graduation-cap"></i> 쉬운 비유: AI는 매우 빠른 학습을 하는 학생 
 
 - 수백만 개의 예시를 보고 패턴을 찾음
 - 새로운 상황에서도 학습한 것을 적용
 - 사람보다 빠르게 학습하지만, 사람처럼 창의적이지는 않음
 
----
+## 일상 속 AI 찾아보기 
 
-## 일상 속 AI 찾아보기 <i class="fas fa-search"></i>
+### <i class="fas fa-clock"></i> 아침부터 저녁까지 AI와 함께
 
-### 아침부터 저녁까지 AI와 함께
+**하루 일과 속 AI 서비스들**
 
-```{mermaid}
-%%{init: {'theme':'dark', 'themeVariables': {'primaryColor': 'transparent', 'primaryTextColor': '#ffffff', 'primaryBorderColor': '#ffffff', 'lineColor': '#ffffff', 'arrowheadColor': '#ffffff', 'background': 'transparent', 'mainBkg': 'transparent', 'secondaryColor': 'transparent', 'tertiaryColor': 'transparent', 'nodeBkg': 'transparent', 'clusterBkg': 'transparent'}}}%%
-flowchart TD
-    A[아침 7시] --> B[스마트폰 알람] --> C[음성 비서 - 날씨 묻기] --> D[출근길 네비게이션] --> E[지하철 앱 - 최단경로] --> F[회사 - 이메일 스팸 필터] --> G[점심 - 배달 앱 추천] --> H[오후 - 온라인 쇼핑 추천] --> I[저녁 - 넷플릭스 시청] --> J[밤 - 은행 보이스피싱 탐지] --> K[취침 - 수면 패턴 분석] --> L[새벽 - 스마트 알람 설정]
-    
-    classDef default fill:#333333,stroke:#ffffff,color:#ffffff
-    classDef subgraphStyle fill:transparent,stroke:transparent,color:transparent
-    class A,B,C,D,E,F,G,H,I,J,K,L default
-    
-    
-    linkStyle 0 stroke:#ffffff
-    linkStyle 1 stroke:#ffffff
-    linkStyle 2 stroke:#ffffff
-    linkStyle 3 stroke:#ffffff
-    linkStyle 4 stroke:#ffffff
-    linkStyle 5 stroke:#ffffff
-    linkStyle 6 stroke:#ffffff
-    linkStyle 7 stroke:#ffffff
-    linkStyle 8 stroke:#ffffff
-    linkStyle 9 stroke:#ffffff
-    linkStyle 10 stroke:#ffffff
-```
+📱 **아침 7시** → 스마트폰 알람  
+🌤️ **아침** → 음성 비서로 날씨 확인  
+🚗 **출근길** → 네비게이션 경로 안내  
+🚇 **지하철** → 앱으로 최단경로 검색  
+💼 **회사** → 이메일 스팸 필터  
+🍕 **점심** → 배달 앱 추천 시스템  
+🛒 **오후** → 온라인 쇼핑 추천  
+📺 **저녁** → 넷플릭스 콘텐츠 추천  
+🏦 **밤** → 은행 보이스피싱 탐지  
+😴 **취침** → 수면 패턴 분석  
+⏰ **새벽** → 스마트 알람 설정
 
-### 하루에 AI를 몇 번 만날까요? <i class="fas fa-surprise"></i>
+### <i class="fas fa-question-circle"></i> 하루에 AI를 몇 번 만날까요? 
 
 **예상보다 훨씬 많습니다!** 
 
 평균적으로 일반인은 하루에 **50-100번** AI 서비스를 이용합니다.
 
----
-
 ## 우리가 모르는 사이에 사용하는 AI들
 
-### 숨어있는 AI 서비스들 <i class="fas fa-ghost"></i>
+### 숨어있는 AI 서비스들 
 
 :::: {.columns}
 ::: {.column width="50%"}
-**스마트폰에서**
+**<i class="fas fa-mobile-alt"></i> 스마트폰에서**
 
 - 사진 촬영 시 자동 보정
 - 키보드 자동완성
@@ -249,7 +229,7 @@ flowchart TD
 - 배터리 사용량 최적화
 - 얼굴 인식 잠금해제
 
-**인터넷에서**
+**<i class="fas fa-globe"></i> 인터넷에서**
 
 - 구글 검색 결과 순서
 - 유튜브 영상 추천
@@ -259,7 +239,7 @@ flowchart TD
 :::
 
 ::: {.column width="50%"}
-**생활 서비스에서**
+**<i class="fas fa-concierge-bell"></i> 생활 서비스에서**
 
 - 은행 대출 심사
 - 보험료 계산
@@ -267,7 +247,7 @@ flowchart TD
 - 택시 요금 및 경로 계산
 - 온라인 쇼핑몰 가격 책정
 
-**공공 서비스에서**
+**<i class="fas fa-building"></i> 공공 서비스에서**
 
 - 교통 신호 최적화
 - 응급실 환자 우선순위
@@ -277,11 +257,9 @@ flowchart TD
 :::
 ::::
 
----
+## 실습: 내 스마트폰의 AI 찾기 
 
-## 실습: 내 스마트폰의 AI 찾기 <i class="fas fa-mobile-alt"></i>
-
-### 함께 해봅시다! (5분)
+### <i class="fas fa-tools"></i> 함께 해봅시다! (5분)
 
 **1단계: 사진 앱 확인**
 
@@ -303,29 +281,27 @@ flowchart TD
 - 설정 → "디지털 웰빙" 또는 "스크린 타임"
 - AI가 분석한 앱 사용 패턴 확인
 
-**발견한 것을 옆 사람과 공유해보세요!** <i class="fas fa-users"></i>
+**발견한 것을 옆 사람과 공유해보세요!** 
 
----
-
-## AI의 놀라운 장점들 <i class="fas fa-star"></i>
+## AI의 놀라운 장점들 
 
 ### 인간보다 뛰어난 영역들
 
 :::: {.columns}
 ::: {.column width="50%"}
-**속도와 정확성** <i class="fas fa-bolt"></i>
+**<i class="fas fa-tachometer-alt"></i> 속도와 정확성** 
 
 - 1초에 수백만 건의 데이터 처리
 - 24시간 지치지 않고 작업
 - 계산 실수가 거의 없음
 
-**패턴 인식** <i class="fas fa-bullseye"></i>
+**<i class="fas fa-sitemap"></i> 패턴 인식** 
 
 - 사람이 놓치는 미세한 패턴 발견
 - 의료 영상에서 암세포 조기 발견
 - 주식 시장의 복잡한 변화 예측
 
-**일관성** <i class="fas fa-ruler"></i>
+**<i class="fas fa-balance-scale"></i> 일관성** 
 
 - 감정에 좌우되지 않는 판단
 - 피로나 스트레스 없이 동일한 품질
@@ -333,19 +309,19 @@ flowchart TD
 :::
 
 ::: {.column width="50%"}
-**접근성** <i class="fas fa-globe"></i>
+**<i class="fas fa-universal-access"></i> 접근성** 
 
 - 언어 번역으로 소통 장벽 해소
 - 시각/청각 장애인을 위한 보조 기술
 - 원격지에도 전문가급 서비스 제공
 
-**비용 절약** <i class="fas fa-dollar-sign"></i>
+**<i class="fas fa-dollar-sign"></i> 비용 절약** 
 
 - 반복 작업의 자동화
 - 인력 비용 절감
 - 효율성 극대화
 
-**24/7 서비스** <i class="fas fa-clock"></i>
+**<i class="fas fa-history"></i> 24/7 서비스** 
 
 - 언제든지 이용 가능
 - 응급상황 즉시 대응
@@ -353,33 +329,31 @@ flowchart TD
 :::
 ::::
 
-### 성공 사례: AI가 구한 생명들 <i class="fas fa-heart"></i>
+### <i class="fas fa-award"></i> 성공 사례: AI가 구한 생명들 
 
 - **의료 AI**: 구글 AI가 당뇨망막병증을 90% 정확도로 조기 진단
 - **재난 예측**: AI가 지진, 홍수를 미리 예측하여 대피 시간 확보
 - **교통 안전**: 자율주행 기술로 교통사고 90% 이상 감소 가능
 
----
-
-## 하지만 AI에도 위험이 있습니다 <i class="fas fa-exclamation-triangle"></i>
+## 하지만 AI에도 위험이 있습니다 
 
 ### 주요 위험 요소들
 
 :::: {.columns}
 ::: {.column width="50%"}
-**편향과 차별** <i class="fas fa-frown"></i>
+**<i class="fas fa-users-slash"></i> 편향과 차별** 
 
 - AI가 과거 데이터를 학습하면서 기존 편견 흡수
 - 성별, 인종, 나이 등으로 불공정 대우
 - 예: 채용 AI가 여성 지원자 차별
 
-**프라이버시 침해** <i class="fas fa-user-secret"></i>
+**<i class="fas fa-user-secret"></i> 프라이버시 침해** 
 
 - 개인정보 무분별 수집 및 분석
 - 동의 없는 얼굴 인식 및 추적
 - 개인의 행동 패턴 예측 및 조작
 
-**경제적 불평등** <i class="fas fa-money-bill-wave"></i>
+**<i class="fas fa-hand-holding-usd"></i> 경제적 불평등** 
 
 - AI 기술 접근 격차 확대
 - 일자리 대체로 인한 실업 증가
@@ -387,19 +361,19 @@ flowchart TD
 :::
 
 ::: {.column width="50%"}
-**오작동과 오남용** <i class="fas fa-bomb"></i>
+**<i class="fas fa-bug"></i> 오작동과 오남용** 
 
 - AI 시스템 해킹 및 악용
 - 딥페이크로 가짜 뉴스 생산
 - 자율무기 시스템의 윤리적 문제
 
-**인간 소외** <i class="fas fa-sad-tear"></i>
+**<i class="fas fa-user-friends"></i> 인간 소외** 
 
 - 과도한 AI 의존으로 인간 능력 퇴화
 - 사회적 소통 능력 감소
 - 감정적 유대감 결여
 
-**예측 불가능성** <i class="fas fa-dice"></i>
+**<i class="fas fa-question"></i> 예측 불가능성** 
 
 - AI 결정 과정을 인간이 이해하기 어려움
 - 예상치 못한 상황에서 이상 행동
@@ -407,15 +381,13 @@ flowchart TD
 :::
 ::::
 
-### 실제 발생한 AI 사고들 <i class="fas fa-surprise"></i>
+### <i class="fas fa-car-crash"></i> 실제 발생한 AI 사고들 
 
 - **마이크로소프트 챗봇 Tay**: 24시간 만에 인종차별적 발언 학습
 - **우버 자율주행차**: 보행자 사망사고 발생 (2018년)
 - **아마존 채용 AI**: 10년간 남성 위주 채용으로 여성 차별
 
----
-
-## 토론 시간: 여러분의 경험 <i class="fas fa-comments"></i>
+## 토론 시간: 여러분의 경험 
 
 ### 질문 1: AI로 인한 불편함이나 걱정 (5분)
 
@@ -433,31 +405,29 @@ flowchart TD
 - AI가 정말 도움이 되었던 순간이 있나요?
 - 앞으로 AI에게 더 바라는 것이 있다면?
 
-**서로의 이야기를 들어보고, 공통점과 차이점을 찾아봅시다!** <i class="fas fa-ear-listen"></i>
+**서로의 이야기를 들어보고, 공통점과 차이점을 찾아봅시다!** 
 
----
+## 많은 분들이 경험하는 공통 사례들 
 
-## 많은 분들이 경험하는 공통 사례들 <i class="fas fa-users"></i>
-
-### AI 불편함의 대표적인 경험들
+### <i class="fas fa-frown"></i> AI 불편함의 대표적인 경험들
 
 :::: {.columns}
 ::: {.column width="50%"}
-**스마트폰의 과도한 정보 수집** <i class="fas fa-mobile-alt"></i>
+**<i class="fas fa-mobile-alt"></i> 스마트폰의 과도한 정보 수집** 
 
 - 대화 내용과 관련된 광고가 갑자기 뜨는 경험
 - 방문한 적 없는 장소가 사진 앨범에 자동 분류
 - 검색하지 않은 상품이 쇼핑 앱에 추천
 - 통화 후 관련 앱이 알림으로 나타남
 
-**AI 추천 시스템의 한계** <i class="fas fa-thumbs-down"></i>
+**<i class="fas fa-thumbs-down"></i> AI 추천 시스템의 한계** 
 
 - 넷플릭스가 계속 같은 장르만 추천
 - 유튜브 알고리즘이 극단적 콘텐츠로 유도
 - 온라인 쇼핑몰이 이미 산 상품을 계속 추천
 - 음악 앱이 취향과 전혀 다른 곡 재생
 
-**일자리에 대한 현실적 걱정** <i class="fas fa-briefcase"></i>
+**<i class="fas fa-briefcase"></i> 일자리에 대한 현실적 걱정** 
 
 - 은행 창구, 마트 계산대 무인화 확산
 - 번역 업무의 AI 대체 가속화
@@ -465,23 +435,23 @@ flowchart TD
 :::
 
 ::: {.column width="50%"}
-**AI가 정말 도움이 된 경험들** <i class="fas fa-heart"></i>
+**<i class="fas fa-smile"></i> AI가 정말 도움이 된 경험들** 
 
-**일상 편의성 향상** <i class="fas fa-star"></i>
+**<i class="fas fa-magic"></i> 일상 편의성 향상** 
 
 - 길 찾기: 실시간 교통정보로 최적 경로 안내
 - 번역: 해외여행 시 실시간 대화 번역
 - 사진 정리: 수천장의 사진이 자동으로 분류
 - 음성인식: 운전 중 핸즈프리 메시지 전송
 
-**의료 및 건강 분야** <i class="fas fa-hospital"></i>
+**<i class="fas fa-heartbeat"></i> 의료 및 건강 분야** 
 
 - 피부암 조기 발견 앱으로 병원 방문 계기
 - 수면 패턴 분석으로 생활 습관 개선
 - 복용 중인 약물의 부작용 경고 알림
 - 응급상황 시 자동 119 신고 기능
 
-**학습 및 업무 효율성** <i class="fas fa-graduation-cap"></i>
+**<i class="fas fa-rocket"></i> 학습 및 업무 효율성** 
 
 - 언어 학습 앱의 개인 맞춤 진도 관리
 - 문서 요약 AI로 업무 시간 단축
@@ -490,34 +460,24 @@ flowchart TD
 :::
 ::::
 
-### 세대별 경험 차이 <i class="fas fa-chart-bar"></i>
+### <i class="fas fa-user-friends"></i> 세대별 경험 차이 
 
 **10-20대**: AI를 자연스럽게 받아들이지만 개인정보 걱정 증가
 **30-40대**: 편리함과 프라이버시 사이에서 갈등
 **50대 이상**: AI 기술 습득의 어려움과 일자리 위협 우려
 
----
-
-## AI 발전의 역사 <i class="fas fa-book"></i>
+## AI 발전의 역사 
 
 ### 간단한 AI 역사 여행
 
-```{mermaid}
-timeline
-    title AI 발전사
-    1950년대 : AI 개념 탄생
-             : 앨런 튜링의 "튜링 테스트"
-    1980년대 : 전문가 시스템
-             : 의료 진단 AI 등장
-    1990년대 : 기계학습 발전
-             : 체스 AI가 세계 챔피언 승리
-    2000년대 : 인터넷과 빅데이터
-             : 구글 검색, 추천 시스템
-    2010년대 : 딥러닝 혁명
-             : 이미지 인식, 음성 인식 발전
-    2020년대 : 생성형 AI 시대
-             : ChatGPT, 이미지 생성 AI
-```
+**AI 발전사 타임라인**
+
+🔬 **1950년대** → AI 개념 탄생, 앨런 튜링의 "튜링 테스트"  
+💡 **1980년대** → 전문가 시스템, 의료 진단 AI 등장  
+♟️ **1990년대** → 기계학습 발전, 체스 AI가 세계 챔피언 승리  
+🌐 **2000년대** → 인터넷과 빅데이터, 구글 검색, 추천 시스템  
+🧠 **2010년대** → 딥러닝 혁명, 이미지 인식, 음성 인식 발전  
+🤖 **2020년대** → 생성형 AI 시대, ChatGPT, 이미지 생성 AI
 
 ### 각 시대별 특징
 
@@ -526,23 +486,21 @@ timeline
 - **2010년대**: 일반인도 스마트폰으로 체험
 - **현재**: 누구나 쉽게 AI와 대화 가능
 
-**변화 속도가 점점 빨라지고 있습니다!** <i class="fas fa-rocket"></i>
+**변화 속도가 점점 빨라지고 있습니다!** 
 
----
-
-## 생성형 AI의 등장 <i class="fas fa-palette"></i>
+## 생성형 AI의 등장 
 
 ### ChatGPT가 바꾼 세상
 
 :::: {.columns}
 ::: {.column width="50%"}
-**2022년 11월 이전** <i class="fas fa-sleep"></i>
+**2022년 11월 이전** 
 
 - AI는 전문가들만의 영역
 - 복잡한 설정과 학습 필요
 - 일반인에게는 먼 이야기
 
-**2022년 11월 이후** <i class="fas fa-rocket"></i>
+**2022년 11월 이후** 
 
 - 누구나 AI와 자연어로 대화
 - 글쓰기, 번역, 코딩까지 도움
@@ -550,7 +508,7 @@ timeline
 :::
 
 ::: {.column width="50%"}
-**ChatGPT의 놀라운 기록** <i class="fas fa-chart-bar"></i>
+**ChatGPT의 놀라운 기록** 
 
 - 출시 2개월 만에 1억 사용자
 - 인류 역사상 가장 빠른 확산
@@ -564,7 +522,7 @@ timeline
 :::
 ::::
 
-### 실습: ChatGPT 체험하기 (10분)
+### <i class="fas fa-laptop-code"></i> 실습: ChatGPT 체험하기 (10분)
 
 **함께 해봅시다!**
 
@@ -575,35 +533,33 @@ timeline
 
 **놀라운 점과 아쉬운 점을 찾아보세요!**
 
----
-
-## AI 캐릭터 대화 서비스의 등장 <i class="fas fa-robot"></i>
+## AI 캐릭터 대화 서비스의 등장 
 
 ### 새로운 형태의 AI 상호작용
 
 :::: {.columns}
 ::: {.column width="50%"}
-**주요 AI 캐릭터 서비스들** <i class="fas fa-users"></i>
+**<i class="fas fa-star"></i> 주요 AI 캐릭터 서비스들** 
 
-<i class="fas fa-heart"></i> **Character.AI**
+ **Character.AI**
 
 - 유명인, 가상 캐릭터와 대화
 - 사용자가 직접 캐릭터 생성 가능
 - 연인, 친구, 멘토 등 다양한 관계 설정
 
-<i class="fas fa-smile"></i> **Replika**
+ **Replika**
 
 - 개인 맞춤형 AI 친구
 - 감정적 교감과 상담 기능
 - 연인 관계 시뮬레이션 포함
 
-<i class="fas fa-cat"></i> **Grok의 애니**
+ **Grok의 애니**
 
 - 일본 애니메이션 스타일 캐릭터
 - 감정 표현과 개성 있는 대화
 - 젊은 층에게 인기
 
-<i class="fas fa-gamepad"></i> **기타 서비스들**
+ **기타 서비스들**
 
 - Chai: 다양한 성격의 AI 봇들
 - Anima: 가상 남자친구/여자친구
@@ -611,27 +567,27 @@ timeline
 :::
 
 ::: {.column width="50%"}
-**서비스 특징과 매력** <i class="fas fa-star"></i>
+**<i class="fas fa-heart"></i> 서비스 특징과 매력** 
 
-<i class="fas fa-clock"></i> **24시간 이용 가능**
+ **24시간 이용 가능**
 
 - 언제든지 대화할 상대가 있음
 - 외로움 해소와 정서적 지원
 - 시간과 장소에 구애받지 않음
 
-<i class="fas fa-user-secret"></i> **판단 없는 대화**
+ **판단 없는 대화**
 
 - 인간관계의 부담 없이 속마음 털어놓기
 - 창피하거나 어려운 주제도 자유롭게
 - 거절당할 걱정 없는 안전한 공간
 
-<i class="fas fa-palette"></i> **개인 맞춤화**
+ **개인 맞춤화**
 
 - 내 취향에 맞는 성격과 외모 설정
 - 대화 스타일과 관심사 조정
 - 이상적인 상대방 만들기 가능
 
-<i class="fas fa-graduation-cap"></i> **학습과 성장**
+ **학습과 성장**
 
 - 언어 연습과 사회성 향상
 - 심리적 상담과 자기계발
@@ -639,7 +595,7 @@ timeline
 :::
 ::::
 
-### 인기 급상승 배경 <i class="fas fa-chart-line"></i>
+### <i class="fas fa-fire"></i> 인기 급상승 배경 
 
 **코로나19 팬데믹의 영향**
 
@@ -653,29 +609,27 @@ timeline
 - 전통적 인간관계보다 편안한 AI 관계 선호
 - 개인주의 문화와 맞춤형 서비스 추구
 
----
-
-## AI 캐릭터 서비스의 심각한 윤리적 문제들 <i class="fas fa-exclamation-triangle"></i>
+## AI 캐릭터 서비스의 심각한 윤리적 문제들 
 
 ### 개인과 사회에 미치는 부정적 영향
 
 :::: {.columns}
 ::: {.column width="50%"}
-**정서적 의존과 중독** <i class="fas fa-heart-broken"></i>
+**<i class="fas fa-brain"></i> 정서적 의존과 중독** 
 
-<i class="fas fa-mobile-alt"></i> **과도한 몰입**
+ **과도한 몰입**
 
 - 하루 몇 시간씩 AI와 대화하는 사용자들
 - 현실 친구보다 AI 캐릭터를 더 신뢰
 - 일상생활 패턴의 심각한 변화
 
-<i class="fas fa-brain"></i> **의존성 형성**
+ **의존성 형성**
 
 - AI 없이는 의사결정을 못하는 상태
 - 실제 인간관계에서 어색함과 불안감
 - 현실 도피 수단으로 악용
 
-<i class="fas fa-sad-tear"></i> **정서 발달 저해**
+ **정서 발달 저해**
 
 - 일방적 관계에 익숙해짐 (AI는 항상 맞춰줌)
 - 갈등 해결 능력 저하
@@ -689,21 +643,21 @@ timeline
 :::
 
 ::: {.column width="50%"}
-**사회적 고립과 관계 악화** <i class="fas fa-users-slash"></i>
+**<i class="fas fa-users-slash"></i> 사회적 고립과 관계 악화** 
 
-<i class="fas fa-home"></i> **사회적 기술 퇴화**
+ **사회적 기술 퇴화**
 
 - 실제 대화 능력 감소
 - 타인의 감정 읽기 어려워짐
 - 예의와 매너 개념 희박해짐
 
-<i class="fas fa-heart"></i> **왜곡된 관계 인식**
+ **왜곡된 관계 인식**
 
 - 이상적인 관계만 추구하게 됨
 - 현실 인간의 단점을 받아들이기 어려움
 - 진정한 사랑과 우정의 의미 왜곡
 
-<i class="fas fa-family"></i> **가족 관계 소원**
+ **가족 관계 소원**
 
 - 가족과의 대화 시간 급감
 - 부모-자녀 간 소통 단절
@@ -717,51 +671,49 @@ timeline
 :::
 ::::
 
-### 서비스 제공업체의 문제점 <i class="fas fa-building"></i>
+### <i class="fas fa-building"></i> 서비스 제공업체의 문제점 
 
-**조작적 설계** <i class="fas fa-cogs"></i>
+**<i class="fas fa-cogs"></i> 조작적 설계** 
 
 - 사용자 중독을 유도하는 알고리즘
 - 더 많은 시간과 돈을 쓰게 만드는 심리 기법
 - 현실로 돌아가기 어렵게 만드는 보상 체계
 
-**개인정보 악용** <i class="fas fa-user-secret"></i>
+**<i class="fas fa-user-secret"></i> 개인정보 악용** 
 
 - 가장 사적인 대화 내용 수집 및 분석
 - 정신건강 상태, 성향, 취약점 파악
 - 상업적 목적으로 개인 심리 데이터 활용
 
-**무책임한 운영** <i class="fas fa-ban"></i>
+**<i class="fas fa-gavel"></i> 무책임한 운영** 
 
 - 미성년자 보호 장치 부족
 - 정신건강 전문가 없이 상담 서비스 제공
 - 중독이나 의존 문제에 대한 대책 미흡
 
----
-
-## AI 캐릭터 서비스 건전하게 이용하기 <i class="fas fa-balance-scale"></i>
+## AI 캐릭터 서비스 건전하게 이용하기 
 
 ### 개인이 지켜야 할 원칙들
 
 :::: {.columns}
 ::: {.column width="50%"}
-**건전한 이용 수칙** <i class="fas fa-clipboard-list"></i>
+**<i class="fas fa-list-check"></i> 건전한 이용 수칙** 
 
-<i class="fas fa-clock"></i> **시간 제한 설정**
+ **시간 제한 설정**
 
 - 하루 30분 이내로 이용 시간 제한
 - 스마트폰 스크린 타임 기능 활용
 - 알람 설정으로 강제 종료 습관화
 - 주말에는 이용하지 않는 날 만들기
 
-<i class="fas fa-reality"></i> **현실과 구분하기**
+ **현실과 구분하기**
 
 - AI는 프로그램일 뿐임을 계속 인식
 - 진짜 감정이 아닌 알고리즘 반응임을 기억
 - 중요한 결정은 AI가 아닌 인간과 상의
 - 현실 관계를 더 우선시하기
 
-<i class="fas fa-shield-alt"></i> **개인정보 보호**
+ **개인정보 보호**
 
 - 실명, 주소, 전화번호 등 절대 공개 금지
 - 너무 사적인 이야기는 피하기
@@ -770,23 +722,23 @@ timeline
 :::
 
 ::: {.column width="50%"}
-**대안적 해결책 찾기** <i class="fas fa-search"></i>
+**<i class="fas fa-lightbulb"></i> 대안적 해결책 찾기** 
 
-<i class="fas fa-users"></i> **실제 인간관계 강화**
+ **실제 인간관계 강화**
 
 - 가족, 친구와 보내는 시간 늘리기
 - 동호회, 동아리 활동 참여
 - 봉사활동이나 취미활동으로 새로운 만남 추구
 - 오프라인 모임에 적극적으로 참여
 
-<i class="fas fa-running"></i> **건전한 스트레스 해소법**
+ **건전한 스트레스 해소법**
 
 - 운동, 산책, 독서 등 다양한 활동
 - 창작 활동: 그림, 음악, 글쓰기
 - 반려동물과 시간 보내기
 - 명상이나 요가로 마음 다스리기
 
-<i class="fas fa-hospital"></i> **전문가 도움 받기**
+ **전문가 도움 받기**
 
 - 외로움이나 우울감이 심할 때 상담사 찾기
 - 정신건강 전문의 상담 고려
@@ -795,62 +747,60 @@ timeline
 :::
 ::::
 
-### 부모와 교육자가 할 일 <i class="fas fa-graduation-cap"></i>
+### <i class="fas fa-user-graduate"></i> 부모와 교육자가 할 일 
 
-**조기 교육과 예방**
+**<i class="fas fa-chalkboard-teacher"></i> 조기 교육과 예방**
 
 - 자녀의 AI 서비스 이용 현황 정기 점검
 - AI와 인간의 차이점에 대한 교육
 - 건전한 디지털 사용 습관 형성 지도
 - 현실 친구 만들기를 적극 지원
 
-**위험 신호 조기 발견**
+**<i class="fas fa-exclamation-triangle"></i> 위험 신호 조기 발견**
 
 - 갑작스러운 성격 변화나 행동 패턴 변화
 - 현실 친구들과의 관계 단절
 - 학업이나 업무 성과 급격한 저하
 - AI 서비스 이용을 제한할 때 극심한 반발
 
-### 사회적 대응 방안 <i class="fas fa-globe"></i>
+### <i class="fas fa-landmark"></i> 사회적 대응 방안 
 
-**정부와 정책**
+**<i class="fas fa-balance-scale"></i> 정부와 정책**
 
 - 미성년자 대상 AI 캐릭터 서비스 규제 강화
 - 중독 예방 프로그램 개발 및 보급
 - 정신건강 지원 서비스 확대
 - AI 윤리 교육을 정규 교육과정에 포함
 
-**기업의 책임**
+**<i class="fas fa-building"></i> 기업의 책임**
 
 - 사용 시간 제한 기능 의무화
 - 중독 위험 경고 메시지 표시
 - 정신건강 전문가와 협력 체계 구축
 - 미성년자 보호를 위한 연령 인증 강화
 
----
+## 개인정보와 프라이버시 
 
-## 개인정보와 프라이버시 <i class="fas fa-lock"></i>
-
-### 데이터는 새로운 석유 <i class="fas fa-oil-can"></i>
+### <i class="fas fa-database"></i> 데이터는 새로운 석유 
 
 :::: {.columns}
 ::: {.column width="50%"}
-**AI가 수집하는 개인정보**
+**<i class="fas fa-file-invoice"></i> AI가 수집하는 개인정보**
 
-<i class="fas fa-mobile-alt"></i> **기본 정보**
+ **기본 정보**
 
 - 이름, 나이, 성별, 직업
 - 전화번호, 이메일, 주소
 - 사진, 음성, 지문
 
-<i class="fas fa-walking"></i> **행동 정보**
+ **행동 정보**
 
 - 웹 검색 기록
 - 앱 사용 패턴
 - 위치 이동 경로
 - 구매 내역
 
-<i class="fas fa-cloud"></i> **분석된 정보**
+ **분석된 정보**
 
 - 성격, 취향, 관심사
 - 정치적 성향
@@ -859,21 +809,21 @@ timeline
 :::
 
 ::: {.column width="50%"}
-**왜 이렇게 많이 수집할까?** <i class="fas fa-question-circle"></i>
+**<i class="fas fa-question-circle"></i> 왜 이렇게 많이 수집할까?** 
 
-<i class="fas fa-dollar-sign"></i> **경제적 가치**
+ **경제적 가치**
 
 - 개인 맞춤 광고로 수익 창출
 - 더 정확한 추천으로 매출 증대
 - 데이터 판매 및 분석 서비스
 
-<i class="fas fa-bullseye"></i> **서비스 개선**
+ **서비스 개선**
 
 - 더 나은 사용자 경험 제공
 - 버그 및 오류 개선
 - 새로운 기능 개발
 
-<i class="fas fa-balance-scale"></i> **하지만 문제는...**
+ **하지만 문제는...**
 
 - 동의 없는 과도한 수집
 - 목적 외 사용
@@ -882,11 +832,9 @@ timeline
 :::
 ::::
 
----
+## 실습: 내 개인정보 점검하기 
 
-## 실습: 내 개인정보 점검하기 <i class="fas fa-search"></i>
-
-### 스마트폰 개인정보 설정 체크 (10분)
+### <i class="fas fa-mobile-alt"></i> 스마트폰 개인정보 설정 체크 (10분)
 
 **1단계: 위치 서비스 확인**
 
@@ -909,31 +857,29 @@ timeline
 - 애플: appleid.apple.com
 - 내 활동 기록을 확인해보세요
 
-**놀라운 발견이 있었나요?** <i class="fas fa-surprise"></i>
+**놀라운 발견이 있었나요?** 
 
----
-
-## 개인정보 보호 실천법 <i class="fas fa-shield-alt"></i>
+## 개인정보 보호 실천법 
 
 ### 지금 당장 할 수 있는 것들
 
 :::: {.columns}
 ::: {.column width="50%"}
-**스마트폰 설정**
+**<i class="fas fa-mobile-alt"></i> 스마트폰 설정**
 
-<i class="fas fa-wrench"></i> **권한 관리**
+ **권한 관리**
 
 - 불필요한 앱 권한 제거
 - 위치 서비스 "항상 허용" → "앱 사용 중에만"
 - 마이크, 카메라 권한 최소화
 
-<i class="fas fa-map-marker-alt"></i> **위치 추적 줄이기**
+ **위치 추적 줄이기**
 
 - 구글 타임라인 끄기
 - 위치 기록 삭제
 - 사진 위치 정보 저장 끄기
 
-<i class="fas fa-bullseye"></i> **광고 추적 방지**
+ **광고 추적 방지**
 
 - 개인화 광고 끄기
 - 앱 추적 투명성 설정
@@ -941,21 +887,21 @@ timeline
 :::
 
 ::: {.column width="50%"}
-**일상 생활에서**
+**<i class="fas fa-walking"></i> 일상 생활에서**
 
-<i class="fas fa-credit-card"></i> **결제 시 주의**
+ **결제 시 주의**
 
 - 멤버십 카드 남발 금지
 - 온라인 쇼핑몰 개인정보 최소 제공
 - 할인 혜택과 개인정보 제공 신중 고려
 
-<i class="fas fa-envelope"></i> **이메일과 메시지**
+ **이메일과 메시지**
 
 - 스팸 메일 신고하기
 - 의심스러운 링크 클릭 금지
 - 개인정보 요구 메시지 무시
 
-<i class="fas fa-globe"></i> **인터넷 사용**
+ **인터넷 사용**
 
 - VPN 사용 고려
 - 시크릿 모드 활용
@@ -963,36 +909,34 @@ timeline
 :::
 ::::
 
-### 개인정보 보호의 핵심 원칙 <i class="fas fa-lightbulb"></i>
+### <i class="fas fa-gavel"></i> 개인정보 보호의 핵심 원칙 
 
 1. **최소 제공**: 꼭 필요한 정보만 제공
 2. **정기 점검**: 3개월마다 설정 확인  
 3. **의심하기**: "이 정보가 왜 필요한가?" 항상 질문
 4. **교육하기**: 가족과 지인들에게도 알려주기
 
----
-
-## 편향과 차별 문제 <i class="fas fa-balance-scale"></i>
+## 편향과 차별 문제 
 
 ### AI도 편견을 가질 수 있습니다
 
 :::: {.columns}
 ::: {.column width="50%"}
-**AI 편향이 생기는 이유** <i class="fas fa-question-circle"></i>
+**<i class="fas fa-brain"></i> AI 편향이 생기는 이유** 
 
-<i class="fas fa-chart-bar"></i> **데이터 문제**
+ **데이터 문제**
 
 - 과거 차별이 담긴 데이터 학습
 - 특정 집단의 데이터 부족
 - 잘못된 레이블링
 
-<i class="fas fa-user-tie"></i> **만든 사람의 편견**
+ **만든 사람의 편견**
 
 - 개발팀의 다양성 부족
 - 무의식적 편견 반영
 - 특정 문화권 중심 사고
 
-<i class="fas fa-bullseye"></i> **목표 설정의 문제**
+ **목표 설정의 문제**
 
 - 효율성만 추구
 - 공정성 고려 부족
@@ -1000,49 +944,47 @@ timeline
 :::
 
 ::: {.column width="50%"}
-**실제 발생한 편향 사례** <i class="fas fa-frown"></i>
+**<i class="fas fa-exclamation-circle"></i> 실제 발생한 편향 사례** 
 
-<i class="fas fa-briefcase"></i> **채용 분야**
+ **채용 분야**
 
 - 아마존 AI: 여성 이력서에 낮은 점수
 - 구글 광고: 남성에게 고연봉 일자리 더 많이 노출
 
-<i class="fas fa-hospital"></i> **의료 분야**
+ **의료 분야**
 
 - 피부암 진단 AI: 백인 피부에만 정확
 - 심장병 예측: 여성 환자 위험 과소평가
 
-<i class="fas fa-shield-alt"></i> **법 집행**
+ **법 집행**
 
 - 얼굴 인식: 흑인과 아시아인 오인식률 높음
 - 범죄 예측: 특정 지역 과도한 경찰력 투입
 
-<i class="fas fa-credit-card"></i> **금융 서비스**
+ **금융 서비스**
 
 - 대출 심사: 여성과 소수민족 불리
 - 보험료 책정: 지역과 직업에 따른 차별
 :::
 ::::
 
----
-
 ## 편향의 심각성 이해하기
 
-### 생각해볼 질문들 <i class="fas fa-cloud"></i>
+### 생각해볼 질문들 
 
-**상황 1: AI 채용 시스템** <i class="fas fa-briefcase"></i>
+**상황 1: AI 채용 시스템** 
 
 > 한 회사의 AI가 "컴퓨터과학 전공자"를 선호하도록 학습되었습니다. 그런데 과거 10년간 이 전공의 90%가 남성이었습니다. 이 AI가 여성 지원자를 차별할 가능성이 있을까요?
 
-**상황 2: 의료 AI 진단** <i class="fas fa-hospital"></i>  
+**상황 2: 의료 AI 진단**   
 
 > 폐암 진단 AI가 주로 남성 흡연자 데이터로 학습되었습니다. 비흡연 여성이 폐암에 걸렸을 때, 이 AI가 정확하게 진단할 수 있을까요?
 
-**상황 3: 대출 심사 AI** <i class="fas fa-dollar-sign"></i>
+**상황 3: 대출 심사 AI** 
 
 > AI가 "안정적인 직업"을 가진 사람에게 대출을 승인하도록 학습되었습니다. 프리랜서나 새로운 형태의 일을 하는 사람들은 어떻게 될까요?
 
-### 여러분의 생각을 들어보고 싶습니다! <i class="fas fa-microphone"></i>
+### <i class="fas fa-comments"></i> 여러분의 생각을 들어보고 싶습니다! 
 
 **5분간 옆 사람과 토론해보세요:**
 
@@ -1050,27 +992,25 @@ timeline
 - 해결 방법이 있을까요?
 - 비슷한 경험이 있나요?
 
----
-
-## AI 편향 해결 방법 <i class="fas fa-wrench"></i>
+## AI 편향 해결 방법 
 
 ### 기술적 해결책
 
 :::: {.columns}
 ::: {.column width="50%"}
-**데이터 개선** <i class="fas fa-chart-bar"></i>
+**<i class="fas fa-database"></i> 데이터 개선** 
 
 - 다양한 집단의 데이터 충분히 수집
 - 편향된 데이터 필터링
 - 공정성 지표 측정 및 모니터링
 
-**알고리즘 개선** <i class="fas fa-cogs"></i>
+**<i class="fas fa-cogs"></i> 알고리즘 개선** 
 
 - 공정성을 고려한 AI 설계
 - 편향 탐지 및 보정 시스템
 - 설명 가능한 AI 개발
 
-**다양한 개발팀** <i class="fas fa-users"></i>
+**<i class="fas fa-users"></i> 다양한 개발팀** 
 
 - 성별, 인종, 연령 다양성 확보
 - 다양한 전공 배경의 전문가 참여
@@ -1078,21 +1018,21 @@ timeline
 :::
 
 ::: {.column width="50%"}
-**사회적 해결책** <i class="fas fa-globe"></i>
+**<i class="fas fa-landmark"></i> 사회적 해결책** 
 
-**법적 규제** <i class="fas fa-balance-scale"></i>
+**법적 규제** 
 
 - AI 차별 금지법 제정
 - 정기적인 공정성 감사 의무화
 - 피해 구제 제도 마련
 
-**교육과 인식 개선** <i class="fas fa-book"></i>
+**교육과 인식 개선** 
 
 - AI 개발자 윤리 교육
 - 일반인 AI 리터러시 향상
 - 미디어의 균형 잡힌 보도
 
-**투명성 확보** <i class="fas fa-search"></i>
+**투명성 확보** 
 
 - AI 결정 과정 공개
 - 사용 데이터 출처 명시
@@ -1100,16 +1040,14 @@ timeline
 :::
 ::::
 
-### 개인이 할 수 있는 것들 <i class="fas fa-dumbbell"></i>
+### <i class="fas fa-user-check"></i> 개인이 할 수 있는 것들 
 
 1. **의식적으로 다양성 추구**: 다양한 관점의 콘텐츠 소비
 2. **AI 결과 비판적 수용**: 맹신하지 말고 검증하기
 3. **차별 경험 시 신고**: 문제 상황 적극 신고
 4. **지속적 학습**: AI 윤리에 대한 관심 유지
 
----
-
-## 휴식 시간 <i class="fas fa-coffee"></i>
+## 휴식 시간 
 
 ### 10분 휴식 후 2부로 이어집니다!
 
@@ -1120,46 +1058,40 @@ timeline
 - 스마트폰 개인정보 설정 더 확인해보기
 - SNS에 오늘 배운 내용 한 줄 공유해보기
 
-**2부 예고** <i class="fas fa-film"></i>
+**2부 예고** 
 
 - AI와 일자리 변화 (현실적 전망)
 - 개인이 할 수 있는 실천 방법
 - 미래 사회 변화와 대비책
 - 정책과 규제 동향
 
-**잠깐! 질문이나 궁금한 점 있으시면 지금 말씀해주세요!** <i class="fas fa-hand-paper"></i>
+## 2부: AI 윤리 실천하기 {.center}
 
----
-
-## 2부: AI 윤리 실천하기
-
-# AI와 일자리 변화 <i class="fas fa-briefcase"></i>
-
----
+> **"지혜로운 선택으로 더 나은 AI 세상을 만들어갑시다"**
 
 ## AI가 바꾸는 일자리 지형도
 
-### 솔직한 현실 이야기 <i class="fas fa-chart-bar"></i>
+### 솔직한 현실 이야기 
 
 :::: {.columns}
 ::: {.column width="50%"}
-**사라질 가능성이 높은 일자리** <i class="fas fa-frown"></i>
+**<i class="fas fa-user-times"></i> 사라질 가능성이 높은 일자리** 
 
-<i class="fas fa-phone"></i> **반복적 업무**
+ **반복적 업무**
 
 - 콜센터 상담원
 - 데이터 입력 직원  
 - 계산원, 은행 창구 직원
 - 단순 제조업 작업자
 
-<i class="fas fa-edit"></i> **패턴이 있는 업무**
+ **패턴이 있는 업무**
 
 - 번역가 (단순 번역)
 - 회계사 (단순 장부 정리)
 - 법무팀 (계약서 검토)
 - 방사선과 의사 (일부)
 
-<i class="fas fa-truck"></i> **운전 관련**
+ **운전 관련**
 
 - 택시, 버스, 트럭 운전사
 - 배달원 (일부)
@@ -1167,23 +1099,23 @@ timeline
 :::
 
 ::: {.column width="50%"}
-**새로 생기거나 중요해질 일자리** <i class="fas fa-smile"></i>
+**<i class="fas fa-user-plus"></i> 새로 생기거나 중요해질 일자리** 
 
-<i class="fas fa-robot"></i> **AI 관련 직업**
+ **AI 관련 직업**
 
 - AI 트레이너 (AI 교육 전문가)
 - AI 윤리 심사관
 - 데이터 분석가
 - 디지털 전환 컨설턴트
 
-<i class="fas fa-heart"></i> **인간적 가치가 중요한 직업**
+ **인간적 가치가 중요한 직업**
 
 - 간병인, 상담사
 - 창의적 디자이너
 - 교육자 (개인 맞춤 지도)
 - 치료사, 코치
 
-<i class="fas fa-wrench"></i> **AI와 협업하는 직업**
+ **AI와 협업하는 직업**
 
 - AI 보조 의사
 - 스마트팜 관리자
@@ -1192,50 +1124,35 @@ timeline
 :::
 ::::
 
-### 중요한 포인트! <i class="fas fa-exclamation-triangle"></i>
+### <i class="fas fa-lightbulb"></i> 중요한 포인트! 
 **"직업이 없어지는 것"이 아니라 "일하는 방식이 바뀌는 것"**
-
----
 
 ## 업종별 AI 영향 분석
 
 ### 구체적으로 어떻게 바뀔까요?
 
-```{mermaid}
-graph TD
-    A[AI 영향도] --> B[고위험군]
-    A --> C[중위험군]  
-    A --> D[저위험군]
-    
-    B --> E[제조업 단순작업]
-    B --> F[금융 창구업무]
-    B --> G[운송업]
-    
-    C --> H[사무직 일반]
-    C --> I[서비스업 일반]
-    C --> J[판매직]
-    
-    D --> K[의료진]
-    D --> L[교육자]
-    D --> M[예술가]
-    D --> N[관리직]
-    
-    linkStyle 0 stroke:#ffffff
-    linkStyle 1 stroke:#ffffff
-    linkStyle 2 stroke:#ffffff
-    linkStyle 3 stroke:#ffffff
-    linkStyle 4 stroke:#ffffff
-    linkStyle 5 stroke:#ffffff
-    linkStyle 6 stroke:#ffffff
-    linkStyle 7 stroke:#ffffff
-    linkStyle 8 stroke:#ffffff
-    linkStyle 9 stroke:#ffffff
-    linkStyle 10 stroke:#ffffff
-    linkStyle 11 stroke:#ffffff
-    linkStyle 12 stroke:#ffffff
-```
+**AI 영향도별 직업 분류**
 
-### 시기별 예상 변화 <i class="fas fa-calendar"></i>
+🔴 **고위험군** (대체 가능성 높음)
+
+- 제조업 단순작업
+- 금융 창구업무  
+- 운송업
+
+🟡 **중위험군** (부분적 영향)
+
+- 사무직 일반
+- 서비스업 일반
+- 판매직
+
+🟢 **저위험군** (대체 어려움)
+
+- 의료진
+- 교육자
+- 예술가
+- 관리직
+
+### <i class="fas fa-calendar-alt"></i> 시기별 예상 변화 
 
 **2025-2027년 (단기)**
 
@@ -1255,15 +1172,13 @@ graph TD
 - AI 변호사가 법무 업무 50% 지원
 - 완전 자동화 상점 확산
 
----
-
-## 실제 사례: 이미 시작된 변화 <i class="fas fa-running"></i>
+## 실제 사례: 이미 시작된 변화 
 
 ### 현재 진행 중인 AI 도입 사례
 
 :::: {.columns}
 ::: {.column width="50%"}
-**은행업계** <i class="fas fa-university"></i>
+**<i class="fas fa-university"></i> 은행업계** 
 
 - **신한은행**: AI 대출 심사관 도입
 - **국민은행**: 챗봇 상담 비율 70% 달성
@@ -1271,7 +1186,7 @@ graph TD
 
 **결과**: 창구 직원 30% 감소, 하지만 디지털 전문가 채용 증가
 
-**의료업계** <i class="fas fa-hospital"></i>
+**<i class="fas fa-hospital"></i> 의료업계** 
 
 - **서울대병원**: AI 영상 진단 도입
 - **삼성서울병원**: 수술 로봇 확대
@@ -1281,7 +1196,7 @@ graph TD
 :::
 
 ::: {.column width="50%"}
-**제조업계** <i class="fas fa-industry"></i>
+**<i class="fas fa-industry"></i> 제조업계** 
 
 - **현대자동차**: 스마트 팩토리 구축
 - **삼성전자**: AI 품질 검사 시스템
@@ -1289,7 +1204,7 @@ graph TD
 
 **결과**: 단순 작업자 감소, 기술자와 관리자 수요 증가
 
-**유통업계** <i class="fas fa-shopping-cart"></i>
+**<i class="fas fa-store"></i> 유통업계** 
 
 - **아마존**: 완전 자동화 창고
 - **이마트**: 무인 매장 확산
@@ -1299,7 +1214,7 @@ graph TD
 :::
 ::::
 
-### 성공적 전환 사례 <i class="fas fa-star"></i>
+### <i class="fas fa-check-circle"></i> 성공적 전환 사례 
 
 **맥도날드 직원 → 디지털 전문가**
 
@@ -1307,29 +1222,27 @@ graph TD
 - 디지털 주문 관리자, 배달 전문가로 전환
 - 더 높은 급여, 새로운 기술 습득
 
----
-
-## 일자리 변화에 대비하는 방법 <i class="fas fa-shield-alt"></i>
+## 일자리 변화에 대비하는 방법 
 
 ### 개인 차원의 대비책
 
 :::: {.columns}
 ::: {.column width="50%"}
-**지금 당장 할 수 있는 것** <i class="fas fa-running"></i>
+**<i class="fas fa-play-circle"></i> 지금 당장 할 수 있는 것** 
 
-<i class="fas fa-book"></i> **평생 학습 습관**
+ **평생 학습 습관**
 
 - 온라인 강의 플랫폼 활용
 - 유튜브 교육 채널 구독
 - 도서관 무료 교육 프로그램 참여
 
-<i class="fas fa-laptop"></i> **디지털 리터러시 향상**
+ **디지털 리터러시 향상**
 
 - 기본적인 컴퓨터 스킬 습득
 - 스마트폰 활용 능력 극대화
 - AI 도구들 미리 체험해보기
 
-<i class="fas fa-handshake"></i> **인간적 스킬 강화**
+ **인간적 스킬 강화**
 
 - 소통 능력 개발
 - 감정 지능 향상
@@ -1338,21 +1251,21 @@ graph TD
 :::
 
 ::: {.column width="50%"}
-**전략적 준비** <i class="fas fa-bullseye"></i>
+**<i class="fas fa-cogs"></i> 전략적 준비** 
 
-<i class="fas fa-sync"></i> **직업 전환 준비**
+ **직업 전환 준비**
 
 - 현재 직업의 AI 영향도 분석
 - 연관 분야의 새로운 기술 학습
 - 네트워킹 활동 강화
 
-<i class="fas fa-briefcase"></i> **경력 다각화**
+ **경력 다각화**
 
 - 부업이나 사이드 프로젝트 시작
 - 다양한 분야 경험 쌓기
 - 포트폴리오 커리어 구축
 
-<i class="fas fa-graduation-cap"></i> **전문성 심화**
+ **전문성 심화**
 
 - 현재 분야의 고급 기술 습득
 - 업계 전문가로 성장
@@ -1360,15 +1273,13 @@ graph TD
 :::
 ::::
 
-### 연령대별 맞춤 전략 <i class="fas fa-users"></i>
+### <i class="fas fa-users-cog"></i> 연령대별 맞춤 전략 
 
 **20-30대**: 새로운 기술 적극 학습, 경력 전환 유연성 활용
 **40-50대**: 경험과 AI 기술 결합, 전문성 기반 차별화
 **50대 이상**: 멘토링, 상담, 관리 역할로 전환, 인생 경험 활용
 
----
-
-## 토론: 내 직업의 미래 <i class="fas fa-crystal-ball"></i>
+## 토론: 내 직업의 미래 
 
 ### 그룹 토론 활동 (15분)
 
@@ -1384,24 +1295,22 @@ graph TD
 - 각자의 직업과 고민을 공유해보세요
 - 서로 조언과 아이디어를 나눠보세요
 
-**토론 가이드 질문들** <i class="fas fa-cloud"></i>
+**토론 가이드 질문들** 
 
 1. AI가 내 업무를 완전히 대체할 수 있을까?
 2. AI와 협업할 수 있는 방법은 무엇일까?
 3. 10년 후 내 직업은 어떻게 변해있을까?
 4. 지금부터 무엇을 준비해야 할까?
 
-**토론 결과를 간단히 발표해주세요!** <i class="fas fa-microphone"></i>
+**토론 결과를 간단히 발표해주세요!** 
 
----
-
-## 직업별 AI 영향도 분석 결과 <i class="fas fa-chart-line"></i>
+## 직업별 AI 영향도 분석 결과 
 
 ### 전문가들이 분석한 직업별 AI 대체 확률
 
 :::: {.columns}
 ::: {.column width="50%"}
-**높은 위험군 (70% 이상)** <i class="fas fa-exclamation-triangle"></i>
+**<i class="fas fa-exclamation-triangle"></i> 높은 위험군 (70% 이상)** 
 
 **금융업**
 
@@ -1429,7 +1338,7 @@ graph TD
 :::
 
 ::: {.column width="50%"}
-**낮은 위험군 (30% 이하)** <i class="fas fa-shield-alt"></i>
+**<i class="fas fa-shield-alt"></i> 낮은 위험군 (30% 이하)** 
 
 **의료업**
 
@@ -1457,7 +1366,7 @@ graph TD
 :::
 ::::
 
-### 각 직업의 대응 전략 <i class="fas fa-lightbulb"></i>
+### <i class="fas fa-map-signs"></i> 각 직업의 대응 전략 
 
 **높은 위험군의 생존 전략**
 
@@ -1471,31 +1380,29 @@ graph TD
 - 인간 고유의 창의성과 감정 지능 강화
 - AI와 협업하는 새로운 업무 방식 개발
 
----
-
-## 정부와 기업의 역할 <i class="fas fa-landmark"></i>
+## 정부와 기업의 역할 
 
 ### 사회적 차원의 대응
 
 :::: {.columns}
 ::: {.column width="50%"}
-**정부의 역할** <i class="fas fa-landmark"></i>
+**<i class="fas fa-balance-scale"></i> 정부의 역할** 
 
-<i class="fas fa-clipboard-list"></i> **정책 제도**
+ **정책 제도**
 
 - 전 국민 AI 교육 프로그램
 - 실업자 재교육 지원 확대
 - 기본소득 제도 검토
 - AI 세금(로봇세) 도입 논의
 
-<i class="fas fa-dollar-sign"></i> **경제적 지원**
+ **경제적 지원**
 
 - 직업 전환 지원금
 - 창업 지원 프로그램  
 - 평생교육 바우처
 - 디지털 격차 해소 사업
 
-<i class="fas fa-balance-scale"></i> **규제와 보호**
+ **규제와 보호**
 
 - 급작스러운 해고 방지
 - AI 도입 시 노동자 보호
@@ -1503,23 +1410,23 @@ graph TD
 :::
 
 ::: {.column width="50%"}
-**기업의 책임** <i class="fas fa-building"></i>
+**<i class="fas fa-building"></i> 기업의 책임** 
 
-<i class="fas fa-users"></i> **직원 재교육**
+ **직원 재교육**
 
 - 사내 AI 교육 프로그램
 - 직무 전환 교육 지원
 - 새로운 역할 창조
 - 점진적 변화 관리
 
-<i class="fas fa-handshake"></i> **상생 방안**
+ **상생 방안**
 
 - AI 도입 시 직원과 충분한 협의
 - 새로운 일자리 창출 노력
 - 인간-AI 협업 모델 개발
 - 사회적 책임 경영
 
-<i class="fas fa-lightbulb"></i> **혁신적 접근**
+ **혁신적 접근**
 
 - AI로 만든 부가가치의 일부를 직원과 공유
 - 더 의미 있는 업무로 직원 역할 재정의
@@ -1527,37 +1434,37 @@ graph TD
 :::
 ::::
 
-### 선진국의 대응 사례 <i class="fas fa-globe"></i>
+### <i class="fas fa-globe-americas"></i> 선진국의 대응 사례 
 
 **핀란드**: 전 국민 AI 기초 교육 무료 제공
 **싱가포르**: 40세 이상 직장인 재교육 프로그램
 **에스토니아**: 디지털 정부로 새로운 일자리 창출
 
----
+## 개인이 실천할 수 있는 AI 윤리 {.center}
 
-## 개인이 실천할 수 있는 AI 윤리 <i class="fas fa-seedling"></i>
+> **"작은 실천이 모여 큰 변화를 만듭니다"**
 
-### 일상에서의 작은 실천들
+## 일상에서의 작은 실천들 
 
 :::: {.columns}
 ::: {.column width="50%"}
-**의식적 사용** <i class="fas fa-brain"></i>
+**<i class="fas fa-brain"></i> 의식적 사용** 
 
-<i class="fas fa-question-circle"></i> **비판적 사고**
+ **비판적 사고**
 
 - AI 추천을 맹신하지 않기
 - 다양한 정보원 확인하기
 - 편향된 결과 의심하기
 - 인간의 최종 판단 중시
 
-<i class="fas fa-search"></i> **투명성 요구**
+ **투명성 요구**
 
 - AI 서비스 이용약관 읽기
 - 개인정보 사용 목적 확인
 - 알고리즘 작동 원리 질문
 - 의사결정 과정 공개 요구
 
-<i class="fas fa-ban"></i> **거부할 권리**
+ **거부할 권리**
 
 - 불필요한 개인정보 제공 거부
 - 동의하지 않는 서비스 이용 중단
@@ -1566,23 +1473,23 @@ graph TD
 :::
 
 ::: {.column width="50%"}
-**능동적 참여** <i class="fas fa-dumbbell"></i>
+**<i class="fas fa-users"></i> 능동적 참여** 
 
-<i class="fas fa-bullhorn"></i> **목소리 내기**
+ **목소리 내기**
 
 - AI 관련 정책에 의견 제시
 - 부당한 AI 사용 신고
 - 소비자 권익 보호 활동 참여
 - SNS에서 올바른 정보 공유  
 
-<i class="fas fa-graduation-cap"></i> **지속적 학습**
+ **지속적 학습**
 
 - AI 윤리 관련 뉴스 관심
 - 온라인 강의 수강
 - 관련 도서 읽기
 - 전문가 강연 참석
 
-<i class="fas fa-users"></i> **공동체 활동**
+ **공동체 활동**
 
 - 가족, 친구들에게 교육하기
 - 지역 사회 AI 윤리 모임 참여
@@ -1591,51 +1498,49 @@ graph TD
 :::
 ::::
 
-### 실천 체크리스트 <i class="fas fa-check"></i>
+### <i class="fas fa-list-check"></i> 실천 체크리스트 
 
 **매일 할 수 있는 것**
 
-- <i class="fas fa-square"></i> AI 추천 결과를 다른 정보와 비교 확인
-- <i class="fas fa-square"></i> 개인정보 설정 한 번씩 점검
-- <i class="fas fa-square"></i> 편향 가능성 염두에 두고 AI 서비스 이용
+-  AI 추천 결과를 다른 정보와 비교 확인
+-  개인정보 설정 한 번씩 점검
+-  편향 가능성 염두에 두고 AI 서비스 이용
 
 **매주 할 수 있는 것**  
 
-- <i class="fas fa-square"></i> AI 윤리 관련 뉴스나 아티클 하나 읽기
-- <i class="fas fa-square"></i> 가족이나 지인과 AI 윤리에 대해 대화하기
-- <i class="fas fa-square"></i> 새로운 AI 서비스 체험 후 윤리적 평가해보기
+-  AI 윤리 관련 뉴스나 아티클 하나 읽기
+-  가족이나 지인과 AI 윤리에 대해 대화하기
+-  새로운 AI 서비스 체험 후 윤리적 평가해보기
 
 **매월 할 수 있는 것**
 
-- <i class="fas fa-square"></i> 개인정보 수집 현황 전면 점검
-- <i class="fas fa-square"></i> AI 윤리 관련 교육이나 세미나 찾아보기
-- <i class="fas fa-square"></i> 윤리적으로 운영되는 기업 제품 의식적 선택
+-  개인정보 수집 현황 전면 점검
+-  AI 윤리 관련 교육이나 세미나 찾아보기
+-  윤리적으로 운영되는 기업 제품 의식적 선택
 
----
-
-## AI 기업의 윤리적 책임 <i class="fas fa-building"></i>
+## AI 기업의 윤리적 책임 
 
 ### AI 서비스를 만드는 회사들의 문제점
 
 :::: {.columns}
 ::: {.column width="50%"}
-**이익 추구 vs 윤리** <i class="fas fa-balance-scale"></i>
+**<i class="fas fa-dollar-sign"></i> 이익 추구 vs 윤리** 
 
-<i class="fas fa-dollar-sign"></i> **수익 우선주의**
+ **수익 우선주의**
 
 - 사용자 데이터로 광고 수익 창출
 - 중독성 있는 알고리즘 설계
 - 개인정보 수집 범위 계속 확대
 - 윤리보다 기술 발전 속도 우선
 
-<i class="fas fa-eye-slash"></i> **불투명한 운영**
+ **불투명한 운영**
 
 - AI 작동 원리 공개 거부
 - 데이터 사용 목적 모호하게 설명
 - 오류 발생 시 책임 회피
 - 정부 규제 피하려는 로비 활동
 
-<i class="fas fa-users-slash"></i> **사용자 무시**
+ **사용자 무시**
 
 - 복잡한 이용약관으로 동의 유도
 - 개인정보 설정을 어렵게 숨김
@@ -1644,23 +1549,23 @@ graph TD
 :::
 
 ::: {.column width="50%"}
-**구체적인 문제 사례들** <i class="fas fa-exclamation-triangle"></i>
+**<i class="fas fa-exclamation-triangle"></i> 구체적인 문제 사례들** 
 
-<i class="fas fa-facebook"></i> **빅테크 기업들**
+ **빅테크 기업들**
 
 - **페이스북**: 케임브리지 애널리티카 개인정보 유출
 - **구글**: 위치 추적 데이터 무단 수집
 - **아마존**: 알렉사 대화 내용 직원들이 청취
 - **틱톡**: 청소년 중독 유도 알고리즘
 
-<i class="fas fa-chart-line"></i> **국내 기업들**
+ **국내 기업들**
 
 - **네이버**: 개인정보 이용 범위 지속 확대
 - **카카오**: 서비스 장애 시 사회 인프라 마비
 - **배달 앱들**: 가맹점 수수료 과도한 인상
 - **핀테크**: 개인 금융정보 과도한 분석
 
-<i class="fas fa-robot"></i> **AI 스타트업**
+ **AI 스타트업**
 
 - 윤리 검토 없이 빠른 출시 우선
 - 소수 개발팀의 편향된 관점 반영
@@ -1669,7 +1574,7 @@ graph TD
 :::
 ::::
 
-### AI 기업이 지켜야 할 윤리 원칙 <i class="fas fa-handshake"></i>
+### <i class="fas fa-gavel"></i> AI 기업이 지켜야 할 윤리 원칙 
 
 1. **투명성**: 알고리즘 작동 원리와 데이터 사용 목적 공개
 2. **책임성**: AI 오류나 피해 발생 시 적극적 해결 노력
@@ -1677,31 +1582,29 @@ graph TD
 4. **개인정보 보호**: 최소한의 데이터만 수집하고 안전하게 관리
 5. **사회적 기여**: 기술을 통한 사회 문제 해결 노력
 
----
-
-## 사용자의 윤리적 책임 <i class="fas fa-user-shield"></i>
+## 사용자의 윤리적 책임 
 
 ### AI 서비스를 사용하는 우리의 문제점
 
 :::: {.columns}
 ::: {.column width="50%"}
-**무관심과 방치** <i class="fas fa-sleep"></i>
+**<i class="fas fa-meh"></i> 무관심과 방치** 
 
-<i class="fas fa-check-square"></i> **무분별한 동의**
+ **무분별한 동의**
 
 - 이용약관을 읽지 않고 동의
 - 개인정보 제공에 무감각
 - 권한 요청을 무조건 허용
 - "무료"라면 무엇이든 사용
 
-<i class="fas fa-share"></i> **무책임한 공유**
+ **무책임한 공유**
 
 - 가짜뉴스나 편향된 정보 퍼뜨리기
 - AI가 생성한 콘텐츠인지 확인 안 함
 - 타인의 개인정보 무단 업로드
 - 혐오 표현이나 차별적 댓글 방치
 
-<i class="fas fa-robot"></i> **AI 맹신**
+ **AI 맹신**
 
 - AI 추천을 절대적으로 신뢰
 - 다른 정보원과 비교하지 않음
@@ -1710,23 +1613,23 @@ graph TD
 :::
 
 ::: {.column width="50%"}
-**구체적인 잘못된 행동들** <i class="fas fa-times-circle"></i>
+**<i class="fas fa-times-circle"></i> 구체적인 잘못된 행동들** 
 
-<i class="fas fa-mobile-alt"></i> **일상에서**
+ **일상에서**
 
 - 스마트폰 위치 서비스 항상 켜둠
 - 의심스러운 앱도 무작정 설치
 - 공공 와이파이에서 개인정보 입력
 - 사진에 위치 정보 포함해서 업로드
 
-<i class="fas fa-comments"></i> **소셜미디어에서**
+ **소셜미디어에서**
 
 - 출처 불분명한 정보 무분별 공유
 - AI 봇인지 확인 없이 대화
 - 개인 사생활을 과도하게 공개
 - 타인을 태그해서 동의 없이 노출
 
-<i class="fas fa-shopping-cart"></i> **온라인 쇼핑에서**
+ **온라인 쇼핑에서**
 
 - 개인정보 요구하는 할인 혜택 남용
 - 리뷰를 확인하지 않고 AI 추천만 믿음
@@ -1735,7 +1638,7 @@ graph TD
 :::
 ::::
 
-### 윤리적 AI 사용자가 되는 방법 <i class="fas fa-star"></i>
+### <i class="fas fa-user-graduate"></i> 윤리적 AI 사용자가 되는 방법 
 
 **개인 차원에서**
 - 개인정보 설정을 정기적으로 점검
@@ -1749,31 +1652,29 @@ graph TD
 - 주변 사람들에게 올바른 사용법 알리기
 - 문제 상황 발견 시 적극적 신고
 
----
-
-## 기업과 사용자의 상생 방안 <i class="fas fa-handshake"></i>
+## 기업과 사용자의 상생 방안 
 
 ### 건전한 AI 생태계 만들기
 
 :::: {.columns}
 ::: {.column width="50%"}
-**기업이 할 일** <i class="fas fa-building"></i>
+**<i class="fas fa-building"></i> 기업이 할 일** 
 
-<i class="fas fa-transparency"></i> **투명한 소통**
+ **투명한 소통**
 
 - 일반인이 이해하기 쉬운 언어로 설명
 - AI 의사결정 과정 단계별 공개
 - 개인정보 사용 현황 정기 보고
 - 사용자 의견 수렴 창구 운영
 
-<i class="fas fa-shield-alt"></i> **사용자 보호**
+ **사용자 보호**
 
 - 개인정보 최소 수집 원칙 준수
 - 사용자가 쉽게 설정 변경할 수 있도록
 - AI 오류 발생 시 즉시 공지 및 보상
 - 취약 계층(아동, 고령자) 특별 보호
 
-<i class="fas fa-graduation-cap"></i> **교육과 지원**
+ **교육과 지원**
 
 - 사용자 대상 AI 리터러시 교육
 - 안전한 사용법 가이드 제공
@@ -1782,23 +1683,23 @@ graph TD
 :::
 
 ::: {.column width="50%"}
-**사용자가 할 일** <i class="fas fa-users"></i>
+**<i class="fas fa-user"></i> 사용자가 할 일** 
 
-<i class="fas fa-brain"></i> **현명한 사용**
+ **현명한 사용**
 
 - 서비스 이용 전 충분한 정보 수집
 - 개인정보 제공 범위 신중하게 결정
 - AI 결과에 대한 비판적 사고 유지
 - 새로운 기술 동향에 지속적 관심
 
-<i class="fas fa-voice"></i> **적극적 참여**
+ **적극적 참여**
 
 - 서비스 개선을 위한 건설적 피드백
 - 윤리적 문제 발견 시 즉시 신고
 - 관련 정책 논의에 시민으로서 참여
 - 주변에 올바른 사용법 전파
 
-<i class="fas fa-balance-scale"></i> **책임감 있는 선택**
+ **책임감 있는 선택**
 
 - 윤리적으로 운영되는 기업 우선 선택
 - 사회적 가치를 중시하는 서비스 지원
@@ -1807,7 +1708,7 @@ graph TD
 :::
 ::::
 
-### 상생의 핵심 원칙 <i class="fas fa-heart"></i>
+### <i class="fas fa-check-circle"></i> 상생의 핵심 원칙 
 
 1. **상호 신뢰**: 기업은 투명하게, 사용자는 합리적으로
 2. **지속적 소통**: 일방적 통보가 아닌 양방향 대화
@@ -1815,54 +1716,39 @@ graph TD
 4. **장기적 관점**: 단기 이익보다 지속 가능한 발전
 5. **사회적 가치**: 기술 발전이 모든 사람에게 도움이 되도록
 
----
+## 미래 사회 변화와 대비 {.center}
 
-## 미래 사회 변화와 대비 <i class="fas fa-rocket"></i>
+> **"변화를 준비하는 것이 미래를 만드는 것입니다"**
 
-### 10년 후 우리가 살 세상
+## 10년 후 우리가 살 세상 
 
-```{mermaid}
-graph TD
-    A[2035년 AI 사회] --> B[일상 생활]
-    A --> C[교육 시스템]
-    A --> D[의료 서비스]
-    A --> E[도시 환경]
-    
-    B --> F[AI 비서가 모든 일정 관리]
-    B --> G[완전 자율주행 교통]
-    B --> H[맞춤형 뉴스와 콘텐츠]
-    
-    C --> I[개인 맞춤 학습 경로]
-    C --> J[AI 교사와 인간 교사 협업]
-    C --> K[실시간 학습 성과 분석]
-    
-    D --> L[예측 의료와 예방]
-    D --> M[로봇 수술의 일반화]
-    D --> N[유전자 맞춤 치료]
-    
-    E --> O[스마트 시티 인프라]
-    E --> P[에너지 자동 최적화]
-    E --> Q[범죄 예측 시스템]
-    
-    linkStyle 0 stroke:#ffffff
-    linkStyle 1 stroke:#ffffff
-    linkStyle 2 stroke:#ffffff
-    linkStyle 3 stroke:#ffffff
-    linkStyle 4 stroke:#ffffff
-    linkStyle 5 stroke:#ffffff
-    linkStyle 6 stroke:#ffffff
-    linkStyle 7 stroke:#ffffff
-    linkStyle 8 stroke:#ffffff
-    linkStyle 9 stroke:#ffffff
-    linkStyle 10 stroke:#ffffff
-    linkStyle 11 stroke:#ffffff
-    linkStyle 12 stroke:#ffffff
-    linkStyle 13 stroke:#ffffff
-    linkStyle 14 stroke:#ffffff
-    linkStyle 15 stroke:#ffffff
-```
+**2035년 AI 사회 전망**
 
-### 긍정적 변화 전망 <i class="fas fa-star"></i>
+🏠 **일상 생활**
+
+- AI 비서가 모든 일정 관리
+- 완전 자율주행 교통
+- 맞춤형 뉴스와 콘텐츠
+
+🎓 **교육 시스템**  
+
+- 개인 맞춤 학습 경로
+- AI 교사와 인간 교사 협업
+- 실시간 학습 성과 분석
+
+🏥 **의료 서비스**
+
+- 예측 의료와 예방
+- 로봇 수술의 일반화  
+- 유전자 맞춤 치료
+
+🏙️ **도시 환경**
+
+- 스마트 시티 인프라
+- 에너지 자동 최적화
+- 범죄 예측 시스템
+
+### <i class="fas fa-plus-circle"></i> 긍정적 변화 전망 
 
 **편리함의 극대화**
 
@@ -1876,31 +1762,29 @@ graph TD
 - 의미 있는 관계에 집중
 - 자아실현 기회 확대
 
----
-
-## 준비해야 할 도전과제 <i class="fas fa-exclamation-triangle"></i>
+## 준비해야 할 도전과제 
 
 ### 해결해야 할 문제들
 
 :::: {.columns}
 ::: {.column width="50%"}
-**기술적 도전** <i class="fas fa-wrench"></i>
+**<i class="fas fa-cogs"></i> 기술적 도전** 
 
-<i class="fas fa-robot"></i> **AI의 한계**
+ **AI의 한계**
 
 - 완벽하지 않은 판단
 - 예상치 못한 오류 발생
 - 해킹과 악용 위험
 - 시스템 의존도 증가
 
-<i class="fas fa-lock"></i> **보안과 프라이버시**
+ **보안과 프라이버시**
 
 - 개인정보 완전 노출 위험
 - 국가간 데이터 경쟁
 - 사이버 공격 증가
 - 감시 사회 우려
 
-<i class="fas fa-bolt"></i> **인프라 부족**
+ **인프라 부족**
 
 - 전력 소비 급증
 - 데이터 센터 포화
@@ -1909,23 +1793,23 @@ graph TD
 :::
 
 ::: {.column width="50%"}
-**사회적 도전** <i class="fas fa-globe"></i>
+**<i class="fas fa-users"></i> 사회적 도전** 
 
-<i class="fas fa-users"></i> **사회 분열**
+ **사회 분열**
 
 - AI 접근성에 따른 계층 분화
 - 세대 간 디지털 격차
 - 지역 간 발전 불균형
 - 글로벌 기술 패권 경쟁
 
-<i class="fas fa-briefcase"></i> **경제 구조 변화**
+ **경제 구조 변화**
 
 - 대량 실업 가능성
 - 새로운 형태의 노동
 - 기본소득 제도 필요성
 - 부의 재분배 문제
 
-<i class="fas fa-brain"></i> **인간성 상실**
+ **인간성 상실**
 
 - AI 의존증 증가
 - 사회적 소통 능력 퇴화
@@ -1934,38 +1818,36 @@ graph TD
 :::
 ::::
 
-### 우리가 준비해야 할 것들 <i class="fas fa-dumbbell"></i>
+### <i class="fas fa-tasks"></i> 우리가 준비해야 할 것들 
 
 1. **적응력**: 변화에 유연하게 대응하는 능력
 2. **비판적 사고**: AI 결과를 검증하는 능력  
 3. **인간적 가치**: AI가 대체할 수 없는 고유 영역
 4. **사회적 연대**: 함께 문제를 해결하는 협력
 
----
-
-## 정책과 규제 동향 <i class="fas fa-balance-scale"></i>
+## 정책과 규제 동향 
 
 ### 전 세계 AI 규제 현황
 
 :::: {.columns}
 ::: {.column width="50%"}
-**유럽연합 (EU)** <i class="fas fa-flag"></i>
+**<i class="fab fa-europa"></i> 유럽연합 (EU)** 
 
-<i class="fas fa-clipboard-list"></i> **AI Act (2024년 시행)**
+ **AI Act (2024년 시행)**
 
 - 위험도에 따른 4단계 분류
 - 고위험 AI에 대한 엄격한 규제
 - 금지 AI 목록 명시
 - 투명성 의무 강화
 
-<i class="fas fa-balance-scale"></i> **주요 내용**
+ **주요 내용**
 
 - 얼굴 인식 기술 제한
 - AI 시스템 품질 관리 의무
 - 사용자 알 권리 보장
 - 고액 벌금 (매출액의 6%)
 
-<i class="fas fa-shield-alt"></i> **GDPR 연계**
+ **GDPR 연계**
 
 - 개인정보 보호 강화
 - 동의 절차 엄격화
@@ -1973,21 +1855,21 @@ graph TD
 :::
 
 ::: {.column width="50%"}
-**미국** <i class="fas fa-flag"></i>
+**<i class="fas fa-flag-usa"></i> 미국** 
 
-<i class="fas fa-landmark"></i> **연방 정부 정책**
+ **연방 정부 정책**
 
 - AI 권리 헌장 발표
 - 정부 기관 AI 사용 가이드라인
 - 국방 분야 AI 투자 확대
 
-<i class="fas fa-building"></i> **주 정부별 규제**
+ **주 정부별 규제**
 
 - 캘리포니아: 얼굴 인식 금지법
 - 뉴욕: 채용 AI 규제
 - 일리노이: 생체정보 보호법
 
-<i class="fas fa-briefcase"></i> **산업 자율 규제**
+ **산업 자율 규제**
 
 - 빅테크 자율 윤리 기준
 - 업계 공동 가이드라인
@@ -1995,7 +1877,7 @@ graph TD
 :::
 ::::
 
-### 한국의 AI 정책 <i class="fas fa-flag"></i>
+### <i class="fas fa-flag"></i> 한국의 AI 정책 
 
 **정부 정책 방향**
 
@@ -2011,31 +1893,29 @@ graph TD
 - 개인정보보호법 강화
 - AI 전문인력 양성
 
----
-
-## 시민으로서 참여하기 <i class="fas fa-vote-yea"></i>
+## 시민으로서 참여하기 
 
 ### 우리의 목소리가 중요합니다
 
 :::: {.columns}
 ::: {.column width="50%"}
-**정책 참여 방법** <i class="fas fa-bullhorn"></i>
+**<i class="fas fa-vote-yea"></i> 정책 참여 방법** 
 
-<i class="fas fa-vote-yea"></i> **제도적 참여**
+ **제도적 참여**
 
 - 공청회, 간담회 참석
 - 정책 의견 수렴에 참여
 - 국민신문고 의견 제출
 - 선거에서 AI 정책 고려
 
-<i class="fas fa-comments"></i> **일상적 참여**
+ **일상적 참여**
 
 - SNS에서 올바른 정보 공유
 - 지역 사회 토론 참여
 - 시민 단체 활동 지원
 - 가족, 친구들과 대화
 
-<i class="fas fa-edit"></i> **개인적 실천**
+ **개인적 실천**
 
 - AI 윤리 관련 뉴스 관심
 - 부당한 AI 서비스 신고
@@ -2044,23 +1924,23 @@ graph TD
 :::
 
 ::: {.column width="50%"}
-**참여할 수 있는 단체들** <i class="fas fa-landmark"></i>
+**<i class="fas fa-handshake"></i> 참여할 수 있는 단체들** 
 
-<i class="fas fa-building"></i> **시민 사회**
+ **시민 사회**
 
 - 소비자시민모임
 - 개인정보보호 시민단체
 - 디지털 권리 단체
 - 노동 단체
 
-<i class="fas fa-graduation-cap"></i> **교육 기관**
+ **교육 기관**
 
 - 시민 대학 AI 강좌
 - 도서관 디지털 교육
 - 평생교육원 프로그램
 - 온라인 시민 교육
 
-<i class="fas fa-globe"></i> **온라인 커뮤니티**
+ **온라인 커뮤니티**
 
 - AI 윤리 토론 포럼
 - 기술 정책 관심 그룹
@@ -2069,7 +1949,7 @@ graph TD
 :::
 ::::
 
-### 실천 프로젝트: 우리 동네 AI 지도 만들기 <i class="fas fa-map"></i>
+### <i class="fas fa-map-marked-alt"></i> 실천 프로젝트: 우리 동네 AI 지도 만들기 
 
 **활동 방법**
 
@@ -2085,22 +1965,20 @@ graph TD
 - 병원의 AI 진단 시스템
 - 학교의 AI 학습 프로그램
 
----
-
-## 마무리: 지혜로운 AI 시민되기 <i class="fas fa-star"></i>
+## 마무리: 지혜로운 AI 시민되기 
 
 ### 오늘 배운 핵심 내용 정리
 
 :::: {.columns}
 ::: {.column width="50%"}
-**AI 이해하기** <i class="fas fa-brain"></i>
+**<i class="fas fa-brain"></i> AI 이해하기** 
 
 - AI는 학습하는 컴퓨터 프로그램
 - 일상에서 이미 널리 사용 중
 - 편리함과 위험이 공존
 - 완벽하지 않으므로 비판적 사용 필요
 
-**개인정보 보호하기** <i class="fas fa-lock"></i>
+**<i class="fas fa-user-shield"></i> 개인정보 보호하기** 
 
 - 내 정보가 어떻게 사용되는지 확인
 - 불필요한 권한 제거하기
@@ -2109,151 +1987,29 @@ graph TD
 :::
 
 ::: {.column width="50%"}
-**편향과 차별 경계하기** <i class="fas fa-balance-scale"></i>
+**<i class="fas fa-balance-scale-left"></i> 편향과 차별 경계하기** 
 
 - AI도 편견을 가질 수 있음
 - 다양성과 공정성 중요
 - 의심스러운 결과는 검증하기
 - 차별 경험 시 적극 신고
 
-**미래 변화 준비하기** <i class="fas fa-rocket"></i>
+**<i class="fas fa-rocket"></i> 미래 변화 준비하기** 
 
 - 평생 학습 습관 기르기
 - 인간만의 고유 가치 개발
-- 사회적 참여 의식 갖기
-- 적응력과 유연성 기르기
+- 사회적 연대와 협력
+- 변화에 대한 긍정적 태도
 :::
 ::::
 
-### 행동 계획 세우기 <i class="fas fa-clipboard-list"></i>
+### <i class="fas fa-question-circle"></i> 질문과 답변
 
-**내일부터 할 수 있는 것 (3가지 선택)**
+**궁금한 점이 있다면 무엇이든 물어보세요!**
 
-- <i class="fas fa-square"></i> 스마트폰 개인정보 설정 점검하기
-- <i class="fas fa-square"></i> AI 추천 결과를 다른 정보와 비교하기  
-- <i class="fas fa-square"></i> 가족에게 오늘 배운 내용 한 가지 공유하기
-- <i class="fas fa-square"></i> AI 윤리 관련 뉴스 하나 읽고 생각해보기
-- <i class="fas fa-square"></i> 내 직업의 AI 영향도 분석해보기
+- 오늘 내용 중 어려웠던 부분
+- 더 알고 싶은 AI 윤리 주제
+- 개인적인 경험과 고민
+- 앞으로의 학습 방향
 
-**이번 달 안에 할 것 (2가지 선택)**
-
-- <i class="fas fa-square"></i> AI 관련 온라인 강의 하나 수강하기
-- <i class="fas fa-square"></i> 지역 AI 윤리 모임 찾아보기
-- <i class="fas fa-square"></i> 윤리적 기업 제품으로 하나 바꿔보기
-- <i class="fas fa-square"></i> AI 정책에 대한 의견 정부에 제출하기
-- <i class="fas fa-square"></i> 친구들과 AI 윤리 토론 시간 갖기
-
----
-
-## 질의응답 및 토론 <i class="fas fa-comments"></i>
-
-### 자유로운 질문 시간 (15분)
-
-**어떤 질문이든 환영합니다!** <i class="fas fa-hand-paper"></i>
-
-- 오늘 내용 중 이해가 어려웠던 부분
-- 개인적인 경험이나 궁금한 점  
-- 실제 상황에서의 적용 방법
-- 더 자세히 알고 싶은 주제
-- 미래에 대한 걱정이나 기대
-
-### 함께 나누고 싶은 이야기 <i class="fas fa-cloud"></i>
-
-**마지막 한 마디씩 들려주세요:**
-
-- 오늘 가장 인상 깊었던 내용
-- 앞으로 실천하고 싶은 것
-- 다른 사람들에게 전하고 싶은 메시지
-
----
-
-## 감사합니다! <i class="fas fa-praying-hands"></i>
-
-### 연락처 및 추가 정보
-
-:::: {.columns}
-::: {.column width="50%"}
-**강사 연락처** <i class="fas fa-phone"></i>
-
-- **조직**: 공익법인 한국R사용자회
-- **웹페이지**: [aidenhong.com](https://aidenhong.com)
-
-**추가 학습 자료** <i class="fas fa-book"></i>
-
-- AI 윤리 관련 도서 목록
-- 온라인 강의 추천
-- 정부 정책 자료 링크
-- 시민 참여 플랫폼 안내
-:::
-
-::: {.column width="50%"}
-**오늘의 약속을 기억해주세요** <i class="fas fa-star"></i>
-
-<i class="fas fa-brain"></i> **지혜로운 사용자**
-
-- AI를 맹신하지 않고 비판적으로 사용
-
-<i class="fas fa-shield-alt"></i> **적극적인 보호자**  
-
-- 내 개인정보와 권리를 스스로 지키기
-
-<i class="fas fa-handshake"></i> **참여하는 시민**
-
-- 더 나은 AI 사회를 만들기 위해 목소리 내기
-
-<i class="fas fa-dumbbell"></i> **평생 학습자**
-
-- 변화하는 기술에 계속 관심 갖고 배우기
-:::
-::::
-
-> **"AI 시대의 주인공은 기술이 아니라 그것을 지혜롭게 사용하는 우리 모두입니다!"** 
-
-**여러분이 바로 AI 윤리의 주인공입니다!** <i class="fas fa-star"></i>
-
----
-
-## 참고 자료 <i class="fas fa-book"></i>
-
-### 추천 도서 (난이도별)
-
-**입문서** <i class="fas fa-book"></i>
-
-- 『AI 윤리』 - 루치아노 플로리디
-- 『알고리즘의 편견』 - 캐시 오닐
-- 『AI 시대 인간의 조건』 - 구본권
-- 『로봇이 인간을 대체할 때』 - 제리 카플란
-
-**심화서** <i class="fas fa-book"></i>
-
-- 『인공지능과 법』 - 김현경
-- 『디지털 전환 시대의 노동』 - 김종진
-- 『플랫폼 사회와 디지털 권리』 - 홍성수
-
-### 유용한 웹사이트 <i class="fas fa-globe"></i>
-
-**정부 기관**
-
-- 개인정보보호위원회: privacy.go.kr
-- 과학기술정보통신부: msit.go.kr
-- 한국지능정보사회진흥원: nia.or.kr
-
-**시민 단체**
-
-- 진보네트워크센터: jinbo.net
-- 소비자시민모임: consumerskorea.org
-- 참여연대: peoplepower21.org
-
-**교육 플랫폼**
-
-- 코세라 AI 윤리 강좌
-- edX MIT AI 과정
-- K-MOOC 인공지능 교육
-
-### 정기적으로 확인하면 좋은 뉴스 <i class="fas fa-newspaper"></i>
-
-- AI 타임스, 테크42, 지디넷코리아
-- MIT Technology Review 한국어판
-- AI 정책 관련 정부 브리핑
-
-**오늘 하루가 여러분의 AI 시민 여정의 시작점이 되기를 바랍니다!** <i class="fas fa-rocket"></i> 
+**함께 이야기하며 마무리하겠습니다.**
