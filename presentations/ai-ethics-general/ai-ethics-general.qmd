@@ -29,6 +29,17 @@ format:
     include-in-header:
       - text: |
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  pdf:
+    pdf-engine: xelatex
+    mainfont: "Malgun Gothic"
+    sansfont: "Malgun Gothic"
+    CJKmainfont: "Malgun Gothic"
+    CJKsansfont: "Malgun Gothic"
+    monofont: "Consolas"
+    fontsize: 12pt
+    geometry: landscape
+    toc: false
+    colorlinks: true
 editor: visual
 ---
 
@@ -38,11 +49,9 @@ editor: visual
 
 :::: {.columns}
 ::: {.column width="60%"}
-**QR 코드로 접속** 
+**QR 코드로 접속**
 
-<div style="text-align: center; margin: 20px 0;">
-<img src="qr-code.png" alt="QR Code" style="width: 200px; height: 200px;">
-</div>
+![](qr-code.png){fig-align='center' width=200px height=200px}
 
 **링크 주소**
 
@@ -2664,11 +2673,12 @@ D. 스마트폰 사진 자동 분류
 
 **함께 이야기하며 마무리하겠습니다.**
 
-### <i class="fas fa-heart"></i> 마지막 당부
+### <i class="fas fa-heart"></i> 마지막 말씀
 
 AI 기술은 인류에게 엄청난 기회와 도전을 동시에 제공합니다. 중요한 것은 우리가 이 기술을 어떻게 활용하고, 어떤 사회를 만들어 갈 것인가입니다. 
 
 오늘 배운 내용을 바탕으로:
+
 - **의식적이고 비판적인 AI 사용자**가 되어주세요
 - **개인정보와 권리를 스스로 보호**해주세요  
 - **사회적 약자와 소외계층에 대한 관심**을 가져주세요

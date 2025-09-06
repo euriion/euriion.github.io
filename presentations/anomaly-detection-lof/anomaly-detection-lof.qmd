@@ -20,6 +20,16 @@ format:
     include-in-header:
       - text: |
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  pdf:
+    pdf-engine: xelatex
+    mainfont: "Malgun Gothic"
+    sansfont: "Malgun Gothic"
+    CJKmainfont: "Malgun Gothic"
+    CJKsansfont: "Malgun Gothic"
+    monofont: "Consolas"
+    fontsize: 12pt
+    toc: false
+    colorlinks: true
 mermaid:
   theme: dark
 editor: visual

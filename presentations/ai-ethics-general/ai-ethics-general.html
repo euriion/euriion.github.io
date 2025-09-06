@@ -5,11 +5,12 @@
 <script src="ai-ethics-general_files/libs/quarto-html/popper.min.js"></script>
 <script src="ai-ethics-general_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="ai-ethics-general_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="ai-ethics-general_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="ai-ethics-general_files/libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.2.335">
+<link href="ai-ethics-general_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="ai-ethics-general_files/libs/quarto-html/quarto-syntax-highlighting-dark-6f6599830d51be977da3b6af758f8eff.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.23">
 
   <meta name="author" content="Seonghak Hong">
+  <meta name="dcterms.date" content="2025-08-24">
   <title>AI 윤리</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -25,11 +26,11 @@
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
       width: 0.8em;
-      margin: 0 0.8em 0.2em -1.6em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="ai-ethics-general_files/libs/revealjs/dist/theme/quarto.css" id="theme">
+  <link rel="stylesheet" href="ai-ethics-general_files/libs/revealjs/dist/theme/quarto-73806f0e93c0950b605bb3afe7220856.css">
   <link rel="stylesheet" href="custom.css">
   <link href="ai-ethics-general_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="ai-ethics-general_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -37,203 +38,6 @@
   <link href="ai-ethics-general_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
   <link href="ai-ethics-general_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
   <link href="ai-ethics-general_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
-  <style type="text/css">
-
-  .callout {
-    margin-top: 1em;
-    margin-bottom: 1em;  
-    border-radius: .25rem;
-  }
-
-  .callout.callout-style-simple { 
-    padding: 0em 0.5em;
-    border-left: solid #acacac .3rem;
-    border-right: solid 1px silver;
-    border-top: solid 1px silver;
-    border-bottom: solid 1px silver;
-    display: flex;
-  }
-
-  .callout.callout-style-default {
-    border-left: solid #acacac .3rem;
-    border-right: solid 1px silver;
-    border-top: solid 1px silver;
-    border-bottom: solid 1px silver;
-  }
-
-  .callout .callout-body-container {
-    flex-grow: 1;
-  }
-
-  .callout.callout-style-simple .callout-body {
-    font-size: 1rem;
-    font-weight: 400;
-  }
-
-  .callout.callout-style-default .callout-body {
-    font-size: 0.9rem;
-    font-weight: 400;
-  }
-
-  .callout.callout-captioned.callout-style-simple .callout-body {
-    margin-top: 0.2em;
-  }
-
-  .callout:not(.callout-captioned) .callout-body {
-      display: flex;
-  }
-
-  .callout:not(.no-icon).callout-captioned.callout-style-simple .callout-content {
-    padding-left: 1.6em;
-  }
-
-  .callout.callout-captioned .callout-header {
-    padding-top: 0.2em;
-    margin-bottom: -0.2em;
-  }
-
-  .callout.callout-captioned .callout-caption  p {
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-  }
-    
-  .callout.callout-captioned.callout-style-simple .callout-content  p {
-    margin-top: 0;
-  }
-
-  .callout.callout-captioned.callout-style-default .callout-content  p {
-    margin-top: 0.7em;
-  }
-
-  .callout.callout-style-simple div.callout-caption {
-    border-bottom: none;
-    font-size: .9rem;
-    font-weight: 600;
-    opacity: 75%;
-  }
-
-  .callout.callout-style-default  div.callout-caption {
-    border-bottom: none;
-    font-weight: 600;
-    opacity: 85%;
-    font-size: 0.9rem;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-  }
-
-  .callout.callout-style-default div.callout-content {
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-  }
-
-  .callout.callout-style-simple .callout-icon::before {
-    height: 1rem;
-    width: 1rem;
-    display: inline-block;
-    content: "";
-    background-repeat: no-repeat;
-    background-size: 1rem 1rem;
-  }
-
-  .callout.callout-style-default .callout-icon::before {
-    height: 0.9rem;
-    width: 0.9rem;
-    display: inline-block;
-    content: "";
-    background-repeat: no-repeat;
-    background-size: 0.9rem 0.9rem;
-  }
-
-  .callout-caption {
-    display: flex
-  }
-    
-  .callout-icon::before {
-    margin-top: 1rem;
-    padding-right: .5rem;
-  }
-
-  .callout.no-icon::before {
-    display: none !important;
-  }
-
-  .callout.callout-captioned .callout-body > .callout-content > :last-child {
-    margin-bottom: 0.5rem;
-  }
-
-  .callout.callout-captioned .callout-icon::before {
-    margin-top: .5rem;
-    padding-right: .5rem;
-  }
-
-  .callout:not(.callout-captioned) .callout-icon::before {
-    margin-top: 1rem;
-    padding-right: .5rem;
-  }
-
-  /* Callout Types */
-
-  div.callout-note {
-    border-left-color: #4582ec !important;
-  }
-
-  div.callout-note .callout-icon::before {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
-  }
-
-  div.callout-note.callout-style-default .callout-caption {
-    background-color: #dae6fb
-  }
-
-  div.callout-important {
-    border-left-color: #d9534f !important;
-  }
-
-  div.callout-important .callout-icon::before {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
-  }
-
-  div.callout-important.callout-style-default .callout-caption {
-    background-color: #f7dddc
-  }
-
-  div.callout-warning {
-    border-left-color: #f0ad4e !important;
-  }
-
-  div.callout-warning .callout-icon::before {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
-  }
-
-  div.callout-warning.callout-style-default .callout-caption {
-    background-color: #fcefdc
-  }
-
-  div.callout-tip {
-    border-left-color: #02b875 !important;
-  }
-
-  div.callout-tip .callout-icon::before {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
-  }
-
-  div.callout-tip.callout-style-default .callout-caption {
-    background-color: #ccf1e3
-  }
-
-  div.callout-caution {
-    border-left-color: #fd7e14 !important;
-  }
-
-  div.callout-caution .callout-icon::before {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
-  }
-
-  div.callout-caution.callout-style-default .callout-caption {
-    background-color: #ffe5d0
-  }
-
-  </style>
   <style type="text/css">
     .reveal div.sourceCode {
       margin: 0;
@@ -340,7 +144,7 @@ Seonghak Hong
 </div>
 </div>
 
-  <p class="date">8/24/25</p>
+  <p class="date">2025-08-24</p>
 </section>
 <section id="발표-자료-접근" class="slide level2">
 <h2>발표 자료 접근</h2>
@@ -360,8 +164,7 @@ Seonghak Hong
 <li>태블릿이나 노트북으로 접속</li>
 <li>메모나 스크린샷 자유롭게</li>
 </ul>
-</div>
-</div>
+</div></div>
 </section>
 <section id="오늘의-학습-여정" class="slide level2">
 <h2>오늘의 학습 여정</h2>
@@ -387,8 +190,7 @@ Seonghak Hong
 <li>미래 사회 변화와 대비</li>
 </ul>
 <p><strong>❓ 마무리 및 Q&amp;A (20분)</strong></p>
-</div>
-</div>
+</div></div>
 <blockquote>
 <p><strong>“AI 시대를 살아가는 지혜로운 사람이 되기 위해”</strong></p>
 </blockquote>
@@ -415,8 +217,7 @@ Seonghak Hong
 <li>휴대폰 설정을 함께 체크해봐요</li>
 <li>경험담을 공유해주세요</li>
 </ul>
-</div>
-</div>
+</div></div>
 </section>
 <section id="퀴즈로-시작하기" class="slide level2">
 <h2>퀴즈로 시작하기!</h2>
@@ -448,8 +249,7 @@ D. 스마트폰 사진 자동 분류</p>
 <li>단순한 입출금 처리만</li>
 </ul>
 <p><strong>즉, 똑똑하지만 AI는 아님!</strong></p>
-</div>
-</div>
+</div></div>
 </section>
 <section id="부-ai-이해하기" class="slide level2 center">
 <h2>1부: AI 이해하기</h2>
@@ -480,8 +280,7 @@ D. 스마트폰 사진 자동 분류</p>
 <li>AI: “고양이가 있어요!”</li>
 </ul>
 <p><strong>→ 스스로 배워서 판단</strong></p>
-</div>
-</div>
+</div></div>
 <h3 id="쉬운-비유-ai는-매우-빠른-학습을-하는-학생"><i class="fas fa-graduation-cap"></i> 쉬운 비유: AI는 매우 빠른 학습을 하는 학생</h3>
 <ul>
 <li>수백만 개의 예시를 보고 패턴을 찾음</li>
@@ -546,8 +345,7 @@ D. 스마트폰 사진 자동 분류</p>
 <li>세금 신고 이상 탐지</li>
 <li>코로나 확산 예측</li>
 </ul>
-</div>
-</div>
+</div></div>
 </section>
 <section id="실습-내-스마트폰의-ai-찾기" class="slide level2">
 <h2>실습: 내 스마트폰의 AI 찾기</h2>
@@ -616,8 +414,7 @@ D. 스마트폰 사진 자동 분류</p>
 <li>응급상황 즉시 대응</li>
 <li>전 세계 동시 서비스</li>
 </ul>
-</div>
-</div>
+</div></div>
 <h3 id="성공-사례-ai가-구한-생명들"><i class="fas fa-award"></i> 성공 사례: AI가 구한 생명들</h3>
 <ul>
 <li><strong>의료 AI</strong>: 구글 AI가 당뇨망막병증을 90% 정확도로 조기 진단</li>
@@ -667,8 +464,7 @@ D. 스마트폰 사진 자동 분류</p>
 <li>예상치 못한 상황에서 이상 행동</li>
 <li>책임 소재 불분명</li>
 </ul>
-</div>
-</div>
+</div></div>
 <h3 id="실제-발생한-ai-사고들"><i class="fas fa-car-crash"></i> 실제 발생한 AI 사고들</h3>
 <ul>
 <li><strong>마이크로소프트 챗봇 Tay</strong>: 24시간 만에 인종차별적 발언 학습</li>
@@ -742,8 +538,7 @@ D. 스마트폰 사진 자동 분류</p>
 <li>창작 활동 시 아이디어 브레인스토밍 도움</li>
 <li>복잡한 계산이나 데이터 분석 자동화</li>
 </ul>
-</div>
-</div>
+</div></div>
 <h3 id="세대별-경험-차이"><i class="fas fa-user-friends"></i> 세대별 경험 차이</h3>
 <p><strong>10-20대</strong>: AI를 자연스럽게 받아들이지만 개인정보 걱정 증가 <strong>30-40대</strong>: 편리함과 프라이버시 사이에서 갈등 <strong>50대 이상</strong>: AI 기술 습득의 어려움과 일자리 위협 우려</p>
 </section>
@@ -766,7 +561,7 @@ D. 스마트폰 사진 자동 분류</p>
 </ul>
 <p><strong>변화 속도가 점점 빨라지고 있습니다!</strong></p>
 </section>
-<section id="생성형-ai의-등장" class="slide level2">
+<section id="생성형-ai의-등장" class="slide level2 scrollable">
 <h2>생성형 AI의 등장</h2>
 <h3 id="chatgpt가-바꾼-세상">ChatGPT가 바꾼 세상</h3>
 <div class="columns">
@@ -796,8 +591,7 @@ D. 스마트폰 사진 자동 분류</p>
 <li>미드저니 (이미지 생성)</li>
 <li>소라 (동영상 생성)</li>
 </ul>
-</div>
-</div>
+</div></div>
 <h3 id="실습-chatgpt-체험하기-10분"><i class="fas fa-laptop-code"></i> 실습: ChatGPT 체험하기 (10분)</h3>
 <p><strong>함께 해봅시다!</strong></p>
 <ol type="1">
@@ -864,8 +658,7 @@ D. 스마트폰 사진 자동 분류</p>
 <li>심리적 상담과 자기계발</li>
 <li>창작 활동의 영감 제공</li>
 </ul>
-</div>
-</div>
+</div></div>
 <h3 id="인기-급상승-배경"><i class="fas fa-fire"></i> 인기 급상승 배경</h3>
 <p><strong>코로나19 팬데믹의 영향</strong></p>
 <ul>
@@ -936,8 +729,7 @@ D. 스마트폰 사진 자동 분류</p>
 <li>사회 초년생: 인간관계 스킬 습득 기회 상실</li>
 <li>고령자: 디지털 치매와 사회적 고립 심화</li>
 </ul>
-</div>
-</div>
+</div></div>
 <h3 id="서비스-제공업체의-문제점"><i class="fas fa-building"></i> 서비스 제공업체의 문제점</h3>
 <p><strong><i class="fas fa-cogs"></i> 조작적 설계</strong></p>
 <ul>
@@ -1008,8 +800,7 @@ D. 스마트폰 사진 자동 분류</p>
 <li>학교나 직장의 상담실 이용</li>
 <li>온라인 심리상담 서비스 활용</li>
 </ul>
-</div>
-</div>
+</div></div>
 <h3 id="부모와-교육자가-할-일"><i class="fas fa-user-graduate"></i> 부모와 교육자가 할 일</h3>
 <p><strong><i class="fas fa-chalkboard-teacher"></i> 조기 교육과 예방</strong></p>
 <ul>
@@ -1088,8 +879,7 @@ D. 스마트폰 사진 자동 분류</p>
 <li>해킹 위험</li>
 <li>개인의 통제권 상실</li>
 </ul>
-</div>
-</div>
+</div></div>
 </section>
 <section id="실습-내-개인정보-점검하기" class="slide level2">
 <h2>실습: 내 개인정보 점검하기</h2>
@@ -1117,7 +907,7 @@ D. 스마트폰 사진 자동 분류</p>
 </ul>
 <p><strong>놀라운 발견이 있었나요?</strong></p>
 </section>
-<section id="개인정보-보호-실천법" class="slide level2">
+<section id="개인정보-보호-실천법" class="slide level2 scrollable">
 <h2>개인정보 보호 실천법</h2>
 <h3 id="지금-당장-할-수-있는-것들">지금 당장 할 수 있는 것들</h3>
 <div class="columns">
@@ -1161,8 +951,7 @@ D. 스마트폰 사진 자동 분류</p>
 <li>시크릿 모드 활용</li>
 <li>정기적으로 검색 기록 삭제</li>
 </ul>
-</div>
-</div>
+</div></div>
 <h3 id="개인정보-보호의-핵심-원칙"><i class="fas fa-gavel"></i> 개인정보 보호의 핵심 원칙</h3>
 <ol type="1">
 <li><strong>최소 제공</strong>: 꼭 필요한 정보만 제공</li>
@@ -1218,8 +1007,7 @@ D. 스마트폰 사진 자동 분류</p>
 <li>대출 심사: 여성과 소수민족 불리</li>
 <li>보험료 책정: 지역과 직업에 따른 차별</li>
 </ul>
-</div>
-</div>
+</div></div>
 </section>
 <section id="편향의-심각성-이해하기" class="slide level2">
 <h2>편향의 심각성 이해하기</h2>
@@ -1244,7 +1032,7 @@ D. 스마트폰 사진 자동 분류</p>
 <li>비슷한 경험이 있나요?</li>
 </ul>
 </section>
-<section id="ai-편향-해결-방법" class="slide level2">
+<section id="ai-편향-해결-방법" class="slide level2 scrollable">
 <h2>AI 편향 해결 방법</h2>
 <h3 id="기술적-해결책">기술적 해결책</h3>
 <div class="columns">
@@ -1287,8 +1075,7 @@ D. 스마트폰 사진 자동 분류</p>
 <li>사용 데이터 출처 명시</li>
 <li>성능 지표 투명 공개</li>
 </ul>
-</div>
-</div>
+</div></div>
 <h3 id="개인이-할-수-있는-것들"><i class="fas fa-user-check"></i> 개인이 할 수 있는 것들</h3>
 <ol type="1">
 <li><strong>의식적으로 다양성 추구</strong>: 다양한 관점의 콘텐츠 소비</li>
@@ -1372,8 +1159,7 @@ D. 스마트폰 사진 자동 분류</p>
 <li>디지털 마케터</li>
 <li>고객 경험 설계자</li>
 </ul>
-</div>
-</div>
+</div></div>
 <h3 id="중요한-포인트"><i class="fas fa-lightbulb"></i> 중요한 포인트!</h3>
 <p><strong>“직업이 없어지는 것”이 아니라 “일하는 방식이 바뀌는 것”</strong></p>
 </section>
@@ -1455,8 +1241,7 @@ D. 스마트폰 사진 자동 분류</p>
 <li><strong>쿠팡</strong>: AI 물류 최적화</li>
 </ul>
 <p><strong>결과</strong>: 물리적 매장 직원 감소, 온라인 전문가 증가</p>
-</div>
-</div>
+</div></div>
 <h3 id="성공적-전환-사례"><i class="fas fa-check-circle"></i> 성공적 전환 사례</h3>
 <p><strong>맥도날드 직원 → 디지털 전문가</strong></p>
 <ul>
@@ -1510,12 +1295,11 @@ D. 스마트폰 사진 자동 분류</p>
 <li>업계 전문가로 성장</li>
 <li>멘토링, 컨설팅 역량 개발</li>
 </ul>
-</div>
-</div>
+</div></div>
 <h3 id="연령대별-맞춤-전략"><i class="fas fa-users-cog"></i> 연령대별 맞춤 전략</h3>
 <p><strong>20-30대</strong>: 새로운 기술 적극 학습, 경력 전환 유연성 활용 <strong>40-50대</strong>: 경험과 AI 기술 결합, 전문성 기반 차별화 <strong>50대 이상</strong>: 멘토링, 상담, 관리 역할로 전환, 인생 경험 활용</p>
 </section>
-<section id="토론-내-직업의-미래" class="slide level2">
+<section id="토론-내-직업의-미래" class="slide level2 scrollable">
 <h2>토론: 내 직업의 미래</h2>
 <h3 id="그룹-토론-활동-15분">그룹 토론 활동 (15분)</h3>
 <p><strong>1단계: 개인 분석 (5분)</strong></p>
@@ -1595,8 +1379,7 @@ D. 스마트폰 사진 자동 분류</p>
 <li>프로젝트 매니저: 30%</li>
 <li>HR 전문가: 20%</li>
 </ul>
-</div>
-</div>
+</div></div>
 <h3 id="각-직업의-대응-전략"><i class="fas fa-map-signs"></i> 각 직업의 대응 전략</h3>
 <p><strong>높은 위험군의 생존 전략</strong></p>
 <ul>
@@ -1660,8 +1443,7 @@ D. 스마트폰 사진 자동 분류</p>
 <li>더 의미 있는 업무로 직원 역할 재정의</li>
 <li>창의성과 혁신을 중시하는 문화</li>
 </ul>
-</div>
-</div>
+</div></div>
 <h3 id="선진국의-대응-사례"><i class="fas fa-globe-americas"></i> 선진국의 대응 사례</h3>
 <p><strong>핀란드</strong>: 전 국민 AI 기초 교육 무료 제공 <strong>싱가포르</strong>: 40세 이상 직장인 재교육 프로그램 <strong>에스토니아</strong>: 디지털 정부로 새로운 일자리 창출</p>
 </section>
@@ -1720,8 +1502,7 @@ D. 스마트폰 사진 자동 분류</p>
 <li>시민 단체 활동 지원</li>
 <li>윤리적 기업 제품 선택</li>
 </ul>
-</div>
-</div>
+</div></div>
 <h3 id="실천-체크리스트"><i class="fas fa-list-check"></i> 실천 체크리스트</h3>
 <p><strong>매일 할 수 있는 것</strong></p>
 <ul>
@@ -1742,7 +1523,7 @@ D. 스마트폰 사진 자동 분류</p>
 <li>윤리적으로 운영되는 기업 제품 의식적 선택</li>
 </ul>
 </section>
-<section id="ai-기업의-윤리적-책임" class="slide level2">
+<section id="ai-기업의-윤리적-책임" class="slide level2 scrollable">
 <h2>AI 기업의 윤리적 책임</h2>
 <h3 id="ai-서비스를-만드는-회사들의-문제점">AI 서비스를 만드는 회사들의 문제점</h3>
 <div class="columns">
@@ -1792,8 +1573,7 @@ D. 스마트폰 사진 자동 분류</p>
 <li>사용자 안전보다 투자 유치 우선</li>
 <li>책임질 수 있는 규모를 넘어선 서비스</li>
 </ul>
-</div>
-</div>
+</div></div>
 <h3 id="ai-기업이-지켜야-할-윤리-원칙"><i class="fas fa-gavel"></i> AI 기업이 지켜야 할 윤리 원칙</h3>
 <ol type="1">
 <li><strong>투명성</strong>: 알고리즘 작동 원리와 데이터 사용 목적 공개</li>
@@ -1853,13 +1633,12 @@ D. 스마트폰 사진 자동 분류</p>
 <li>결제 정보를 여러 사이트에 저장</li>
 <li>피싱 사이트와 정상 사이트 구분 안 함</li>
 </ul>
-</div>
-</div>
+</div></div>
 <h3 id="윤리적-ai-사용자가-되는-방법"><i class="fas fa-user-graduate"></i> 윤리적 AI 사용자가 되는 방법</h3>
 <p><strong>개인 차원에서</strong> - 개인정보 설정을 정기적으로 점검 - AI 결과를 다른 정보와 교차 검증 - 출처가 명확한 정보만 공유 - 타인의 프라이버시 존중</p>
 <p><strong>사회 차원에서</strong> - 윤리적 기업의 제품 우선 선택 - AI 관련 정책과 법률에 관심 - 주변 사람들에게 올바른 사용법 알리기 - 문제 상황 발견 시 적극적 신고</p>
 </section>
-<section id="기업과-사용자의-상생-방안" class="slide level2">
+<section id="기업과-사용자의-상생-방안" class="slide level2 scrollable">
 <h2>기업과 사용자의 상생 방안</h2>
 <h3 id="건전한-ai-생태계-만들기">건전한 AI 생태계 만들기</h3>
 <div class="columns">
@@ -1909,8 +1688,7 @@ D. 스마트폰 사진 자동 분류</p>
 <li>단기적 편의보다 장기적 영향 고려</li>
 <li>개인의 권리와 사회적 책임 균형</li>
 </ul>
-</div>
-</div>
+</div></div>
 <h3 id="상생의-핵심-원칙"><i class="fas fa-check-circle"></i> 상생의 핵심 원칙</h3>
 <ol type="1">
 <li><strong>상호 신뢰</strong>: 기업은 투명하게, 사용자는 합리적으로</li>
@@ -1968,7 +1746,7 @@ D. 스마트폰 사진 자동 분류</p>
 <li>자아실현 기회 확대</li>
 </ul>
 </section>
-<section id="준비해야-할-도전과제" class="slide level2">
+<section id="준비해야-할-도전과제" class="slide level2 scrollable">
 <h2>준비해야 할 도전과제</h2>
 <h3 id="해결해야-할-문제들">해결해야 할 문제들</h3>
 <div class="columns">
@@ -2018,8 +1796,7 @@ D. 스마트폰 사진 자동 분류</p>
 <li>판단력과 창의성 감소</li>
 <li>인간 관계의 피상화</li>
 </ul>
-</div>
-</div>
+</div></div>
 <h3 id="우리가-준비해야-할-것들"><i class="fas fa-tasks"></i> 우리가 준비해야 할 것들</h3>
 <ol type="1">
 <li><strong>적응력</strong>: 변화에 유연하게 대응하는 능력</li>
@@ -2075,8 +1852,7 @@ D. 스마트폰 사진 자동 분류</p>
 <li>업계 공동 가이드라인</li>
 <li>시민사회와 협력</li>
 </ul>
-</div>
-</div>
+</div></div>
 <h3 id="한국의-ai-정책"><i class="fas fa-flag"></i> 한국의 AI 정책</h3>
 <p><strong>정부 정책 방향</strong></p>
 <ul>
@@ -2093,7 +1869,7 @@ D. 스마트폰 사진 자동 분류</p>
 <li>AI 전문인력 양성</li>
 </ul>
 </section>
-<section id="시민으로서-참여하기" class="slide level2">
+<section id="시민으로서-참여하기" class="slide level2 scrollable">
 <h2>시민으로서 참여하기</h2>
 <h3 id="우리의-목소리가-중요합니다">우리의 목소리가 중요합니다</h3>
 <div class="columns">
@@ -2143,8 +1919,7 @@ D. 스마트폰 사진 자동 분류</p>
 <li>지역별 시민 모임</li>
 <li>전문가와 시민 네트워크</li>
 </ul>
-</div>
-</div>
+</div></div>
 <h3 id="실천-프로젝트-우리-동네-ai-지도-만들기"><i class="fas fa-map-marked-alt"></i> 실천 프로젝트: 우리 동네 AI 지도 만들기</h3>
 <p><strong>활동 방법</strong></p>
 <ol type="1">
@@ -2216,8 +1991,7 @@ D. 스마트폰 사진 자동 분류</p>
 <li>교육과정 전면 재검토 필요성 대두</li>
 <li>AI 리터러시 교육 의무화 논의</li>
 </ul>
-</div>
-</div>
+</div></div>
 <h3 id="생성형-ai의-사회적-파급효과">생성형 AI의 사회적 파급효과</h3>
 <p><strong>언론과 정보 생태계 혼란</strong></p>
 <ul>
@@ -2277,8 +2051,7 @@ D. 스마트폰 사진 자동 분류</p>
 <li>홍콩 금융회사 CEO 딥페이크로 2천만 달러 사기</li>
 <li>러시아-우크라이나 전쟁 중 젤렌스키 가짜 영상</li>
 </ul>
-</div>
-</div>
+</div></div>
 <h3 id="딥페이크-대응-전략">딥페이크 대응 전략</h3>
 <p><strong>기술적 솔루션</strong></p>
 <ul>
@@ -2345,8 +2118,7 @@ D. 스마트폰 사진 자동 분류</p>
 <li>조기 개입과 예방 교육의 중요성 강조</li>
 <li>가족과 사회의 적극적 관심과 지원 필요</li>
 </ul>
-</div>
-</div>
+</div></div>
 <h3 id="ai-챗봇-중독-예방과-치료">AI 챗봇 중독 예방과 치료</h3>
 <p><strong>예방 전략</strong></p>
 <ul>
@@ -2413,8 +2185,7 @@ D. 스마트폰 사진 자동 분류</p>
 <li>특수교육 필요 학생 판별 AI의 인종 편향</li>
 <li>AI 진로 상담의 성별 고정관념 강화</li>
 </ul>
-</div>
-</div>
+</div></div>
 <h3 id="알고리즘-편향-해결을-위한-노력">알고리즘 편향 해결을 위한 노력</h3>
 <p><strong>기술적 개선 방안</strong></p>
 <ul>
@@ -2481,8 +2252,7 @@ D. 스마트폰 사진 자동 분류</p>
 <li>구글 핏니스: 운동 데이터로 개인 프로파일링</li>
 <li>삼성 헬스: 의료진과 데이터 공유 시 동의 절차 미흡</li>
 </ul>
-</div>
-</div>
+</div></div>
 <h3 id="개인정보-보호-강화-방안">개인정보 보호 강화 방안</h3>
 <p><strong>개인 차원의 보호 전략</strong></p>
 <ul>
@@ -2549,8 +2319,7 @@ D. 스마트폰 사진 자동 분류</p>
 <li>AI 부모 통제 앱의 과도한 모니터링</li>
 <li>연인 간 AI 스토킹 앱 사용 증가</li>
 </ul>
-</div>
-</div>
+</div></div>
 <h3 id="ai-보안-위협-대응-방안">AI 보안 위협 대응 방안</h3>
 <p><strong>국제적 대응</strong></p>
 <ul>
@@ -2617,8 +2386,7 @@ D. 스마트폰 사진 자동 분류</p>
 <li>코드 라이선스 위반 문제 급증</li>
 <li>소프트웨어 개발자 권익 보호 필요성</li>
 </ul>
-</div>
-</div>
+</div></div>
 <h3 id="창작자-보호-방안">창작자 보호 방안</h3>
 <p><strong>법적 보호 강화</strong></p>
 <ul>
@@ -2688,8 +2456,7 @@ D. 스마트폰 사진 자동 분류</p>
 <li>창의적 디자이너, 예술가</li>
 <li>인간관계 전문가, 네트워크 매니저</li>
 </ul>
-</div>
-</div>
+</div></div>
 <h3 id="노동자-보호와-적응-지원">노동자 보호와 적응 지원</h3>
 <p><strong>정부 차원의 지원책</strong></p>
 <ul>
@@ -2706,7 +2473,7 @@ D. 스마트폰 사진 자동 분류</p>
 <li>새로운 역할과 업무 창출 노력</li>
 </ul>
 </section>
-<section id="대응-방안-및-실천-가이드" class="slide level2">
+<section id="대응-방안-및-실천-가이드" class="slide level2 scrollable">
 <h2>대응 방안 및 실천 가이드</h2>
 <h3 id="개인-차원의-대응-방안">개인 차원의 대응 방안</h3>
 <p><strong>즉시 실천 가능한 것들</strong></p>
@@ -2801,8 +2568,7 @@ D. 스마트폰 사진 자동 분류</p>
 <li>주변에 올바른 사용법 전파</li>
 <li>문제 발견 시 신고 및 대응</li>
 </ul>
-</div>
-</div>
+</div></div>
 <h3 id="실천-체크리스트-1"><i class="fas fa-clipboard-list"></i> 실천 체크리스트</h3>
 <p><strong>매일 실천할 것</strong> - [ ] AI 추천 결과를 다른 정보와 비교 확인 - [ ] 개인정보 설정 점검 - [ ] 의심스러운 콘텐츠에 대한 비판적 사고 - [ ] AI 서비스 사용 시간 자기 관리</p>
 <p><strong>매주 실천할 것</strong> - [ ] AI 윤리 관련 뉴스 확인 - [ ] 가족, 지인과 AI 윤리 대화 - [ ] 새로운 AI 서비스의 윤리적 평가 - [ ] 디지털 웰빙 상태 점검</p>
@@ -2822,12 +2588,14 @@ D. 스마트폰 사진 자동 분류</p>
 <p>오늘 배운 내용을 바탕으로: - <strong>의식적이고 비판적인 AI 사용자</strong>가 되어주세요 - <strong>개인정보와 권리를 스스로 보호</strong>해주세요<br>
 - <strong>사회적 약자와 소외계층에 대한 관심</strong>을 가져주세요 - <strong>더 나은 AI 사회를 위한 시민 참여</strong>를 실천해주세요</p>
 <p><strong>우리 모두가 지혜로운 AI 시민이 될 때, 더 공정하고 안전한 AI 사회가 가능합니다.</strong></p>
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
 
 </div>
-</section>
-    </div>
-  </div>
+</div></div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
   <script src="ai-ethics-general_files/libs/revealjs/dist/reveal.js"></script>
@@ -2853,12 +2621,12 @@ D. 스마트폰 사진 자동 분류</p>
       Reveal.initialize({
 'controlsAuto': false,
 'previewLinksAuto': false,
-'smaller': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'chalkboard': {"buttons":true},
 'smaller': false,
  
@@ -3018,7 +2786,7 @@ D. 스마트폰 사진 자동 분류</p>
         maxScale: 2,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -3045,137 +2813,173 @@ D. 스마트폰 사진 자동 분류</p>
       });
     </script>
     <script id="quarto-html-after-body" type="application/javascript">
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-      const toggleBodyColorMode = (bsSheetEl) => {
-        const mode = bsSheetEl.getAttribute("data-mode");
-        const bodyEl = window.document.querySelector("body");
-        if (mode === "dark") {
-          bodyEl.classList.add("quarto-dark");
-          bodyEl.classList.remove("quarto-light");
-        } else {
-          bodyEl.classList.add("quarto-light");
-          bodyEl.classList.remove("quarto-dark");
-        }
-      }
-      const toggleBodyColorPrimary = () => {
-        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-        if (bsSheetEl) {
-          toggleBodyColorMode(bsSheetEl);
-        }
-      }
-      toggleBodyColorPrimary();  
-      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
-      tabsets.forEach(function(tabset) {
-        const tabby = new Tabby('#' + tabset.id);
-      });
-      const clipboard = new window.ClipboardJS('.code-copy-button', {
-        target: function(trigger) {
-          return trigger.previousElementSibling;
-        }
-      });
-      clipboard.on('success', function(e) {
-        // button target
-        const button = e.trigger;
-        // don't keep focus
-        button.blur();
-        // flash "checked"
-        button.classList.add('code-copy-button-checked');
-        var currentTitle = button.getAttribute("title");
-        button.setAttribute("title", "Copied!");
-        let tooltip;
-        if (window.bootstrap) {
-          button.setAttribute("data-bs-toggle", "tooltip");
-          button.setAttribute("data-bs-placement", "left");
-          button.setAttribute("data-bs-title", "Copied!");
-          tooltip = new bootstrap.Tooltip(button, 
-            { trigger: "manual", 
-              customClass: "code-copy-button-tooltip",
-              offset: [0, -8]});
-          tooltip.show();    
-        }
-        setTimeout(function() {
-          if (tooltip) {
-            tooltip.hide();
-            button.removeAttribute("data-bs-title");
-            button.removeAttribute("data-bs-toggle");
-            button.removeAttribute("data-bs-placement");
-          }
-          button.setAttribute("title", currentTitle);
-          button.classList.remove('code-copy-button-checked');
-        }, 1000);
-        // clear code selection
-        e.clearSelection();
-      });
-      function tippyHover(el, contentFn) {
-        const config = {
-          allowHTML: true,
-          content: contentFn,
-          maxWidth: 500,
-          delay: 100,
-          arrow: false,
-          appendTo: function(el) {
-              return el.closest('section.slide') || el.parentElement;
-          },
-          interactive: true,
-          interactiveBorder: 10,
-          theme: 'quarto-reveal',
-          placement: 'bottom-start'
-        };
-          config['offset'] = [0,0];
-          config['maxWidth'] = 700;
-        window.tippy(el, config); 
-      }
-      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-      for (var i=0; i<noterefs.length; i++) {
-        const ref = noterefs[i];
-        tippyHover(ref, function() {
-          // use id or data attribute instead here
-          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-          try { href = new URL(href).hash; } catch {}
-          const id = href.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          return note.innerHTML;
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
         });
-      }
-      const findCites = (el) => {
-        const parentEl = el.parentElement;
-        if (parentEl) {
-          const cites = parentEl.dataset.cites;
-          if (cites) {
-            return {
-              el,
-              cites: cites.split(' ')
-            };
-          } else {
-            return findCites(el.parentElement)
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
           }
-        } else {
-          return undefined;
+          return false;
         }
-      };
-      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-      for (var i=0; i<bibliorefs.length; i++) {
-        const ref = bibliorefs[i];
-        const citeInfo = findCites(ref);
-        if (citeInfo) {
-          tippyHover(citeInfo.el, function() {
-            var popup = window.document.createElement('div');
-            citeInfo.cites.forEach(function(cite) {
-              var citeDiv = window.document.createElement('div');
-              citeDiv.classList.add('hanging-indent');
-              citeDiv.classList.add('csl-entry');
-              var biblioDiv = window.document.getElementById('ref-' + cite);
-              if (biblioDiv) {
-                citeDiv.innerHTML = biblioDiv.innerHTML;
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
               }
-              popup.appendChild(citeDiv);
-            });
-            return popup.innerHTML;
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
           });
         }
-      }
-    });
-    </script>
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
     
 
 </body></html>
